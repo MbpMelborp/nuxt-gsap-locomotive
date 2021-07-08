@@ -39,6 +39,7 @@ import telemetry from './configuration/telemetry.js'
 import vueConfig from './configuration/vueConfig.js'
 import watch from './configuration/watch.js'
 import watchers from './configuration/watchers.js'
+import tailwind from './configuration/tailwind.js'
 require('dotenv').config()
 
 export default {
@@ -83,4 +84,5 @@ export default {
   ...vueConfig,
   ...watch,
   ...watchers,
+  ...tailwind,
 }

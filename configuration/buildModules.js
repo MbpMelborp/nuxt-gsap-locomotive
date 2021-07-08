@@ -7,5 +7,6 @@ export default {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/dotenv',
     '@nuxt/image',
+    '@nuxtjs/tailwindcss',
   ],
 }
