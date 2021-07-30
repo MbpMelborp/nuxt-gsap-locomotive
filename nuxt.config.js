@@ -16,7 +16,7 @@ import globalName from './configuration/globalName.js'
 import gtm from './configuration/google-tag-manager.js'
 import hooks from './configuration/hooks.js'
 import head from './configuration/head/'
-import i18n from './configuration/i18n.js'
+// import i18n from './configuration/i18n.js'
 import image from './configuration/image.js'
 import loading from './configuration/loading.js'
 import loadingIndicator from './configuration/loadingIndicator.js'
@@ -34,6 +34,7 @@ import sitemap from './configuration/sitemap.js'
 import srcDir from './configuration/srcDir.js'
 import ssr from './configuration/ssr.js'
 import styleResources from './configuration/styleResources.js'
+import svgSprite from './configuration/svgSprite.js'
 import target from './configuration/target.js'
 import telemetry from './configuration/telemetry.js'
 import vueConfig from './configuration/vueConfig.js'
@@ -61,7 +62,7 @@ export default {
   ...gtm,
   ...head,
   ...hooks,
-  ...i18n,
+  // ...i18n,
   ...image,
   ...loading,
   ...loadingIndicator,
@@ -79,6 +80,7 @@ export default {
   ...srcDir,
   ...ssr,
   ...styleResources,
+  ...svgSprite,
   ...target,
   ...telemetry,
   ...vueConfig,
