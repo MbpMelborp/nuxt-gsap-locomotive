@@ -11,7 +11,9 @@
       },
     }"
   >
-    <div class="example vertical">
+    <div class="content_interior vertical">
+      <HomeTop></HomeTop>
+
       <header data-scroll-section>
         <h1 ref="headerH1">Gsap Scroll Trigger</h1>
       </header>
@@ -53,16 +55,20 @@
 <script>
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+// COMPONENS
+import HomeTop from '~/components/HomeTop.vue'
+
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
   components: {
     BoxComponent: () =>
       import(/* webpackPrefetch: true */ '@/components/box-component.vue'),
+    HomeTop,
   },
   mounted() {
     this.initScrolltrigger()
-
     this.$nextTick(() => {
       const elements = document.querySelectorAll('[data-scroll-trigger]')
       elements.forEach((element) => this.elementAnimation(element))
@@ -150,6 +156,11 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import '~assets/scss/demo.scss';
+<style lang="postcss">
+header {
+  align-items: center;
+  padding: 0 12.5vw;
+  display: flex;
+  @apply h-screen;
+}
 </style>
