@@ -51,8 +51,8 @@
         </nuxt-link>
       </div>
       <div class="nav">
-        <nuxt-link v-split-characters data-cursor-hover to="/archive">
-          Archive
+        <nuxt-link data-cursor-hover to="/archive">
+          <div v-split-characters>Archive</div>
         </nuxt-link>
       </div>
     </div>

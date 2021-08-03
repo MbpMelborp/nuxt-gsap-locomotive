@@ -14,10 +14,6 @@
     <div class="content_interior vertical">
       <HomeTop></HomeTop>
 
-      <header data-scroll-section>
-        <h1 ref="headerH1">Gsap Scroll Trigger</h1>
-      </header>
-
       <div class="example-section" data-scroll-section>
         <div class="example-content">
           <div class="example-big-square" />
@@ -56,6 +52,8 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+import { mapMutations, mapGetters } from 'vuex'
+
 // COMPONENS
 import HomeTop from '~/components/HomeTop.vue'
 
@@ -66,6 +64,11 @@ export default {
     BoxComponent: () =>
       import(/* webpackPrefetch: true */ '@/components/box-component.vue'),
     HomeTop,
+  },
+  computed: {
+    ...mapGetters({
+      section: 'app/getSection',
+    }),
   },
   mounted() {
     this.initScrolltrigger()
@@ -79,6 +82,7 @@ export default {
     })
   },
   methods: {
+    ...mapMutations({ setSection: 'app/setSection' }),
     initScrolltrigger() {
       const locomotive = this.$refs.scroller.locomotive
       locomotive.on('scroll', ScrollTrigger.update)
@@ -98,14 +102,19 @@ export default {
         },
       })
       locomotive.on('call', (value, way, obj) => {
+        this.setSection(value)
         switch (value) {
           case 'fadeText': {
+            console.log('FadeText')
             const child = this.$refs.texti /// /obj.el.firstChild
             gsap.to(child, {
               duration: 2,
               ease: 'expo.out',
               opacity: 0.1,
             })
+            break
+          }
+          case 'index_home': {
             break
           }
           default:

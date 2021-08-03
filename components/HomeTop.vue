@@ -4,27 +4,34 @@
       <div class="home_top_welcome_nav">
         <div class="nav_home">
           <div
+            data-scroll=""
+            data-scroll-speed="3"
+            data-scroll-position="top"
             class="dest nav_home_home"
             @mouseover="textHover('home')"
             @mouseleave="textLeave('home')"
           >
-            <div v-split-characters>HOME</div>
+            <div v-split-characters>WORK</div>
           </div>
           <div
-            v-split-characters
+            data-scroll=""
+            data-scroll-speed="2"
+            data-scroll-position="top"
             class="dest nav_home_work"
             @mouseover="textHover('work')"
             @mouseleave="textLeave('work')"
           >
-            <div v-split-characters>WORK</div>
+            <div v-split-characters>ABOUT</div>
           </div>
           <div
-            v-split-characters
+            data-scroll=""
+            data-scroll-speed="1"
+            data-scroll-position="top"
             class="dest nav_home_about"
             @mouseover="textHover('about')"
             @mouseleave="textLeave('about')"
           >
-            <div v-split-characters>ABOUT</div>
+            <div v-split-characters>STAFF</div>
           </div>
           <h2 class="home_top_welcome_title">
             <div class="title1">Business</div>
@@ -56,6 +63,11 @@ export default {
       tl_about: gsap.timeline({ paused: true, ease: Expo.easeOut }),
       tl_init: gsap.timeline({ paused: false, ease: Power4.easeInOut }),
     }
+  },
+  computed: {
+    getSection() {
+      return this.$store.getters.getSection
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -96,8 +108,9 @@ export default {
       this.tl_home.to('.nav_home_home span', {
         fontWeight: gsap.utils.random(100, 900, 5),
         fontStretch: gsap.utils.random(60, 120, 10),
-        color: 'white',
+        // color: 'white',
         duration: 0.3,
+        autoAlpha: 0.8,
         stagger: {
           each: 0.1,
           from: 'edges',
@@ -106,8 +119,9 @@ export default {
       this.tl_work.to('.nav_home_work span', {
         fontWeight: gsap.utils.random(100, 900, 5),
         fontStretch: gsap.utils.random(60, 120, 10),
-        color: 'white',
+        // color: 'white',
         duration: 0.3,
+        autoAlpha: 0.8,
         stagger: {
           each: 0.1,
           from: 'edges',
@@ -116,8 +130,9 @@ export default {
       this.tl_about.to('.nav_home_about span', {
         fontWeight: gsap.utils.random(100, 900, 5),
         fontStretch: gsap.utils.random(60, 120, 10),
-        color: 'white',
+        // color: 'white',
         duration: 0.3,
+        autoAlpha: 0.8,
         stagger: {
           each: 0.1,
           from: 'edges',
@@ -150,11 +165,11 @@ export default {
     setText(element) {
       const spanWeight = gsap.utils.random(100, 900, 5)
       const spanStretch = gsap.utils.random(60, 120, 10)
-      const spanItalic = gsap.utils.random(['normal', 'italic'])
+      // const spanItalic = gsap.utils.random(['normal', 'italic'])
       gsap.set(element, {
         fontWeight: spanWeight,
         fontStretch: spanStretch,
-        fontStyle: spanItalic,
+        // fontStyle: spanItalic,
       })
     },
     textHover(evt) {
@@ -179,7 +194,15 @@ export default {
         this.tl_about.pause().reverse()
       }
     },
-
+    viewHomeTop(e) {
+      console.log(e.type) // 'enter', 'exit', 'progress'
+      console.log(e.percentInView) // 0..1 how much element overlap the viewport
+      console.log(e.percentTop) // 0..1 position of element at viewport 0 - above , 1 - below
+      console.log(e.percentCenter) // 0..1 position the center of element at viewport 0 - center at viewport top, 1 - center at viewport bottom
+      console.log(e.scrollPercent) // 0..1 current scroll position of page
+      console.log(e.scrollValue) // 0..1 last scroll value (change of page scroll offset)
+      console.log(e.target.rect) // element.getBoundingClientRect() result
+    },
     // randomDelay() {
     //   const newDelay = Math.random() * 3
     //   gsap.delayedCall(newDelay, () => {
@@ -194,9 +217,17 @@ export default {
 <style lang="postcss">
 .home_top {
   @apply w-screen h-screen;
-  .title1 {
-    /* font-size: 18em; */
+}
+.home_top_welcome {
+  /* @apply border border-white; */
+}
+.dest {
+  span {
+    @apply text-m-yellow-100;
   }
+}
+.home_top_welcome_title {
+  @apply text-m-yellow-100;
 }
 .image_back {
   img {

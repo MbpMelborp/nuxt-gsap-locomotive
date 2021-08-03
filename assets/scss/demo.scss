@@ -1,6 +1,6 @@
 //@import 'assets/scss/font.scss';
 @import 'assets/scss/variables.scss';
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap');
+@import 'assets/scss/font.scss';
 
 footer {
   padding: 12.5vw 6.25vw;
@@ -80,6 +80,7 @@ nav {
       'welcome welcome welcome welcome'
       'welcome welcome welcome welcome'
       '. . . .';
+    z-index: 2;
     &_nav {
       grid-area: welcome;
 
@@ -123,16 +124,19 @@ nav {
         }
         .nav_home_home {
           grid-area: home;
+          min-width: 60vw;
           justify-self: start;
           padding-right: 10vw;
         }
         .nav_home_work {
           grid-area: work;
+          min-width: 60vw;
           justify-self: start;
           padding-right: 10vw;
         }
         .nav_home_about {
           grid-area: about;
+          min-width: 60vw;
           justify-self: start;
           padding-right: 10vw;
           margin-left: 2vh;
@@ -145,6 +149,7 @@ nav {
     grid-column-end: r1;
     grid-row-start: t1;
     grid-row-end: b1;
+    z-index: 1;
     image {
       height: 100vh;
       width: 100%;
@@ -164,7 +169,11 @@ nav {
 }
 
 header {
-  padding: 12.5vw 6.25vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 212, 125, 0.6);
   h1 {
     line-height: 1;
     margin: 0;
@@ -220,7 +229,9 @@ header {
   align-items: center;
   padding: 0 12.5vw;
 }
-
+.example-section {
+  height: 100vh;
+}
 .example.horizontal .example-section {
   width: 100vw;
 }
