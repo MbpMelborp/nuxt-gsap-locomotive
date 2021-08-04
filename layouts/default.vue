@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~assets/scss/demo.scss';
+@import '~assets/scss/global.scss';
 </style>
 
 <style lang="postcss">

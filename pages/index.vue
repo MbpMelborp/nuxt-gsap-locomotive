@@ -13,6 +13,11 @@
   >
     <div class="content_interior vertical">
       <HomeTop></HomeTop>
+      <Proyectos
+        v-for="(proyecto, index) in proyectos"
+        :key="index"
+        :proyecto="proyecto"
+      ></Proyectos>
 
       <div class="example-section" data-scroll-section>
         <div class="example-content">
@@ -20,6 +25,7 @@
           <div class="example-small-square" data-scroll-trigger />
         </div>
       </div>
+
       <div class="example-section" data-scroll-section>
         <BoxComponent />
       </div>
@@ -56,6 +62,7 @@ import { mapMutations, mapGetters } from 'vuex'
 
 // COMPONENS
 import HomeTop from '~/components/HomeTop.vue'
+import Proyectos from '~/components/Proyecto.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -64,6 +71,23 @@ export default {
     BoxComponent: () =>
       import(/* webpackPrefetch: true */ '@/components/box-component.vue'),
     HomeTop,
+    Proyectos,
+  },
+  asyncData(context) {
+    return context.app.$storyapi
+      .get('cdn/stories', {
+        // version: context.isDev ? "draft" : "published",
+        // version:"published",
+        starts_with: 'work/',
+        sort_by: 'name:asc',
+      })
+      .then((res) => {
+        console.log('STORY_HOME', res.data.stories)
+        return {
+          proyectos: res.data.stories,
+        }
+      })
+      .catch((res) => {})
   },
   computed: {
     ...mapGetters({
@@ -131,7 +155,7 @@ export default {
           start: 'top bottom',
           end: 'bottom center',
         },
-        scaleY: 0,
+        clipPath: 'inset(100% 0% 0% 0%)',
         ease: 'none',
       })
     },

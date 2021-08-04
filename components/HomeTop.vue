@@ -1,5 +1,5 @@
 <template>
-  <div class="home_top" data-scroll-section>
+  <div v-view class="home_top" data-scroll-section>
     <div class="home_top_welcome">
       <div class="home_top_welcome_nav">
         <div class="nav_home">
@@ -203,13 +203,6 @@ export default {
       console.log(e.scrollValue) // 0..1 last scroll value (change of page scroll offset)
       console.log(e.target.rect) // element.getBoundingClientRect() result
     },
-    // randomDelay() {
-    //   const newDelay = Math.random() * 3
-    //   gsap.delayedCall(newDelay, () => {
-    //     this.Box.restart()
-    //   })
-    //   console.log('repeat after: ', newDelay)
-    // },
   },
 }
 </script>

@@ -27,5 +27,6 @@ module.exports = {
         message: 'Unexpected property on console object was called',
       },
     ],
+    'vue/no-v-html': 0,
   },
 }

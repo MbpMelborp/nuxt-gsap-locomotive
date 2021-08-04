@@ -34,6 +34,7 @@ import sitemap from './configuration/sitemap.js'
 import srcDir from './configuration/srcDir.js'
 import ssr from './configuration/ssr.js'
 import styleResources from './configuration/styleResources.js'
+import storyblok from './configuration/storyblok.js'
 import svgSprite from './configuration/svgSprite.js'
 import target from './configuration/target.js'
 import telemetry from './configuration/telemetry.js'
@@ -80,6 +81,7 @@ export default {
   ...srcDir,
   ...ssr,
   ...styleResources,
+  ...storyblok,
   ...svgSprite,
   ...target,
   ...telemetry,
