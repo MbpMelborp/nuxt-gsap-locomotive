@@ -14,6 +14,11 @@ export default {
       // ...fonts,
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
-    script: [],
+    script: [
+      {
+        src: 'https://kit.fontawesome.com/6328404de0.js',
+        crossorigin: 'anonymous',
+      },
+    ],
   },
 }

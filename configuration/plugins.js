@@ -6,6 +6,7 @@ export default {
     { src: '~/plugins/server.js', mode: 'server' },
     { src: '~/plugins/cursor.js', mode: 'client' },
     { src: '~/plugins/viewport.js', mode: 'client' },
+    // { src: '~/plugins/textresponsive.js', mode: 'client' },
   ],
   // plugins: ['~/plugins/url-helpers.js']
 }

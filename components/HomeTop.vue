@@ -1,5 +1,5 @@
 <template>
-  <div v-view class="home_top" data-scroll-section>
+  <div class="home_top" data-scroll-section data-scroll-call="section_home">
     <div class="home_top_welcome">
       <div class="home_top_welcome_nav">
         <div class="nav_home">
@@ -40,8 +40,16 @@
         </div>
       </div>
     </div>
-    <div class="image_back">
-      <HomeBkg></HomeBkg>
+    <div
+      data-scroll
+      data-scroll-call="index_home"
+      data-scroll-repeat="true"
+      data-scroll-speed="-1"
+      data-scroll-position="top"
+      class="image_back"
+    >
+      <HomeBkg v-if="animacion"></HomeBkg>
+      <HomeBkgImage v-else></HomeBkgImage>
     </div>
   </div>
 </template>
@@ -49,12 +57,30 @@
 <script>
 import { gsap, Expo, Power4 } from 'gsap'
 
+import { mapGetters } from 'vuex'
+
 // COMPONENS
 import HomeBkg from '~/components/HomeBkg.vue'
+import HomeBkgImage from '~/components/HomeBkgImage.vue'
 
 export default {
   components: {
     HomeBkg,
+    HomeBkgImage,
+  },
+  props: {
+    story: {
+      type: Object,
+      default: null,
+    },
+    init: {
+      type: Object,
+      default: null,
+    },
+    animacion: {
+      type: Boolean,
+      default: null,
+    },
   },
   data() {
     return {
@@ -68,8 +94,51 @@ export default {
     getSection() {
       return this.$store.getters.getSection
     },
+    ...mapGetters({ home: 'app/getHome' }),
   },
   mounted() {
+    this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'app/setHome') {
+        gsap.set('.home_top_welcome_title, .dest span', {
+          color: this.home.texto_home,
+        })
+
+        this.tl_home.to('.nav_home_home span', {
+          fontWeight: gsap.utils.random(100, 900, 5),
+          fontStretch: gsap.utils.random(60, 120, 10),
+          color: this.home.texto_home_hover,
+          duration: 0.3,
+
+          stagger: {
+            each: 0.1,
+            from: 'edges',
+          },
+        })
+
+        this.tl_work.to('.nav_home_work span', {
+          fontWeight: gsap.utils.random(100, 900, 5),
+          fontStretch: gsap.utils.random(60, 120, 10),
+          color: this.home.texto_home_hover,
+          duration: 0.3,
+
+          stagger: {
+            each: 0.1,
+            from: 'edges',
+          },
+        })
+        this.tl_about.to('.nav_home_about span', {
+          fontWeight: gsap.utils.random(100, 900, 5),
+          fontStretch: gsap.utils.random(60, 120, 10),
+          color: this.home.texto_home_hover,
+          duration: 0.3,
+
+          stagger: {
+            each: 0.1,
+            from: 'edges',
+          },
+        })
+      }
+    })
     this.$nextTick(() => {
       this.tl_init.from('.nav_home_home', {
         x: '-100vw',
@@ -97,47 +166,13 @@ export default {
       this.tl_init.from(
         '.home_top_welcome_title',
         {
+          autoAlpha: 0,
           y: '40vh',
           scaleY: 2,
           duration: 1,
-          autoAlpha: 0,
         },
         '-=0.5'
       )
-
-      this.tl_home.to('.nav_home_home span', {
-        fontWeight: gsap.utils.random(100, 900, 5),
-        fontStretch: gsap.utils.random(60, 120, 10),
-        // color: 'white',
-        duration: 0.3,
-        autoAlpha: 0.8,
-        stagger: {
-          each: 0.1,
-          from: 'edges',
-        },
-      })
-      this.tl_work.to('.nav_home_work span', {
-        fontWeight: gsap.utils.random(100, 900, 5),
-        fontStretch: gsap.utils.random(60, 120, 10),
-        // color: 'white',
-        duration: 0.3,
-        autoAlpha: 0.8,
-        stagger: {
-          each: 0.1,
-          from: 'edges',
-        },
-      })
-      this.tl_about.to('.nav_home_about span', {
-        fontWeight: gsap.utils.random(100, 900, 5),
-        fontStretch: gsap.utils.random(60, 120, 10),
-        // color: 'white',
-        duration: 0.3,
-        autoAlpha: 0.8,
-        stagger: {
-          each: 0.1,
-          from: 'edges',
-        },
-      })
 
       const elements = document.querySelectorAll('.nav_home span')
       elements.forEach((element) => this.setText(element))
@@ -216,11 +251,11 @@ export default {
 }
 .dest {
   span {
-    @apply text-m-yellow-100;
+    /* @apply text-m-yellow-100; */
   }
 }
 .home_top_welcome_title {
-  @apply text-m-yellow-100;
+  /* @apply text-m-yellow-100; */
 }
 .image_back {
   img {

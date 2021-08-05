@@ -7,7 +7,10 @@ export default {
       // Install them before as dependencies with npm or yarn
       plugins: {
         // Disable a plugin by passing false as value
+        'postcss-import': true,
         'postcss-url': false,
+        'postcss-responsive-type': true,
+        'postcss-responsive-font': true,
         'postcss-nested': {},
       },
       preset: {
@@ -17,6 +20,10 @@ export default {
         },
       },
     },
-    extend(config, ctx) {},
+    extend(config, ctx) {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+    },
   },
 }

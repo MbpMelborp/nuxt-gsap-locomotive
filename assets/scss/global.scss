@@ -67,6 +67,8 @@ nav {
   height: 100vh;
   user-select: none;
   overflow: hidden;
+  background: #000;
+
   &_welcome {
     grid-area: welcome;
     align-self: center;
@@ -161,6 +163,10 @@ nav {
 }
 .content_interior {
   position: relative;
+  opacity: 0;
+  &.loaded {
+    opacity: 1;
+  }
 }
 
 [data-scroll-trigger] {
@@ -179,6 +185,7 @@ header {
   align-items: center;
   justify-content: center;
   background: rgba(255, 212, 125, 0.6);
+
   h1 {
     line-height: 1;
     margin: 0;

@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   purge: {
     content: [
       `components/**/*.{vue,js}`,
@@ -41,6 +42,9 @@ module.exports = {
           800: '#605838',
           900: '#302c1c',
         },
+      },
+      lineHeight: {
+        small: '0.7em',
       },
     },
   },

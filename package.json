@@ -32,6 +32,8 @@
     "postcss": "^8.3.6",
     "postcss-js": "^3.0.3",
     "postcss-nested": "^5.0.5",
+    "postcss-responsive-font": "^1.0.6",
+    "postcss-responsive-type": "^1.0.0",
     "postcss-scss": "^2.1.1",
     "postcss-value-parser": "^4.1.0",
     "qs": "^6.10.1",

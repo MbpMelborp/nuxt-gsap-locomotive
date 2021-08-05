@@ -1,15 +1,7 @@
 <template>
-  <div
-    ref="bkg_home"
-    data-scroll
-    data-scroll-call="index_home"
-    data-scroll-repeat="true"
-    data-scroll-speed="-1"
-    data-scroll-position="top"
-  >
+  <div ref="bkg_home">
     <div id="container"></div>
   </div>
-  <!-- <img src="~assets/images/bkg_home.jpg" alt="" /> -->
 </template>
 
 <script>

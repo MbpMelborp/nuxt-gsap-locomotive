@@ -11,26 +11,22 @@
       },
     }"
   >
-    <div class="content_interior vertical">
-      <HomeTop></HomeTop>
-      <Proyectos
-        v-for="(proyecto, index) in proyectos"
+    <div
+      :class="'content_interior vertical' + (story != null ? ' loaded' : '')"
+    >
+      <HomeTop
+        :story="story"
+        :init="story.content.proyectos[0]"
+        :animacion="story.content.animacion"
+      ></HomeTop>
+      <ProyectosCont
+        v-for="(proyecto, index) in story.content.proyectos"
         :key="index"
         :proyecto="proyecto"
-      ></Proyectos>
+      ></ProyectosCont>
 
-      <div class="example-section" data-scroll-section>
-        <div class="example-content">
-          <div class="example-big-square" />
-          <div class="example-small-square" data-scroll-trigger />
-        </div>
-      </div>
-
-      <div class="example-section" data-scroll-section>
-        <BoxComponent />
-      </div>
       <!-- Block with function -->
-      <div class="example-section" data-scroll-section>
+      <!-- <div class="example-section" data-scroll-section>
         <div
           ref="texti"
           class="example-fade-text"
@@ -39,14 +35,7 @@
         >
           <h2>When I'm triggered... I disappear</h2>
         </div>
-      </div>
-      <!-- ./Block with function -->
-      <div class="example-section" data-scroll-section>
-        <div class="example-content">
-          <div class="example-big-square" />
-          <div class="example-small-square" data-scroll-trigger />
-        </div>
-      </div>
+      </div> -->
       <footer data-scroll-section>
         <nuxt-link to="/image-loads/"> Go to Image Loads </nuxt-link>
       </footer>
@@ -60,38 +49,62 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import { mapMutations, mapGetters } from 'vuex'
 
-// COMPONENS
+// COMPONENTES
 import HomeTop from '~/components/HomeTop.vue'
-import Proyectos from '~/components/Proyecto.vue'
+import ProyectosCont from '~/components/Proyecto.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
   components: {
-    BoxComponent: () =>
-      import(/* webpackPrefetch: true */ '@/components/box-component.vue'),
     HomeTop,
-    Proyectos,
+    ProyectosCont,
   },
   asyncData(context) {
-    return context.app.$storyapi
-      .get('cdn/stories', {
-        // version: context.isDev ? "draft" : "published",
-        // version:"published",
-        starts_with: 'work/',
-        sort_by: 'name:asc',
-      })
-      .then((res) => {
-        console.log('STORY_HOME', res.data.stories)
-        return {
-          proyectos: res.data.stories,
-        }
-      })
-      .catch((res) => {})
+    try {
+      const fullSlug =
+        context.route.path === '/' || context.route.path === ''
+          ? 'home'
+          : context.route.path
+
+      // Load the JSON from the API - loadig the home content (index page)
+      return context.app.$storyapi
+        .get(`cdn/stories/${fullSlug}`, {
+          version: 'published',
+          resolve_relations: 'page.proyectos,page.destacado',
+        })
+        .then((res) => {
+          console.log('HOME -> Storyblok', res.data.story)
+          return { story: res.data.story }
+        })
+        .catch((res) => {
+          if (!res.response) {
+            console.error(res)
+            context.error({
+              statusCode: 404,
+              message: 'Failed to receive content form api',
+            })
+          } else {
+            console.error(res.response.data)
+            context.error({
+              statusCode: res.response.status,
+              message: res.response.data,
+            })
+          }
+        })
+    } catch (e) {
+      console.error('ERROR Home', e)
+    }
+  },
+  data() {
+    return {
+      cargado: false,
+    }
   },
   computed: {
     ...mapGetters({
       section: 'app/getSection',
+      home: 'app/getHome',
     }),
   },
   mounted() {
@@ -104,9 +117,32 @@ export default {
       this.homeH1Animation(homeH1)
       // this.homeH1Animation(homeH1)
     })
+    this.setHome({
+      fondo: this.story.content.fondo.color,
+      texto: this.story.content.texto.color,
+      texto_home: this.story.content.texto_home.color,
+      texto_home_hover: this.story.content.texto_home_hover.color,
+    })
+    gsap.set('body', {
+      background: this.story.content.fondo.color,
+      color: this.story.content.texto.color,
+    })
   },
   methods: {
-    ...mapMutations({ setSection: 'app/setSection' }),
+    ...mapMutations({
+      setSection: 'app/setSection',
+      setHome: 'app/setHome',
+    }),
+
+    animateHome() {
+      gsap.from('.home_top', {
+        autoAlpha: 0,
+        duration: 2,
+        delay: 1,
+        ease: 'expo.out',
+        opacity: 0.1,
+      })
+    },
     initScrolltrigger() {
       const locomotive = this.$refs.scroller.locomotive
       locomotive.on('scroll', ScrollTrigger.update)
@@ -129,13 +165,13 @@ export default {
         this.setSection(value)
         switch (value) {
           case 'fadeText': {
-            console.log('FadeText')
-            const child = this.$refs.texti /// /obj.el.firstChild
-            gsap.to(child, {
-              duration: 2,
-              ease: 'expo.out',
-              opacity: 0.1,
-            })
+            // console.log('FadeText')
+            // const child = this.$refs.texti /// /obj.el.firstChild
+            // gsap.to(child, {
+            //   duration: 2,
+            //   ease: 'expo.out',
+            //   opacity: 0.1,
+            // })
             break
           }
           case 'index_home': {

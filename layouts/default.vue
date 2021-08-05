@@ -1,6 +1,6 @@
 <template>
   <main>
-    <cursor-fx color="#fff" color-hover="#fff"></cursor-fx>
+    <!-- <cursor-fx color="#fff" color-hover="#fff"></cursor-fx> -->
     <Nav></Nav>
     <nuxt />
   </main>
@@ -21,7 +21,7 @@ export default {
 
 <style lang="postcss">
 body {
-  @apply m-0 font-normal bg-m-yellow-100 font-extralight;
+  @apply m-0 font-normal font-extralight;
 }
 .tmp {
   @apply mix-blend-difference;

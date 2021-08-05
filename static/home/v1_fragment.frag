@@ -4,7 +4,7 @@
 uniform vec2 u_resolution;
 uniform float u_time;
 
-const int octaves = 6;
+const int octaves = 2;
 const float seed = 43758.5453123;
 const float seed2 = 73156.8473192;
 
