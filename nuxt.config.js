@@ -1,5 +1,5 @@
 import alias from './configuration/alias.js'
-import apollo from './configuration/apollo/'
+// import apollo from './configuration/apollo/'
 import axios from './configuration/axios.js'
 import build from './configuration/build.js'
 import buildModules from './configuration/buildModules.js'
@@ -46,7 +46,7 @@ require('dotenv').config()
 
 export default {
   ...alias,
-  ...apollo,
+  // ...apollo,
   ...axios,
   ...build,
   ...buildModules,

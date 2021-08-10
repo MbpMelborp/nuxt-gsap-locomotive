@@ -105,7 +105,7 @@ export default {
 
         this.tl_home.to('.nav_home_home span', {
           fontWeight: gsap.utils.random(100, 900, 5),
-          fontStretch: gsap.utils.random(60, 120, 10),
+          fontStretch: gsap.utils.random(20, 200, 10),
           color: this.home.texto_home_hover,
           duration: 0.3,
 
@@ -117,7 +117,7 @@ export default {
 
         this.tl_work.to('.nav_home_work span', {
           fontWeight: gsap.utils.random(100, 900, 5),
-          fontStretch: gsap.utils.random(60, 120, 10),
+          fontStretch: gsap.utils.random(20, 200, 10),
           color: this.home.texto_home_hover,
           duration: 0.3,
 
@@ -128,7 +128,7 @@ export default {
         })
         this.tl_about.to('.nav_home_about span', {
           fontWeight: gsap.utils.random(100, 900, 5),
-          fontStretch: gsap.utils.random(60, 120, 10),
+          fontStretch: gsap.utils.random(20, 200, 10),
           color: this.home.texto_home_hover,
           duration: 0.3,
 
@@ -198,8 +198,8 @@ export default {
   },
   methods: {
     setText(element) {
-      const spanWeight = gsap.utils.random(100, 900, 5)
-      const spanStretch = gsap.utils.random(60, 120, 10)
+      const spanWeight = gsap.utils.random(100, 900, 10)
+      const spanStretch = gsap.utils.random(20, 200, 10)
       // const spanItalic = gsap.utils.random(['normal', 'italic'])
       gsap.set(element, {
         fontWeight: spanWeight,
@@ -228,15 +228,6 @@ export default {
       if (evt === 'about') {
         this.tl_about.pause().reverse()
       }
-    },
-    viewHomeTop(e) {
-      console.log(e.type) // 'enter', 'exit', 'progress'
-      console.log(e.percentInView) // 0..1 how much element overlap the viewport
-      console.log(e.percentTop) // 0..1 position of element at viewport 0 - above , 1 - below
-      console.log(e.percentCenter) // 0..1 position the center of element at viewport 0 - center at viewport top, 1 - center at viewport bottom
-      console.log(e.scrollPercent) // 0..1 current scroll position of page
-      console.log(e.scrollValue) // 0..1 last scroll value (change of page scroll offset)
-      console.log(e.target.rect) // element.getBoundingClientRect() result
     },
   },
 }

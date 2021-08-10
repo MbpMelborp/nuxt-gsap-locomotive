@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav v-if="load">
     <div class="nav_wrapper">
       <div class="logo">
         <nuxt-link to="/" data-cursor-hover>
@@ -60,7 +60,14 @@
 </template>
 
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters({
+      load: 'app/getLoad',
+    }),
+  },
+}
 </script>
 <style lang="postcss">
 nav {

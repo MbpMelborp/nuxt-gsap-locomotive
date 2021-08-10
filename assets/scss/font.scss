@@ -8,11 +8,42 @@
 //   //  url('~assets/fonts/AvenirNext-Bold.eot?#iefix') format('embedded-opentype');
 // }
 // @import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap');
+//@import url('http://fonts.cdnfonts.com/css/urban-tour-variable');
+
+// @font-face {
+//   font-family: 'gotik';
+//   src: url('~/assets/fonts/gotik.ttf') format('truetype' supports variations);
+//   src: url('~/assets/fonts/gotik.ttf') format('truetype');
+//   font-display: swap;
+//   font-weight: 100 900;
+// }
+
+// @font-face {
+//   font-family: 'PrestoVariable';
+//   src: url('~/assets/fonts/presto-variable.eot');
+//   src: url('~/assets/fonts/presto-variable.eot?#iefix')
+//       format('embedded-opentype'),
+//     url('~/assets/fonts/presto-variable.woff2') format('woff2'),
+//     url('~/assets/fonts/presto-variable.woff') format('woff'),
+//     url('~/assets/fonts/presto-variable.ttf') format('truetype'),
+//     url('~/assets/fonts/presto-variable.svg#youworkforthem') format('svg');
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+// @font-face {
+//   font-family: 'Antartica';
+//   src: url('~/assets/fonts/Antarctica.ttf')
+//     format('truetype' supports variations);
+//   src: url('~/assets/fonts/Antarctica.ttf') format('truetype');
+//   font-display: swap;
+//   font-weight: 100 900;
+// }
 
 @font-face {
-  font-family: 'gotik';
-  src: url('/~assets/fonts/gotik.ttf') format('truetype' supports variations);
-  src: url('/~assets/fonts/gotik.ttf') format('truetype');
+  font-family: 'agrandir';
+  src: url('~/assets/fonts/agrandir.ttf') format('truetype' supports variations);
+  src: url('~/assets/fonts/agrandir.ttf') format('truetype');
   font-display: swap;
   font-weight: 100 900;
 }

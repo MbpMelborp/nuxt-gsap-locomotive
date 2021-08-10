@@ -53,6 +53,8 @@ import { mapMutations, mapGetters } from 'vuex'
 import HomeTop from '~/components/HomeTop.vue'
 import ProyectosCont from '~/components/Proyecto.vue'
 
+import { custom } from '~/utils/transitions.js'
+
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
@@ -60,38 +62,46 @@ export default {
     HomeTop,
     ProyectosCont,
   },
-  asyncData(context) {
-    try {
-      const fullSlug =
-        context.route.path === '/' || context.route.path === ''
-          ? 'home'
-          : context.route.path
 
-      // Load the JSON from the API - loadig the home content (index page)
-      return context.app.$storyapi
-        .get(`cdn/stories/${fullSlug}`, {
-          version: 'published',
-          resolve_relations: 'page.proyectos,page.destacado',
-        })
-        .then((res) => {
-          console.log('HOME -> Storyblok', res.data.story)
-          return { story: res.data.story }
-        })
-        .catch((res) => {
-          if (!res.response) {
-            console.error(res)
-            context.error({
-              statusCode: 404,
-              message: 'Failed to receive content form api',
-            })
-          } else {
-            console.error(res.response.data)
-            context.error({
-              statusCode: res.response.status,
-              message: res.response.data,
-            })
-          }
-        })
+  transition: {
+    ...custom,
+  },
+
+  asyncData({ route, payload, app, error, store }) {
+    try {
+      if (payload) {
+        // store.commit('app/setLoad', true)
+        return { story: payload }
+      } else {
+        const fullSlug =
+          route.path === '/' || route.path === '' ? 'home' : route.path
+        return app.$storyapi
+          .get(`cdn/stories/${fullSlug}`, {
+            version: 'published',
+            resolve_relations: 'page.proyectos,page.destacado',
+          })
+          .then((res) => {
+            console.log('HOME -> Storyblok', res.data.story)
+            // store.commit('app/setLoad', true)
+
+            return { story: res.data.story }
+          })
+          .catch((res) => {
+            if (!res.response) {
+              console.error(res)
+              error({
+                statusCode: 404,
+                message: 'Failed to receive content form api',
+              })
+            } else {
+              console.error(res.response.data)
+              error({
+                statusCode: res.response.status,
+                message: res.response.data,
+              })
+            }
+          })
+      }
     } catch (e) {
       console.error('ERROR Home', e)
     }
@@ -105,7 +115,13 @@ export default {
     ...mapGetters({
       section: 'app/getSection',
       home: 'app/getHome',
+      load: 'app/getLoad',
     }),
+  },
+  beforeCreate() {
+    if (this.load != null) {
+      this.setLoad(false)
+    }
   },
   mounted() {
     this.initScrolltrigger()
@@ -127,11 +143,13 @@ export default {
       background: this.story.content.fondo.color,
       color: this.story.content.texto.color,
     })
+    this.setLoad(true)
   },
   methods: {
     ...mapMutations({
       setSection: 'app/setSection',
       setHome: 'app/setHome',
+      setLoad: 'app/setLoad',
     }),
 
     animateHome() {

@@ -158,7 +158,7 @@ export default {
   methods: {
     onClassChange(classAttrValue) {
       const classList = classAttrValue.split(' ')
-      console.log('classList', classList.includes('is-inview'))
+      // console.log('classList', classList.includes('is-inview'))
       if (classList.includes('is-inview')) {
         if (this.ready) {
           return

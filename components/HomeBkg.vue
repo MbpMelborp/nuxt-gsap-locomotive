@@ -136,13 +136,13 @@ export default {
     onClassChange(classAttrValue) {
       const classList = classAttrValue.split(' ')
       if (classList.includes('is-inview')) {
-        console.log('ENTRA')
+        // console.log('ENTRA')
         this.play = true
         if (this.fShader !== null) {
           this.animate()
         }
       } else {
-        console.log('SALE')
+        // console.log('SALE')
         this.play = false
       }
     },

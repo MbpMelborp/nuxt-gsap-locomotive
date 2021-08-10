@@ -10,6 +10,7 @@ export const state = () => ({
     x: 0,
     y: 0,
   },
+  load: null,
   section: null,
   home: {
     texto: null,
@@ -20,6 +21,10 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setLoad: (state, payload) => {
+    console.log('STORE -> setLoad', payload)
+    state.load = payload
+  },
   setScroll: (state, payload) => {
     state.scroll = Object.assign({}, state.scroll, payload)
   },
@@ -44,5 +49,8 @@ export const getters = {
   },
   getHome: (state) => {
     return state.home
+  },
+  getLoad: (state) => {
+    return state.load
   },
 }

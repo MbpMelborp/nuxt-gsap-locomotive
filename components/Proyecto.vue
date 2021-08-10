@@ -1,6 +1,6 @@
 <template>
   <div class="proyecto" data-scroll-section>
-    <Tipo v-view :proyecto="proyecto"></Tipo>
+    <Tipo :proyecto="proyecto"></Tipo>
   </div>
 </template>
 

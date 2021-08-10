@@ -8,5 +8,18 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxt/image',
     '@nuxtjs/tailwindcss',
+    [
+      'storyblok-nuxt-routes',
+      {
+        accessToken: process.env.STORYBLOK_PROD,
+        resolveLinks: 'url', // optional
+        resolveRelations: 'page.proyectos,page.destacado', // optional
+        exclude: [], // optional
+      },
+    ],
   ],
+  generate: {
+    fallback: true,
+    interval: 100,
+  },
 }

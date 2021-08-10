@@ -42,7 +42,7 @@
         @mouseover="hoverProyecto(true)"
         @mouseleave="hoverProyecto(false)"
       >
-        <nuxt-link :to="proyecto.full_slug">
+        <nuxt-link :to="proyecto.full_slug" @click="hoverProyecto(false)">
           <h4 class="anim_proy">
             {{ proyecto.content.titular }}
           </h4>
@@ -115,10 +115,10 @@ export default {
   .proyecto_data_content {
     @apply md:-mt-12;
     h4 {
-      @apply uppercase text-3xl font-extralight mb-4 leading-none;
+      @apply uppercase text-3xl font-bold mb-4 leading-none;
     }
     .proyecto_body {
-      @apply text-sm md:ml-4 md:mr-3 font-thin mb-2 leading-5;
+      @apply text-sm md:ml-4 md:mr-3 font-thin mb-8 leading-5;
     }
     .proyecto_ver {
       @apply md:ml-2 text-lg font-light uppercase tracking-widest;

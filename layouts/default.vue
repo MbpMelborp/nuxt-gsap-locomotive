@@ -1,16 +1,24 @@
 <template>
   <main>
     <!-- <cursor-fx color="#fff" color-hover="#fff"></cursor-fx> -->
+    <Preload></Preload>
     <Nav></Nav>
     <nuxt />
   </main>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Nav from '~/components/Nav.vue'
+import Preload from '~/components/Preload.vue'
 export default {
   components: {
     Nav,
+    Preload,
+  },
+  computed: {
+    ...mapGetters({ activePage: 'getActivePage' }),
   },
 }
 </script>
