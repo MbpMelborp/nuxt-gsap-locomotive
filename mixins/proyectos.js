@@ -39,17 +39,22 @@ export default {
           '#proyecto_' + this.proyecto.id + ' .proyecto_media',
           {
             opacity: 1,
-            y: 0,
+            y: 30,
             x: 0,
             scale: 1,
-            filter: 'blur(0px)',
+            skewX: 0,
+            skewY: 0,
+            // filter: 'blur(0px)',
           },
           {
             opacity: 0.2,
             y: '10vh',
             x: '30vw',
+            skewX: 5,
+            skewY: 5,
+
             scale: 0.8,
-            filter: 'blur(1px)',
+            // filter: 'blur(1px)',
             duration: 0.7,
 
             ease: Sine.easeInOut,
@@ -99,11 +104,13 @@ export default {
             this.proyecto.id +
             ' .proyecto_title .proyecto_title_int span',
           {
+            '--font-width': 80,
             scaleY: 1.2,
             autoAlpha: 0,
             color: this.home.fondo,
           },
           {
+            '--font-width': 120,
             scaleY: 1,
             autoAlpha: 1,
             duration: 0.1,

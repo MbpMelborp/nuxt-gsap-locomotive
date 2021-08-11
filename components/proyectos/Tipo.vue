@@ -115,10 +115,12 @@ export default {
   .proyecto_data_content {
     @apply md:-mt-12;
     h4 {
-      @apply uppercase text-3xl font-bold mb-4 leading-none;
+      font-variation-settings: 'wght' var(--font-weight, 850),
+        'wdth' var(--font-width, 140), 'ital' 0;
+      @apply uppercase text-3xl  mb-4 leading-none;
     }
     .proyecto_body {
-      @apply text-sm md:ml-4 md:mr-3 font-thin mb-8 leading-5;
+      @apply text-sm md:ml-16 md:mr-3 font-thin mb-8 leading-5;
     }
     .proyecto_ver {
       @apply md:ml-2 text-lg font-light uppercase tracking-widest;
@@ -138,8 +140,12 @@ export default {
 .proyecto_title {
   @apply z-10;
   .proyecto_title_int {
-    font-size: responsive 2rem 16rem; /* min-size, max-size */
+    font-size: responsive 2rem 12rem; /* min-size, max-size */
     @apply leading-small font-extralight;
+    span {
+      font-variation-settings: 'wght' var(--font-weight, 200),
+        'wdth' var(--font-width, 80), 'ital' 0;
+    }
   }
 }
 </style>

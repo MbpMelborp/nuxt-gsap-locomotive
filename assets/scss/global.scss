@@ -89,7 +89,7 @@ nav {
       'welcome welcome welcome welcome'
       '. . . .';
     z-index: 2;
-    
+
     &_nav {
       grid-area: welcome;
 
@@ -106,9 +106,10 @@ nav {
         .dest {
           margin-bottom: 0.5em;
           span {
-            line-height: 8rem;
-            letter-spacing: -0.01em;
+            line-height: 0.75em;
+            letter-spacing: -0.02em;
             font-size: 17.2vmin; //calc(4em + 4vw);
+            
           }
         }
         .home_top_welcome_title {

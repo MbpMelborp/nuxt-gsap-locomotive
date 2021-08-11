@@ -104,36 +104,39 @@ export default {
         })
 
         this.tl_home.to('.nav_home_home span', {
-          fontWeight: gsap.utils.random(100, 900, 5),
-          fontStretch: gsap.utils.random(20, 200, 10),
+          '--font-weight': gsap.utils.random(100, 900, 5),
+          '--font-width': gsap.utils.random(20, 200, 10),
+
           color: this.home.texto_home_hover,
-          duration: 0.3,
+          duration: 0.2,
 
           stagger: {
-            each: 0.1,
+            each: 0.05,
             from: 'edges',
           },
         })
 
         this.tl_work.to('.nav_home_work span', {
-          fontWeight: gsap.utils.random(100, 900, 5),
-          fontStretch: gsap.utils.random(20, 200, 10),
+          '--font-weight': gsap.utils.random(100, 900, 5),
+          '--font-width': gsap.utils.random(20, 200, 10),
+
           color: this.home.texto_home_hover,
-          duration: 0.3,
+          duration: 0.2,
 
           stagger: {
-            each: 0.1,
+            each: 0.05,
             from: 'edges',
           },
         })
         this.tl_about.to('.nav_home_about span', {
-          fontWeight: gsap.utils.random(100, 900, 5),
-          fontStretch: gsap.utils.random(20, 200, 10),
+          '--font-weight': gsap.utils.random(100, 900, 5),
+          '--font-width': gsap.utils.random(20, 200, 10),
+
           color: this.home.texto_home_hover,
-          duration: 0.3,
+          duration: 0.2,
 
           stagger: {
-            each: 0.1,
+            each: 0.05,
             from: 'edges',
           },
         })
@@ -198,13 +201,18 @@ export default {
   },
   methods: {
     setText(element) {
-      const spanWeight = gsap.utils.random(100, 900, 10)
-      const spanStretch = gsap.utils.random(20, 200, 10)
-      // const spanItalic = gsap.utils.random(['normal', 'italic'])
+      const fontWeight = gsap.utils.random(100, 900, 10)
+      const fontWidth = gsap.utils.random(20, 200, 10)
+
       gsap.set(element, {
-        fontWeight: spanWeight,
-        fontStretch: spanStretch,
-        // fontStyle: spanItalic,
+        fontVariationSettings:
+          '"wght" var(--font-weight, ' +
+          fontWeight +
+          '), "wdth" var(--font-width, ' +
+          fontWidth +
+          '), "ital" 0',
+        '--font-weight': fontWeight,
+        '--font-width': fontWidth,
       })
     },
     textHover(evt) {

@@ -40,10 +40,22 @@
 //   font-weight: 100 900;
 // }
 
+// @font-face {
+//   font-family: 'agrandir';
+//   src: url('~/assets/fonts/agrandir.ttf') format('truetype' supports variations);
+//   src: url('~/assets/fonts/agrandir.ttf') format('truetype');
+//   font-display: swap;
+//   font-weight: 100 900;
+// }
+
 @font-face {
-  font-family: 'agrandir';
-  src: url('~/assets/fonts/agrandir.ttf') format('truetype' supports variations);
-  src: url('~/assets/fonts/agrandir.ttf') format('truetype');
-  font-display: swap;
-  font-weight: 100 900;
+  font-family: 'Flexa';
+  src: url('~/assets/fonts/GT-Flexa-GX.woff2') format('woff2-variations'),
+    url('~/assets/fonts/GT-Flexa-GX.ttf') format('truetype-variations');
+}
+
+@font-face {
+  font-family: 'Flexa Mono';
+  src: url('~/assets/fonts/GT-Flexa-Mono-GX.woff2') format('woff2-variations'),
+    url('~/assets/fonts/GT-Flexa-Mono-GX.ttf') format('truetype-variations');
 }
