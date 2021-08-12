@@ -51,6 +51,7 @@ export const getters = {
     return state.home
   },
   getLoad: (state) => {
+    console.log('STORE -> getLoad', state.load)
     return state.load
   },
 }

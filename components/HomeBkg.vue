@@ -137,11 +137,13 @@ export default {
       const classList = classAttrValue.split(' ')
       if (classList.includes('is-inview')) {
         // console.log('ENTRA')
+        document.getElementById('nav_site').classList.remove('dif')
         this.play = true
         if (this.fShader !== null) {
           this.animate()
         }
       } else {
+        document.getElementById('nav_site').classList.add('dif')
         // console.log('SALE')
         this.play = false
       }

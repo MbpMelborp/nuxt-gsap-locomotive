@@ -1,5 +1,5 @@
 <template>
-  <nav v-if="load">
+  <nav v-if="load" id="nav_site">
     <div class="nav_wrapper">
       <div class="logo">
         <nuxt-link to="/" data-cursor-hover>
@@ -84,7 +84,7 @@ nav {
 .nav {
   @apply justify-end items-center flex;
   a {
-    @apply text-white uppercase text-xs;
+    @apply uppercase text-xs text-white;
   }
 }
 </style>

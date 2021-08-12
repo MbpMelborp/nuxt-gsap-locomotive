@@ -19,17 +19,26 @@ footer {
   box-sizing: border-box;
 }
 //HOME
-nav {
-  -webkit-mix-blend-mode: difference;
-  -moz-mix-blend-mode: difference;
-  -o-mix-blend-mode: difference;
-  -ms-mix-blend-mode: difference;
-  mix-blend-mode: difference;
+nav#nav_site {
   user-select: none;
   width: 100%;
   position: relative;
   z-index: 2;
-
+  &.dif {
+    -webkit-mix-blend-mode: difference;
+    -moz-mix-blend-mode: difference;
+    -o-mix-blend-mode: difference;
+    -ms-mix-blend-mode: difference;
+    mix-blend-mode: difference;
+    #logo_melborp {
+      fill: '#fff';
+      transition: fill 0.5s ease-in-out;
+    }
+    a {
+      color: #fff;
+      transition: color 0.5s ease-in-out;
+    }
+  }
   .nav_wrapper {
     position: fixed;
     z-index: 1;
@@ -109,7 +118,6 @@ nav {
             line-height: 0.75em;
             letter-spacing: -0.02em;
             font-size: 17.2vmin; //calc(4em + 4vw);
-            
           }
         }
         .home_top_welcome_title {

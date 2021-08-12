@@ -62,11 +62,9 @@ export default {
     HomeTop,
     ProyectosCont,
   },
-
   transition: {
     ...custom,
   },
-
   asyncData({ route, payload, app, error, store }) {
     try {
       if (payload) {
@@ -128,10 +126,6 @@ export default {
     this.$nextTick(() => {
       const elements = document.querySelectorAll('[data-scroll-trigger]')
       elements.forEach((element) => this.elementAnimation(element))
-
-      const homeH1 = this.$refs.headerH1 // document.querySelectorAll('header h1')
-      this.homeH1Animation(homeH1)
-      // this.homeH1Animation(homeH1)
     })
     this.setHome({
       fondo: this.story.content.fondo.color,
@@ -212,32 +206,6 @@ export default {
         clipPath: 'inset(100% 0% 0% 0%)',
         ease: 'none',
       })
-    },
-    homeH1Animation(element) {
-      const tlInicial = gsap.timeline({
-        // yes, we can add it to an entire timeline!
-        scrollTrigger: {
-          trigger: element,
-          scroller: this.$refs.scroller.locomotive.el,
-          scrub: true,
-          start: 'top center',
-          end: 'bottom top',
-          markers: process.env.NODE_ENV !== 'production', // default,
-        },
-      })
-
-      // add animations and labels to the timeline
-      tlInicial.addLabel('start').from('header h1', {
-        fontStretch: '120%',
-        fontWeight: 900,
-        y: 600,
-        // autoAlpha: 0,
-      })
-      // .addLabel('color')
-      // .from('.box', { backgroundColor: '#28a92b' })
-      // .addLabel('spin')
-      // .to('.box', { rotation: 360 })
-      // .addLabel('end')
     },
   },
 }

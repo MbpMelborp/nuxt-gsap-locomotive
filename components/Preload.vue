@@ -64,14 +64,19 @@
 
 <script>
 import { gsap, Power4 } from 'gsap'
+// import { custom } from '~/utils/transitions.js'
 export default {
+  // transition: {
+  //   ...custom,
+  // },
   data() {
     return {
-      tl_preload: null,
+      // tl_preload: null,
       tl_preload_salida: null,
       isActive: false,
     }
   },
+
   watch: {
     $route(value) {
       console.log('ROUTE', value)
@@ -79,9 +84,10 @@ export default {
       // this.tl_preload.play()
     },
   },
+
   mounted() {
     this.$nextTick(() => {
-      // this.tl_preload.play()
+      this.tl_preload_salida.play()
     })
     // this.$store.subscribe((mutation, state) => {
     //   // console.log('PRELOAD -> ', mutation.type, state)
@@ -93,23 +99,24 @@ export default {
     //     }
     //   }
     // })
-    // this.initTimelines()
+    this.initTimelines()
   },
   methods: {
     toggleMenu: () => {
       this.isActive = !this.isActive
     },
     initTimelines() {
-      const cerradoToRight = {
-        webkitClipPath: 'inset(0% 100% 0% 0%)',
-        clipPath: 'inset(0% 100% 0% 0%)',
-      }
-
       const abierto = {
         webkitClipPath: 'inset(0% 0% 0% 0%)',
         clipPath: 'inset(0% 0% 0% 0%)',
       }
       const tiempoEntrada = 1
+      /*
+
+      const cerradoToRight = {
+        webkitClipPath: 'inset(0% 100% 0% 0%)',
+        clipPath: 'inset(0% 100% 0% 0%)',
+      }
 
       this.tl_preload = gsap.timeline({
         paused: true,
@@ -134,7 +141,7 @@ export default {
         cerradoToRight,
         { ...abierto, duration: tiempoEntrada },
         `-=${tiempoEntrada * 0.25}`
-      )
+      ) */
 
       // SALIDA
       this.tl_preload_salida = gsap.timeline({
@@ -144,10 +151,12 @@ export default {
         onUpdate: (val) => {},
         onComplete: () => {},
       })
+
       const cerradoToLeft = {
         webkitClipPath: 'inset(0% 0% 0% 100%)',
         clipPath: 'inset(0% 0% 0% 100%)',
       }
+
       this.tl_preload_salida.addLabel('salida', `+=0`)
       this.tl_preload_salida.fromTo(
         '.capa_2',
@@ -159,7 +168,7 @@ export default {
         '.capa_1',
         abierto,
         { ...cerradoToLeft, duration: tiempoEntrada / 2 },
-        `salida-=${tiempoEntrada / 3}`
+        `salida-=${tiempoEntrada * 0.1}`
       )
     },
   },
@@ -202,7 +211,7 @@ export default {
       background: #000;
       color: #fff;
       z-index: 2;
-      clip-path: inset(0% 100% 0% 0%);
+      clip-path: inset(0% 0% 0% 0%);
 
       .marquee-container {
         align-self: center;
@@ -240,7 +249,7 @@ export default {
       background: #fff;
       grid-area: content;
       z-index: 1;
-      clip-path: inset(0% 100% 0% 0%);
+      clip-path: inset(0% 0% 0% 0%);
     }
   }
 }

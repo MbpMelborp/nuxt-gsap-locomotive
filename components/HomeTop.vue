@@ -41,6 +41,7 @@
       </div>
     </div>
     <div
+      ref="bkg_home"
       data-scroll
       data-scroll-call="index_home"
       data-scroll-repeat="true"
@@ -83,11 +84,19 @@ export default {
     },
   },
   data() {
+    console.log('HOMETOP -> data', this.$store.getters['app/getLoad'])
     return {
       tl_home: gsap.timeline({ paused: true, ease: Expo.easeOut }),
       tl_work: gsap.timeline({ paused: true, ease: Expo.easeOut }),
       tl_about: gsap.timeline({ paused: true, ease: Expo.easeOut }),
-      tl_init: gsap.timeline({ paused: false, ease: Power4.easeInOut }),
+      tl_init: gsap.timeline({
+        paused: false,
+        delay: this.$store.getters['app/getLoad'] == null ? 3 : 0,
+        ease: Power4.easeInOut,
+      }),
+      weight: [100, 900, 5],
+      width: [20, 160, 10],
+      observer: null,
     }
   },
   computed: {
@@ -97,6 +106,19 @@ export default {
     ...mapGetters({ home: 'app/getHome' }),
   },
   mounted() {
+    this.observer = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        const newValue = m.target.getAttribute(m.attributeName)
+        this.$nextTick(() => {
+          this.onClassChange(newValue, m.oldValue)
+        })
+      }
+    })
+    this.observer.observe(this.$refs.bkg_home, {
+      attributes: true,
+      attributeOldValue: true,
+      attributeFilter: ['class'],
+    })
     this.$store.subscribe((mutation, state) => {
       if (mutation.type === 'app/setHome') {
         gsap.set('.home_top_welcome_title, .dest span', {
@@ -104,8 +126,16 @@ export default {
         })
 
         this.tl_home.to('.nav_home_home span', {
-          '--font-weight': gsap.utils.random(100, 900, 5),
-          '--font-width': gsap.utils.random(20, 200, 10),
+          '--font-weight': gsap.utils.random(
+            this.weight[0],
+            this.weight[1],
+            this.weight[2]
+          ),
+          '--font-width': gsap.utils.random(
+            this.width[0],
+            this.width[1],
+            this.width[2]
+          ),
 
           color: this.home.texto_home_hover,
           duration: 0.2,
@@ -117,8 +147,16 @@ export default {
         })
 
         this.tl_work.to('.nav_home_work span', {
-          '--font-weight': gsap.utils.random(100, 900, 5),
-          '--font-width': gsap.utils.random(20, 200, 10),
+          '--font-weight': gsap.utils.random(
+            this.weight[0],
+            this.weight[1],
+            this.weight[2]
+          ),
+          '--font-width': gsap.utils.random(
+            this.width[0],
+            this.width[1],
+            this.width[2]
+          ),
 
           color: this.home.texto_home_hover,
           duration: 0.2,
@@ -129,8 +167,16 @@ export default {
           },
         })
         this.tl_about.to('.nav_home_about span', {
-          '--font-weight': gsap.utils.random(100, 900, 5),
-          '--font-width': gsap.utils.random(20, 200, 10),
+          '--font-weight': gsap.utils.random(
+            this.weight[0],
+            this.weight[1],
+            this.weight[2]
+          ),
+          '--font-width': gsap.utils.random(
+            this.width[0],
+            this.width[1],
+            this.width[2]
+          ),
 
           color: this.home.texto_home_hover,
           duration: 0.2,
@@ -199,10 +245,21 @@ export default {
       // })
     })
   },
+  destroyed() {
+    this.tl_init.kill()
+  },
   methods: {
     setText(element) {
-      const fontWeight = gsap.utils.random(100, 900, 10)
-      const fontWidth = gsap.utils.random(20, 200, 10)
+      const fontWeight = gsap.utils.random(
+        this.weight[0],
+        this.weight[1],
+        this.weight[2]
+      )
+      const fontWidth = gsap.utils.random(
+        this.width[0],
+        this.width[1],
+        this.width[2]
+      )
 
       gsap.set(element, {
         fontVariationSettings:
@@ -235,6 +292,14 @@ export default {
       }
       if (evt === 'about') {
         this.tl_about.pause().reverse()
+      }
+    },
+    onClassChange(classAttrValue) {
+      const classList = classAttrValue.split(' ')
+      if (classList.includes('is-inview')) {
+        document.getElementById('nav_site').classList.remove('dif')
+      } else {
+        document.getElementById('nav_site').classList.add('dif')
       }
     },
   },

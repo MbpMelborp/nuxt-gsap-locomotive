@@ -1,11 +1,11 @@
 <template>
   <div
-    :id="`proyecto_${proyecto.id}`"
+    :id="`proyecto_${proyecto.slug}`"
     data-scroll
     data-scroll-speed="-1"
     data-scroll-repeat="true"
     data-scroll-position="top"
-    :data-scroll-call="`proyecto_${proyecto.id}`"
+    :data-scroll-call="`proyecto_${proyecto.slug}`"
     :class="`proyecto_tipo ${proyecto.content.tipo_home}`"
   >
     <h2 class="proyecto_title">
