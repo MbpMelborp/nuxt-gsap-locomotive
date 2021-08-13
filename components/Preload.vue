@@ -199,7 +199,7 @@ export default {
       grid-template-columns: [l1] auto [r1];
       grid-template-rows: [t1] auto 150px auto [b1];
       grid-gap: 0;
-      width: 100;
+      width: 100vw;
       height: 100vh;
       align-items: center;
       justify-items: center;
@@ -246,6 +246,8 @@ export default {
       }
     }
     .capa_2 {
+      width: 100vw;
+      height: 100vh;
       background: #fff;
       grid-area: content;
       z-index: 1;
