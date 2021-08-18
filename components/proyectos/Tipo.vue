@@ -61,25 +61,23 @@
 
     <div class="proyecto_media proyecto_media_1">
       <img
-        v-lazy-load
         data-scroll
         data-scroll-speed="0.5"
         data-scroll-repeat="true"
         data-scroll-position="top"
         class="proy_img"
-        :data-src="proyecto.content.home[0].media1.filename"
+        :src="proyecto.content.home[0].media1.filename"
         :alt="proyecto.content.nombre"
       />
     </div>
     <div class="proyecto_media proyecto_media_2">
       <img
-        v-lazy-load
         data-scroll
         data-scroll-speed="-0.5"
         data-scroll-repeat="true"
         data-scroll-position="top"
         class="proy_img"
-        :data-src="proyecto.content.home[0].media2.filename"
+        :src="proyecto.content.home[0].media2.filename"
         :alt="proyecto.content.nombre"
       />
     </div>
@@ -88,13 +86,12 @@
       class="proyecto_media proyecto_media_3"
     >
       <img
-        v-lazy-load
         data-scroll
         data-scroll-speed="0.5"
         data-scroll-repeat="true"
         data-scroll-position="top"
         class="proy_img"
-        :data-src="proyecto.content.home[0].media3.filename"
+        :src="proyecto.content.home[0].media3.filename"
         :alt="proyecto.content.nombre"
       />
     </div>
