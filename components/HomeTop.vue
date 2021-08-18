@@ -298,8 +298,12 @@ export default {
       const classList = classAttrValue.split(' ')
       if (classList.includes('is-inview')) {
         document.getElementById('nav_site').classList.remove('dif')
+        gsap.set('#nav_site #logo_melborp', { fill: this.home.nav })
+        gsap.set('#nav_site a', { color: this.home.nav })
       } else {
         document.getElementById('nav_site').classList.add('dif')
+        gsap.set('#nav_site #logo_melborp', { fill: 'white' })
+        gsap.set('#nav_site a', { color: 'white' })
       }
     },
   },

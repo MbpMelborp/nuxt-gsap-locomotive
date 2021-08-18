@@ -21,110 +21,19 @@ export default {
   beforeDestroy() {
     this.observer.disconnect()
   },
+  beforeMounut() {
+    this.tl_hover.kill()
+  },
   mounted() {
+    console.log('PROYECTOS -> mounted', this.proyecto.slug, window.innerWidth)
     this.$store.subscribe((mutation, state) => {
       if (mutation.type === 'app/setHome') {
-        this.tl_hover.fromTo(
-          'body',
-          {
-            background: this.home.fondo,
-          },
-          {
-            background: this.proyecto.content.colores[0].fondo.color,
-            duration: 0.4,
-          }
-        )
-
-        this.tl_hover.fromTo(
-          '#proyecto_' + this.proyecto.slug + ' .proyecto_media',
-          {
-            opacity: 1,
-            y: 30,
-            x: 0,
-            scale: 1,
-            skewX: 0,
-            skewY: 0,
-            // filter: 'blur(0px)',
-          },
-          {
-            opacity: 0.2,
-            y: '10vh',
-            x: '30vw',
-            skewX: 5,
-            skewY: 5,
-
-            scale: 0.8,
-            // filter: 'blur(1px)',
-            duration: 0.7,
-
-            ease: Sine.easeInOut,
-
-            stagger: {
-              each: 0.1,
-              from: 'center',
-            },
-          },
-          '-=0.2'
-        )
-        // gsap.set('#proyecto_' + this.proyecto.slug, {
-        //   color: this.proyecto.content.colores[0].texto.color,
-        // })
-        this.tl_hover.fromTo(
-          '#proyecto_' + this.proyecto.slug + ' .proyecto_data .anim_proy',
-          { color: this.home.texto, x: 0 },
-          {
-            color: this.proyecto.content.colores[0].texto.color,
-            x: 20,
-            duration: 0.4,
-            stagger: {
-              // from: 'random',
-              each: 0.1,
-            },
-          },
-          '-=0.4'
-        )
-        this.tl_hover.fromTo(
-          '#proyecto_' + this.proyecto.slug + ' .proyecto_arrow ',
-          { stroke: 'transparent', opacity: 0, x: '20vw', y: '20vh' },
-          {
-            stroke: this.proyecto.content.colores[0].texto.color,
-            x: 0,
-            y: 0,
-            opacity: 0.4,
-            duration: 0.4,
-            stagger: {
-              // from: 'random',
-              each: 0.02,
-            },
-          },
-          '-=0.4'
-        )
-        this.tl_hover.fromTo(
-          '#proyecto_' +
-            this.proyecto.slug +
-            ' .proyecto_title .proyecto_title_int span',
-          {
-            '--font-width': 80,
-            scaleY: 1.2,
-            autoAlpha: 0,
-            color: this.home.fondo,
-          },
-          {
-            '--font-width': 120,
-            scaleY: 1,
-            autoAlpha: 1,
-            duration: 0.1,
-            color: this.proyecto.content.colores[0].nombre.color,
-
-            stagger: {
-              // from: 'random',
-              each: 0.02,
-            },
-          },
-          '-=0.3'
-        )
+        if (window.innerWidth >= 768) this.initTimelines()
       }
     })
+    if (this.home.texto != null && window.innerWidth >= 768) {
+      this.initTimelines()
+    }
 
     this.observer = new MutationObserver((mutations) => {
       for (const m of mutations) {
@@ -167,7 +76,7 @@ export default {
   //   this.tl_hover.play(0).pause()
   // },
   destroyed() {
-    console.log('PROYECTOS -> destroyed', this.tl_hover)
+    console.log('PROYECTOS -> destroyed', this.proyecto.slug)
     this.tl_hover.kill()
     this.tl_images.kill()
   },
@@ -193,6 +102,114 @@ export default {
       } else {
         this.tl_hover.pause().timeScale(2).reverse()
       }
+    },
+    hoverFinish() {
+      this.tl_hover.restart().kill()
+      this.tl_images.kill()
+    },
+    initTimelines() {
+      console.log('PROYECTOS -> initTimelines', this.proyecto.slug)
+      this.tl_hover.fromTo(
+        'body',
+        {
+          background: this.home.fondo,
+        },
+        {
+          background: this.proyecto.content.colores[0].fondo.color,
+          duration: 0.4,
+        }
+      )
+
+      this.tl_hover.fromTo(
+        '#proyecto_' + this.proyecto.slug + ' .proyecto_media',
+        {
+          opacity: 1,
+          y: 30,
+          x: 0,
+          scale: 1,
+          skewX: 0,
+          skewY: 0,
+          // filter: 'blur(0px)',
+        },
+        {
+          opacity: 0.2,
+          y: '10vh',
+          x: '30vw',
+          skewX: 5,
+          skewY: 5,
+
+          scale: 0.8,
+          // filter: 'blur(1px)',
+          duration: 0.7,
+
+          ease: Sine.easeInOut,
+
+          stagger: {
+            each: 0.1,
+            from: 'center',
+          },
+        },
+        '-=0.2'
+      )
+      // gsap.set('#proyecto_' + this.proyecto.slug, {
+      //   color: this.proyecto.content.colores[0].texto.color,
+      // })
+      this.tl_hover.fromTo(
+        '#proyecto_' + this.proyecto.slug + ' .proyecto_data .anim_proy',
+        { color: this.home.texto, x: 0 },
+        {
+          color: this.proyecto.content.colores[0].texto.color,
+          x: 20,
+          duration: 0.4,
+          stagger: {
+            // from: 'random',
+            each: 0.1,
+          },
+        },
+        '-=0.4'
+      )
+      this.tl_hover.fromTo(
+        '#proyecto_' + this.proyecto.slug + ' .proyecto_arrow ',
+        { stroke: 'transparent', opacity: 0, x: '20vw', y: '20vh' },
+        {
+          stroke: this.proyecto.content.colores[0].texto.color,
+          x: 0,
+          y: 0,
+          opacity: 0.4,
+          duration: 0.4,
+          stagger: {
+            // from: 'random',
+            each: 0.02,
+          },
+        },
+        '-=0.4'
+      )
+      this.tl_hover.fromTo(
+        '#proyecto_' +
+          this.proyecto.slug +
+          ' .proyecto_title .proyecto_title_int span',
+        {
+          // '--font-width': 80,
+          clipPath: 'inset(0% 100% 0% 0%)',
+          scaleY: 1.2,
+          autoAlpha: 0,
+          color: this.home.fondo,
+        },
+        {
+          // '--font-width': 120,
+          clipPath: 'inset(0% 0% 0% 0%)',
+          scaleY: 1,
+          autoAlpha: 1,
+          duration: 0.5,
+          color: this.proyecto.content.colores[0].nombre.color,
+
+          stagger: {
+            // from: 'random',
+            each: 0.1,
+          },
+        },
+        '-=0.3'
+      )
     },
   },
 }

@@ -80,8 +80,6 @@ export default {
           })
           .then((res) => {
             console.log('HOME -> Storyblok', res.data.story)
-            // store.commit('app/setLoad', true)
-
             return { story: res.data.story }
           })
           .catch((res) => {
@@ -132,6 +130,7 @@ export default {
       texto: this.story.content.texto.color,
       texto_home: this.story.content.texto_home.color,
       texto_home_hover: this.story.content.texto_home_hover.color,
+      nav: this.story.content.navegacion.color,
     })
     gsap.set('body', {
       background: this.story.content.fondo.color,

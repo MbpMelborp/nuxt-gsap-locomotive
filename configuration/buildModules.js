@@ -17,6 +17,12 @@ export default {
         exclude: [], // optional
       },
     ],
+    [
+      '@nuxtjs/moment',
+      {
+        locales: ['es'],
+      },
+    ],
   ],
   generate: {
     fallback: true,

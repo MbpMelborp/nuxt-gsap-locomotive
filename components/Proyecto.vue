@@ -1,6 +1,6 @@
 <template>
   <div class="proyecto" data-scroll-section>
-    <Tipo :proyecto="proyecto"></Tipo>
+    <Tipo :key="componentKey" :proyecto="proyecto"></Tipo>
   </div>
 </template>
 
@@ -16,8 +16,20 @@ export default {
       default: null,
     },
   },
-
+  data() {
+    return { componentKey: 0 }
+  },
+  created() {},
+  destroyed() {
+    window.removeEventListener('resize', this.resizeWindow)
+  },
   mounted() {
+    console.log(
+      'PROYECTO -> mounted',
+      this.proyecto.content.nombre,
+      window.innerWidth
+    )
+    window.addEventListener('resize', this.resizeWindow)
     // console.log(this.proyecto)
     // const images = document.querySelectorAll('img')
     // setTimeout(() => {
@@ -28,6 +40,16 @@ export default {
     //     image.src = image.dataset.src
     //   })
     // }, 2500)
+  },
+  methods: {
+    resizeWindow(e) {
+      console.log(
+        'PROYECTO -> resizeWindow',
+        this.proyecto.content.nombre,
+        window.innerWidth
+      )
+      this.componentKey++
+    },
   },
 }
 </script>

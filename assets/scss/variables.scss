@@ -3,6 +3,11 @@ $font: 'Flexa', sans-serif;
 $ml: 5vw;
 $mr: 5vw;
 
+@media (max-width: 768px) {
+  $ml: 2vw;
+  $mr: 2vw;
+}
+
 $mt: 5vh;
 $mb: 5vh;
 

@@ -56,6 +56,17 @@
             <span class="updaters"> Updaters </span>
           </vue-marquee-slide>
         </vue-marquee>
+        <svg viewBox="0 0 45 45" class="arrow">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g class="chang" stroke-width="1.46" stroke="#fff">
+              <line x1="42.748" y1="42.748" x2="0" y2="0"></line>
+              <polyline
+                id="arr"
+                points="42.3738 0.3742 0.3738 0.3742 0.3738 42.3742"
+              ></polyline>
+            </g>
+          </g>
+        </svg>
       </div>
       <div class="capa_2"></div>
     </div>
@@ -64,93 +75,39 @@
 
 <script>
 import { gsap, Power4 } from 'gsap'
-// import { custom } from '~/utils/transitions.js'
+
 export default {
-  // transition: {
-  //   ...custom,
-  // },
   data() {
     return {
-      // tl_preload: null,
-      tl_preload_salida: null,
-      isActive: false,
+      tl_preload_salida: gsap.timeline({
+        paused: true,
+        delay: 3,
+        ease: Power4.easeInOut,
+        onUpdate: () => {},
+        onComplete: () => {},
+      }),
+      tl_preload_arrow: gsap.timeline({
+        ease: Power4.easeInOut,
+        repeat: -1,
+        onUpdate: () => {},
+        onComplete: () => {},
+      }),
     }
-  },
-
-  watch: {
-    $route(value) {
-      console.log('ROUTE', value)
-      this.isActive = false
-      // this.tl_preload.play()
-    },
   },
 
   mounted() {
     this.$nextTick(() => {
       this.tl_preload_salida.play()
     })
-    // this.$store.subscribe((mutation, state) => {
-    //   // console.log('PRELOAD -> ', mutation.type, state)
-    //   if (mutation.type === 'app/setLoad') {
-    //     if (mutation.payload) {
-    //       this.tl_preload_salida.play()
-    //     } else {
-    //       this.tl_preload.play()
-    //     }
-    //   }
-    // })
     this.initTimelines()
   },
   methods: {
-    toggleMenu: () => {
-      this.isActive = !this.isActive
-    },
     initTimelines() {
       const abierto = {
         webkitClipPath: 'inset(0% 0% 0% 0%)',
         clipPath: 'inset(0% 0% 0% 0%)',
       }
       const tiempoEntrada = 1
-      /*
-
-      const cerradoToRight = {
-        webkitClipPath: 'inset(0% 100% 0% 0%)',
-        clipPath: 'inset(0% 100% 0% 0%)',
-      }
-
-      this.tl_preload = gsap.timeline({
-        paused: true,
-        ease: Power4.easeInOut,
-        onUpdate: (val) => {},
-        onComplete: () => {
-          // gsap.set('.preloadp', { display: 'none' })
-          this.tl_preload_salida.play()
-        },
-      })
-      this.tl_preload.addLabel('entrada')
-      this.tl_preload.set('.capa_2, capa_1', cerradoToRight)
-      this.tl_preload.set('.preloadp', { display: 'block' })
-      this.tl_preload.fromTo(
-        '.capa_2',
-        cerradoToRight,
-        { ...abierto, duration: tiempoEntrada },
-        '+=0'
-      )
-      this.tl_preload.fromTo(
-        '.capa_1',
-        cerradoToRight,
-        { ...abierto, duration: tiempoEntrada },
-        `-=${tiempoEntrada * 0.25}`
-      ) */
-
-      // SALIDA
-      this.tl_preload_salida = gsap.timeline({
-        paused: true,
-        delay: 3,
-        ease: Power4.easeInOut,
-        onUpdate: (val) => {},
-        onComplete: () => {},
-      })
 
       const cerradoToLeft = {
         webkitClipPath: 'inset(0% 0% 0% 100%)',
@@ -170,6 +127,15 @@ export default {
         { ...cerradoToLeft, duration: tiempoEntrada / 2 },
         `salida-=${tiempoEntrada * 0.1}`
       )
+
+      this.tl_preload_arrow.fromTo(
+        '.arrow',
+        {
+          x: '100vw',
+          y: '100vw',
+        },
+        { x: '-100vw', y: '-100vw', delay: 0, duration: 2 }
+      )
     },
   },
 }
@@ -182,7 +148,7 @@ export default {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: 9;
+  z-index: 9000;
   .preload {
     display: grid;
     grid-template-columns: [l1] auto [r1];
@@ -193,6 +159,10 @@ export default {
     grid-template-areas: 'content';
     z-index: 10;
     overflow: hidden;
+    .arrow {
+      grid-area: content;
+      z-index: 1;
+    }
     .capa_1 {
       grid-area: content;
       display: grid;
@@ -210,22 +180,44 @@ export default {
       overflow: hidden;
       background: #000;
       color: #fff;
-      z-index: 2;
+      z-index: 3;
       clip-path: inset(0% 0% 0% 0%);
+      @media (max-width: 768px) {
+        grid-template-rows: [t1] auto 250px auto [b1];
+      }
+      .arrow {
+        grid-area: marquee;
+        align-self: center;
+        justify-self: center;
+        width: 30vh;
+        height: 50vh;
+        z-index: 1;
+        @media (max-width: 768px) {
+          width: 20vh;
+          height: 30vh;
+        }
+      }
 
       .marquee-container {
         align-self: center;
         grid-area: marquee;
         width: 100%;
-        transform: rotate(-10deg);
-
+        transform: rotate(-10deg) scale(1.1);
+        z-index: 1;
         .logop {
           height: 80px;
           display: inline-block;
           margin: 0 10px 0;
+          @media (max-width: 768px) {
+            height: 60px;
+          }
           svg {
             margin-top: 12px;
             height: 80px;
+            @media (max-width: 768px) {
+              height: 60px;
+              display: block;
+            }
           }
         }
         .business {
@@ -235,6 +227,10 @@ export default {
           line-height: 1em;
           text-transform: uppercase;
           margin: 0 10px;
+          @media (max-width: 768px) {
+            font-size: 60px;
+            display: block;
+          }
         }
         .updaters {
           font-size: 80px;
@@ -242,6 +238,10 @@ export default {
           text-transform: uppercase;
           margin: 0 10px;
           line-height: 1em;
+          @media (max-width: 768px) {
+            font-size: 60px;
+            display: block;
+          }
         }
       }
     }

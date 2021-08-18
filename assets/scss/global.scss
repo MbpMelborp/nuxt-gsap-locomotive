@@ -1,4 +1,5 @@
 //@import 'assets/scss/font.scss';
+@import '~rfs/scss';
 @import 'assets/scss/variables.scss';
 @import 'assets/scss/font.scss';
 
@@ -6,7 +7,7 @@
 body {
   font-family: $font;
   font-stretch: 100%;
-  font-weight: normal;
+  font-weight: 200;
 }
 footer {
   padding: 12.5vw 6.25vw;
@@ -23,7 +24,7 @@ nav#nav_site {
   user-select: none;
   width: 100%;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   &.dif {
     -webkit-mix-blend-mode: difference;
     -moz-mix-blend-mode: difference;
@@ -112,12 +113,23 @@ nav#nav_site {
           'work work work . .'
           'business about about about .';
         width: 100%;
+        @media (max-width: 768px) {
+          grid-template-columns: [l1] auto [r1];
+          grid-template-rows: [t1] auto auto auto auto [b1];
+          grid-template-areas:
+            'home'
+            'work'
+            'about'
+            'business';
+        }
         .dest {
           margin-bottom: 0.5em;
           span {
             line-height: 0.75em;
             letter-spacing: -0.02em;
-            font-size: 17.2vmin; //calc(4em + 4vw);
+            @include font-size(
+              12rem !important
+            ); // 17.2vmin; //calc(4em + 4vw);
           }
         }
         .home_top_welcome_title {
@@ -132,9 +144,12 @@ nav#nav_site {
           align-items: flex-end;
           margin-top: 0.5em;
 
-          div {
-            justify-self: flex-end;
+          @media (max-width: 768px) {
+            margin-top: 10vh;
+            align-items: flex-start;
+            font-size: 2.4em;
           }
+
           .title2 {
             margin-right: 2vw;
             letter-spacing: 0.1em;
@@ -176,6 +191,7 @@ nav#nav_site {
     }
   }
 }
+
 .content_interior {
   position: relative;
   opacity: 0;

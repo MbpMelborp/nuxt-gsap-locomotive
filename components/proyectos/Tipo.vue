@@ -9,8 +9,13 @@
     :class="`proyecto_tipo ${proyecto.content.tipo_home}`"
   >
     <h2 class="proyecto_title">
-      <div v-split-characters class="proyecto_title_int">
-        {{ proyecto.content.nombre }}
+      <div class="proyecto_title_int">
+        <span
+          v-for="(palabra, index) in proyecto.content.nombre.split(' ')"
+          :key="index"
+        >
+          {{ palabra }}
+        </span>
       </div>
     </h2>
     <div class="proyecto_arrow">
@@ -42,7 +47,7 @@
         @mouseover="hoverProyecto(true)"
         @mouseleave="hoverProyecto(false)"
       >
-        <nuxt-link :to="proyecto.full_slug" @click="hoverProyecto(false)">
+        <nuxt-link :to="proyecto.full_slug" @click="hoverFinish()">
           <h4 class="anim_proy">
             {{ proyecto.content.titular }}
           </h4>
@@ -58,7 +63,7 @@
       <img
         v-lazy-load
         data-scroll
-        data-scroll-speed="-1"
+        data-scroll-speed="0.5"
         data-scroll-repeat="true"
         data-scroll-position="top"
         class="proy_img"
@@ -70,7 +75,7 @@
       <img
         v-lazy-load
         data-scroll
-        data-scroll-speed="0.5"
+        data-scroll-speed="-0.5"
         data-scroll-repeat="true"
         data-scroll-position="top"
         class="proy_img"
@@ -113,17 +118,26 @@ export default {
 .proyecto_data {
   @apply z-30;
   .proyecto_data_content {
-    @apply md:-mt-12;
+    @apply -mt-12;
     h4 {
       font-variation-settings: 'wght' var(--font-weight, 850),
         'wdth' var(--font-width, 140), 'ital' 0;
       @apply uppercase text-3xl  mb-4 leading-none;
+      @media (max-width: 768px) {
+        @apply text-2xl;
+      }
     }
     .proyecto_body {
-      @apply text-sm md:ml-16 md:mr-3 font-thin mb-8 leading-5;
+      @apply text-sm lg:ml-16 lg:mr-3 font-thin mb-8 leading-5;
+      @media (max-width: 768px) {
+        @apply text-lg;
+      }
     }
     .proyecto_ver {
-      @apply md:ml-2 text-lg font-light uppercase tracking-widest;
+      @apply lg:ml-2 text-lg font-light uppercase tracking-widest;
+      @media (max-width: 768px) {
+        @apply ml-8;
+      }
       svg {
         width: 45px;
         height: 45px;
@@ -140,11 +154,18 @@ export default {
 .proyecto_title {
   @apply z-10;
   .proyecto_title_int {
-    font-size: responsive 2rem 12rem; /* min-size, max-size */
-    @apply leading-small font-extralight;
+    font-size: calc(5vw + 5vh + 0.5vmin);
+    line-height: 0.8em;
+    @media (max-width: 768px) {
+      font-size: 2em;
+    }
     span {
-      font-variation-settings: 'wght' var(--font-weight, 200),
-        'wdth' var(--font-width, 80), 'ital' 0;
+      font-variation-settings: 'wght' var(--font-weight, 400),
+        'wdth' var(--font-width, 180), 'ital' 0;
+      transition: font-variation-settings 0.5 ease-in-out;
+      @media (max-width: 768px) {
+        --font-weight: 650;
+      }
     }
   }
 }

@@ -54,6 +54,12 @@
         <nuxt-link data-cursor-hover to="/archive">
           <div v-split-characters>Archive</div>
         </nuxt-link>
+        <nuxt-link data-cursor-hover to="/archive">
+          <div v-split-characters>About</div>
+        </nuxt-link>
+        <nuxt-link data-cursor-hover to="/archive">
+          <div v-split-characters>Staff</div>
+        </nuxt-link>
       </div>
     </div>
   </nav>
@@ -84,7 +90,7 @@ nav {
 .nav {
   @apply justify-end items-center flex;
   a {
-    @apply uppercase text-xs text-white;
+    @apply uppercase text-xs text-white block mx-2;
   }
 }
 </style>

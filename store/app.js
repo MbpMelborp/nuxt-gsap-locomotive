@@ -17,6 +17,7 @@ export const state = () => ({
     fondo: null,
     texto_home: null,
     texto_home_hover: null,
+    nav: null,
   },
 })
 
@@ -34,7 +35,7 @@ export const mutations = {
   },
   setHome: (state, payload) => {
     console.log('STORE -> setHome', payload)
-    state.home = payload
+    state.home = { ...payload }
     // gsap.to('#__nuxt', {
     //   color: payload.texto,
     //   background: payload.fondo,

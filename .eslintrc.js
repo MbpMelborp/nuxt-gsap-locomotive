@@ -28,5 +28,6 @@ module.exports = {
       },
     ],
     'vue/no-v-html': 0,
+    'nuxt/no-globals-in-created': 0,
   },
 }

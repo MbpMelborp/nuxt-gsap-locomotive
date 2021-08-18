@@ -36,6 +36,10 @@ export default {
     locomotive: undefined,
     defaultOptions: {
       smooth: true,
+      smoothMobile: true,
+      tablet: 'smooth',
+      smartphone: 'smooth',
+      // reloadOnContextChange: true,
     },
   }),
   computed: {
