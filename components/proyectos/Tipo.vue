@@ -61,26 +61,26 @@
 
     <div class="proyecto_media proyecto_media_1">
       <img
+        v-lazy-load
         data-scroll
-        data-scroll-speed="0.5"
+        data-scroll-speed="1"
         data-scroll-repeat="true"
         data-scroll-position="top"
         class="proy_img"
-        :src="proyecto.content.home[0].media1.filename"
+        :data-src="proyecto.content.home[0].media1.filename"
         :alt="proyecto.content.nombre"
-        loading="lazy"
       />
     </div>
     <div class="proyecto_media proyecto_media_2">
       <img
+        v-lazy-load
         data-scroll
         data-scroll-speed="-0.5"
         data-scroll-repeat="true"
         data-scroll-position="top"
         class="proy_img"
-        :src="proyecto.content.home[0].media2.filename"
+        :data-src="proyecto.content.home[0].media2.filename"
         :alt="proyecto.content.nombre"
-        loading="lazy"
       />
     </div>
     <div
@@ -88,14 +88,14 @@
       class="proyecto_media proyecto_media_3"
     >
       <img
+        v-lazy-load
         data-scroll
         data-scroll-speed="0.5"
         data-scroll-repeat="true"
         data-scroll-position="top"
         class="proy_img"
-        :src="proyecto.content.home[0].media3.filename"
+        :data-src="proyecto.content.home[0].media3.filename"
         :alt="proyecto.content.nombre"
-        loading="lazy"
       />
     </div>
   </div>
@@ -150,6 +150,9 @@ export default {
   clip-path: inset(100% 0% 0% 0%);
   transform: scaleY(1.2);
   @apply z-0;
+  @media (max-width: 768px) {
+    clip-path: inset(0% 0% 0% 0%);
+  }
 }
 .proyecto_title {
   @apply z-10;
