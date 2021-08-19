@@ -128,8 +128,11 @@ nav#nav_site {
             line-height: 0.75em;
             letter-spacing: -0.02em;
             @include font-size(
-              12rem !important
+              10rem !important
             ); // 17.2vmin; //calc(4em + 4vw);
+            @media (max-width: 768px) {
+              @include font-size(12rem !important);
+            }
           }
         }
         .home_top_welcome_title {

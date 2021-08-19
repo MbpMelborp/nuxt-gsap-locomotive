@@ -48,9 +48,7 @@
         @mouseleave="hoverProyecto(false)"
       >
         <nuxt-link :to="proyecto.full_slug" @click="hoverFinish()">
-          <h4 class="anim_proy">
-            {{ proyecto.content.titular }}
-          </h4>
+          <h4 class="anim_proy">{{ proyecto.content.titular }}</h4>
           <div class="proyecto_body anim_proy" v-html="intro"></div>
           <div class="proyecto_ver anim_proy">
             Ver proyecto <i class="fal fa-long-arrow-right"></i>
@@ -98,6 +96,9 @@
         :alt="proyecto.content.nombre"
       />
     </div>
+    <intersect @enter="hoverProyecto(true)" @leave="hoverProyecto(false)">
+      <div class="bg"></div>
+    </intersect>
   </div>
 </template>
 
@@ -136,7 +137,7 @@ export default {
     .proyecto_ver {
       @apply lg:ml-2 text-lg font-light uppercase tracking-widest;
       @media (max-width: 768px) {
-        @apply ml-8;
+        @apply ml-0;
       }
       svg {
         width: 45px;

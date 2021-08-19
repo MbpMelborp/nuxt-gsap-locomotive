@@ -1,5 +1,5 @@
 // import { gsap, Sine } from 'gsap'
-
+const cons = false
 export const state = () => ({
   scroll: {
     isScrolling: false,
@@ -23,18 +23,18 @@ export const state = () => ({
 
 export const mutations = {
   setLoad: (state, payload) => {
-    console.log('STORE -> setLoad', payload)
+    if (cons) console.log('STORE -> setLoad', payload)
     state.load = payload
   },
   setScroll: (state, payload) => {
     state.scroll = Object.assign({}, state.scroll, payload)
   },
   setSection: (state, payload) => {
-    console.log('STORE -> setSection', payload)
+    if (cons) console.log('STORE -> setSection', payload)
     state.section = payload
   },
   setHome: (state, payload) => {
-    console.log('STORE -> setHome', payload)
+    if (cons) console.log('STORE -> setHome', payload)
     state.home = { ...payload }
     // gsap.to('#__nuxt', {
     //   color: payload.texto,
@@ -52,7 +52,7 @@ export const getters = {
     return state.home
   },
   getLoad: (state) => {
-    console.log('STORE -> getLoad', state.load)
+    if (cons) console.log('STORE -> getLoad', state.load)
     return state.load
   },
 }
