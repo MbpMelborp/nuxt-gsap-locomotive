@@ -4,7 +4,9 @@
       v-for="(imagen, index) in media.imagen"
       :key="index"
       :class="`img-wrapper ${
-        index === 0 ? `flex-shrink-0  ${media.ancho}` : 'flex-grow md:w-auto'
+        index === 0
+          ? `md:flex-shrink-0  ${media.ancho}`
+          : 'md:flex-grow md:w-auto'
       }`"
     >
       <img
@@ -34,9 +36,9 @@ export default {
 </script>
 <style lang="postcss" scoped>
 .media_sobrepuestas {
-  @apply w-full flex items-center;
+  @apply w-full flex md:flex-row flex-col items-center;
   .img-wrapper {
-    @apply px-8;
+    @apply md:px-8 px-0 mb-8;
   }
 }
 </style>

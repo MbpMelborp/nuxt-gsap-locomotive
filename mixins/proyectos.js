@@ -17,7 +17,6 @@ export default {
         delay: 2,
         ease: Power2.easeInOut,
       }),
-      msg: 'I will change',
     }
   },
   computed: {

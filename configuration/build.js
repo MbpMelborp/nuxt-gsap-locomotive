@@ -12,6 +12,7 @@ export default {
         'postcss-responsive-type': true,
         'postcss-responsive-font': true,
         'postcss-nested': {},
+        'postcss-pseudo-elements-content': {},
       },
       preset: {
         // Change the postcss-preset-env settings

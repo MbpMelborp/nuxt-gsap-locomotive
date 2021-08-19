@@ -66,11 +66,14 @@ export default {
   min-height: 120vh;
   user-select: none;
   overflow: hidden;
+  @media (max-width: 768px) {
+    min-height: 20vh;
+  }
 
   .media_int {
     grid-area: media;
     align-self: center;
-    @apply py-32;
+    @apply md:py-32 py-8;
   }
 }
 </style>

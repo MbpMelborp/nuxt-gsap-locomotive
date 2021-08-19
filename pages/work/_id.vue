@@ -31,8 +31,8 @@
             </span>
           </h2>
           <div class="regresar">
-            <nuxt-link to="/">
-              <i class="fal fa-long-arrow-left text-3xl block"></i>
+            <nuxt-link to="/" class="flex items-center md:flex-col flex-row">
+              <i class="fal fa-long-arrow-left text-3xl block mr-2"></i>
               <span class="block">Regresar</span>
             </nuxt-link>
           </div>
@@ -374,6 +374,9 @@ export default {
       gsap.set('.proyecto_info h2, .resultado b, .regresar', {
         color: this.story.content.colores[0].nombre.color,
       })
+      gsap.set('.proyecto_info h2, .resultado', {
+        borderColor: this.story.content.colores[0].nombre.color,
+      })
 
       gsap.set('.proyecto_info h3, .proyecto_info time', {
         color: this.story.content.colores[0].fondo.color,
@@ -458,7 +461,7 @@ export default {
   display: grid;
   grid-gap: 0;
   grid-template-columns: [l1] auto [r1];
-  grid-template-rows: [t1] 52px 50vh [b1] auto;
+  grid-template-rows: [t1] 6vh 50vh [b1] auto;
   grid-template-areas:
     '.'
     'info'
@@ -485,8 +488,8 @@ export default {
     grid-area: info;
     display: grid;
     grid-gap: 0;
-    grid-template-columns: [l1] 2vw 10vw auto [pr] auto auto 2vw [r1];
-    grid-template-rows: [t1] auto 25vh 25vh [m1] auto [pt] auto auto [pb] auto auto [b1];
+    grid-template-columns: [l1] 5vw 130px auto [pr] auto auto 5vw [r1];
+    grid-template-rows: [t1] auto 25vh 25vh [m1] auto [pt] auto auto [pb] auto [b1];
     grid-template-areas:
       '. . cliente cliente cliente .'
       '. regresar nombre nombre nombre .'
@@ -494,25 +497,23 @@ export default {
       '. . intro intro . .'
       '. . . problem melborp .'
       '. . . body body .'
-      '. . . resultados resultados .'
-      '. . . . . .';
+      '. . . resultados resultados .';
     width: 100%;
     min-height: 100vh;
     z-index: 2;
     @apply self-start;
     @media (max-width: 768px) {
-      grid-template-columns: [l1] 2vw auto auto 2vw [r1];
-      grid-template-rows: [t1] auto 25vh 15vh 15vh auto auto auto auto auto [b1];
+      grid-template-columns: [l1] 5vw auto auto 5vw [r1];
+      grid-template-rows: [t1] auto 12vh 25vh auto auto auto auto [b1];
       grid-template-areas:
-        '. cliente cliente .'
         '. regresar fecha .'
-        '. nombre nombre .'
+        '. cliente cliente .'
         '. nombre nombre .'
         '. intro intro .'
-        '. problem melborp .'
+        '. problem problem .'
+        '. melborp melborp .'
         '. body body .'
-        '. resultados resultados .'
-        '. . . .';
+        '. resultados resultados .';
     }
     .bg {
       grid-column-start: l1;
@@ -541,7 +542,7 @@ export default {
       line-height: 0.65em;
       @apply leading-none self-end z-20;
       span {
-        font-size: calc(6vw + 6vh + 0.5vmin);
+        font-size: clamp(3.5rem, 8.5vw, 22rem);
         font-variation-settings: 'wght' var(--font-weight, 400),
           'wdth' var(--font-width, 180), 'ital' 0;
         @apply inline;
@@ -553,7 +554,7 @@ export default {
     }
     time {
       grid-area: fecha;
-      @apply leading-none self-start z-0;
+      @apply leading-none md:self-start self-center z-0 justify-self-end text-right;
       b {
         @apply block text-sm;
       }
@@ -563,12 +564,12 @@ export default {
     }
     .intro {
       grid-area: intro;
-      @apply text-5xl z-20 py-8 mb-8;
+      @apply text-4xl z-20 md:py-8 py-4 mb-8;
     }
 
     .problem {
       grid-area: problem;
-      @apply z-20 py-6 text-lg px-8 line-through self-start mb-8;
+      @apply line-through z-20 text-lg py-0 md:py-6 md:px-8 px-0 self-start md:mb-8 mb-8;
       h4 {
         font-variation-settings: 'wght' var(--font-weight, 400),
           'wdth' var(--font-width, 180), 'ital' 0;
@@ -577,7 +578,7 @@ export default {
     }
     .melborp {
       grid-area: melborp;
-      @apply z-20 py-6 text-lg px-8 self-start;
+      @apply z-20  text-lg py-0 md:py-6 md:px-8 px-0 self-start md:mb-8 mb-8;
       h4 {
         font-variation-settings: 'wght' var(--font-weight, 400),
           'wdth' var(--font-width, 180), 'ital' 0;
@@ -586,20 +587,23 @@ export default {
     }
     .body {
       grid-area: body;
-      @apply z-20 p-8 text-lg self-start md:-ml-16 mb-8;
+      @apply z-20 md:p-8 p-0 text-lg self-center md:-ml-16 mb-16;
+      &::before {
+        content: '-';
+      }
     }
     .resultados {
       grid-area: resultados;
-      @apply z-20 p-8;
+      @apply z-20 md:p-8 p-0 self-center mb-8 md:mb-0;
       h4 {
         font-variation-settings: 'wght' var(--font-weight, 400),
           'wdth' var(--font-width, 180), 'ital' 0;
-        @apply text-2xl;
+        @apply text-2xl mb-8;
       }
       .listado {
         @apply grid grid-cols-2 md:grid-cols-4;
         .resultado {
-          @apply p-4 text-lg;
+          @apply p-4 text-lg md:border-none border-l mb-2;
           b {
             font-variation-settings: 'wght' var(--font-weight, 800),
               'wdth' var(--font-width, 90), 'ital' 0;
@@ -613,7 +617,7 @@ export default {
       grid-column-end: pr;
       grid-row-start: pt;
       grid-row-end: b1;
-      @apply z-10;
+      @apply z-10 md:block hidden;
       img {
         @apply object-cover w-full h-full block;
       }
