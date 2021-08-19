@@ -9,14 +9,19 @@
     :class="`proyecto_tipo ${proyecto.content.tipo_home}`"
   >
     <h2 class="proyecto_title">
-      <div class="proyecto_title_int">
-        <span
-          v-for="(palabra, index) in proyecto.content.nombre.split(' ')"
-          :key="index"
-        >
-          {{ palabra }}
-        </span>
-      </div>
+      <intersect
+        @enter="hoverMobileProyecto(true)"
+        @leave="hoverMobileProyecto(false)"
+      >
+        <div class="proyecto_title_int">
+          <span
+            v-for="(palabra, index) in proyecto.content.nombre.split(' ')"
+            :key="index"
+          >
+            {{ palabra }}
+          </span>
+        </div>
+      </intersect>
     </h2>
     <div class="proyecto_arrow">
       <svg viewBox="0 0 45 45">
@@ -96,9 +101,8 @@
         :alt="proyecto.content.nombre"
       />
     </div>
-    <intersect @enter="hoverProyecto(true)" @leave="hoverProyecto(false)">
-      <div class="bg"></div>
-    </intersect>
+
+    <div class="bg"></div>
   </div>
 </template>
 

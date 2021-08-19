@@ -1,5 +1,5 @@
 import { gsap, Power2, Power4, Sine } from 'gsap'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import Intersect from 'vue-intersect'
 
 export default {
@@ -10,7 +10,11 @@ export default {
       tl_bkg: gsap.timeline({ paused: true, ease: Power4.easeInOut }),
       tl_hover: gsap.timeline({
         paused: true,
-        delay: window.innerWidth >= 768 ? 0 : 2,
+        ease: Power2.easeInOut,
+      }),
+      tl_hover_mobile: gsap.timeline({
+        paused: true,
+        delay: 2,
         ease: Power2.easeInOut,
       }),
       msg: 'I will change',
@@ -22,7 +26,10 @@ export default {
         ? this.$storyapi.richTextResolver.render(this.proyecto.content.intro)
         : ''
     },
-    ...mapGetters({ home: 'app/getHome' }),
+    ...mapGetters({
+      home: 'app/getHome',
+      proyectoMobile: 'app/getMobileProyecto',
+    }),
   },
   components: {
     Intersect,
@@ -44,12 +51,27 @@ export default {
           this.initTimelinesMobile()
         }
       }
+      // if (mutation.type === 'app/setMobileProyecto') {
+      //   if (
+      //     window.innerWidth < 768 &&
+      //     mutation.payload === this.proyecto.name
+      //   ) {
+      //     console.log(
+      //       'PROYECTOS -> app/setMobileProyecto',
+      //       mutation.payload === this.proyecto.name
+      //     )
+      //     this.hoverMobileProyecto(false)
+      //     // this.initTimelinesMobile()
+      //   }
+      // }
     })
 
-    if (this.home.texto != null && window.innerWidth >= 768) {
-      this.initTimelines()
-    } else {
-      this.initTimelinesMobile()
+    if (this.home.texto != null) {
+      if (window.innerWidth >= 768) {
+        this.initTimelines()
+      } else {
+        this.initTimelinesMobile()
+      }
     }
 
     this.observer = new MutationObserver((mutations) => {
@@ -70,21 +92,6 @@ export default {
     })
 
     this.onClassChange(elemt.getAttribute('class'))
-
-    this.tl_images.to('#proyecto_' + this.proyecto.slug + ' .proyecto_media', {
-      clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 0.5,
-      delay: 0,
-      scaleY: 1,
-      y: 30,
-      stagger: {
-        each: 0.2,
-        from: 'edges',
-      },
-      onComplete: () => {
-        this.observer.disconnect()
-      },
-    })
   },
   // beforeMount() {
   //   console.log('PROYECTOS -> beforeMount', this.tl_hover)
@@ -93,9 +100,13 @@ export default {
   destroyed() {
     console.log('PROYECTOS -> destroyed', this.proyecto.slug)
     this.tl_hover.kill()
+    this.tl_hover_mobile.kill()
     this.tl_images.kill()
   },
   methods: {
+    ...mapMutations({
+      setMobileProyecto: 'app/setMobileProyecto',
+    }),
     onClassChange(classAttrValue) {
       const classList = classAttrValue.split(' ')
       console.log(
@@ -117,6 +128,17 @@ export default {
         this.tl_hover.pause().timeScale(1).play()
       } else {
         this.tl_hover.pause().timeScale(2).reverse()
+      }
+    },
+    hoverMobileProyecto(est) {
+      if (window.innerWidth < 768) {
+        console.log('PROYECTOS -> hoverMobileProyecto', this.proyecto.name)
+        if (est) {
+          this.tl_hover_mobile.timeScale(1).play()
+          this.setMobileProyecto(this.proyecto.name)
+        } else {
+          this.tl_hover_mobile.pause().timeScale(2).reverse()
+        }
       }
     },
     hoverFinish() {
@@ -150,7 +172,7 @@ export default {
         }
       )
 
-      this.tl_hover.fromTo(
+      this.tl_hover_mobile.fromTo(
         '#proyecto_' + this.proyecto.slug + ' .proyecto_media',
         {
           opacity: 1,
@@ -174,7 +196,7 @@ export default {
         '-=0.2'
       )
 
-      this.tl_hover.fromTo(
+      this.tl_hover_mobile.fromTo(
         '#proyecto_' + this.proyecto.slug + ' .proyecto_data .anim_proy',
         { y: '50vh' },
         {
@@ -187,7 +209,7 @@ export default {
         },
         '-=0.4'
       )
-      this.tl_hover.fromTo(
+      this.tl_hover_mobile.fromTo(
         '#proyecto_' + this.proyecto.slug + ' .proyecto_arrow ',
         { stroke: 'transparent', opacity: 0, x: '20vw', y: '20vh' },
         {
@@ -203,7 +225,7 @@ export default {
         },
         '-=0.4'
       )
-      this.tl_hover.fromTo(
+      this.tl_hover_mobile.fromTo(
         '#proyecto_' +
           this.proyecto.slug +
           ' .proyecto_title .proyecto_title_int span',
@@ -326,6 +348,25 @@ export default {
           },
         },
         '-=0.3'
+      )
+
+      // IMAGENES
+      this.tl_images.to(
+        '#proyecto_' + this.proyecto.slug + ' .proyecto_media',
+        {
+          clipPath: 'inset(0% 0% 0% 0%)',
+          duration: 0.5,
+          delay: 0,
+          scaleY: 1,
+          y: 30,
+          stagger: {
+            each: 0.2,
+            from: 'edges',
+          },
+          onComplete: () => {
+            this.observer.disconnect()
+          },
+        }
       )
     },
   },

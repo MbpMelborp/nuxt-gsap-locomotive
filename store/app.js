@@ -19,6 +19,7 @@ export const state = () => ({
     texto_home_hover: null,
     nav: null,
   },
+  mobileProyecto: null,
 })
 
 export const mutations = {
@@ -43,6 +44,10 @@ export const mutations = {
     //   ease: Sine.easeInOut,
     // })
   },
+  setMobileProyecto: (state, payload) => {
+    if (cons) console.log('STORE -> setMobileProyecto', payload)
+    state.mobileProyecto = payload
+  },
 }
 export const getters = {
   getSection: (state) => {
@@ -54,5 +59,9 @@ export const getters = {
   getLoad: (state) => {
     if (cons) console.log('STORE -> getLoad', state.load)
     return state.load
+  },
+  getMobileProyecto: (state) => {
+    if (cons) console.log('STORE -> getMobileProyecto', state.mobileProyecto)
+    return state.mobileProyecto
   },
 }
