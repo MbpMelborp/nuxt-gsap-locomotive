@@ -2,7 +2,7 @@
   <nav v-if="load" id="nav_site">
     <div class="nav_wrapper">
       <div class="logo">
-        <nuxt-link to="/" data-cursor-hover>
+        <nuxt-link v-cursor-left to="/">
           <svg
             viewBox="0 0 181 54"
             version="1.1"
@@ -51,13 +51,13 @@
         </nuxt-link>
       </div>
       <div class="nav">
-        <nuxt-link data-cursor-hover to="/archive">
+        <nuxt-link v-cursor-right to="/archive">
           <div v-split-characters>Archive</div>
         </nuxt-link>
-        <nuxt-link data-cursor-hover to="/archive">
+        <nuxt-link v-cursor-right to="/archive">
           <div v-split-characters>About</div>
         </nuxt-link>
-        <nuxt-link data-cursor-hover to="/archive">
+        <nuxt-link v-cursor-right to="/archive">
           <div v-split-characters>Staff</div>
         </nuxt-link>
       </div>

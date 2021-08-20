@@ -20,6 +20,7 @@ export const state = () => ({
     nav: null,
   },
   mobileProyecto: null,
+  preload: false,
 })
 
 export const mutations = {
@@ -48,6 +49,10 @@ export const mutations = {
     if (cons) console.log('STORE -> setMobileProyecto', payload)
     state.mobileProyecto = payload
   },
+  setPreload: (state, payload) => {
+    if (cons) console.log('STORE -> setPreload', payload)
+    state.preload = payload
+  },
 }
 export const getters = {
   getSection: (state) => {
@@ -63,5 +68,9 @@ export const getters = {
   getMobileProyecto: (state) => {
     if (cons) console.log('STORE -> getMobileProyecto', state.mobileProyecto)
     return state.mobileProyecto
+  },
+  getPreload: (state) => {
+    if (cons) console.log('STORE -> getPreload', state.preload)
+    return state.preload
   },
 }

@@ -84,7 +84,10 @@ export default {
         delay: 3,
         ease: Power4.easeInOut,
         onUpdate: () => {},
-        onComplete: () => {},
+        onComplete: () => {
+          console.log('PRELOAD -> tl_preload_salida onComplete')
+          this.$store.commit('app/setPreload', true)
+        },
       }),
       tl_preload_arrow: gsap.timeline({
         ease: Power4.easeInOut,

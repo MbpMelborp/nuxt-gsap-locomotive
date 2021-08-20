@@ -1,3 +1,3 @@
 import Vue from 'vue'
-import NuxtSSRScreenSize from 'nuxt-ssr-screen-size'
-Vue.use(NuxtSSRScreenSize)
+import VueMobileDetection from 'vue-mobile-detection'
+Vue.use(VueMobileDetection)

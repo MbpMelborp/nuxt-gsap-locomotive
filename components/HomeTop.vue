@@ -4,6 +4,7 @@
       <div class="home_top_welcome_nav">
         <div class="nav_home">
           <div
+            v-cursor-down
             data-scroll=""
             data-scroll-speed="3"
             data-scroll-position="top"
@@ -14,6 +15,7 @@
             <div v-split-characters>WORK</div>
           </div>
           <div
+            v-cursor-right
             data-scroll=""
             data-scroll-speed="2"
             data-scroll-position="top"
@@ -24,6 +26,7 @@
             <div v-split-characters>ABOUT</div>
           </div>
           <div
+            v-cursor-right
             data-scroll=""
             data-scroll-speed="1"
             data-scroll-position="top"
@@ -328,6 +331,11 @@ export default {
 .image_back {
   img {
     @apply h-screen;
+  }
+}
+.nav_home {
+  * {
+    @apply select-none;
   }
 }
 </style>

@@ -31,7 +31,12 @@
             </span>
           </h2>
           <div class="regresar">
-            <nuxt-link to="/" class="flex items-center md:flex-col flex-row">
+            <nuxt-link
+              v-cursor-left
+              to="/"
+              class="flex items-center md:flex-col flex-row"
+            >
+              <!-- v-cursor-left -->
               <i class="fal fa-long-arrow-left text-3xl block mr-2"></i>
               <span class="block">Regresar</span>
             </nuxt-link>
@@ -106,9 +111,9 @@
         v-for="(media, index) in story.content.bloques"
         :key="index"
         :media="media"
-        :locomotive="locomotive"
       >
       </Media>
+
       <div data-scroll-section class="example-section">
         <div class="example-content">
           <div
@@ -312,7 +317,8 @@ export default {
           start: 'top bottom',
           end: 'center center',
         },
-        clipPath: 'inset(100% 0% 0% 0%)',
+        // clipPath: 'inset(0% 100% 0% 0%)',
+        y: 100,
         ease: 'none',
       })
     },
@@ -554,7 +560,7 @@ export default {
     }
     time {
       grid-area: fecha;
-      @apply leading-none md:self-start self-center z-0 justify-self-end text-right;
+      @apply leading-none md:self-start self-center z-0 md:justify-self-center justify-self-end text-right;
       b {
         @apply block text-sm;
       }

@@ -1,7 +1,8 @@
 <template>
-  <main>
+  <main :class="{ cursor: !$isMobile() }">
     <!-- <cursor-fx color="#fff" color-hover="#fff"></cursor-fx> -->
-    <Preload></Preload>
+    <Cursorfx></Cursorfx>
+    <Preload v-if="!preload"></Preload>
     <Nav></Nav>
     <nuxt />
   </main>
@@ -12,15 +13,17 @@ import { mapGetters } from 'vuex'
 
 import Nav from '~/components/Nav.vue'
 import Preload from '~/components/Preload.vue'
+import Cursorfx from '~/components/CursorMouse.vue'
 
 export default {
   components: {
     Nav,
     Preload,
+    Cursorfx,
   },
 
   computed: {
-    ...mapGetters({ activePage: 'getActivePage' }),
+    ...mapGetters({ activePage: 'getActivePage', preload: 'app/getPreload' }),
   },
 }
 </script>
@@ -35,5 +38,8 @@ body {
 }
 .tmp {
   @apply mix-blend-difference;
+}
+.cursor {
+  cursor: none;
 }
 </style>

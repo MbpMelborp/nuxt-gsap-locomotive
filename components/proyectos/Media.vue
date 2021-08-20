@@ -1,16 +1,20 @@
 <template>
-  <div
-    :id="`media_${media._uid}`"
-    class="media"
-    data-scroll-section
-    data-scroll-trigger
-  >
+  <div :id="`media_${media._uid}`" class="media" data-scroll-section>
     <div class="media_int">
-      <Video v-if="media.component == 'video'" :media="media"></Video>
-      <Carrusel v-if="media.component == 'carrusel'" :media="media"></Carrusel>
+      <Video
+        v-if="media.component == 'video'"
+        :media="media"
+        data-scroll-trigger
+      ></Video>
+      <Carrusel
+        v-if="media.component == 'carrusel'"
+        :media="media"
+        data-scroll-trigger
+      ></Carrusel>
       <Sobrepuestas
         v-if="media.component == 'Imagenes sobrepuestas'"
         :media="media"
+        data-scroll-trigger
       ></Sobrepuestas>
     </div>
   </div>
@@ -31,24 +35,8 @@ export default {
       type: Object,
       default: null,
     },
-    locomotive: {
-      type: Object,
-      default: null,
-    },
   },
-  mounted() {
-    // gsap.from('.media_video', {
-    //   scrollTrigger: {
-    //     trigger: '.media_video',
-    //     scroller: this.locomotive.el,
-    //     scrub: true,
-    //     start: 'top bottom',
-    //     end: 'bottom center',
-    //   },
-    //   clipPath: 'inset(100% 0% 0% 0%)',
-    //   ease: 'none',
-    // })
-  },
+  mounted() {},
 }
 </script>
 
@@ -63,11 +51,11 @@ export default {
     '. media .'
     '. . .';
   width: 100%;
-  min-height: 120vh;
-  user-select: none;
+  height: 105vh;
   overflow: hidden;
   @media (max-width: 768px) {
     min-height: 20vh;
+    height: auto;
   }
 
   .media_int {

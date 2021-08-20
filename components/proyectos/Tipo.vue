@@ -52,7 +52,11 @@
         @mouseover="hoverProyecto(true)"
         @mouseleave="hoverProyecto(false)"
       >
-        <nuxt-link :to="proyecto.full_slug" @click="hoverFinish()">
+        <nuxt-link
+          v-cursor-right
+          :to="proyecto.full_slug"
+          @click="hoverFinish()"
+        >
           <h4 class="anim_proy">{{ proyecto.content.titular }}</h4>
           <div class="proyecto_body anim_proy" v-html="intro"></div>
           <div class="proyecto_ver anim_proy">
