@@ -10,13 +10,18 @@ export const state = () => ({
     x: 0,
     y: 0,
   },
-  load: null,
+  load: window.location.search.includes('_storyblok') === true ? true : null,
   section: null,
   home: {
     texto: null,
     fondo: null,
     texto_home: null,
     texto_home_hover: null,
+    nav: null,
+  },
+  page: {
+    texto: null,
+    fondo: null,
     nav: null,
   },
   mobileProyecto: null,
@@ -38,12 +43,10 @@ export const mutations = {
   setHome: (state, payload) => {
     if (cons) console.log('STORE -> setHome', payload)
     state.home = { ...payload }
-    // gsap.to('#__nuxt', {
-    //   color: payload.texto,
-    //   background: payload.fondo,
-    //   duration: 1,
-    //   ease: Sine.easeInOut,
-    // })
+  },
+  setPage: (state, payload) => {
+    if (cons) console.log('STORE -> setPage', payload)
+    state.page = { ...payload }
   },
   setMobileProyecto: (state, payload) => {
     if (cons) console.log('STORE -> setMobileProyecto', payload)
@@ -60,6 +63,9 @@ export const getters = {
   },
   getHome: (state) => {
     return state.home
+  },
+  getPage: (state) => {
+    return state.page
   },
   getLoad: (state) => {
     if (cons) console.log('STORE -> getLoad', state.load)

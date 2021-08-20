@@ -2,7 +2,7 @@
   <div
     :id="`proyecto_${proyecto.slug}`"
     data-scroll
-    data-scroll-speed="-1"
+    data-scroll-speed="-0.1"
     data-scroll-repeat="true"
     data-scroll-position="top"
     :data-scroll-call="`proyecto_${proyecto.slug}`"
@@ -47,19 +47,28 @@
       data-scroll-position="center"
       class="proyecto_data"
     >
-      <div
-        class="proyecto_data_content"
-        @mouseover="hoverProyecto(true)"
-        @mouseleave="hoverProyecto(false)"
-      >
-        <nuxt-link
-          v-cursor-right
-          :to="proyecto.full_slug"
-          @click="hoverFinish()"
-        >
-          <h4 class="anim_proy">{{ proyecto.content.titular }}</h4>
-          <div class="proyecto_body anim_proy" v-html="intro"></div>
-          <div class="proyecto_ver anim_proy">
+      <!-- <div class="proyecto_data_content" @click="hoverFinish()"> -->
+      <div class="proyecto_data_content">
+        <nuxt-link v-cursor-right :to="proyecto.full_slug">
+          <h4
+            class="anim_proy"
+            @mouseover="hoverProyecto($event, true)"
+            @mouseleave="hoverProyecto($event, false)"
+          >
+            {{ proyecto.content.titular }}
+          </h4>
+          <div
+            class="proyecto_body anim_proy"
+            @mouseover="hoverProyecto($event, true)"
+            @mouseleave="hoverProyecto($event, false)"
+            v-html="intro"
+          ></div>
+
+          <div
+            class="proyecto_ver anim_proy"
+            @mouseover="hoverProyecto($event, true)"
+            @mouseleave="hoverProyecto($event, false)"
+          >
             Ver proyecto <i class="fal fa-long-arrow-right"></i>
           </div>
         </nuxt-link>
@@ -70,7 +79,7 @@
       <img
         v-lazy-load
         data-scroll
-        data-scroll-speed="1"
+        data-scroll-speed="-0.2"
         data-scroll-repeat="true"
         data-scroll-position="top"
         class="proy_img"
@@ -82,7 +91,7 @@
       <img
         v-lazy-load
         data-scroll
-        data-scroll-speed="-0.5"
+        data-scroll-speed="0.5"
         data-scroll-repeat="true"
         data-scroll-position="top"
         class="proy_img"
@@ -97,7 +106,7 @@
       <img
         v-lazy-load
         data-scroll
-        data-scroll-speed="0.5"
+        data-scroll-speed="-0.5"
         data-scroll-repeat="true"
         data-scroll-position="top"
         class="proy_img"
@@ -140,6 +149,9 @@ export default {
       @apply text-sm lg:ml-16 lg:mr-3 font-thin mb-8 leading-5;
       @media (max-width: 768px) {
         @apply text-lg;
+      }
+      p {
+        @apply mb-2;
       }
     }
     .proyecto_ver {

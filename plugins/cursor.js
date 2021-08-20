@@ -42,7 +42,7 @@ function removeClasses() {
 
 Vue.directive('cursor-left', {
   bind: (el) => {
-    el.style.cursor = 'none'
+    if (!window.location.search.includes('_storyblok')) el.style.cursor = 'none'
     el.addEventListener('mouseover', () => {
       addClass('cursor-left')
     })
@@ -53,7 +53,7 @@ Vue.directive('cursor-left', {
 
 Vue.directive('cursor-right', {
   bind: (el) => {
-    el.style.cursor = 'none'
+    if (!window.location.search.includes('_storyblok')) el.style.cursor = 'none'
     el.addEventListener('mouseover', () => {
       addClass('cursor-right')
     })
@@ -63,7 +63,7 @@ Vue.directive('cursor-right', {
 })
 Vue.directive('cursor-up', {
   bind: (el) => {
-    el.style.cursor = 'none'
+    if (!window.location.search.includes('_storyblok')) el.style.cursor = 'none'
     el.addEventListener('mouseover', () => {
       addClass('cursor-up')
     })
@@ -73,7 +73,7 @@ Vue.directive('cursor-up', {
 })
 Vue.directive('cursor-down', {
   bind: (el) => {
-    el.style.cursor = 'none'
+    if (!window.location.search.includes('_storyblok')) el.style.cursor = 'none'
     el.addEventListener('mouseover', () => {
       addClass('cursor-down')
     })

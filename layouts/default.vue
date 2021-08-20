@@ -1,15 +1,14 @@
 <template>
-  <main :class="{ cursor: !$isMobile() }">
-    <!-- <cursor-fx color="#fff" color-hover="#fff"></cursor-fx> -->
-    <Cursorfx></Cursorfx>
-    <Preload v-if="!preload"></Preload>
+  <main :class="{ cursor: !editor && !$isMobile() }">
+    <Cursorfx v-if="!editor && !$isMobile()"></Cursorfx>
+    <Preload v-if="!preload && !editor"></Preload>
     <Nav></Nav>
     <nuxt />
   </main>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 import Nav from '~/components/Nav.vue'
 import Preload from '~/components/Preload.vue'
@@ -21,9 +20,23 @@ export default {
     Preload,
     Cursorfx,
   },
-
+  data() {
+    return {
+      editor: window.location.search.includes('_storyblok'),
+    }
+  },
   computed: {
     ...mapGetters({ activePage: 'getActivePage', preload: 'app/getPreload' }),
+  },
+  mounted() {
+    if (this.editor) {
+      this.setLoad(true)
+    }
+  },
+  methods: {
+    ...mapMutations({
+      setLoad: 'app/setLoad',
+    }),
   },
 }
 </script>
@@ -38,8 +51,5 @@ body {
 }
 .tmp {
   @apply mix-blend-difference;
-}
-.cursor {
-  cursor: none;
 }
 </style>

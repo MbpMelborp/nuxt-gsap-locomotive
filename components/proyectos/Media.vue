@@ -16,6 +16,11 @@
         :media="media"
         data-scroll-trigger
       ></Sobrepuestas>
+      <Full
+        v-if="media.component == 'Imagen centro full w'"
+        :media="media"
+        data-scroll-trigger
+      ></Full>
     </div>
   </div>
 </template>
@@ -24,11 +29,13 @@
 import Video from '~/components/proyectos/Media_video.vue'
 import Carrusel from '~/components/proyectos/Media_carrusel.vue'
 import Sobrepuestas from '~/components/proyectos/Media_sobrepuestas.vue'
+import Full from '~/components/proyectos/Media_full.vue'
 export default {
   components: {
     Video,
     Carrusel,
     Sobrepuestas,
+    Full,
   },
   props: {
     media: {
@@ -51,7 +58,7 @@ export default {
     '. media .'
     '. . .';
   width: 100%;
-  height: 105vh;
+  height: 100vh;
   overflow: hidden;
   @media (max-width: 768px) {
     min-height: 20vh;

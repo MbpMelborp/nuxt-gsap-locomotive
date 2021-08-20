@@ -1,17 +1,20 @@
 <template>
   <div class="media_video">
     <div :class="`media_video_wrapper ${media.posicion}`">
-      <video
-        :ref="`video_${media._uid}`"
-        loading="lazy"
-        controls=""
-        :src="media.video.filename"
-        class="media_video_player"
-        preload="auto"
-        :poster="media.poster.filename"
-      ></video>
+      <intersect @leave="stopVideo()">
+        <video
+          :ref="`video_${media._uid}`"
+          loading="lazy"
+          controls=""
+          :src="media.video.filename"
+          class="media_video_player"
+          preload="auto"
+          :poster="media.poster.filename"
+        ></video>
+      </intersect>
       <button
         :id="`video_btn_${media._uid}`"
+        v-cursor-right
         class="media_video_poster"
         data-target="#fid_1062"
         :style="`
@@ -33,7 +36,11 @@
 </template>
 <script>
 import { gsap, Expo } from 'gsap'
+import Intersect from 'vue-intersect'
 export default {
+  components: {
+    Intersect,
+  },
   props: {
     media: {
       type: Object,
@@ -44,20 +51,27 @@ export default {
   methods: {
     playVideo(e) {
       this.$refs[`video_${this.media._uid}`].play()
-      gsap.fromTo(
-        `#video_btn_${this.media._uid}`,
-        {
-          //   clipPath: 'inset(0% 100% 0% 0%)',
-        },
-        {
-          //   clipPath: 'inset(0% 0% 0% 0%)',
-          autoAlpha: 0,
-          duration: 1,
+      gsap.to(`#video_btn_${this.media._uid}`, {
+        //   clipPath: 'inset(0% 0% 0% 0%)',
+        autoAlpha: 0,
+        duration: 1,
 
-          onComplete: () => {},
-          ease: Expo.easeInOut,
-        }
-      )
+        onComplete: () => {},
+        ease: Expo.easeInOut,
+      })
+    },
+    stopVideo() {
+      const videop = this.$refs[`video_${this.media._uid}`]
+      videop.pause()
+      videop.currentTime = 0
+      gsap.to(`#video_btn_${this.media._uid}`, {
+        //   clipPath: 'inset(0% 0% 0% 0%)',
+        autoAlpha: 1,
+        duration: 0.5,
+
+        onComplete: () => {},
+        ease: Expo.easeInOut,
+      })
     },
   },
 }

@@ -6,17 +6,10 @@ export default {
   data() {
     return {
       ready: false,
-      tl_images: gsap.timeline({ paused: true, ease: Power4.easeInOut }),
-      tl_bkg: gsap.timeline({ paused: true, ease: Power4.easeInOut }),
-      tl_hover: gsap.timeline({
-        paused: true,
-        ease: Power2.easeInOut,
-      }),
-      tl_hover_mobile: gsap.timeline({
-        paused: true,
-        delay: 2,
-        ease: Power2.easeInOut,
-      }),
+      tl_images: null,
+      tl_bkg: null,
+      tl_hover: null,
+      tl_hover_mobile: null,
     }
   },
   computed: {
@@ -33,44 +26,47 @@ export default {
   components: {
     Intersect,
   },
-  beforeDestroy() {
-    this.observer.disconnect()
-  },
-  beforeMounut() {
-    this.tl_hover.kill()
-  },
   mounted() {
-    console.log('PROYECTOS -> mounted', this.proyecto.slug, window.innerWidth)
+    console.log(
+      `%c PROYECTOS -> mounted \n ${this.proyecto.name}`,
+      `background:${this.proyecto.content.colores[0].fondo.color}; color: ${this.proyecto.content.colores[0].texto.color}`
+    )
 
-    this.$store.subscribe((mutation, state) => {
-      if (mutation.type === 'app/setHome') {
-        if (window.innerWidth >= 768) {
-          this.initTimelines()
-        } else {
-          this.initTimelinesMobile()
-        }
-      }
-      // if (mutation.type === 'app/setMobileProyecto') {
-      //   if (
-      //     window.innerWidth < 768 &&
-      //     mutation.payload === this.proyecto.name
-      //   ) {
-      //     console.log(
-      //       'PROYECTOS -> app/setMobileProyecto',
-      //       mutation.payload === this.proyecto.name
-      //     )
-      //     this.hoverMobileProyecto(false)
-      //     // this.initTimelinesMobile()
-      //   }
-      // }
+    this.tl_images = gsap.timeline({ paused: true, ease: Power4.easeInOut })
+    this.tl_bkg = gsap.timeline({ paused: true, ease: Power4.easeInOut })
+    this.tl_hover = gsap.timeline({
+      paused: true,
+      ease: Power2.easeInOut,
+      onStart: () => {},
+      onComplete: () => {},
     })
-
-    if (this.home.texto != null) {
-      if (window.innerWidth >= 768) {
-        this.initTimelines()
-      } else {
-        this.initTimelinesMobile()
-      }
+    this.tl_hover_mobile = gsap.timeline({
+      paused: true,
+      delay: 2,
+      ease: Power2.easeInOut,
+    })
+    if (this.home.texto === null) {
+      this.$store.subscribe((mutation, state) => {
+        if (mutation.type === 'app/setHome') {
+          if (window.innerWidth >= 768) {
+            console.log(
+              `%c PROYECTOS -> initTimeline vuex \n ${this.proyecto.name}`,
+              `background:${this.proyecto.content.colores[0].fondo.color}; color: ${this.proyecto.content.colores[0].texto.color}`
+            )
+            this.initTimelines()
+          } else {
+            this.initTimelinesMobile()
+          }
+        }
+      })
+    } else if (window.innerWidth >= 768) {
+      console.log(
+        `%c PROYECTOS -> initTimeline normal \n ${this.proyecto.name}`,
+        `background:${this.proyecto.content.colores[0].fondo.color}; color: ${this.proyecto.content.colores[0].texto.color}`
+      )
+      this.initTimelines()
+    } else {
+      this.initTimelinesMobile()
     }
 
     this.observer = new MutationObserver((mutations) => {
@@ -84,6 +80,14 @@ export default {
 
     const elemt = document.getElementById('proyecto_' + this.proyecto.slug)
 
+    // const toHover = this.$refs[`hover_${this.proyecto.slug}`]
+    // toHover.addEventListener('mouseover', (e) => {
+    //   this.hoverProyecto(true, e)
+    // })
+    // toHover.addEventListener('mouseleave', (e) => {
+    //   this.hoverProyecto(false, e)
+    // })
+
     this.observer.observe(elemt, {
       attributes: true,
       attributeOldValue: true,
@@ -96,11 +100,13 @@ export default {
   //   console.log('PROYECTOS -> beforeMount', this.tl_hover)
   //   this.tl_hover.play(0).pause()
   // },
-  destroyed() {
+  destroyed() {},
+  beforeDestroy() {
     console.log('PROYECTOS -> destroyed', this.proyecto.slug)
     this.tl_hover.kill()
     this.tl_hover_mobile.kill()
     this.tl_images.kill()
+    this.observer.disconnect()
   },
   methods: {
     ...mapMutations({
@@ -121,10 +127,17 @@ export default {
         this.tl_images.play()
       }
     },
-    hoverProyecto(est) {
-      console.log('PROYECTOS -> hoverProyecto', this.proyecto.name)
+    hoverProyecto(e, est) {
+      console.log(
+        'PROYECTOS -> hoverProyecto',
+        this.proyecto.name,
+        Math.random(),
+        est,
+        e.target
+      )
+      // this.tl_hover.reversed() ? this.tl_hover.timeScale(1).play() : this.tl_hover.timeScale(2).reverse()
       if (est) {
-        this.tl_hover.pause().timeScale(1).play()
+        this.tl_hover.timeScale(1).play()
       } else {
         this.tl_hover.pause().timeScale(2).reverse()
       }
@@ -250,7 +263,12 @@ export default {
       )
     },
     initTimelines() {
-      console.log('PROYECTOS -> initTimelines', this.proyecto.slug)
+      console.log(
+        'PROYECTOS -> initTimelines',
+        this.proyecto.name,
+        this.home.fondo
+      )
+      gsap.set('body', { background: this.home.fondo })
       this.tl_hover.fromTo(
         'body',
         {

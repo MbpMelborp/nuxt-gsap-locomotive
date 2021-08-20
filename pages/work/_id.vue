@@ -20,7 +20,12 @@
         data-scroll-call="section_proyecto"
       >
         <div class="proyecto_info">
-          <h3 class="anim_top"><span>/</span> {{ story.content.cliente }}</h3>
+          <h3 class="anim_top">
+            <span>/</span>
+            <b v-editable="story.content.cliente">{{
+              story.content.cliente
+            }}</b>
+          </h3>
           <h2 data-scroll data-scroll-speed="-1">
             <span
               v-for="(palabra, index) in story.content.nombre.split(' ')"
@@ -101,7 +106,7 @@
         >
           <img
             v-lazy-load
-            :data-src="story.content.header.filename"
+            :data-src="story.content.header[0].filename"
             :alt="story.name"
           />
         </div>
@@ -234,6 +239,31 @@ export default {
     }
   },
   mounted() {
+    if (window.location.search.includes('_storyblok')) {
+      this.$storybridge(
+        () => {
+          const { StoryblokBridge } = window
+          const storyblokInstance = new StoryblokBridge()
+
+          storyblokInstance.on(['input', 'published', 'change'], (event) => {
+            if (event.action === 'input') {
+              if (event.story.id === this.story.id) {
+                this.story.content = event.story.content
+              }
+            } else {
+              this.$nuxt.$router.go({
+                path: this.$nuxt.$router.currentRoute,
+                force: true,
+              })
+            }
+          })
+        },
+        (error) => {
+          console.error(error)
+        }
+      )
+    }
+
     this.observer = new MutationObserver((mutations) => {
       for (const m of mutations) {
         const newValue = m.target.getAttribute(m.attributeName)
@@ -269,7 +299,7 @@ export default {
   methods: {
     ...mapMutations({
       setSection: 'app/setSection',
-      setHome: 'app/setHome',
+      setPage: 'app/setPage',
       setLoad: 'app/setLoad',
     }),
     initScrolltrigger() {
@@ -336,12 +366,17 @@ export default {
         ease: 'none',
       })
     },
+
     onClassChange(classAttrValue) {
       const classList = classAttrValue.split(' ')
       if (classList.includes('is-inview')) {
         document.getElementById('nav_site').classList.remove('dif')
-        gsap.set('#nav_site #logo_melborp', { fill: this.home.nav })
-        gsap.set('#nav_site a', { color: this.home.nav })
+        gsap.set('#nav_site #logo_melborp', {
+          fill: this.story.content.colores[0].nombre.color,
+        })
+        gsap.set('#nav_site a', {
+          color: this.story.content.colores[0].nombre.color,
+        })
       } else {
         document.getElementById('nav_site').classList.add('dif')
         gsap.set('#nav_site #logo_melborp', { fill: 'white' })
@@ -372,14 +407,16 @@ export default {
       })
     },
     setStyles() {
-      gsap.set('body', {
+      gsap.set('body, .content_interior', {
         background: this.story.content.colores[0].fondo.color,
         color: this.story.content.colores[0].texto.color,
       })
-
-      gsap.set('.proyecto_info h2, .resultado b, .regresar', {
-        color: this.story.content.colores[0].nombre.color,
-      })
+      gsap.set(
+        '.proyecto_info h2, .resultado b, .regresar, .media_video_poster',
+        {
+          color: this.story.content.colores[0].nombre.color,
+        }
+      )
       gsap.set('.proyecto_info h2, .resultado', {
         borderColor: this.story.content.colores[0].nombre.color,
       })
@@ -391,7 +428,7 @@ export default {
         background: this.story.content.colores[0].fondo.color,
       })
 
-      this.setHome({
+      this.setPage({
         fondo: this.story.content.colores[0].fondo.color,
         texto: this.story.content.colores[0].texto.color,
         nav: this.story.content.colores[0].nombre.color,
@@ -494,7 +531,7 @@ export default {
     grid-area: info;
     display: grid;
     grid-gap: 0;
-    grid-template-columns: [l1] 5vw 130px auto [pr] auto auto 5vw [r1];
+    grid-template-columns: [l1] 5vw 130px 20vw [pr] auto auto 5vw [r1];
     grid-template-rows: [t1] auto 25vh 25vh [m1] auto [pt] auto auto [pb] auto [b1];
     grid-template-areas:
       '. . cliente cliente cliente .'
@@ -571,6 +608,9 @@ export default {
     .intro {
       grid-area: intro;
       @apply text-4xl z-20 md:py-8 py-4 mb-8;
+      p {
+        @apply mb-4;
+      }
     }
 
     .problem {
@@ -597,6 +637,9 @@ export default {
       &::before {
         content: '-';
       }
+      p {
+        @apply mb-4;
+      }
     }
     .resultados {
       grid-area: resultados;
@@ -607,7 +650,7 @@ export default {
         @apply text-2xl mb-8;
       }
       .listado {
-        @apply grid grid-cols-2 md:grid-cols-4;
+        @apply flex flex-row;
         .resultado {
           @apply p-4 text-lg md:border-none border-l mb-2;
           b {
