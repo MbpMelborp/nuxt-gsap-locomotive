@@ -109,12 +109,33 @@
           >
             <h4>Scope</h4>
             <div class="listado">
-              <div
+              <!-- <div
                 v-for="(resultado, index) in story.content.resultados"
                 :key="index"
                 class="resultado"
                 v-html="$storyapi.richTextResolver.render(resultado.resultado)"
-              ></div>
+              > -->
+              <div
+                v-for="(resultado, index) in story.content.resultados"
+                :key="index"
+                class="resultado"
+              >
+                <div
+                  v-for="(resultado_int, index2) in resultado.resutado"
+                  :key="`r${index2}`"
+                >
+                  <div
+                    v-if="resultado_int.contenido != ''"
+                    class="res_contenido"
+                    v-html="
+                      $storyapi.richTextResolver.render(resultado_int.contenido)
+                    "
+                  ></div>
+                  <div v-else class="res_cifra">
+                    <b>{{ resultado_int.valor }}</b>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -226,7 +247,7 @@ export default {
             const tituloArray = res.data.story.content.nombre.split(' ')
             const tituloSize = tituloArray.length
             const tituloHalf = Math.ceil(tituloSize / 2)
-            console.log('tituloHalf', tituloHalf, tituloSize)
+            console.log('RESULTADOS', res.data.story.content.resultados)
             const tituloParts = []
             for (let i = tituloHalf; i > 0; i--) {
               tituloParts.push(
