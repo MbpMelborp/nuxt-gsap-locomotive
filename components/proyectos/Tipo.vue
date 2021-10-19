@@ -85,6 +85,7 @@
         class="proy_img"
         :data-src="proyecto.content.home[0].media1.filename"
         :alt="proyecto.content.nombre"
+        @load="loaded"
       />
     </div>
     <div class="proyecto_media proyecto_media_2">
@@ -97,6 +98,7 @@
         class="proy_img"
         :data-src="proyecto.content.home[0].media2.filename"
         :alt="proyecto.content.nombre"
+        @load="loaded"
       />
     </div>
     <div
@@ -112,6 +114,7 @@
         class="proy_img"
         :data-src="proyecto.content.home[0].media3.filename"
         :alt="proyecto.content.nombre"
+        @load="loaded"
       />
     </div>
 
@@ -127,6 +130,13 @@ export default {
     proyecto: {
       type: Object,
       default: null,
+    },
+  },
+  methods: {
+    loaded() {
+      if (window) {
+        window.dispatchEvent(new Event('resize'))
+      }
     },
   },
 }

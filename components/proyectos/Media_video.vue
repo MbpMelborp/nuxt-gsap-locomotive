@@ -4,43 +4,46 @@
       <intersect @leave="stopVideo()">
         <video
           :ref="`video_${media._uid}`"
+          v-lazy-load
           loading="lazy"
           controls=""
-          :src="media.video.filename"
+          :data-src="media.video.filename"
           class="media_video_player"
           preload="auto"
           :poster="media.poster.filename"
+          @load="loaded"
         ></video>
       </intersect>
       <button
         :id="`video_btn_${media._uid}`"
         v-cursor-right
         class="media_video_poster"
-        data-target="#fid_1062"
-        :style="`
-          background-image: url(${media.poster.filename});
-        `"
+        :lazy-background="media.poster.filename"
         @click="playVideo"
       >
         <b class="t proy_link btn-mbp hvr-sweep-to-top">
-          <span> Ver video </span>
+          <span> Play <i class="fal fa-play"></i> </span>
         </b>
       </button>
     </div>
-    <div
-      v-if="media.descripcion"
-      :class="`media_video_content ${media.posicion}`"
-      v-html="$storyapi.richTextResolver.render(media.descripcion)"
-    ></div>
+    <intersect @enter="clipToRight">
+      <div
+        v-if="media.descripcion"
+        :class="`descripcion media_video_content ${media.posicion}`"
+        v-html="$storyapi.richTextResolver.render(media.descripcion)"
+      ></div>
+    </intersect>
   </div>
 </template>
 <script>
 import { gsap, Expo } from 'gsap'
 import Intersect from 'vue-intersect'
+import loaderm from '~/mixins/loader.js'
 export default {
   components: {
     Intersect,
   },
+  mixins: [loaderm],
   props: {
     media: {
       type: Object,
@@ -103,9 +106,22 @@ export default {
       transition: opacity 800ms, height 0s;
       -webkit-transition-delay: 0s, 0s;
       transition-delay: 0s, 0s;
-      font-size: 0.9em;
 
       @apply absolute top-0 right-0 left-0 bottom-0 w-full h-full cursor-pointer border-none outline-none overflow-hidden opacity-100 text-sm bg-cover;
+      b {
+        font-variation-settings: 'wght' var(--font-weight, 100),
+          'wdth' var(--font-width, 80), 'ital' 0;
+        @apply text-4xl md:text-9xl text-white shadow-sm transition-all tracking-tighter;
+        i {
+          @apply text-2xl md:text-6xl;
+        }
+      }
+      &:hover {
+        b {
+          font-variation-settings: 'wght' var(--font-weight, 400),
+            'wdth' var(--font-width, 120), 'ital' 0;
+        }
+      }
     }
   }
   .media_video_content {

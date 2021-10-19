@@ -18,7 +18,9 @@
 </template>
 
 <script>
+import loaderm from '~/mixins/loader.js'
 export default {
+  mixins: [loaderm],
   props: {
     media: {
       type: Object,
@@ -43,6 +45,11 @@ export default {
           },
         },
       ],
+    }
+  },
+  mounted() {
+    if (window) {
+      window.dispatchEvent(new Event('resize'))
     }
   },
 }

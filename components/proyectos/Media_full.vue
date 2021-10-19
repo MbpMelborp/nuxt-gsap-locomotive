@@ -1,6 +1,12 @@
 <template>
   <div class="media_full">
-    <img class="block w-full" :src="media.imagen.filename" alt="Melborp" />
+    <img
+      v-lazy-load
+      class="block w-full"
+      :data-src="media.imagen.filename"
+      alt="Melborp"
+      @load="loaded"
+    />
   </div>
 </template>
 
@@ -15,6 +21,18 @@ export default {
 
   data() {
     return {}
+  },
+  mounted() {
+    if (window) {
+      window.dispatchEvent(new Event('resize'))
+    }
+  },
+  methods: {
+    loaded() {
+      if (window) {
+        window.dispatchEvent(new Event('resize'))
+      }
+    },
   },
 }
 </script>

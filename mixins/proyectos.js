@@ -28,7 +28,7 @@ export default {
   },
   mounted() {
     console.log(
-      `%c PROYECTOS -> mounted \n ${this.proyecto.name}`,
+      `%c 🗂️ PROYECTOS -> mounted \n ${this.proyecto.name}`,
       `background:${this.proyecto.content.colores[0].fondo.color}; color: ${this.proyecto.content.colores[0].texto.color}`
     )
 
@@ -115,7 +115,7 @@ export default {
     onClassChange(classAttrValue) {
       const classList = classAttrValue.split(' ')
       console.log(
-        'PROYECTOS -> onClassChange',
+        '🗂️ PROYECTOS -> onClassChange',
         this.proyecto.content.nombre,
         classList
       )
@@ -129,7 +129,7 @@ export default {
     },
     hoverProyecto(e, est) {
       console.log(
-        'PROYECTOS -> hoverProyecto',
+        '🗂️ PROYECTOS -> hoverProyecto',
         this.proyecto.name,
         Math.random(),
         est,
@@ -144,7 +144,7 @@ export default {
     },
     hoverMobileProyecto(est) {
       if (window.innerWidth < 768) {
-        console.log('PROYECTOS -> hoverMobileProyecto', this.proyecto.name)
+        console.log('🗂️ PROYECTOS -> hoverMobileProyecto', this.proyecto.name)
         if (est) {
           this.tl_hover_mobile.timeScale(1).play()
           this.setMobileProyecto(this.proyecto.name)
@@ -158,7 +158,7 @@ export default {
       this.tl_images.kill()
     },
     initTimelinesMobile() {
-      console.log('PROYECTOS -> initTimelinesMobile', this.proyecto.slug)
+      console.log('🗂️ PROYECTOS -> initTimelinesMobile', this.proyecto.slug)
 
       gsap.set('#proyecto_' + this.proyecto.slug + ' .bg', {
         background: this.proyecto.content.colores[0].fondo.color,
@@ -264,7 +264,7 @@ export default {
     },
     initTimelines() {
       console.log(
-        'PROYECTOS -> initTimelines',
+        '🗂️ PROYECTOS -> initTimelines',
         this.proyecto.name,
         this.home.fondo
       )
