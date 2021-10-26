@@ -14,12 +14,17 @@
         @leave="hoverMobileProyecto(false)"
       >
         <div class="proyecto_title_int">
-          <span
-            v-for="(palabra, index) in proyecto.content.nombre.split(' ')"
-            :key="index"
-          >
-            {{ palabra }}
-          </span>
+          <div class="proyecto_title_int_cliente">
+            {{ proyecto.content.cliente }},
+          </div>
+          <div class="proyecto_title_int_nom">
+            <span
+              v-for="(palabra, index) in proyecto.content.nombre.split(' ')"
+              :key="index"
+            >
+              {{ palabra }}
+            </span>
+          </div>
         </div>
       </intersect>
     </h2>
@@ -132,17 +137,13 @@ export default {
       default: null,
     },
   },
-  methods: {
-    loaded() {
-      if (window) {
-        window.dispatchEvent(new Event('resize'))
-      }
-    },
-  },
 }
 </script>
 
 <style lang="postcss" scoped>
+.proyecto_tipo {
+  @apply w-full max-w-10xl mx-auto;
+}
 .proyecto_data {
   @apply z-30;
   .proyecto_data_content {
@@ -178,27 +179,34 @@ export default {
   }
 }
 .proyecto_media {
-  clip-path: inset(100% 0% 0% 0%);
-  transform: scaleY(1.2);
   @apply z-0;
-  @media (max-width: 768px) {
-    clip-path: inset(0% 0% 0% 0%);
-  }
 }
 .proyecto_title {
   @apply z-10;
+
   .proyecto_title_int {
-    font-size: calc(5vw + 5vh + 0.5vmin);
-    line-height: 0.8em;
-    @media (max-width: 768px) {
-      font-size: 2em;
+    .proyecto_title_int_cliente {
+      font-size: calc(3vw + 3vh + 0.5vmin);
+      font-variation-settings: 'wght' var(--font-weight, 200),
+        'wdth' var(--font-width, 120), 'ital' 0;
+      @apply leading-none;
     }
-    span {
-      font-variation-settings: 'wght' var(--font-weight, 400),
-        'wdth' var(--font-width, 180), 'ital' 0;
-      transition: font-variation-settings 0.5 ease-in-out;
+    .proyecto_title_int_nom {
+      font-size: calc(4vw + 4vh + 0.5vmin);
+      line-height: 0.8em;
       @media (max-width: 768px) {
-        --font-weight: 650;
+        font-size: 2em;
+      }
+      span {
+        /* font-variation-settings: 'wght' var(--font-weight, 400),
+        'wdth' var(--font-width, 180), 'ital' 0; */
+
+        font-variation-settings: 'wght' var(--font-weight, 400),
+          'wdth' var(--font-width, 130), 'ital' 0;
+        transition: font-variation-settings 0.5 ease-in-out;
+        @media (max-width: 768px) {
+          --font-weight: 650;
+        }
       }
     }
   }

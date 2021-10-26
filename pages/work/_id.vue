@@ -364,6 +364,9 @@ export default {
     }
   },
   mounted() {
+    if (window) {
+      window.dispatchEvent(new Event('resize'))
+    }
     if (window.location.search.includes('_storyblok')) {
       this.$storybridge(
         () => {

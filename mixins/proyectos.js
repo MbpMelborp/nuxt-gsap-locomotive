@@ -31,7 +31,7 @@ export default {
       `%c 🗂️ PROYECTOS -> mounted \n ${this.proyecto.name}`,
       `background:${this.proyecto.content.colores[0].fondo.color}; color: ${this.proyecto.content.colores[0].texto.color}`
     )
-
+    // INICIANDO TIMELINES
     this.tl_images = gsap.timeline({ paused: true, ease: Power4.easeInOut })
     this.tl_bkg = gsap.timeline({ paused: true, ease: Power4.easeInOut })
     this.tl_hover = gsap.timeline({
@@ -45,6 +45,8 @@ export default {
       delay: 2,
       ease: Power2.easeInOut,
     })
+
+    // Si el texto no existe
     if (this.home.texto === null) {
       this.$store.subscribe((mutation, state) => {
         if (mutation.type === 'app/setHome') {
@@ -70,12 +72,12 @@ export default {
     }
 
     this.observer = new MutationObserver((mutations) => {
-      for (const m of mutations) {
-        const newValue = m.target.getAttribute(m.attributeName)
-        this.$nextTick(() => {
-          this.onClassChange(newValue, m.oldValue)
-        })
-      }
+      // for (const m of mutations) {
+      //   const newValue = m.target.getAttribute(m.attributeName)
+      //   this.$nextTick(() => {
+      //     this.onClassChange(newValue, m.oldValue)
+      //   })
+      // }
     })
 
     const elemt = document.getElementById('proyecto_' + this.proyecto.slug)
@@ -94,7 +96,7 @@ export default {
       attributeFilter: ['class'],
     })
 
-    this.onClassChange(elemt.getAttribute('class'))
+    // this.onClassChange(elemt.getAttribute('class'))
   },
   // beforeMount() {
   //   console.log('PROYECTOS -> beforeMount', this.tl_hover)
@@ -179,6 +181,14 @@ export default {
         '#proyecto_' +
           this.proyecto.slug +
           ' .proyecto_title .proyecto_title_int span',
+        {
+          color: this.proyecto.content.colores[0].nombre.color,
+        }
+      )
+      gsap.set(
+        '#proyecto_' +
+          this.proyecto.slug +
+          ' .proyecto_title .proyecto_title_int',
         {
           color: this.proyecto.content.colores[0].nombre.color,
         }
@@ -289,14 +299,17 @@ export default {
           scale: 1,
           skewX: 0,
           skewY: 0,
+          rotationY: 0,
+          rotation: 0,
         },
         {
           opacity: 0.2,
           y: '10vh',
           x: '30vw',
-          skewX: 5,
-          skewY: 5,
-
+          skewX: 0,
+          skewY: 0,
+          rotationY: -45,
+          rotation: 20,
           scale: 0.8,
           duration: 0.7,
 
@@ -343,6 +356,27 @@ export default {
       this.tl_hover.fromTo(
         '#proyecto_' +
           this.proyecto.slug +
+          ' .proyecto_title .proyecto_title_int_cliente',
+        {
+          // '--font-width': 80,
+          clipPath: 'inset(0% 100% 0% 0%)',
+          scaleY: 1.2,
+          autoAlpha: 0,
+          color: this.home.fondo,
+        },
+        {
+          // '--font-width': 120,
+          clipPath: 'inset(0% 0% 0% 0%)',
+          scaleY: 1,
+          autoAlpha: 1,
+          duration: 0.5,
+          color: this.proyecto.content.colores[0].nombre.color,
+        },
+        '-=0.3'
+      )
+      this.tl_hover.fromTo(
+        '#proyecto_' +
+          this.proyecto.slug +
           ' .proyecto_title .proyecto_title_int span',
         {
           // '--font-width': 80,
@@ -385,6 +419,32 @@ export default {
           },
         }
       )
+    },
+    loaded(e) {
+      if (window) {
+        if (
+          !e.target.classList.contains('isLoaded') &&
+          !e.target.classList.contains('isLoading')
+        ) {
+          gsap.set(e.target, {
+            clipPath: 'inset(0% 0% 100% 0%)',
+            scaleY: 1.1,
+            autoAlpha: 0,
+            ease: Power2.easeInOut,
+          })
+        } else {
+          gsap.to(e.target, {
+            clipPath: 'inset(0% 0% 0% 0%)',
+            scaleY: 1,
+            autoAlpha: 1,
+            duration: 0.5,
+            ease: Power2.easeInOut,
+            onComplete: () => {
+              window.dispatchEvent(new Event('resize'))
+            },
+          })
+        }
+      }
     },
   },
 }

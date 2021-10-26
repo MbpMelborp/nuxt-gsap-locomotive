@@ -318,7 +318,7 @@ export default {
   @apply w-screen h-screen;
 }
 .home_top_welcome {
-  /* @apply border border-white; */
+  @apply w-full max-w-10xl mx-auto;
 }
 .dest {
   span {

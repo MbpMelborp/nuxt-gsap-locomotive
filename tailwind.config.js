@@ -124,6 +124,7 @@ module.exports = {
       },
       maxWidth: {
         '9xl': '1536px',
+        '10xl': '1920px',
       },
     },
     debugScreens: {

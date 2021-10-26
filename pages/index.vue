@@ -24,31 +24,6 @@
         :key="Math.random() * 1000 + index"
         :proyecto="proyecto"
       ></ProyectosCont>
-      <div data-scroll-section class="example-section">
-        <div class="example-content">
-          <div
-            class="example-big-square"
-            data-scroll
-            data-scroll-speed="-0.5"
-          />
-          <div
-            class="example-small-square"
-            data-scroll
-            data-scroll-speed="2.5"
-          />
-        </div>
-      </div>
-      <!-- Block with function -->
-      <!-- <div class="example-section" data-scroll-section>
-        <div
-          ref="texti"
-          class="example-fade-text"
-          data-scroll
-          data-scroll-call="fadeText"
-        >
-          <h2>When I'm triggered... I disappear</h2>
-        </div>
-      </div> -->
     </div>
   </LocomotiveScroll>
 </template>
