@@ -1,5 +1,6 @@
 <template>
   <LocomotiveScroll
+    id="melborp-proyecto"
     ref="scroller"
     :getted-options="{
       direction: 'vertical',
@@ -68,7 +69,7 @@
           <div class="regresar">
             <nuxt-link
               v-cursor-left
-              to="/"
+              :to="`/?w=${story.slug}`"
               class="flex items-center md:flex-col flex-row"
             >
               <i class="fal fa-long-arrow-left text-3xl block mr-2"></i>

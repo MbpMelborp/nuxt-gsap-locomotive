@@ -7,6 +7,7 @@ export default {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/dotenv',
     '@nuxt/image',
+    'nuxt-delay-hydration',
     '@nuxtjs/tailwindcss',
     [
       'storyblok-nuxt-routes',
@@ -27,5 +28,9 @@ export default {
   generate: {
     fallback: true,
     interval: 100,
+  },
+  delayHydration: {
+    mode: 'init',
+    debug: process.env.NODE_ENV === 'development',
   },
 }

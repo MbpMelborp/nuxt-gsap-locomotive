@@ -1,5 +1,5 @@
 <template>
-  <div class="proyecto" data-scroll-section>
+  <div :id="proyecto.slug" class="proyecto" data-scroll-section>
     <Tipo :key="componentKey" :proyecto="proyecto"></Tipo>
   </div>
 </template>

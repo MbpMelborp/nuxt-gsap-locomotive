@@ -1,5 +1,6 @@
 <template>
   <LocomotiveScroll
+    id="melborp-index"
     ref="scroller"
     :getted-options="{
       direction: 'vertical',
@@ -157,6 +158,12 @@ export default {
           }
         },
       })
+      if (this.$route.query.w) {
+        if (window) window.scrollTo(0, 0)
+        locomotive.scrollTo(`#${this.$route.query.w}`, {
+          duration: 50,
+        })
+      }
       locomotive.on('call', (value, way, obj) => {
         this.setSection(value)
         switch (value) {

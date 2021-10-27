@@ -2,8 +2,11 @@
   <main :class="{ cursor: !editor && !$isMobile() }">
     <Cursorfx v-if="!editor && !$isMobile()"></Cursorfx>
     <Preload v-if="!preload && !editor"></Preload>
+    <PreloadInterior v-else></PreloadInterior>
     <Nav></Nav>
-    <nuxt />
+    <delay-hydration>
+      <nuxt />
+    </delay-hydration>
   </main>
 </template>
 
@@ -12,12 +15,14 @@ import { mapGetters, mapMutations } from 'vuex'
 
 import Nav from '~/components/Nav.vue'
 import Preload from '~/components/Preload.vue'
+import PreloadInterior from '~/components/PreloadInterior.vue'
 import Cursorfx from '~/components/CursorMouse.vue'
 
 export default {
   components: {
     Nav,
     Preload,
+    PreloadInterior,
     Cursorfx,
   },
   data() {
