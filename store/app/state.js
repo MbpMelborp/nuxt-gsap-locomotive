@@ -24,4 +24,5 @@ export default () => ({
   },
   mobileProyecto: null,
   preload: false,
+  preloadInner: false,
 })

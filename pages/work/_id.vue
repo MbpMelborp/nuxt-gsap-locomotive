@@ -21,9 +21,10 @@
         data-scroll-call="section_proyecto"
       >
         <div class="proyecto_info" :class="story.content.tipo_interior">
-          <h3 class="anim_top">
+          <h3>
             <b
               v-editable="story.content.cliente"
+              class="anim"
               :class="
                 clienteChars < 10
                   ? 'psmall'
@@ -35,7 +36,7 @@
               "
               >{{ story.content.cliente }},</b
             >
-            <time class="anim_top" data-scroll data-scroll-speed="-5">
+            <time class="anim">
               <span>
                 {{ $moment(story.created_at).format('MM') }}
               </span>
@@ -46,7 +47,7 @@
             <div
               v-for="(parte, index) in tituloParts"
               :key="'p_' + index"
-              :class="'anim_top titulo_' + index"
+              :class="'titulo_' + index"
             >
               <span
                 v-for="(palabra, index2) in parte"
@@ -67,38 +68,38 @@
           </h2>
 
           <div class="regresar">
-            <nuxt-link
-              v-cursor-left
-              :to="`/?w=${story.slug}`"
-              class="flex items-center md:flex-col flex-row"
-            >
+            <nuxt-link v-cursor-left :to="`/?w=${story.slug}`">
               <i class="fal fa-long-arrow-left text-3xl block mr-2"></i>
             </nuxt-link>
           </div>
-          <div class="info anim_top" :class="story.content.tipo_interior">
-            <div class="intro2" v-html="intro2"></div>
-            <div class="intro3" v-html="intro3"></div>
-            <div v-if="story.content.tipo" class="tipo anim_top">
-              {{ story.content.tipo }}
+          <div class="info" :class="story.content.tipo_interior">
+            <div class="anim intro2" v-html="intro2"></div>
+            <div class="anim intro3" v-html="intro3"></div>
+            <div v-if="story.content.tipo" class="anim tipo">
+              <span>
+                {{ story.content.tipo }}
+              </span>
             </div>
             <div
               data-scroll
               data-scroll-speed="-0.5"
-              class="body"
+              class="anim body"
               v-html="cuerpo"
             ></div>
           </div>
 
-          <div class="problem anim_top">
+          <div class="problem animpm">
             <h4>Problem</h4>
             <div v-html="problem"></div>
           </div>
-          <div class="melborp anim_top">
+
+          <div class="melborp animpm">
             <h4>Melborp</h4>
             <div v-html="melborp"></div>
           </div>
+
           <div
-            class="resultadoc anim_top"
+            class="resultadoc animpm"
             :class="story.content.resultados.length == 0 ? 'nresultados' : ''"
             v-html="resultadoc"
           ></div>
@@ -106,7 +107,7 @@
             v-if="story.content.resultados.length > 0"
             data-scroll
             data-scroll-speed="0.5"
-            class="resultados anim_top"
+            class="resultados animpm"
           >
             <h4>Scope</h4>
             <div class="listado">
@@ -133,7 +134,13 @@
                     "
                   ></div>
                   <div v-else class="res_cifra">
+                    <small v-if="resultado_int.prefijo">{{
+                      resultado_int.prefijo
+                    }}</small>
                     <b>{{ resultado_int.valor }}</b>
+                    <small v-if="resultado_int.sufijo">{{
+                      resultado_int.sufijo
+                    }}</small>
                   </div>
                 </div>
               </div>
@@ -211,7 +218,7 @@
 </template>
 
 <script>
-import { gsap, Expo } from 'gsap'
+import { gsap, Expo, Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import { mapMutations, mapGetters } from 'vuex'
@@ -573,19 +580,79 @@ export default {
       //   },
       //   '-=' + timer * 0.2
       // )
+
       this.tl_home.fromTo(
-        '.proyecto_top .anim_top',
+        '.proyecto_top h3 .anim',
+        {
+          clipPath: 'inset(0% 0% 0% 100%)',
+          x: 40,
+          '--font-width': 80,
+        },
+        {
+          clipPath: 'inset(0% 0% 0% 0%)',
+          x: 0,
+          '--font-width': 120,
+          duration: timer,
+          stagger: 0.2,
+          ease: Power2.easeInOut,
+        },
+        '+=0.5'
+      )
+
+      this.tl_home.fromTo(
+        '.proyecto_top h2 span',
         {
           clipPath: 'inset(0% 100% 0% 0%)',
-          x: '-10vw',
+          x: -40,
+          '--font-weight': 100,
+        },
+        {
+          clipPath: 'inset(0% 0% 0% 0%)',
+          x: 0,
+          '--font-weight': 400,
+          duration: timer * 0.8,
+          stagger: 0.2,
+          ease: Power2.easeInOut,
+        },
+        '-=0.5'
+      )
+
+      this.tl_home.fromTo(
+        '.proyecto_top .info .anim',
+        {
+          clipPath: 'inset(0% 0% 100% 0%)',
+          y: 50,
+          scaleY: 1.2,
+          // '--font-weight': 600,
+          // '--font-width': 20,
+        },
+        {
+          clipPath: 'inset(0% 0% 0% 0%)',
+          y: 0,
+          scaleY: 1,
+          // '--font-weight': 150,
+          // '--font-width': 80,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: Power2.easeInOut,
+        },
+        '-=1'
+      )
+
+      this.tl_home.fromTo(
+        '.proyecto_top .animpm',
+        {
+          clipPath: 'inset(0% 100% 0% 0%)',
+          x: -40,
         },
         {
           clipPath: 'inset(0% 0% 0% 0%)',
           x: 0,
           duration: timer,
           stagger: timer * 0.2,
+          ease: Power2.easeInOut,
         },
-        '-=' + timer * 0.9
+        '-=1'
       )
       // this.tl_home.fromTo(
       //   '.proyecto_top .bg',
@@ -705,19 +772,21 @@ export default {
     }
     .regresar {
       grid-area: regresar;
-      @apply leading-none self-center md:self-start z-0;
+      @apply leading-none self-start md:self-start z-0;
       a {
         i {
-          @apply mx-auto md:mx-auto;
+          @apply font-light;
         }
       }
     }
 
     h3 {
       grid-area: cliente;
-      font-variation-settings: 'wght' var(--font-weight, 200),
-        'wdth' var(--font-width, 120), 'ital' 0;
       @apply leading-none self-end mb-2 z-20 text-center mt-8 md:mt-0;
+      b {
+        font-variation-settings: 'wght' var(--font-weight, 200),
+          'wdth' var(--font-width, 120), 'ital' 0;
+      }
       .psmall {
         @apply md:text-8xl text-3xl;
       }
@@ -733,6 +802,8 @@ export default {
         @apply mr-2;
       }
       time {
+        font-variation-settings: 'wght' var(--font-weight, 200),
+          'wdth' var(--font-width, 120), 'ital' 0;
         @apply leading-none md:self-start self-center z-0 md:justify-self-center justify-self-end text-right text-sm;
       }
     }
@@ -782,12 +853,16 @@ export default {
       grid-area: info;
       @apply grid grid-cols-1 place-content-around gap-8 z-20 md:pl-24 md:pr-16 leading-tight;
       .intro2 {
+        font-variation-settings: 'wght' var(--font-weight, 150),
+          'wdth' var(--font-width, 80), 'ital' 0;
         @apply md:w-10/12 place-self-end mt-8;
         p {
           @apply mb-4;
         }
       }
       .intro3 {
+        font-variation-settings: 'wght' var(--font-weight, 150),
+          'wdth' var(--font-width, 80), 'ital' 0;
         @apply md:w-10/12 place-self-start;
         p {
           @apply mb-4;
@@ -799,6 +874,8 @@ export default {
         @apply md:w-8/12 place-self-start text-lg opacity-50 mb-8 md:mb-20;
       }
       .body {
+        font-variation-settings: 'wght' var(--font-weight, 150),
+          'wdth' var(--font-width, 80), 'ital' 0;
         @apply self-center md:mb-28 mb-8 text-lg;
         p {
           @apply mb-4;
@@ -862,9 +939,19 @@ export default {
           b {
             font-variation-settings: 'wght' var(--font-weight, 400),
               'wdth' var(--font-width, 80), 'ital' 0;
+            line-height: 0.8em;
             @apply block mt-2 text-4xl md:text-6xl tracking-tighter;
             u {
               @apply text-lg;
+            }
+          }
+          .res_contenido {
+            @apply text-lg leading-none;
+          }
+          .res_cifra {
+            @apply flex items-end space-x-3;
+            small {
+              @apply text-lg md:text-xl;
             }
           }
         }

@@ -62,6 +62,9 @@ export default {
       if (item.abajo !== '') {
         item.classes.push(`pm-${item.abajo}`)
       }
+      if (item.arriba !== '') {
+        item.classes.push(`pt-${item.arriba}`)
+      }
       item.classText = item.classes.join(' ')
     })
     console.log(this.media.broken_item)
@@ -278,6 +281,40 @@ export default {
     }
     &.pm-20 {
       @apply md:mb-32;
+    }
+
+    &.pt-0 {
+      @apply md:mt-0;
+    }
+    &.pt-2 {
+      @apply md:mt-6;
+    }
+    &.pt-4 {
+      @apply md:mt-8;
+    }
+    &.pt-6 {
+      @apply md:mt-10;
+    }
+    &.pt-8 {
+      @apply md:mt-12;
+    }
+    &.pt-10 {
+      @apply md:mt-14;
+    }
+    &.pt-12 {
+      @apply md:mt-16;
+    }
+    &.pt-14 {
+      @apply md:mt-20;
+    }
+    &.pt-16 {
+      @apply md:mt-24;
+    }
+    &.pt-18 {
+      @apply md:mt-28;
+    }
+    &.pt-20 {
+      @apply md:mt-32;
     }
   }
 }

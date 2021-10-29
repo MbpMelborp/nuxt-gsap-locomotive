@@ -2,11 +2,9 @@
   <main :class="{ cursor: !editor && !$isMobile() }">
     <Cursorfx v-if="!editor && !$isMobile()"></Cursorfx>
     <Preload v-if="!preload && !editor"></Preload>
-    <PreloadInterior v-else></PreloadInterior>
+    <PreloadInterior></PreloadInterior>
     <Nav></Nav>
-    <delay-hydration>
-      <nuxt />
-    </delay-hydration>
+    <delay-hydration><nuxt /></delay-hydration>
   </main>
 </template>
 
@@ -31,7 +29,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ activePage: 'getActivePage', preload: 'app/getPreload' }),
+    ...mapGetters({
+      activePage: 'getActivePage',
+      preload: 'app/getPreload',
+    }),
   },
   mounted() {
     if (this.editor) {

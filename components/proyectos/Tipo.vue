@@ -1,6 +1,7 @@
 <template>
   <div
     :id="`proyecto_${proyecto.slug}`"
+    :key="Math.random() * 1000 + proyecto.slug"
     data-scroll
     data-scroll-speed="-0.1"
     data-scroll-repeat="true"
@@ -84,9 +85,7 @@
       <img
         v-lazy-load
         data-scroll
-        data-scroll-speed="-0.2"
-        data-scroll-repeat="true"
-        data-scroll-position="top"
+        data-scroll-speed="0.5"
         class="proy_img"
         :data-src="proyecto.content.home[0].media1.filename"
         :alt="proyecto.content.nombre"
@@ -97,9 +96,7 @@
       <img
         v-lazy-load
         data-scroll
-        data-scroll-speed="0.5"
-        data-scroll-repeat="true"
-        data-scroll-position="top"
+        data-scroll-speed="1"
         class="proy_img"
         :data-src="proyecto.content.home[0].media2.filename"
         :alt="proyecto.content.nombre"
@@ -113,9 +110,7 @@
       <img
         v-lazy-load
         data-scroll
-        data-scroll-speed="-0.5"
-        data-scroll-repeat="true"
-        data-scroll-position="top"
+        data-scroll-speed="-1"
         class="proy_img"
         :data-src="proyecto.content.home[0].media3.filename"
         :alt="proyecto.content.nombre"
@@ -179,6 +174,7 @@ export default {
   }
 }
 .proyecto_media {
+  clip-path: inset(0% 0% 100% 0%);
   @apply z-0;
 }
 .proyecto_title {

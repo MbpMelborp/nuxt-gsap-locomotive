@@ -28,4 +28,8 @@ export default {
     if (cons) console.log('Ⓜ️ | MUTATION -> setPreload', payload)
     state.preload = payload
   },
+  setLoaderInner: (state, payload) => {
+    if (cons) console.log('Ⓜ️ | MUTATION -> setLoaderInner', payload)
+    state.preloadInner = payload
+  },
 }

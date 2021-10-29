@@ -43,6 +43,8 @@ import { custom } from '~/utils/transitions.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const cl = process.env.CONSOLE
+
 export default {
   components: {
     HomeTop,
@@ -65,18 +67,18 @@ export default {
             resolve_relations: 'page.proyectos,page.destacado',
           })
           .then((res) => {
-            console.log('HOME -> Storyblok', res.data.story)
+            if (cl) console.log('👌 HOME -> Storyblok', res.data.story)
             return { story: res.data.story }
           })
           .catch((res) => {
             if (!res.response) {
-              console.error(res)
+              if (cl) console.error('❌ HOME -> Storyblok', res)
               error({
                 statusCode: 404,
                 message: 'Failed to receive content form api',
               })
             } else {
-              console.error(res.response.data)
+              if (cl) console.error('❌ HOME -> Storyblok', res.response.data)
               error({
                 statusCode: res.response.status,
                 message: res.response.data,
@@ -168,13 +170,6 @@ export default {
         this.setSection(value)
         switch (value) {
           case 'fadeText': {
-            // console.log('FadeText')
-            // const child = this.$refs.texti /// /obj.el.firstChild
-            // gsap.to(child, {
-            //   duration: 2,
-            //   ease: 'expo.out',
-            //   opacity: 0.1,
-            // })
             break
           }
           case 'index_home': {

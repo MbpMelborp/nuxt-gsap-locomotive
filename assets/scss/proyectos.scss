@@ -127,16 +127,16 @@
     grid-template-columns: repeat(20, [col] 1fr);
     grid-template-rows: repeat(10, 9.2%);
     grid-template-areas:
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	.	.	.	data	data	data	data	data	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	.	.	.	data	data	data	data	data	.	.	.	.	.	.	.	.	.	.	.	';
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
+      '	.	.	.	.	data	data	data	data	data	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
+      '	.	.	.	.	data	data	data	data	data	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	';
 
     .proyecto_title {
       grid-column-start: 2;

@@ -4,15 +4,7 @@ export default {
   components: {
     Intersect,
   },
-  data() {
-    return {
-      tlImage: gsap.timeline({
-        paused: true,
-        delay: 1,
-        ease: Power2.easeInOut,
-      }),
-    }
-  },
+
   mounted() {
     if (window) {
       window.dispatchEvent(new Event('resize'))
@@ -36,6 +28,7 @@ export default {
             scaleY: 1,
             autoAlpha: 1,
             duration: 0.5,
+            ease: Power2.easeInOut,
             onComplete: () => {
               window.dispatchEvent(new Event('resize'))
             },
@@ -59,6 +52,7 @@ export default {
               duration: 0.5,
               delay: 1,
               stagger: i * 0.2,
+              ease: Power2.easeInOut,
               onComplete: () => {
                 entry.target.loaded = true
               },

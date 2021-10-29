@@ -12,6 +12,12 @@ export default {
       tl_hover_mobile: null,
     }
   },
+  beforeMount() {
+    this.tl_images = null
+    this.tl_bkg = null
+    this.tl_hover = null
+    this.tl_hover_mobile = null
+  },
   computed: {
     intro() {
       return this.proyecto.content.intro
@@ -72,23 +78,15 @@ export default {
     }
 
     this.observer = new MutationObserver((mutations) => {
-      // for (const m of mutations) {
-      //   const newValue = m.target.getAttribute(m.attributeName)
-      //   this.$nextTick(() => {
-      //     this.onClassChange(newValue, m.oldValue)
-      //   })
-      // }
+      for (const m of mutations) {
+        const newValue = m.target.getAttribute(m.attributeName)
+        this.$nextTick(() => {
+          this.onClassChange(newValue, m.oldValue)
+        })
+      }
     })
 
     const elemt = document.getElementById('proyecto_' + this.proyecto.slug)
-
-    // const toHover = this.$refs[`hover_${this.proyecto.slug}`]
-    // toHover.addEventListener('mouseover', (e) => {
-    //   this.hoverProyecto(true, e)
-    // })
-    // toHover.addEventListener('mouseleave', (e) => {
-    //   this.hoverProyecto(false, e)
-    // })
 
     this.observer.observe(elemt, {
       attributes: true,
@@ -96,7 +94,7 @@ export default {
       attributeFilter: ['class'],
     })
 
-    // this.onClassChange(elemt.getAttribute('class'))
+    this.onClassChange(elemt.getAttribute('class'))
   },
   // beforeMount() {
   //   console.log('PROYECTOS -> beforeMount', this.tl_hover)
@@ -306,11 +304,11 @@ export default {
           opacity: 0.2,
           y: '10vh',
           x: '30vw',
+          scale: 0.8,
           skewX: 0,
           skewY: 0,
-          rotationY: -45,
-          rotation: 20,
-          scale: 0.8,
+          rotationY: 0,
+          rotation: 0,
           duration: 0.7,
 
           ease: Sine.easeInOut,
@@ -402,18 +400,23 @@ export default {
       )
 
       // IMAGENES
-      this.tl_images.to(
+      this.tl_images.fromTo(
         '#proyecto_' + this.proyecto.slug + ' .proyecto_media',
         {
+          clipPath: 'inset(0% 0% 100% 0%)',
+          scaleY: 1.1,
+          autoAlpha: 0,
+        },
+        {
           clipPath: 'inset(0% 0% 0% 0%)',
-          duration: 0.5,
-          delay: 0,
           scaleY: 1,
-          y: 30,
+          autoAlpha: 1,
+          duration: 1,
           stagger: {
-            each: 0.2,
+            each: 0.4,
             from: 'edges',
           },
+          ease: Power2.easeInOut,
           onComplete: () => {
             this.observer.disconnect()
           },
@@ -426,23 +429,12 @@ export default {
           !e.target.classList.contains('isLoaded') &&
           !e.target.classList.contains('isLoading')
         ) {
-          gsap.set(e.target, {
-            clipPath: 'inset(0% 0% 100% 0%)',
-            scaleY: 1.1,
+          const parent = e.target.parentElement
+          gsap.set(parent, {
             autoAlpha: 0,
-            ease: Power2.easeInOut,
           })
         } else {
-          gsap.to(e.target, {
-            clipPath: 'inset(0% 0% 0% 0%)',
-            scaleY: 1,
-            autoAlpha: 1,
-            duration: 0.5,
-            ease: Power2.easeInOut,
-            onComplete: () => {
-              window.dispatchEvent(new Event('resize'))
-            },
-          })
+          window.dispatchEvent(new Event('resize'))
         }
       }
     },

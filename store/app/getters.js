@@ -25,4 +25,8 @@ export default {
     if (cons) console.log('🟢  | STORE -> getPreload', state.preload)
     return state.preload
   },
+  getPreloadInner: (state) => {
+    if (cons) console.log('🟢  | STORE -> getPreloadInner', state.preloadInner)
+    return state.preloadInner
+  },
 }
