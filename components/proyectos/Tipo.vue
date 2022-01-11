@@ -54,30 +54,32 @@
       class="proyecto_data"
     >
       <!-- <div class="proyecto_data_content" @click="hoverFinish()"> -->
-      <div class="proyecto_data_content">
-        <nuxt-link v-cursor-right :to="proyecto.full_slug">
-          <h4
-            class="anim_proy"
-            @mouseover="hoverProyecto($event, true)"
-            @mouseleave="hoverProyecto($event, false)"
-          >
-            {{ proyecto.content.titular }}
-          </h4>
-          <div
-            class="proyecto_body anim_proy"
-            @mouseover="hoverProyecto($event, true)"
-            @mouseleave="hoverProyecto($event, false)"
-            v-html="intro"
-          ></div>
+      <div class="proyecto_data_int">
+        <div class="proyecto_data_content">
+          <nuxt-link v-cursor-right :to="proyecto.full_slug">
+            <h4
+              class="anim_proy"
+              @mouseover="hoverProyecto($event, true)"
+              @mouseleave="hoverProyecto($event, false)"
+            >
+              {{ proyecto.content.titular }}
+            </h4>
+            <div
+              class="proyecto_body anim_proy"
+              @mouseover="hoverProyecto($event, true)"
+              @mouseleave="hoverProyecto($event, false)"
+              v-html="intro"
+            ></div>
 
-          <div
-            class="proyecto_ver anim_proy"
-            @mouseover="hoverProyecto($event, true)"
-            @mouseleave="hoverProyecto($event, false)"
-          >
-            Ver proyecto <i class="fal fa-long-arrow-right"></i>
-          </div>
-        </nuxt-link>
+            <div
+              class="proyecto_ver anim_proy"
+              @mouseover="hoverProyecto($event, true)"
+              @mouseleave="hoverProyecto($event, false)"
+            >
+              Ver proyecto <i class="fal fa-long-arrow-right"></i>
+            </div>
+          </nuxt-link>
+        </div>
       </div>
     </div>
 
@@ -143,6 +145,7 @@ export default {
   @apply z-30;
   .proyecto_data_content {
     @apply -mt-12;
+
     h4 {
       font-variation-settings: 'wght' var(--font-weight, 850),
         'wdth' var(--font-width, 140), 'ital' 0;
@@ -175,7 +178,7 @@ export default {
 }
 .proyecto_media {
   clip-path: inset(0% 0% 100% 0%);
-  @apply z-0;
+  @apply z-0 opacity-0;
 }
 .proyecto_title {
   @apply z-10;

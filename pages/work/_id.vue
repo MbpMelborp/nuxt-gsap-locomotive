@@ -99,6 +99,7 @@
           </div>
 
           <div
+            v-if="resultadoc"
             class="resultadoc animpm"
             :class="story.content.resultados.length == 0 ? 'nresultados' : ''"
             v-html="resultadoc"
@@ -585,11 +586,13 @@ export default {
         '.proyecto_top h3 .anim',
         {
           clipPath: 'inset(0% 0% 0% 100%)',
+          // webkitClipPath: 'inset(0% 0% 0% 100%)',
           x: 40,
           '--font-width': 80,
         },
         {
           clipPath: 'inset(0% 0% 0% 0%)',
+          // webkitClipPath: 'inset(0% 0% 0% 0%)',
           x: 0,
           '--font-width': 120,
           duration: timer,
@@ -603,11 +606,13 @@ export default {
         '.proyecto_top h2 span',
         {
           clipPath: 'inset(0% 100% 0% 0%)',
+          // webkitClipPath: 'inset(0% 100% 0% 0%)',
           x: -40,
           '--font-weight': 100,
         },
         {
           clipPath: 'inset(0% 0% 0% 0%)',
+          // webkitClipPath: 'inset(0% 0% 0% 0%)',
           x: 0,
           '--font-weight': 400,
           duration: timer * 0.8,
@@ -621,6 +626,7 @@ export default {
         '.proyecto_top .info .anim',
         {
           clipPath: 'inset(0% 0% 100% 0%)',
+          // webkitClipPath: 'inset(0% 0% 100% 0%)',
           y: 50,
           scaleY: 1.2,
           // '--font-weight': 600,
@@ -628,6 +634,7 @@ export default {
         },
         {
           clipPath: 'inset(0% 0% 0% 0%)',
+          // webkitClipPath: 'inset(0% 0% 0% 0%)',
           y: 0,
           scaleY: 1,
           // '--font-weight': 150,
@@ -643,10 +650,12 @@ export default {
         '.proyecto_top .animpm',
         {
           clipPath: 'inset(0% 100% 0% 0%)',
+          // webkitClipPath: 'inset(0% 100% 0% 0%)',
           x: -40,
         },
         {
           clipPath: 'inset(0% 0% 0% 0%)',
+          // webkitClipPath: 'inset(0% 0% 0% 0%)',
           x: 0,
           duration: timer,
           stagger: timer * 0.2,

@@ -108,14 +108,14 @@ export default {
   methods: {
     initTimelines() {
       const abierto = {
-        webkitClipPath: 'inset(0% 0% 0% 0%)',
         clipPath: 'inset(0% 0% 0% 0%)',
+        // webkitClipPath: 'inset(0% 0% 0% 0%)',
       }
       const tiempoEntrada = 1
 
       const cerradoToLeft = {
-        webkitClipPath: 'inset(0% 0% 0% 100%)',
         clipPath: 'inset(0% 0% 0% 100%)',
+        // webkitClipPath: 'inset(0% 0% 0% 100%)',
       }
 
       this.tl_preload_salida.addLabel('salida', `+=0`)

@@ -3,15 +3,7 @@
     <div class="home_top_welcome">
       <div class="home_top_welcome_nav">
         <div class="nav_home">
-          <h1>
-            <div ref="business" v-split-characters class="h-business">
-              Business
-            </div>
-            <div ref="updaters" v-split-characters class="h-updaters">
-              Updaters
-            </div>
-          </h1>
-          <!-- <div
+          <div
             v-cursor-down
             data-scroll=""
             data-scroll-speed="3"
@@ -47,7 +39,7 @@
           <h2 class="home_top_welcome_title">
             <div class="title1">Business</div>
             <div class="title2">Updaters</div>
-          </h2> -->
+          </h2>
         </div>
       </div>
     </div>
@@ -60,8 +52,8 @@
       data-scroll-position="top"
       class="image_back"
     >
-      <HomeBkg v-if="animacion" :story="story"></HomeBkg>
-      <HomeBkgImage v-else :story="story"></HomeBkgImage>
+      <HomeBkg v-if="animacion"></HomeBkg>
+      <HomeBkgImage v-else></HomeBkgImage>
     </div>
   </div>
 </template>
@@ -139,7 +131,48 @@ export default {
           color: this.home.texto_home,
         })
 
-        this.tl_home.to('.nav_home h1 span', {
+        this.tl_home.to('.nav_home_home span', {
+          '--font-weight': gsap.utils.random(
+            this.weight[0],
+            this.weight[1],
+            this.weight[2]
+          ),
+          '--font-width': gsap.utils.random(
+            this.width[0],
+            this.width[1],
+            this.width[2]
+          ),
+
+          color: this.home.texto_home_hover,
+          duration: 0.2,
+
+          stagger: {
+            each: 0.05,
+            from: 'edges',
+          },
+        })
+
+        this.tl_work.to('.nav_home_work span', {
+          '--font-weight': gsap.utils.random(
+            this.weight[0],
+            this.weight[1],
+            this.weight[2]
+          ),
+          '--font-width': gsap.utils.random(
+            this.width[0],
+            this.width[1],
+            this.width[2]
+          ),
+
+          color: this.home.texto_home_hover,
+          duration: 0.2,
+
+          stagger: {
+            each: 0.05,
+            from: 'edges',
+          },
+        })
+        this.tl_about.to('.nav_home_about span', {
           '--font-weight': gsap.utils.random(
             this.weight[0],
             this.weight[1],
@@ -162,13 +195,13 @@ export default {
       }
     })
     this.$nextTick(() => {
-      this.tl_init.from('.h-business', {
+      this.tl_init.from('.nav_home_home', {
         x: '-100vw',
         scaleX: 2,
         duration: 1,
       })
       this.tl_init.from(
-        '.h-updaters',
+        '.nav_home_work',
         {
           x: '150vw',
           scaleX: 2,
@@ -176,32 +209,52 @@ export default {
         },
         '-=0.6'
       )
-      const elements = document.querySelectorAll('.nav_home div')
+      this.tl_init.from(
+        '.nav_home_about',
+        {
+          x: '-100vw',
+          scaleX: 2,
+          duration: 1,
+        },
+        '-=1'
+      )
+      this.tl_init.from(
+        '.home_top_welcome_title',
+        {
+          autoAlpha: 0,
+          y: '40vh',
+          scaleY: 2,
+          duration: 1,
+        },
+        '-=0.5'
+      )
+
+      const elements = document.querySelectorAll('.nav_home span')
       elements.forEach((element) => this.setText(element))
+
+      // this.Box.to('.title1 span', 1, { fontWeight: 600 })
+      //   .call(this.randomDelay)
+      //   .play()
+      // this.$nextTick(() => {
+      //   const  = { opacity: 0 }
+      //   const from_s = {
+      //     opacity: 1,
+      //     stagger: 0.1,
+      //     duration: 1,
+      //     //rotation: 0,
+      //   }
+      //   this.tl_1 = $gsap
+      //     .timeline({ defaults: { ease: 'linear.easeInOut' } })
+      //     .fromTo('.reserva .to_hide', from, to)
+      //     .fromTo('.reserva .to_show', from_s, to_s, '-=1')
+      //     .paused(true)
+      // })
     })
   },
   destroyed() {
     this.tl_init.kill()
   },
   methods: {
-    calcTextSize() {
-      const text = this.$refs.business
-
-      const parentContainerWidth = text.parentNode.clientWidth
-      const currentTextWidth = text.scrollWidth
-      const currentFontSize = parseInt(window.getComputedStyle(text).fontSize)
-
-      const newValue = Math.min(
-        Math.max(
-          16,
-          (parentContainerWidth / currentTextWidth) * currentFontSize
-        ),
-        500
-      )
-      console.log('FONT_SIZE', currentTextWidth, currentTextWidth, newValue)
-
-      text.style.setProperty('--fontSize', newValue + 'px')
-    },
     setText(element) {
       const fontWeight = gsap.utils.random(
         this.weight[0],
@@ -264,6 +317,20 @@ export default {
 </script>
 
 <style lang="postcss">
+.home_top {
+  @apply w-screen h-screen;
+}
+.home_top_welcome {
+  @apply w-full max-w-10xl mx-auto;
+}
+.dest {
+  span {
+    /* @apply text-m-yellow-100; */
+  }
+}
+.home_top_welcome_title {
+  /* @apply text-m-yellow-100; */
+}
 .image_back {
   img {
     @apply h-screen;
@@ -272,90 +339,6 @@ export default {
 .nav_home {
   * {
     @apply select-none;
-  }
-}
-
-.home_top {
-  display: grid;
-  grid-template-columns: [l1] 5vw [m1] auto auto auto [m2] 5vw [r1];
-  grid-template-rows: [t1]5vh auto 1em [b1];
-  grid-gap: 0;
-  grid-template-areas:
-    '. . . . .'
-    '. welcome welcome welcome .'
-    '. . . . .';
-  @apply w-screen h-screen select-none overflow-hidden bg-black-900;
-
-  &_welcome {
-    grid-area: welcome;
-    display: grid;
-    grid-template-columns: [l1] auto auto auto [r1];
-    grid-template-rows: [t1] auto auto auto auto [b1];
-    grid-gap: 0;
-    grid-template-areas:
-      '. . . .'
-      'welcome welcome welcome welcome'
-      'welcome welcome welcome welcome'
-      '. . . .';
-    z-index: 2;
-    @apply w-full max-w-10xl mx-auto items-center self-center justify-self-start;
-    &_nav {
-      grid-area: welcome;
-      .nav_home {
-        /* display: grid;
-      grid-template-columns: [l1] auto 30% 30% 30% auto [r1];
-      grid-template-rows: [t1] auto auto auto [b1];
-      grid-gap: 0;
-      grid-template-areas:
-        '. home home home .'
-        'work work work . .'
-        'business about about about .';
-      width: 100%;
-      @media (max-width: 768px) {
-        grid-template-columns: [l1] auto [r1];
-        grid-template-rows: [t1] auto auto auto auto [b1];
-        grid-template-areas:
-          'home'
-          'work'
-          'about'
-          'business';
-      } */
-        @apply w-full;
-        h1 {
-          @apply w-full block;
-          div {
-            --fontSize: 78px;
-
-            font-size: var(--fontSize);
-            @apply leading-none w-full;
-          }
-        }
-        .dest {
-          margin-bottom: 0.5em;
-          span {
-            line-height: 0.75em;
-            letter-spacing: -0.02em;
-            @include font-size(10rem !important);
-            @media (max-width: 768px) {
-              @include font-size(12rem !important);
-            }
-          }
-        }
-      }
-    }
-  }
-  .image_back {
-    grid-column-start: l1;
-    grid-column-end: r1;
-    grid-row-start: t1;
-    grid-row-end: b1;
-    z-index: 1;
-    img {
-      height: 100vh;
-      width: 100vw;
-      display: block;
-      object-fit: cover;
-    }
   }
 }
 </style>

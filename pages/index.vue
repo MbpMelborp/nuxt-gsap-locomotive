@@ -190,6 +190,7 @@ export default {
           end: 'bottom center',
         },
         clipPath: 'inset(100% 0% 0% 0%)',
+        // webkitClipPath: 'inset(100% 0% 0% 0%)',
         ease: 'none',
       })
     },

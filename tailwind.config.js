@@ -126,6 +126,9 @@ module.exports = {
         '9xl': '1536px',
         '10xl': '1920px',
       },
+      objectPosition: {
+        half: '20% 50%',
+      },
     },
     debugScreens: {
       position: ['bottom', 'left'],

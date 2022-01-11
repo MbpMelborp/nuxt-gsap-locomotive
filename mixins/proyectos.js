@@ -215,7 +215,19 @@ export default {
         },
         '-=0.2'
       )
+      // this.tl_hover_mobile.fromTo(
+      //   '#proyecto_' + this.proyecto.slug + ' .proyecto_data',
+      //   {
+      //     clipPath: 'inset(0% 100% 0% 0%)',
+      //     // webkitClipPath: 'inset(0% 100% 0% 0%)',
+      //   },
 
+      //   {
+      //     clipPath: 'inset(0% 0% 0% 0%)',
+      //     // webkitClipPath: 'inset(0% 0% 0% 0%)',
+      //   },
+      //   '-=0.4'
+      // )
       this.tl_hover_mobile.fromTo(
         '#proyecto_' + this.proyecto.slug + ' .proyecto_data .anim_proy',
         { y: '50vh' },
@@ -252,12 +264,14 @@ export default {
         {
           // '--font-width': 80,
           clipPath: 'inset(0% 100% 0% 0%)',
+          // webkitClipPath: 'inset(0% 100% 0% 0%)',
           scaleY: 1,
           autoAlpha: 0,
         },
         {
           // '--font-width': 120,
           clipPath: 'inset(0% 0% 0% 0%)',
+          // webkitClipPath: 'inset(0% 0% 0% 0%)',
           scaleY: 1,
           autoAlpha: 1,
           duration: 0.5,
@@ -358,6 +372,7 @@ export default {
         {
           // '--font-width': 80,
           clipPath: 'inset(0% 100% 0% 0%)',
+          // webkitClipPath: 'inset(0% 100% 0% 0%)',
           scaleY: 1.2,
           autoAlpha: 0,
           color: this.home.fondo,
@@ -365,6 +380,7 @@ export default {
         {
           // '--font-width': 120,
           clipPath: 'inset(0% 0% 0% 0%)',
+          // webkitClipPath: 'inset(0% 0% 0% 0%)',
           scaleY: 1,
           autoAlpha: 1,
           duration: 0.5,
@@ -379,6 +395,7 @@ export default {
         {
           // '--font-width': 80,
           clipPath: 'inset(0% 100% 0% 0%)',
+          // webkitClipPath: 'inset(0% 100% 0% 0%)',
           scaleY: 1.2,
           autoAlpha: 0,
           color: this.home.fondo,
@@ -386,6 +403,7 @@ export default {
         {
           // '--font-width': 120,
           clipPath: 'inset(0% 0% 0% 0%)',
+          // webkitClipPath: 'inset(0% 0% 0% 0%)',
           scaleY: 1,
           autoAlpha: 1,
           duration: 0.5,
@@ -398,17 +416,24 @@ export default {
         },
         '-=0.3'
       )
-
+      gsap.set('#proyecto_' + this.proyecto.slug + ' .proyecto_media', {
+        clipPath: 'inset(0% 0% 100% 0%)',
+        // webkitClipPath: 'inset(0% 0% 100% 0%)',
+        scaleY: 1.1,
+        autoAlpha: 0,
+      })
       // IMAGENES
       this.tl_images.fromTo(
         '#proyecto_' + this.proyecto.slug + ' .proyecto_media',
         {
           clipPath: 'inset(0% 0% 100% 0%)',
+          // webkitClipPath: 'inset(0% 0% 100% 0%)',
           scaleY: 1.1,
           autoAlpha: 0,
         },
         {
           clipPath: 'inset(0% 0% 0% 0%)',
+          // webkitClipPath: 'inset(0% 0% 0% 0%)',
           scaleY: 1,
           autoAlpha: 1,
           duration: 1,
@@ -421,6 +446,18 @@ export default {
             this.observer.disconnect()
           },
         }
+      )
+      this.tl_images.fromTo(
+        '#proyecto_' + this.proyecto.slug + ' .proyecto_data_int',
+        {
+          clipPath: 'inset(0% 100% 0% 0%)',
+          // webkitClipPath: 'inset(0% 100% 0% 0%)',
+        },
+        {
+          clipPath: 'inset(0% 0% 0% 0%)',
+          // webkitClipPath: 'inset(0% 0% 0% 0%)',
+        },
+        '-=0.4'
       )
     },
     loaded(e) {
