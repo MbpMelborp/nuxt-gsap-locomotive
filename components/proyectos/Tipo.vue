@@ -3,7 +3,7 @@
     :id="`proyecto_${proyecto.slug}`"
     :key="Math.random() * 1000 + proyecto.slug"
     data-scroll
-    data-scroll-speed="-0.1"
+    data-scroll-speed="0.1"
     data-scroll-repeat="true"
     data-scroll-position="top"
     :data-scroll-call="`proyecto_${proyecto.slug}`"

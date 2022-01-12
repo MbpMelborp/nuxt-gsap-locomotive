@@ -77,6 +77,7 @@ export default {
 
 <style lang="postcss" scoped>
 .media_broken {
+  min-height: 50vh;
   @apply w-full grid grid-cols-1 md:grid-cols-12 md:grid-rows-1;
 
   &.pgap-1 {

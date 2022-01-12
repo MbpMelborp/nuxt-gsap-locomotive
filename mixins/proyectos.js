@@ -38,7 +38,11 @@ export default {
       `background:${this.proyecto.content.colores[0].fondo.color}; color: ${this.proyecto.content.colores[0].texto.color}`
     )
     // INICIANDO TIMELINES
-    this.tl_images = gsap.timeline({ paused: true, ease: Power4.easeInOut })
+    this.tl_images = gsap.timeline({
+      paused: true,
+      ease: Power4.easeInOut,
+      repeat: 0,
+    })
     this.tl_bkg = gsap.timeline({ paused: true, ease: Power4.easeInOut })
     this.tl_hover = gsap.timeline({
       paused: true,
