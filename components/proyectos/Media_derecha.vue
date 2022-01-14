@@ -7,6 +7,7 @@
           data-scroll
           data-scroll-speed="1"
           class="w-full"
+          :src="media.imagen.filename + '/m/filters:quality(10)'"
           :data-src="media.imagen.filename"
           alt="Melborp"
           @load="loaded"
@@ -34,6 +35,7 @@
           data-scroll
           data-scroll-speed="1"
           class="w-full"
+          :src="media.imagen.filename + '/m/filters:quality(10)'"
           :data-src="media.imagen.filename"
           alt="Melborp"
           @load="loaded"

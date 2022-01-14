@@ -18,14 +18,14 @@ export default {
           !e.target.classList.contains('isLoading')
         ) {
           gsap.set(e.target, {
-            clipPath: 'inset(0% 0% 100% 0%)',
+            // clipPath: 'inset(0% 0% 100% 0%)',
             // webkitClipPath: 'inset(0% 0% 100% 0%)',
-            scaleY: 1.1,
-            autoAlpha: 0,
+            scaleY: 1,
+            autoAlpha: 0.8,
           })
         } else {
           gsap.to(e.target, {
-            clipPath: 'inset(0% 0% 0% 0%)',
+            // clipPath: 'inset(0% 0% 0% 0%)',
             // webkitClipPath: 'inset(0% 0% 0% 0%)',
             scaleY: 1,
             autoAlpha: 1,

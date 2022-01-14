@@ -12,6 +12,7 @@
           v-if="item.imagen.filename != ''"
           v-lazy-load
           class="w-full"
+          :src="item.imagen.filename + '/m/filters:quality(10)'"
           :data-src="item.imagen.filename"
           alt="Melborp"
           @load="loaded"
@@ -77,7 +78,6 @@ export default {
 
 <style lang="postcss" scoped>
 .media_broken {
-  min-height: 50vh;
   @apply w-full grid grid-cols-1 md:grid-cols-12 md:grid-rows-1;
 
   &.pgap-1 {

@@ -73,13 +73,14 @@
             </nuxt-link>
           </div>
           <div class="info" :class="story.content.tipo_interior">
-            <div class="anim intro2" v-html="intro2"></div>
-            <div class="anim intro3" v-html="intro3"></div>
             <div v-if="story.content.tipo" class="anim tipo">
               <span>
                 {{ story.content.tipo }}
               </span>
             </div>
+            <div class="anim intro2" v-html="intro2"></div>
+            <div class="anim intro3" v-html="intro3"></div>
+
             <div
               data-scroll
               data-scroll-speed="-0.5"
@@ -99,7 +100,7 @@
           </div>
 
           <div
-            v-if="resultadoc"
+            v-if="resultadoc && resultadoc.replace(/(<([^>]+)>)/gi, '') != ''"
             class="resultadoc animpm"
             :class="story.content.resultados.length == 0 ? 'nresultados' : ''"
             v-html="resultadoc"
@@ -110,7 +111,6 @@
             data-scroll-speed="0.5"
             class="resultados animpm"
           >
-            <h4>Scope</h4>
             <div class="listado">
               <!-- <div
                 v-for="(resultado, index) in story.content.resultados"
@@ -158,6 +158,7 @@
           >
             <img
               v-lazy-load
+              :src="story.content.header[0].filename + '/m/filters:quality(10)'"
               :data-src="story.content.header[0].filename"
               :alt="story.name"
               @load="loaded"
@@ -207,6 +208,10 @@
               <img
                 v-lazy-load
                 :data-src="next_project.content.header[0].filename"
+                :src="
+                  next_project.content.header[0].filename +
+                  '/m/filters:quality(10)'
+                "
                 :alt="next_project.content.nombre"
                 @load="loaded"
               />
@@ -685,6 +690,7 @@ export default {
 
 <style lang="postcss">
 .next-project {
+  min-height: 50vh;
   @apply pt-44 w-full max-w-9xl mx-auto py-36;
   hr {
     @apply mx-14 mb-8;
@@ -880,7 +886,7 @@ export default {
       .tipo {
         font-variation-settings: 'wght' var(--font-weight, 500),
           'wdth' var(--font-width, 130), 'ital' 0;
-        @apply md:w-8/12 place-self-start text-lg opacity-50 mb-8 md:mb-20;
+        @apply md:w-8/12 place-self-start text-lg opacity-50 md:mt-20 mt-8 mb-8;
       }
       .body {
         font-variation-settings: 'wght' var(--font-weight, 150),

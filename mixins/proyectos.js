@@ -6,6 +6,7 @@ export default {
   data() {
     return {
       ready: false,
+      tl_images_play: false,
       tl_images: null,
       tl_bkg: null,
       tl_hover: null,
@@ -41,7 +42,17 @@ export default {
     this.tl_images = gsap.timeline({
       paused: true,
       ease: Power4.easeInOut,
+      delay: 0.1,
       repeat: 0,
+      onStart: () => {
+        console.log('🗂️ PROYECTOS -> tl_images -> onStart', this.proyecto.name)
+      },
+      onComplete: () => {
+        console.log(
+          '🗂️ PROYECTOS -> tl_images -> onComplete',
+          this.proyecto.name
+        )
+      },
     })
     this.tl_bkg = gsap.timeline({ paused: true, ease: Power4.easeInOut })
     this.tl_hover = gsap.timeline({
@@ -117,18 +128,39 @@ export default {
       setMobileProyecto: 'app/setMobileProyecto',
     }),
     onClassChange(classAttrValue) {
-      const classList = classAttrValue.split(' ')
-      console.log(
-        '🗂️ PROYECTOS -> onClassChange',
-        this.proyecto.content.nombre,
-        classList
+      // const classList = classAttrValue.split(' ')
+      // console.log(
+      //   '🗂️ PROYECTOS -> onClassChange',
+      //   this.proyecto.content.nombre,
+      //   classList
+      // )
+      // if (classList.includes('is-inview')) {
+      //   if (this.ready) {
+      //     return
+      //   }
+      //   this.ready = true
+      //   if (!this.tl_images_play) {
+      //     this.tl_images.play()
+      //     this.tl_images_play = true
+      //   }
+      // }
+    },
+    showProy() {
+      const el = document.getElementById(
+        `proyecto_${this.proyecto.slug}_media_1`
       )
-      if (classList.includes('is-inview')) {
-        if (this.ready) {
-          return
-        }
-        this.ready = true
-        this.tl_images.play()
+      const opacity = el.style.opacity
+      const played = el.dataset.played
+
+      console.log(
+        '🗂️ PROYECTOS -> showProy',
+        this.proyecto.content.nombre,
+        opacity,
+        played
+      )
+      if (opacity === '0' && played === '0') {
+        el.dataset.played = '1'
+        this.tl_images.restart()
       }
     },
     hoverProyecto(e, est) {
@@ -420,12 +452,12 @@ export default {
         },
         '-=0.3'
       )
-      gsap.set('#proyecto_' + this.proyecto.slug + ' .proyecto_media', {
-        clipPath: 'inset(0% 0% 100% 0%)',
-        // webkitClipPath: 'inset(0% 0% 100% 0%)',
-        scaleY: 1.1,
-        autoAlpha: 0,
-      })
+      // gsap.set('#proyecto_' + this.proyecto.slug + ' .proyecto_media', {
+      //   clipPath: 'inset(0% 0% 100% 0%)',
+      //   // webkitClipPath: 'inset(0% 0% 100% 0%)',
+      //   scaleY: 1.1,
+      //   autoAlpha: 0,
+      // })
       // IMAGENES
       this.tl_images.fromTo(
         '#proyecto_' + this.proyecto.slug + ' .proyecto_media',
@@ -454,11 +486,15 @@ export default {
       this.tl_images.fromTo(
         '#proyecto_' + this.proyecto.slug + ' .proyecto_data_int',
         {
-          clipPath: 'inset(0% 100% 0% 0%)',
+          y: -10,
+          autoAlpha: 0,
+          // clipPath: 'inset(0% 100% 0% 0%)',
           // webkitClipPath: 'inset(0% 100% 0% 0%)',
         },
         {
-          clipPath: 'inset(0% 0% 0% 0%)',
+          y: 0,
+          autoAlpha: 1,
+          // clipPath: 'inset(0% 0% 0% 0%)',
           // webkitClipPath: 'inset(0% 0% 0% 0%)',
         },
         '-=0.4'

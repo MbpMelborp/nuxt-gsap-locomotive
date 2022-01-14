@@ -4,6 +4,7 @@
       v-lazy-load
       class="block w-full"
       :data-src="media.imagen.filename"
+      :src="media.imagen.filename + '/m/filters:quality(10)'"
       alt="Melborp"
       @load="loaded"
     />

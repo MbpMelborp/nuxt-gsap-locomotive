@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <h1 v-if="error.statusCode === 404">Page not found</h1>
-    <h1 v-else>An error occurred</h1>
+  <div class="flex items-center justify-center w-screen h-screen">
+    <div class="text-5xl text-white md:text-7xl lg:text-9xl">
+      <h1 v-if="error.statusCode === 404">Página no encontrada</h1>
+      <h1 v-else>Ocurrió un error</h1>
+    </div>
   </div>
 </template>
 

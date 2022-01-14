@@ -112,7 +112,7 @@ export default {
   .media_int {
     grid-area: media;
     align-self: center;
-    @apply md:py-16 py-8;
+    @apply md:py-8 py-8;
   }
 }
 </style>

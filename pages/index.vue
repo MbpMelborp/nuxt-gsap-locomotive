@@ -20,11 +20,14 @@
         :init="story.content.proyectos[0]"
         :animacion="story.content.animacion"
       ></HomeTop>
+
       <ProyectosCont
         v-for="(proyecto, index) in story.content.proyectos"
         :key="Math.random() * 1000 + index"
         :proyecto="proyecto"
       ></ProyectosCont>
+
+      <Contacto></Contacto>
     </div>
   </LocomotiveScroll>
 </template>
@@ -38,6 +41,7 @@ import { mapMutations, mapGetters } from 'vuex'
 // COMPONENTES
 import HomeTop from '~/components/HomeTop.vue'
 import ProyectosCont from '~/components/Proyecto.vue'
+import Contacto from '~/components/Contacto.vue'
 
 import { custom } from '~/utils/transitions.js'
 
@@ -49,6 +53,7 @@ export default {
   components: {
     HomeTop,
     ProyectosCont,
+    Contacto,
   },
   transition: {
     ...custom,

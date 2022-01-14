@@ -1,12 +1,11 @@
 .proyecto {
   display: flex;
   width: 100%;
-  min-height: 100vh;
   user-select: none;
   //   overflow: hidden;
   justify-content: center;
   align-items: center;
-  padding: 8em 0;
+  padding: 2rem 0;
 
   .proyecto_tipo {
     width: 100%;
@@ -267,22 +266,22 @@
     grid-template-columns: repeat(22, [col] 1fr);
     grid-template-rows: repeat(10, 9.2%);
     grid-template-areas:
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	.	data	data	data	data	data	data	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	.	data	data	data	data	data	data	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	.	.	.	.	.	.	.	.	';
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	data	data	data	data	data	data	.	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	data	data	data	data	data	data	.	.	';
 
     .proyecto_title {
-      grid-column-start: 1;
-      grid-column-end: 20;
-      grid-row-start: 4;
-      grid-row-end: 8;
+      grid-column-start: 2;
+      grid-column-end: 19;
+      grid-row-start: 3;
+      grid-row-end: 4;
 
       .proyecto_title_int {
         text-align: left;
@@ -294,7 +293,8 @@
       grid-row-start: 4;
       grid-row-end: 8;
       svg {
-        width: 100%;
+        max-width: 350px;
+        object-fit: contain;
       }
     }
     .proyecto_media_1 {

@@ -57,9 +57,6 @@
         <nuxt-link v-cursor-right to="/archive">
           <div v-split-characters>About</div>
         </nuxt-link>
-        <nuxt-link v-cursor-right to="/archive">
-          <div v-split-characters>Staff</div>
-        </nuxt-link>
         <nuxt-link v-cursor-right to="/team">
           <div v-split-characters>Team</div>
         </nuxt-link>

@@ -1,6 +1,7 @@
 <template>
   <img
     v-lazy-load
+    :src="story.content.imagen.filename + '/m/filters:quality(10)'"
     :data-src="story.content.imagen.filename"
     alt="Melborp"
     @load="loaded"
