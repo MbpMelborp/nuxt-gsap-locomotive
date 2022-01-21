@@ -21,7 +21,7 @@ export default {
             // clipPath: 'inset(0% 0% 100% 0%)',
             // webkitClipPath: 'inset(0% 0% 100% 0%)',
             scaleY: 1,
-            autoAlpha: 0.8,
+            autoAlpha: 0,
           })
         } else {
           gsap.to(e.target, {

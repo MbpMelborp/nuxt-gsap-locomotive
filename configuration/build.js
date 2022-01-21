@@ -25,6 +25,16 @@ export default {
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
       }
+      config.module.rules.push({
+        test: /\.(glsl|frag|vert)$/,
+        loader: 'raw-loader',
+        exclude: /node_modules/,
+      })
+      config.module.rules.push({
+        test: /\.(glsl|frag|vert)$/,
+        loader: 'glslify-loader',
+        exclude: /node_modules/,
+      })
     },
   },
 }

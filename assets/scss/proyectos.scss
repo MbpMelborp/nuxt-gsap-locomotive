@@ -9,7 +9,7 @@
 
   .proyecto_tipo {
     width: 100%;
-    margin: 2vw 0;
+    margin: 10vw 0;
     justify-content: center;
     align-items: center;
     display: grid;
@@ -25,19 +25,19 @@
     object-fit: cover;
   }
   .tipo_1 {
-    grid-template-columns: repeat(20, [col] 1fr);
+    grid-template-columns: repeat(22, [col] 1fr);
     grid-template-rows: repeat(10, 9.2%);
     grid-template-areas:
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	'
-      '	.	.	data	data	data	data	data	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	'
-      '	.	.	data	data	data	data	data	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	';
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	.	.	.	.	.	.	.	data	data	data	data	data	data	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	.	.	.	.	.	.	.	data	data	data	data	data	data	.	.	.	.	.	.	.	.	';
 
     .proyecto_title {
       grid-column-start: 2;
@@ -65,6 +65,10 @@
     }
     .proyecto_media_2 {
       grid-area: media_2;
+      height: 100%;
+    }
+    .proyecto_media_3 {
+      grid-area: media_3;
       height: 100%;
     }
     .proyecto_data {
@@ -123,19 +127,19 @@
     }
   }
   .tipo_3 {
-    grid-template-columns: repeat(20, [col] 1fr);
+    grid-template-columns: repeat(22, [col] 1fr);
     grid-template-rows: repeat(10, 9.2%);
     grid-template-areas:
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	.	.	.	data	data	data	data	data	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	'
-      '	.	.	.	.	data	data	data	data	data	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	';
+      '	.	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	.	.	.	.	.	.	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	.	.	.	.	.	data	data	data	data	data	data	.	.	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	.	.	.	.	.	data	data	data	data	data	data	.	.	.	.	.	.	.	.	.	.	';
 
     .proyecto_title {
       grid-column-start: 2;
@@ -165,24 +169,28 @@
       grid-area: media_2;
       height: 100%;
     }
+    .proyecto_media_3 {
+      grid-area: media_3;
+      height: 100%;
+    }
     .proyecto_data {
       grid-area: data;
     }
   }
   .tipo_4 {
-    grid-template-columns: repeat(20, [col] 1fr);
+    grid-template-columns: repeat(22, [col] 1fr);
     grid-template-rows: repeat(10, 9.2%);
     grid-template-areas:
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	data	data	data	data	data	data	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	data	data	data	data	data	data	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	data	data	data	data	data	data	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	';
+      '	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	.	data	data	data	data	data	data	.	.	.	.	.	.	.	'
+      '	.	.	.	.	.	.	.	.	.	data	data	data	data	data	data	.	.	.	.	.	.	.	';
 
     .proyecto_title {
       grid-column-start: 2;
@@ -209,7 +217,11 @@
       height: 100%;
     }
     .proyecto_media_2 {
-      display: none;
+      grid-area: media_2;
+      height: 100%;
+    }
+    .proyecto_media_3 {
+      grid-area: media_3;
       height: 100%;
     }
     .proyecto_data {
@@ -217,19 +229,19 @@
     }
   }
   .tipo_5 {
-    grid-template-columns: repeat(20, [col] 1fr);
+    grid-template-columns: repeat(22, [col] 1fr);
     grid-template-rows: repeat(10, 9.2%);
     grid-template-areas:
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	data	data	data	data	data	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	data	data	data	data	data	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	data	data	data	data	data	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	.	.	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	';
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	.	.	.	.	.	.	.	'
+      '	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	.	data	data	data	data	data	data	.	'
+      '	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	data	data	data	data	data	data	.	';
     .proyecto_title {
       grid-column-start: 2;
       grid-column-end: 19;
@@ -255,7 +267,11 @@
       height: 100%;
     }
     .proyecto_media_2 {
-      display: none;
+      grid-area: media_2;
+      height: 100%;
+    }
+    .proyecto_media_3 {
+      grid-area: media_3;
       height: 100%;
     }
     .proyecto_data {
@@ -267,15 +283,15 @@
     grid-template-rows: repeat(10, 9.2%);
     grid-template-areas:
       '	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	data	data	data	data	data	data	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	data	data	data	data	data	data	.	.	';
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	.	.	.	.	.	.	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	data	data	data	data	data	data	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	data	data	data	data	data	data	.	';
 
     .proyecto_title {
       grid-column-start: 2;
@@ -314,19 +330,19 @@
     }
   }
   .tipo_7 {
-    grid-template-columns: repeat(20, [col] 1fr);
+    grid-template-columns: repeat(22, [col] 1fr);
     grid-template-rows: repeat(10, 9.2%);
     grid-template-areas:
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	data	data	data	data	data	data	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	data	data	data	data	data	data	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	data	data	data	data	data	data	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	media_1	media_1	media_1	media_1	media_1	media_1	media_1	media_1	.	'
-      '	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	';
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	.	.	.	.	.	.	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	.	.	.	.	.	.	.	'
+      '	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	.	data	data	data	data	data	data	.	'
+      '	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	data	data	data	data	data	data	.	';
     .proyecto_title {
       grid-column-start: 2;
       grid-column-end: 19;
@@ -352,7 +368,11 @@
       height: 100%;
     }
     .proyecto_media_2 {
-      display: none;
+      grid-area: media_2;
+      height: 100%;
+    }
+    .proyecto_media_3 {
+      grid-area: media_3;
       height: 100%;
     }
     .proyecto_data {

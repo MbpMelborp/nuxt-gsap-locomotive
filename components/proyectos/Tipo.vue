@@ -120,10 +120,6 @@
         />
       </div>
       <div
-        v-if="
-          proyecto.content.tipo_home == 'tipo_2' ||
-          proyecto.content.tipo_home == 'tipo_6'
-        "
         :id="`proyecto_${proyecto.slug}_media_3`"
         class="proyecto_media proyecto_media_3"
       >
@@ -169,8 +165,7 @@ export default {
     @apply opacity-0;
     .proyecto_data_content {
       @apply -mt-12;
-
-      h4 {
+      ƒ h4 {
         font-variation-settings: 'wght' var(--font-weight, 850),
           'wdth' var(--font-width, 140), 'ital' 0;
         @apply uppercase text-3xl  mb-4 leading-none;
@@ -202,7 +197,7 @@ export default {
   }
 }
 .proyecto_media {
-  clip-path: inset(0% 0% 100% 0%);
+  /* clip-path: inset(0% 0% 100% 0%); */
   @apply z-0 opacity-0;
 }
 .proyecto_title {

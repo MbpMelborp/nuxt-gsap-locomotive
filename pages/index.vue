@@ -45,6 +45,8 @@ import Contacto from '~/components/Contacto.vue'
 
 import { custom } from '~/utils/transitions.js'
 
+import head from '~/mixins/head.js'
+
 gsap.registerPlugin(ScrollTrigger)
 
 const cl = process.env.CONSOLE
@@ -55,9 +57,11 @@ export default {
     ProyectosCont,
     Contacto,
   },
+  mixins: [head],
   transition: {
     ...custom,
   },
+
   asyncData({ route, payload, app, error, store }) {
     try {
       if (payload) {
@@ -113,6 +117,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.story.content.seo.title)
     this.initScrolltrigger()
     this.$nextTick(() => {
       const elements = document.querySelectorAll('[data-scroll-trigger]')

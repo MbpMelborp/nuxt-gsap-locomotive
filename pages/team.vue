@@ -54,6 +54,7 @@ import Team from '~/components/team/Team_broken.vue'
 
 import { custom } from '~/utils/transitions.js'
 import loaderm from '~/mixins/loader.js'
+import head from '~/mixins/head.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -63,7 +64,7 @@ export default {
   components: {
     Team,
   },
-  mixins: [loaderm],
+  mixins: [loaderm, head],
   transition: {
     ...custom,
   },

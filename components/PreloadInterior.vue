@@ -41,6 +41,7 @@
           </g>
         </g>
       </svg>
+      <h3>Business Updaters</h3>
       <!-- <svg class="arrow" viewBox="0 0 45 45">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
           <g
@@ -91,9 +92,14 @@ export default {}
     left: 0;
     clip-path: inset(0% 0% 0% 100%);
     z-index: 2;
-    @apply flex fixed justify-center items-center w-screen h-screen bg-black-900;
+    @apply flex fixed flex-col justify-center items-center w-screen h-screen bg-black-900;
     svg {
       width: 150px;
+    }
+    h3 {
+      font-variation-settings: 'wght' var(--font-weight, 400),
+        'wdth' var(--font-width, 90), 'ital' 0;
+      @apply mt-0 text-white text-lg text-center;
     }
   }
 }

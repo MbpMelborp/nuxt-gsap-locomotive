@@ -21,6 +21,18 @@ footer {
   box-sizing: border-box;
 }
 //HOME
+canvas {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 1s ease;
+  width: 100%;
+
+  /* .loaded & {
+    opacity: 1;
+  } */
+}
 nav#nav_site {
   user-select: none;
   width: 100%;
@@ -68,7 +80,6 @@ nav#nav_site {
     }
   }
 }
-
 
 .content_interior {
   position: relative;

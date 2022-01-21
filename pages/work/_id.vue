@@ -38,9 +38,11 @@
             >
             <time class="anim">
               <span>
-                {{ $moment(story.created_at).format('MM') }}
+                {{ $moment(story.first_published_at).format('MM') }}
               </span>
-              <strong> .{{ $moment(story.created_at).format('YY') }} </strong>
+              <strong>
+                .{{ $moment(story.first_published_at).format('YY') }}
+              </strong>
             </time>
           </h3>
           <h2>
@@ -233,13 +235,14 @@ import Media from '~/components/proyectos/Media.vue'
 
 import { custom } from '~/utils/transitions.js'
 import loaderm from '~/mixins/loader.js'
+import head from '~/mixins/head.js'
 
 gsap.registerPlugin(ScrollTrigger)
 export default {
   components: {
     Media,
   },
-  mixins: [loaderm],
+  mixins: [loaderm, head],
   transition: {
     ...custom,
   },

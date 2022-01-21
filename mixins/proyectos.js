@@ -462,20 +462,20 @@ export default {
       this.tl_images.fromTo(
         '#proyecto_' + this.proyecto.slug + ' .proyecto_media',
         {
-          clipPath: 'inset(0% 0% 100% 0%)',
-          // webkitClipPath: 'inset(0% 0% 100% 0%)',
+          // clipPath: 'inset(0% 0% 100% 0%)',
+
           scaleY: 1.1,
           autoAlpha: 0,
         },
         {
-          clipPath: 'inset(0% 0% 0% 0%)',
+          // clipPath: 'inset(0% 0% 0% 0%)',
           // webkitClipPath: 'inset(0% 0% 0% 0%)',
           scaleY: 1,
           autoAlpha: 1,
           duration: 1,
           stagger: {
-            each: 0.4,
-            from: 'edges',
+            each: 0.2,
+            // from: 'edges',
           },
           ease: Power2.easeInOut,
           onComplete: () => {
