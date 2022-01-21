@@ -129,27 +129,30 @@ export default {
       y: '-5vh',
       autoAlpha: 0,
     })
-
-    this.$store.subscribe((mutation, state) => {
-      if (
-        mutation.type === 'app/setPreload' ||
-        mutation.type === 'app/setSection'
-      ) {
-        gsap.to('.text_home_int .anim', {
-          clipPath: 'inset(0% 0% 0% 0%)',
-          delay: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          y: 0,
-        })
-        gsap.to('.marquee_int2, .marquee_int', {
-          duration: 0.4,
-          stagger: 0.2,
-          y: 0,
-          autoAlpha: 1,
-        })
-      }
+    gsap.to('.text_home_int .anim', {
+      clipPath: 'inset(0% 0% 0% 0%)',
+      delay: 3,
+      duration: 0.8,
+      stagger: 0.2,
+      y: 0,
+      ease: Power2.easeInOut,
     })
+    gsap.to('.marquee_int2, .marquee_int', {
+      duration: 0.4,
+      stagger: 0.2,
+      y: 0,
+      autoAlpha: 1,
+      delay: 2,
+      ease: Power2.easeInOut,
+    })
+    // this.$store.subscribe((mutation, state) => {
+    //   if (
+    //     mutation.type === 'app/setPreload' ||
+    //     mutation.type === 'app/setSection'
+    //   ) {
+
+    //   }
+    // })
   },
   methods: {
     loaded(e) {
