@@ -53,6 +53,7 @@ export default {}
   .contacto_int {
     @apply w-full max-w-9xl mx-auto mb-40;
     address {
+      @apply not-italic;
       p {
         @apply mx-4 md:mx-0 md:grid md:grid-cols-12 md:grid-rows-3 md:gap-x-4 md:gap-y-0;
         span {
@@ -84,25 +85,27 @@ export default {}
   .contacto_info {
     @apply mt-auto w-full max-w-9xl mx-auto;
     .contacto_info_int {
-      @apply mx-4 md:mx-0 md:grid md:grid-cols-12 md:grid-rows-2 md:gap-x-4 md:gap-y-0;
+      @apply md:mx-16 md:grid md:grid-cols-12 md:grid-rows-2 md:gap-x-4 md:gap-y-0;
       a {
-        @apply text-sm md:text-xl;
+        @apply text-sm md:text-xl transition-all duration-300 ease-in-out;
         &:hover {
-          @apply text-blue-500;
+          @apply text-black-800;
         }
       }
       .mails {
-        @apply md:col-start-5 md:col-span-2 md:row-start-1 md:row-span-1;
+        @apply md:col-start-4 md:col-span-2 md:row-start-1 md:row-span-1;
       }
       .tels {
         @apply md:col-start-7 md:col-span-2 md:row-start-1 md:row-span-1;
       }
       .hvs {
-        @apply md:col-start-9 md:col-span-2 md:row-start-1 md:row-span-1;
+        @apply md:col-start-10 md:col-span-2 md:row-start-1 md:row-span-1;
       }
       .social {
         @apply mt-16 text-sm md:col-start-1 md:col-span-4 md:row-start-2 md:row-span-1 font-light flex space-x-4;
         a {
+          font-variation-settings: 'wght' var(--font-weight, 200),
+            'wdth' var(--font-width, 130), 'ital' 0;
           @apply inline-block;
         }
       }

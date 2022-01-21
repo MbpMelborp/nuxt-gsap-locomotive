@@ -92,7 +92,8 @@ export default {}
     left: 0;
     clip-path: inset(0% 0% 0% 100%);
     z-index: 2;
-    @apply flex fixed flex-col justify-center items-center w-screen h-screen bg-black-900;
+    background: #000;
+    @apply flex fixed flex-col justify-center items-center w-screen h-screen;
     svg {
       width: 150px;
     }

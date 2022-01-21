@@ -696,10 +696,10 @@ export default {
   min-height: 50vh;
   @apply pt-44 w-full max-w-9xl mx-auto py-36;
   hr {
-    @apply mx-14 mb-8;
+    @apply mx-4 md:mx-14 mb-8;
   }
   &-wrap {
-    @apply mx-24;
+    @apply mx-4 md:mx-24;
     .next-project-title {
       font-variation-settings: 'wght' var(--font-weight, 400),
         'wdth' var(--font-width, 80), 'ital' 0;
@@ -709,9 +709,9 @@ export default {
       @apply mb-4;
     }
     &-fl {
-      @apply flex justify-between flex-row items-center;
+      @apply flex justify-between flex-col md:flex-row items-center;
       &-title {
-        @apply w-4/12;
+        @apply w-full md:w-4/12;
         h5 {
           @apply text-4xl mb-6;
         }
@@ -720,7 +720,7 @@ export default {
         }
       }
       &-content {
-        @apply w-4/12 text-sm;
+        @apply w-full md:w-4/12 text-sm;
       }
     }
   }
