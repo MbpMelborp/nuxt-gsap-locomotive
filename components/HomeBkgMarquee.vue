@@ -201,16 +201,16 @@ export default {
     background-color: rgba(0, 0, 0, 0.5);
     @apply z-30 flex items-center justify-center;
     .text_home_int {
-      @apply text-white text-center w-full max-w-9xl mx-auto;
+      @apply text-white text-center w-full md:max-w-9xl mx-auto;
       h2 {
         font-variation-settings: 'wght' var(--font-weight, 500),
           'wdth' var(--font-width, 180), 'ital' 0;
-        @apply text-9xl leading-none my-1;
+        @apply text-5xl md:text-9xl leading-none my-1;
       }
       span {
         font-variation-settings: 'wght' var(--font-weight, 150),
           'wdth' var(--font-width, 80), 'ital' 0;
-        @apply block text-4xl w-full max-w-4xl mx-auto;
+        @apply block text-xl md:text-4xl w-full max-w-sm md:max-w-4xl mx-auto;
       }
     }
   }

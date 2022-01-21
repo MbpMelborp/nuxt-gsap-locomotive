@@ -384,46 +384,111 @@
     .proyecto_tipo {
       width: 100%;
       height: 100%;
+      min-height: 100vh;
       margin: 0;
-      grid-template-columns: [l1] 3vw auto 3vw [r1];
-      grid-template-rows: [t1] auto auto [t2];
+      grid-template-columns: repeat(12, [col] 1fr);
+      grid-template-rows: repeat(10, 9.2%);
       grid-template-areas:
-        '. title .'
-        '. data .';
+        '	.	title	title	title	title	title	title	title	title	title	title	.	'
+        '	.	title	title	title	title	title	title	title	title	title	title	.	'
+        '	.	.	.	.	.	.	.	.	.	.	.	.	'
+        '	.	.	.	.	.	.	.	.	.	.	.	.	'
+        '	.	.	.	.	.	.	.	.	.	.	.	.	'
+        '	.	.	.	.	.	.	.	.	.	.	.	.	'
+        '	.	.	.	.	.	.	.	.	.	.	.	.	'
+        '	.	.	.	.	.	.	.	.	.	.	.	.	'
+        '	.	data	data	data	data	data	data	data	data	data	data	.	'
+        '	.	data	data	data	data	data	data	data	data	data	data	.	';
       overflow: hidden;
       .proyecto_title {
         grid-area: title;
+        align-self: flex-start;
+        z-index: 3;
+        padding-top: 2vh;
+      }
+
+      .proyecto_data {
+        grid-area: data;
         align-self: flex-end;
         z-index: 3;
+        padding-bottom: 2vh;
+        .proyecto_body {
+          display: none;
+        }
       }
       .proyecto_arrow {
         display: none;
       }
-      .proyecto_media_1 {
-        grid-column-start: l1;
-        grid-column-end: r1;
-        grid-row-start: t1;
-        grid-row-end: t2;
-        height: auto;
-        z-index: 1;
-        img {
-          width: 100%;
-          height: 110vh;
+      &.tipo_1,
+      &.tipo_3,
+      &.tipo_5,
+      &.tipo_7 {
+        .proyecto_media_1 {
+          grid-column-start: 3;
+          grid-column-end: 13;
+          grid-row-start: 1;
+          grid-row-end: 8;
+          height: auto;
+          z-index: 1;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .proyecto_media_2 {
+          grid-column-start: 1;
+          grid-column-end: 8;
+          grid-row-start: 4;
+          grid-row-end: 10;
+          height: auto;
+          z-index: 1;
+          img {
+            width: 100%;
+            height: 100%;
+          }
         }
       }
+      &.tipo_2,
+      &.tipo_4,
+      &.tipo_6 {
+        .proyecto_media_1 {
+          grid-column-start: 1;
+          grid-column-end: 11;
+          grid-row-start: 1;
+          grid-row-end: 7;
+          height: auto;
+          z-index: 1;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .proyecto_media_2 {
+          grid-column-start: 5;
+          grid-column-end: 13;
+          grid-row-start: 6;
+          grid-row-end: 9;
+          height: auto;
+          z-index: 1;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
       .proyecto_data_content {
         z-index: 3;
       }
       .bg {
         display: block;
-        grid-column-start: l1;
-        grid-column-end: r1;
-        grid-row-start: t1;
-        grid-row-end: t2;
+        grid-column-start: 1;
+        grid-column-end: 13;
+        grid-row-start: 1;
+        grid-row-end: 11;
         height: 100%;
         z-index: 0;
       }
-      .proyecto_media_2,
       .proyecto_media_3 {
         display: none;
       }

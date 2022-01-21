@@ -228,29 +228,30 @@ export default {
         }
       )
 
-      this.tl_hover_mobile.fromTo(
-        '#proyecto_' + this.proyecto.slug + ' .proyecto_media',
-        {
-          opacity: 1,
-          y: 0,
-          x: 0,
-          scale: 1,
-        },
-        {
-          opacity: 0.2,
-          x: '60vw',
-          y: '5vh',
-          scale: 0.8,
+      // this.tl_hover_mobile.fromTo(
+      //   '#proyecto_' + this.proyecto.slug + ' .proyecto_media',
+      //   {
+      //     opacity: 1,
+      //     y: 0,
+      //     x: 0,
+      //     scale: 1,
+      //   },
+      //   {
+      //     opacity: 0.2,
+      //     x: '60vw',
+      //     y: '5vh',
+      //     scale: 0.8,
 
-          duration: 0.7,
-          ease: Sine.easeInOut,
-          stagger: {
-            each: 0.1,
-            from: 'center',
-          },
-        },
-        '-=0.2'
-      )
+      //     duration: 0.7,
+      //     ease: Sine.easeInOut,
+      //     stagger: {
+      //       each: 0.1,
+      //       from: 'center',
+      //     },
+      //   },
+      //   '-=0.2'
+      // )
+
       // this.tl_hover_mobile.fromTo(
       //   '#proyecto_' + this.proyecto.slug + ' .proyecto_data',
       //   {
@@ -264,60 +265,84 @@ export default {
       //   },
       //   '-=0.4'
       // )
-      this.tl_hover_mobile.fromTo(
-        '#proyecto_' + this.proyecto.slug + ' .proyecto_data .anim_proy',
-        { y: '50vh' },
+
+      // ANIMANDO LA INFO
+      // this.tl_hover_mobile.fromTo(
+      //   '#proyecto_' + this.proyecto.slug + ' .proyecto_data .anim_proy',
+      //   { y: '50vh' },
+      //   {
+      //     y: 0,
+      //     duration: 0.4,
+      //     stagger: {
+      //       // from: 'random',
+      //       each: 0.1,
+      //     },
+      //   },
+      //   '-=0.4'
+      // )
+
+      // ANIMANDO EL TITULO
+      // this.tl_hover_mobile.fromTo(
+      //   '#proyecto_' +
+      //     this.proyecto.slug +
+      //     ' .proyecto_title .proyecto_title_int span',
+      //   {
+      //     // '--font-width': 80,
+      //     scaleY: 1,
+      //     autoAlpha: 0,
+      //   },
+      //   {
+      //     // '--font-width': 120,
+      //     scaleY: 1,
+      //     autoAlpha: 1,
+      //     duration: 0.5,
+
+      //     stagger: {
+      //       // from: 'random',
+      //       each: 0.1,
+      //     },
+      //   },
+      //   '-=0.3'
+      // )
+
+      this.tl_images.fromTo(
+        '#proyecto_' + this.proyecto.slug + ' .proyecto_media',
         {
-          y: 0,
-          duration: 0.4,
-          stagger: {
-            // from: 'random',
-            each: 0.1,
-          },
-        },
-        '-=0.4'
-      )
-      this.tl_hover_mobile.fromTo(
-        '#proyecto_' + this.proyecto.slug + ' .proyecto_arrow ',
-        { stroke: 'transparent', opacity: 0, x: '20vw', y: '20vh' },
-        {
-          stroke: this.proyecto.content.colores[0].texto.color,
-          x: 0,
-          y: 0,
-          opacity: 0.4,
-          duration: 0.4,
-          stagger: {
-            // from: 'random',
-            each: 0.02,
-          },
-        },
-        '-=0.4'
-      )
-      this.tl_hover_mobile.fromTo(
-        '#proyecto_' +
-          this.proyecto.slug +
-          ' .proyecto_title .proyecto_title_int span',
-        {
-          // '--font-width': 80,
-          clipPath: 'inset(0% 100% 0% 0%)',
-          // webkitClipPath: 'inset(0% 100% 0% 0%)',
-          scaleY: 1,
+          // clipPath: 'inset(0% 0% 100% 0%)',
+          scaleY: 1.1,
           autoAlpha: 0,
         },
         {
-          // '--font-width': 120,
-          clipPath: 'inset(0% 0% 0% 0%)',
+          // clipPath: 'inset(0% 0% 0% 0%)',
           // webkitClipPath: 'inset(0% 0% 0% 0%)',
           scaleY: 1,
           autoAlpha: 1,
-          duration: 0.5,
-
+          duration: 1,
           stagger: {
-            // from: 'random',
-            each: 0.1,
+            each: 0.2,
+            // from: 'edges',
           },
+          ease: Power2.easeInOut,
+          onComplete: () => {
+            this.observer.disconnect()
+          },
+        }
+      )
+      this.tl_images.fromTo(
+        '#proyecto_' + this.proyecto.slug + ' .proyecto_data_int',
+        {
+          y: -10,
+          autoAlpha: 0,
+          // clipPath: 'inset(0% 100% 0% 0%)',
+          // webkitClipPath: 'inset(0% 100% 0% 0%)',
         },
-        '-=0.3'
+        {
+          y: 0,
+          autoAlpha: 1,
+          // clipPath: 'inset(0% 0% 0% 0%)',
+          // webkitClipPath: 'inset(0% 0% 0% 0%)',
+        },
+        '-=0.4'
       )
     },
     initTimelines() {

@@ -170,7 +170,9 @@ export default {
           'wdth' var(--font-width, 140), 'ital' 0;
         @apply uppercase text-3xl  mb-4 leading-none;
         @media (max-width: 768px) {
-          @apply text-2xl;
+          font-variation-settings: 'wght' var(--font-weight, 600),
+            'wdth' var(--font-width, 120), 'ital' 0;
+          @apply text-2xl leading-tight normal-case;
         }
       }
       .proyecto_body {
