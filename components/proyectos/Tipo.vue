@@ -165,7 +165,7 @@ export default {
     @apply opacity-0;
     .proyecto_data_content {
       @apply -mt-12;
-      ƒ h4 {
+      h4 {
         font-variation-settings: 'wght' var(--font-weight, 850),
           'wdth' var(--font-width, 140), 'ital' 0;
         @apply uppercase text-3xl  mb-4 leading-none;
