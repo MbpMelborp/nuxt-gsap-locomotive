@@ -56,9 +56,22 @@
             <span class="updaters"> Updaters </span>
           </vue-marquee-slide>
         </vue-marquee>
-        <svg viewBox="0 0 45 45" class="arrow">
+
+        <svg
+          width="45px"
+          height="45px"
+          viewBox="0 0 45 45"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          class="arrow"
+        >
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g class="chang" stroke-width="1.46" stroke="#fff">
+            <g
+              transform="translate(22.374000, 22.374000) scale(-1, 1) translate(-22.374000, -22.374000) translate(1.000000, 1.000000)"
+              stroke="#FFFFFF"
+              stroke-width="1.46"
+            >
               <line x1="42.748" y1="42.748" x2="0" y2="0"></line>
               <polyline
                 id="arr"
@@ -135,10 +148,10 @@ export default {
       this.tl_preload_arrow.fromTo(
         '.arrow',
         {
-          x: '100vw',
+          x: '-100vw',
           y: '100vw',
         },
-        { x: '-100vw', y: '-100vw', delay: 0, duration: 2 }
+        { x: '100vw', y: '-100vw', delay: 0, duration: 2 }
       )
     },
   },

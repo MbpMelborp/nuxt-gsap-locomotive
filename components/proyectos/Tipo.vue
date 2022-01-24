@@ -86,10 +86,11 @@
 
       <div
         :id="`proyecto_${proyecto.slug}_media_1`"
+        v-lazy-container="{ selector: 'img' }"
         data-played="0"
         class="proyecto_media proyecto_media_1"
       >
-        <img
+        <!-- <img
           v-lazy-load
           data-scroll
           data-scroll-speed="0.5"
@@ -100,13 +101,37 @@
           "
           :alt="proyecto.content.nombre"
           @load="loaded"
+        /> -->
+
+        <img
+          :data-src="proyecto.content.home[0].media1.filename"
+          :data-loading="
+            proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
+          "
+          :data-error="
+            proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
+          "
+          class="vlazy"
+          @loaded="testload"
         />
       </div>
       <div
         :id="`proyecto_${proyecto.slug}_media_2`"
+        v-lazy-container="{ selector: 'img' }"
         class="proyecto_media proyecto_media_2"
       >
         <img
+          :data-src="proyecto.content.home[0].media2.filename"
+          :data-loading="
+            proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
+          "
+          :data-error="
+            proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
+          "
+          class="vlazy"
+          @loaded="testload"
+        />
+        <!-- <img
           v-lazy-load
           data-scroll
           data-scroll-speed="1"
@@ -117,13 +142,14 @@
           "
           :alt="proyecto.content.nombre"
           @load="loaded"
-        />
+        /> -->
       </div>
       <div
         :id="`proyecto_${proyecto.slug}_media_3`"
+        v-lazy-container="{ selector: 'img' }"
         class="proyecto_media proyecto_media_3"
       >
-        <img
+        <!-- <img
           v-lazy-load
           data-scroll
           data-scroll-speed="-1"
@@ -134,6 +160,17 @@
           "
           :alt="proyecto.content.nombre"
           @load="loaded"
+        /> -->
+        <img
+          :data-src="proyecto.content.home[0].media3.filename"
+          :data-loading="
+            proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
+          "
+          :data-error="
+            proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
+          "
+          class="vlazy"
+          @loaded="testload"
         />
       </div>
 

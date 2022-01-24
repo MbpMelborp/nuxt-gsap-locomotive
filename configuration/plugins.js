@@ -10,6 +10,7 @@ export default {
     { src: '~/plugins/video.js', mode: 'client' },
     { src: '~/plugins/carousel.js', mode: 'client' },
     { src: '~/plugins/size.js', mode: 'client' },
+    { src: '~/plugins/lazyload.js', mode: 'client' },
 
     // { src: '~/plugins/textresponsive.js', mode: 'client' },
   ],

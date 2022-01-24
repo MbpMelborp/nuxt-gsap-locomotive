@@ -38,6 +38,26 @@ export default {
       `%c 🗂️ PROYECTOS -> mounted \n ${this.proyecto.name}`,
       `background:${this.proyecto.content.colores[0].fondo.color}; color: ${this.proyecto.content.colores[0].texto.color}`
     )
+    this.$Lazyload.$on(
+      'loaded',
+      function (
+        {
+          bindType,
+          el,
+          naturalHeight,
+          naturalWidth,
+          $parent,
+          src,
+          loading,
+          error,
+        },
+        formCache
+      ) {
+        if (window) {
+          window.dispatchEvent(new Event('resize'))
+        }
+      }
+    )
     // INICIANDO TIMELINES
     this.tl_images = gsap.timeline({
       paused: true,
@@ -127,6 +147,9 @@ export default {
     ...mapMutations({
       setMobileProyecto: 'app/setMobileProyecto',
     }),
+    testload() {
+      console.log('LOADED IMAGE')
+    },
     onClassChange(classAttrValue) {
       // const classList = classAttrValue.split(' ')
       // console.log(
