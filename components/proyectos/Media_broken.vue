@@ -3,19 +3,19 @@
     <template v-for="(item, i) in media.broken_item">
       <div
         :key="media._uid + '_' + i"
+        v-lazy-container="{ selector: 'img' }"
         class="item"
         :data-scroll="item.parallax != 0"
         :data-scroll-speed="item.parallax === 0 ? 0 : item.parallax"
         :class="item.classText"
       >
         <img
-          v-if="item.imagen.filename != ''"
-          v-lazy-load
-          class="w-full"
-          :src="item.imagen.filename + '/m/filters:quality(10)'"
+          v-if="item.imagen.filename"
           :data-src="item.imagen.filename"
+          :data-loading="item.imagen.filename + '/m/filters:quality(10)'"
+          :data-error="item.imagen.filename + '/m/filters:quality(10)'"
+          class="vlazy"
           alt="Melborp"
-          @load="loaded"
         />
         <intersect @enter="clipToRight">
           <div
@@ -81,43 +81,43 @@ export default {
   @apply w-full grid grid-cols-1 md:grid-cols-12 md:grid-rows-1;
 
   &.pgap-1 {
-    @apply gap-1;
+    @apply md:gap-1 gap-0;
   }
   &.pgap-2 {
-    @apply gap-2;
+    @apply md:gap-2 gap-0;
   }
   &.pgap-3 {
-    @apply gap-3;
+    @apply md:gap-3 gap-0;
   }
   &.pgap-4 {
-    @apply gap-4;
+    @apply md:gap-4 gap-0;
   }
   &.pgap-5 {
-    @apply gap-5;
+    @apply md:gap-5 gap-0;
   }
   &.pgap-6 {
-    @apply gap-6;
+    @apply md:gap-6 gap-0;
   }
   &.pgap-7 {
-    @apply gap-7;
+    @apply md:gap-7 gap-0;
   }
   &.pgap-8 {
-    @apply gap-8;
+    @apply md:gap-8 gap-0;
   }
   &.pgap-9 {
-    @apply gap-9;
+    @apply md:gap-9 gap-0;
   }
   &.pgap-10 {
-    @apply gap-10;
+    @apply md:gap-10 gap-0;
   }
   &.pgap-11 {
-    @apply gap-11;
+    @apply md:gap-11 gap-0;
   }
   &.pgap-12 {
-    @apply gap-12;
+    @apply md:gap-12 gap-0;
   }
   .item {
-    @apply row-span-full mb-4;
+    @apply row-auto md:row-span-full mb-4;
     &.pz-0 {
       @apply z-0;
     }
@@ -138,80 +138,80 @@ export default {
     }
 
     &.s-1 {
-      @apply col-start-1;
+      @apply md:col-start-1 col-start-1;
     }
     &.s-2 {
-      @apply col-start-2;
+      @apply md:col-start-2 col-start-1;
     }
     &.s-3 {
-      @apply col-start-3;
+      @apply md:col-start-3 col-start-1;
     }
     &.s-4 {
-      @apply col-start-4;
+      @apply md:col-start-4 col-start-1;
     }
     &.s-5 {
-      @apply col-start-5;
+      @apply md:col-start-5 col-start-1;
     }
     &.s-6 {
-      @apply col-start-6;
+      @apply md:col-start-6 col-start-1;
     }
     &.s-7 {
-      @apply col-start-7;
+      @apply md:col-start-7 col-start-1;
     }
     &.s-8 {
-      @apply col-start-8;
+      @apply md:col-start-8 col-start-1;
     }
     &.s-9 {
-      @apply col-start-9;
+      @apply md:col-start-9 col-start-1;
     }
     &.s-10 {
-      @apply col-start-10;
+      @apply md:col-start-10 col-start-1;
     }
     &.s-11 {
-      @apply col-start-11;
+      @apply md:col-start-11 col-start-1;
     }
     &.s-12 {
-      @apply col-start-12;
+      @apply md:col-start-12 col-start-1;
     }
 
     &.e-1 {
-      @apply col-end-1;
+      @apply md:col-end-1 col-end-2;
     }
     &.e-2 {
-      @apply col-end-2;
+      @apply md:col-end-2 col-end-2;
     }
     &.e-3 {
-      @apply col-end-3;
+      @apply md:col-end-3 col-end-2;
     }
     &.e-4 {
-      @apply col-end-4;
+      @apply md:col-end-4 col-end-2;
     }
     &.e-5 {
-      @apply col-end-5;
+      @apply md:col-end-5 col-end-2;
     }
     &.e-6 {
-      @apply col-end-6;
+      @apply md:col-end-6 col-end-2;
     }
     &.e-7 {
-      @apply col-end-7;
+      @apply md:col-end-7 col-end-2;
     }
     &.e-8 {
-      @apply col-end-8;
+      @apply md:col-end-8 col-end-2;
     }
     &.e-9 {
-      @apply col-end-9;
+      @apply md:col-end-9 col-end-2;
     }
     &.e-10 {
-      @apply col-end-10;
+      @apply md:col-end-10 col-end-2;
     }
     &.e-11 {
-      @apply col-end-11;
+      @apply md:col-end-11 col-end-2;
     }
     &.e-12 {
-      @apply col-end-12;
+      @apply md:col-end-12 col-end-2;
     }
     &.e-13 {
-      @apply col-end-13;
+      @apply md:col-end-13 col-end-2;
     }
 
     &.sp-1 {

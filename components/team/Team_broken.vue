@@ -45,8 +45,16 @@
             <h4>{{ item.cargo }}</h4>
           </div>
           <intersect @enter="clipToRight">
-            <div class="foto">
+            <div v-lazy-container="{ selector: 'img' }" class="foto">
               <img
+                :data-src="item.foto.filename"
+                :data-loading="item.foto.filename + '/m/filters:quality(10)'"
+                :data-error="item.foto.filename + '/m/filters:quality(10)'"
+                :alt="item.nombre"
+                class="vlazy"
+              />
+
+              <!-- <img
                 v-if="item.foto.filename != ''"
                 v-lazy-load
                 :data-src="
@@ -57,7 +65,7 @@
                 "
                 alt="Melborp"
                 @load="loaded"
-              />
+              /> -->
             </div>
           </intersect>
           <!-- <intersect @enter="clipToRight">

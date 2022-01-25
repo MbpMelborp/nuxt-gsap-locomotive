@@ -1,7 +1,7 @@
 <template>
   <div class="media_video">
     <div :class="`media_video_wrapper ${media.posicion}`">
-      <intersect @leave="stopVideo()">
+      <!-- <intersect @leave="stopVideo()">
         <video
           :ref="`video_${media._uid}`"
           v-lazy-load
@@ -13,7 +13,20 @@
           :poster="media.poster.filename"
           @load="loaded"
         ></video>
+      </intersect> -->
+
+      <intersect v-lazy-container="{ selector: 'video' }" @leave="stopVideo()">
+        <video
+          :ref="`video_${media._uid}`"
+          loading="lazy"
+          controls=""
+          :data-src="media.video.filename"
+          class="media_video_player"
+          preload="auto"
+          :poster="media.poster.filename"
+        ></video>
       </intersect>
+
       <button
         :id="`video_btn_${media._uid}`"
         v-cursor-right
@@ -26,7 +39,7 @@
         </b>
       </button>
     </div>
-    <intersect @enter="clipToRight">
+    <intersect v-if="showdesc" @enter="clipToRight">
       <div
         v-if="media.descripcion"
         :class="`descripcion media_video_content ${media.posicion}`"
@@ -50,7 +63,21 @@ export default {
       default: null,
     },
   },
-
+  data() {
+    return { showdesc: true }
+  },
+  mounted() {
+    console.log(
+      'VIEDO',
+      this.$storyapi.richTextResolver.render(this.media.descripcion)
+    )
+    if (
+      this.$storyapi.richTextResolver.render(this.media.descripcion) ===
+      '<p></p>'
+    ) {
+      this.showdesc = false
+    }
+  },
   methods: {
     playVideo(e) {
       this.$refs[`video_${this.media._uid}`].play()

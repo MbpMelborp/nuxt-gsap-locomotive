@@ -1,17 +1,17 @@
 <template>
-  <div class="media_full">
+  <div v-lazy-container="{ selector: 'img' }" class="media_full">
     <img
-      v-lazy-load
-      class="block w-full"
       :data-src="media.imagen.filename"
-      :src="media.imagen.filename + '/m/filters:quality(10)'"
+      :data-loading="media.imagen.filename + '/m/filters:quality(10)'"
+      :data-error="media.imagen.filename + '/m/filters:quality(10)'"
       alt="Melborp"
-      @load="loaded"
+      class="vlazy"
     />
   </div>
 </template>
 
 <script>
+import { gsap, Power2 } from 'gsap'
 export default {
   props: {
     media: {
@@ -27,6 +27,36 @@ export default {
     if (window) {
       window.dispatchEvent(new Event('resize'))
     }
+    this.$Lazyload.$on(
+      'loaded',
+      (
+        {
+          bindType,
+          el,
+          naturalHeight,
+          naturalWidth,
+          $parent,
+          src,
+          loading,
+          error,
+        },
+        formCache
+      ) => {
+        if (window) {
+          gsap.to(el, {
+            // clipPath: 'inset(0% 0% 0% 0%)',
+            // webkitClipPath: 'inset(0% 0% 0% 0%)',
+            scaleY: 1,
+            autoAlpha: 1,
+            duration: 0.5,
+            ease: Power2.easeInOut,
+            onStart: () => {
+              window.dispatchEvent(new Event('resize'))
+            },
+          })
+        }
+      }
+    )
   },
   methods: {
     loaded() {

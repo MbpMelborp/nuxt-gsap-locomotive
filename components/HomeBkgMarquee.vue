@@ -6,8 +6,8 @@
         <h2 class="anim">Bussines Updaters</h2>
         <span class="anim">
           y nuestro objetivo es usar la creatividad para transformar negocios
-          que puedan cambiar el mundo </span
-        >.
+          que puedan cambiar el mundo.
+        </span>
       </div>
     </div>
     <div class="marquee_top"></div>
@@ -16,17 +16,22 @@
         :show-progress="false"
         :duration="story.content.proyectos.length * 8000"
       >
-        <vue-marquee-slide v-for="(proyecto, index) in proyectos" :key="index">
+        <vue-marquee-slide
+          v-for="(proyecto, index) in proyectos"
+          :key="index"
+          v-lazy-container="{ selector: 'img' }"
+        >
           <img
-            v-lazy-load
-            class="gallery"
             :data-src="proyecto.content.home[0].media1.filename"
-            :src="
+            :data-loading="
               proyecto.content.home[0].media1.filename +
               '/m/filters:quality(10)'
             "
-            alt="Melborp"
-            @load="loaded"
+            :data-error="
+              proyecto.content.home[0].media1.filename +
+              '/m/filters:quality(10)'
+            "
+            class="gallery vlazy"
           />
         </vue-marquee-slide>
       </vue-marquee>
@@ -40,20 +45,38 @@
         <vue-marquee-slide
           v-for="(proyecto, index2) in proyectos2"
           :key="index2"
+          v-lazy-container="{ selector: 'img' }"
         >
           <img
-            v-lazy-load
-            class="gallery"
             :data-src="proyecto.content.home[0].media1.filename"
-            :src="
+            :data-loading="
               proyecto.content.home[0].media1.filename +
               '/m/filters:quality(10)'
             "
-            alt="Melborp"
-            @load="loaded"
+            :data-error="
+              proyecto.content.home[0].media1.filename +
+              '/m/filters:quality(10)'
+            "
+            class="gallery vlazy"
           />
         </vue-marquee-slide>
       </vue-marquee>
+    </div>
+    <div class="scroll">
+      <svg
+        viewBox="0 0 23 60"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g transform="translate(-10.000000, -5.000000)" fill="#FFFFFF">
+            <path
+              d="M22,5 L21.9995924,62.792 L32.3033009,52.4895924 L33.0104076,53.1966991 L21.6966991,64.5104076 L21.4995924,64.313 L21.3033009,64.5104076 L9.98959236,53.1966991 L10.6966991,52.4895924 L20.9995924,62.793 L21,5 L22,5 Z"
+            ></path>
+          </g>
+        </g>
+      </svg>
     </div>
   </div>
 </template>
@@ -87,7 +110,57 @@ export default {
     }
   },
   mounted() {
-    console.log('SCALESP', this.proyectos, this.proyectos2)
+    this.$Lazyload.$on(
+      'loading',
+      (
+        {
+          bindType,
+          el,
+          naturalHeight,
+          naturalWidth,
+          $parent,
+          src,
+          loading,
+          error,
+        },
+        formCache
+      ) => {
+        gsap.set(el, {
+          clipPath: 'inset(0% 0% 100% 0%)',
+          // scaleY: 1.1,
+          autoAlpha: 0,
+        })
+      }
+    )
+    this.$Lazyload.$on(
+      'loaded',
+      (
+        {
+          bindType,
+          el,
+          naturalHeight,
+          naturalWidth,
+          $parent,
+          src,
+          loading,
+          error,
+        },
+        formCache
+      ) => {
+        if (window) {
+          gsap.to(el, {
+            clipPath: 'inset(0% 0% 0% 0%)',
+            // scaleY: 1,
+            autoAlpha: 1,
+            duration: 0.5,
+            ease: Power2.easeInOut,
+            onStart: () => {
+              window.dispatchEvent(new Event('resize'))
+            },
+          })
+        }
+      }
+    )
     gsap.set('.marquee_int img', {
       y: () => {
         const sc = (
@@ -191,7 +264,7 @@ export default {
     'marquee'
     '.'
     'marquee2'
-    '.';
+    'scroll';
   @apply h-screen w-screen select-none overflow-hidden;
   .text_home {
     grid-column-start: l1;
@@ -241,6 +314,13 @@ export default {
     height: 42vh;
     filter: blur(4px);
     @apply object-cover mx-8 block;
+  }
+  .scroll {
+    grid-area: scroll;
+    @apply z-30 self-baseline text-white items-center flex justify-center;
+    svg {
+      @apply animate-bounce w-6;
+    }
   }
 }
 </style>

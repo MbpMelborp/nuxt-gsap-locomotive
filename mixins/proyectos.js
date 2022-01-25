@@ -40,7 +40,7 @@ export default {
     )
     this.$Lazyload.$on(
       'loaded',
-      function (
+      (
         {
           bindType,
           el,
@@ -52,7 +52,7 @@ export default {
           error,
         },
         formCache
-      ) {
+      ) => {
         if (window) {
           window.dispatchEvent(new Event('resize'))
         }

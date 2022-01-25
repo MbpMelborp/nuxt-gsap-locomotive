@@ -1,16 +1,19 @@
 <template>
   <div class="media_derecha" :class="`p${media.ubicacion}`">
     <template v-if="media.ubicacion == 'right'">
-      <div :class="`p${media.ancho}`" class="flex-shrink-0">
+      <div
+        v-lazy-container="{ selector: 'img' }"
+        :class="`p${media.ancho}`"
+        class="flex-shrink-0"
+      >
         <img
-          v-lazy-load
           data-scroll
           data-scroll-speed="1"
-          class="w-full"
-          :src="media.imagen.filename + '/m/filters:quality(10)'"
           :data-src="media.imagen.filename"
+          :data-loading="media.imagen.filename + '/m/filters:quality(10)'"
+          :data-error="media.imagen.filename + '/m/filters:quality(10)'"
+          class="w-full vlazy"
           alt="Melborp"
-          @load="loaded"
         />
       </div>
       <intersect @enter="clipToRight">
@@ -29,16 +32,19 @@
           v-html="descripcion"
         ></div>
       </intersect>
-      <div :class="`p${media.ancho}`" class="flex-shrink-0">
+      <div
+        v-lazy-container="{ selector: 'img' }"
+        :class="`p${media.ancho}`"
+        class="flex-shrink-0"
+      >
         <img
-          v-lazy-load
           data-scroll
           data-scroll-speed="1"
-          class="w-full"
-          :src="media.imagen.filename + '/m/filters:quality(10)'"
           :data-src="media.imagen.filename"
+          :data-loading="media.imagen.filename + '/m/filters:quality(10)'"
+          :data-error="media.imagen.filename + '/m/filters:quality(10)'"
+          class="w-full vlazy"
           alt="Melborp"
-          @load="loaded"
         />
       </div>
     </template>

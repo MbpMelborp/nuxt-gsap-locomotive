@@ -106,13 +106,17 @@ export default {
     'wdth' var(--font-width, 80), 'ital' 0;
   @apply w-full max-w-9xl mx-auto leading-tight;
   @media (max-width: 768px) {
+    grid-template-columns: [l1] 5% [m1] auto [m2] 5% [r1];
+    grid-template-rows: [t1] auto [b1];
+    grid-gap: 0;
+    grid-template-areas: '. media .';
     min-height: 20vh;
     height: auto;
   }
   .media_int {
     grid-area: media;
     align-self: center;
-    @apply md:py-8 py-8;
+    @apply md:py-8 py-0;
   }
 }
 </style>

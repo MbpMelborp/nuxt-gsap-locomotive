@@ -3,6 +3,7 @@
     <div
       v-for="(imagen, index) in media.imagen"
       :key="index"
+      v-lazy-container="{ selector: 'img' }"
       data-scroll
       :data-scroll-speed="`${index === 0 ? -1 : 0.3}`"
       :class="`img-wrapper ${
@@ -10,11 +11,11 @@
       }`"
     >
       <img
-        v-lazy-load
         :data-src="imagen.filename"
-        :src="imagen.filename + '/m/filters:quality(10)'"
+        :data-loading="imagen.filename + '/m/filters:quality(10)'"
+        :data-error="imagen.filename + '/m/filters:quality(10)'"
         alt="Melborp"
-        @load="loaded"
+        class="vlazy"
       />
     </div>
   </div>

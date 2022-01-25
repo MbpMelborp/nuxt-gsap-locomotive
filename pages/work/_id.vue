@@ -152,6 +152,7 @@
 
           <div
             ref="proyecto_header"
+            v-lazy-container="{ selector: 'img' }"
             data-scroll
             data-scroll-repeat="true"
             data-scroll-speed="1"
@@ -159,11 +160,15 @@
             class="imagen"
           >
             <img
-              v-lazy-load
-              :src="story.content.header[0].filename + '/m/filters:quality(10)'"
               :data-src="story.content.header[0].filename"
+              :data-loading="
+                story.content.header[0].filename + '/m/filters:quality(10)'
+              "
+              :data-error="
+                story.content.header[0].filename + '/m/filters:quality(10)'
+              "
               :alt="story.name"
-              @load="loaded"
+              class="vlazy"
             />
           </div>
         </div>
@@ -175,7 +180,8 @@
       >
       </Media>
       <div data-scroll-section class="next-project">
-        <div class="next-project-wrap">
+        <Tipo :proyecto="next_project"></Tipo>
+        <!-- <div class="next-project-wrap">
           <hr />
           <h4 class="next-project-title">Next project</h4>
           <nuxt-link
@@ -206,20 +212,26 @@
               </div>
             </div>
 
-            <div class="next-project-wrap-fl-content">
+            <div
+              v-lazy-container="{ selector: 'img' }"
+              class="next-project-wrap-fl-content"
+            >
               <img
-                v-lazy-load
                 :data-src="next_project.content.header[0].filename"
-                :src="
+                :data-loading="
+                  next_project.content.header[0].filename +
+                  '/m/filters:quality(10)'
+                "
+                :data-error="
                   next_project.content.header[0].filename +
                   '/m/filters:quality(10)'
                 "
                 :alt="next_project.content.nombre"
-                @load="loaded"
+                class="vlazy"
               />
             </div>
           </nuxt-link>
-        </div>
+        </div> -->
       </div>
     </div>
   </LocomotiveScroll>
@@ -232,6 +244,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { mapMutations, mapGetters } from 'vuex'
 // COMPONENTES
 import Media from '~/components/proyectos/Media.vue'
+import Tipo from '~/components/proyectos/Tipo.vue'
 
 import { custom } from '~/utils/transitions.js'
 import loaderm from '~/mixins/loader.js'
@@ -241,6 +254,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
   components: {
     Media,
+    Tipo,
   },
   mixins: [loaderm, head],
   transition: {
@@ -694,7 +708,7 @@ export default {
 <style lang="postcss">
 .next-project {
   min-height: 50vh;
-  @apply pt-44 w-full max-w-9xl mx-auto py-36;
+  @apply pt-8 md:pt-44 w-full max-w-9xl mx-auto;
   hr {
     @apply mx-4 md:mx-14 mb-8;
   }

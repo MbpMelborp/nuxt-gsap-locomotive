@@ -9,6 +9,57 @@ export default {
     if (window) {
       window.dispatchEvent(new Event('resize'))
     }
+    this.$Lazyload.$on(
+      'loading',
+      (
+        {
+          bindType,
+          el,
+          naturalHeight,
+          naturalWidth,
+          $parent,
+          src,
+          loading,
+          error,
+        },
+        formCache
+      ) => {
+        gsap.set(el, {
+          clipPath: 'inset(0% 0% 100% 0%)',
+          scaleY: 1.1,
+          autoAlpha: 0,
+        })
+      }
+    )
+    this.$Lazyload.$on(
+      'loaded',
+      (
+        {
+          bindType,
+          el,
+          naturalHeight,
+          naturalWidth,
+          $parent,
+          src,
+          loading,
+          error,
+        },
+        formCache
+      ) => {
+        if (window) {
+          gsap.to(el, {
+            clipPath: 'inset(0% 0% 0% 0%)',
+            scaleY: 1,
+            autoAlpha: 1,
+            duration: 0.5,
+            ease: Power2.easeInOut,
+            onStart: () => {
+              window.dispatchEvent(new Event('resize'))
+            },
+          })
+        }
+      }
+    )
   },
   methods: {
     loaded(e) {
@@ -46,22 +97,15 @@ export default {
           entry.target.loaded === undefined
         ) {
           entry.target.loaded = true
-          // console.log(
-          //   'CLIP TO RIGHT -> entra',
-          //   e[0].target,
-          //   entry.target.loaded
-          // )
           gsap.fromTo(
             entry.target,
             {
               clipPath: 'inset(0% 100% 0% 0%)',
-              // webkitClipPath: 'inset(0% 100% 0% 0%)',
-              x: -10,
+              y: 10,
             },
             {
               clipPath: 'inset(0% 0% 0% 0%)',
-              // webkitClipPath: 'inset(0% 0% 0% 0%)',
-              x: 0,
+              y: 0,
               duration: 0.5,
               delay: 1,
               stagger: i * 0.2,

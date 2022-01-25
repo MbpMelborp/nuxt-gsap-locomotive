@@ -90,19 +90,6 @@
         data-played="0"
         class="proyecto_media proyecto_media_1"
       >
-        <!-- <img
-          v-lazy-load
-          data-scroll
-          data-scroll-speed="0.5"
-          class="proy_img"
-          :data-src="proyecto.content.home[0].media1.filename"
-          :src="
-            proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
-          "
-          :alt="proyecto.content.nombre"
-          @load="loaded"
-        /> -->
-
         <img
           :data-src="proyecto.content.home[0].media1.filename"
           :data-loading="
@@ -112,7 +99,6 @@
             proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
           "
           class="vlazy"
-          @loaded="testload"
         />
       </div>
       <div
@@ -129,38 +115,13 @@
             proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
           "
           class="vlazy"
-          @loaded="testload"
         />
-        <!-- <img
-          v-lazy-load
-          data-scroll
-          data-scroll-speed="1"
-          class="proy_img"
-          :data-src="proyecto.content.home[0].media2.filename"
-          :src="
-            proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
-          "
-          :alt="proyecto.content.nombre"
-          @load="loaded"
-        /> -->
       </div>
       <div
         :id="`proyecto_${proyecto.slug}_media_3`"
         v-lazy-container="{ selector: 'img' }"
         class="proyecto_media proyecto_media_3"
       >
-        <!-- <img
-          v-lazy-load
-          data-scroll
-          data-scroll-speed="-1"
-          class="proy_img"
-          :data-src="proyecto.content.home[0].media3.filename"
-          :src="
-            proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
-          "
-          :alt="proyecto.content.nombre"
-          @load="loaded"
-        /> -->
         <img
           :data-src="proyecto.content.home[0].media3.filename"
           :data-loading="
@@ -170,7 +131,6 @@
             proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
           "
           class="vlazy"
-          @loaded="testload"
         />
       </div>
 

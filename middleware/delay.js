@@ -1,6 +1,5 @@
 import { gsap, Power2 } from 'gsap'
 const abierto = {
-  webkitClipPath: 'inset(0% 0% 0% 0%)',
   clipPath: 'inset(0% 0% 0% 0%)',
 }
 // const cerradoToLeft = {
@@ -8,7 +7,6 @@ const abierto = {
 //   clipPath: 'inset(0% 0% 0% 100%)',
 // }
 const cerradoToRight = {
-  webkitClipPath: 'inset(0% 100% 0% 0%)',
   clipPath: 'inset(0% 100% 0% 0%)',
 }
 export default ({ isServer }) => {
