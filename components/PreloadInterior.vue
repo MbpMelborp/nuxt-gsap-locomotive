@@ -7,6 +7,7 @@
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
+        class="animate-pulse"
       >
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
           <g fill="#fff">
@@ -41,8 +42,8 @@
           </g>
         </g>
       </svg>
-      <h3>Business Updaters</h3>
-      <!-- <svg class="arrow" viewBox="0 0 45 45">
+      <h3 class="animate-pulse">Business Updaters</h3>
+      <svg class="arrow" viewBox="0 0 45 45">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
           <g
             transform="translate(1.000000, 1.000000)"
@@ -64,7 +65,7 @@
             </g>
           </g>
         </g>
-      </svg> -->
+      </svg>
     </div>
   </div>
 </template>

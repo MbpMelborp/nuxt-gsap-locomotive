@@ -24,11 +24,13 @@ export default {
         },
         formCache
       ) => {
-        gsap.set(el, {
-          clipPath: 'inset(0% 0% 100% 0%)',
-          scaleY: 1.1,
-          autoAlpha: 0,
-        })
+        if (el.classList.contains('vlazy')) {
+          gsap.set(el, {
+            clipPath: 'inset(0% 0% 100% 0%)',
+            scaleY: 1.1,
+            autoAlpha: 0,
+          })
+        }
       }
     )
     this.$Lazyload.$on(
@@ -47,16 +49,18 @@ export default {
         formCache
       ) => {
         if (window) {
-          gsap.to(el, {
-            clipPath: 'inset(0% 0% 0% 0%)',
-            scaleY: 1,
-            autoAlpha: 1,
-            duration: 0.5,
-            ease: Power2.easeInOut,
-            onStart: () => {
-              window.dispatchEvent(new Event('resize'))
-            },
-          })
+          if (el.classList.contains('vlazy')) {
+            gsap.to(el, {
+              clipPath: 'inset(0% 0% 0% 0%)',
+              scaleY: 1,
+              autoAlpha: 1,
+              duration: 0.5,
+              ease: Power2.easeInOut,
+              onStart: () => {
+                window.dispatchEvent(new Event('resize'))
+              },
+            })
+          }
         }
       }
     )

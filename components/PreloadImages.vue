@@ -1,8 +1,8 @@
 <template>
   <div class="preloadp">
     <div class="preload">
-      <div v-if="proyectos" class="marquee marquee-close close">
-        <div class="marquee-preload">
+      <div v-if="proyectos" class="marquee">
+        <div class="marquee_int">
           <vue-marquee
             :show-progress="false"
             :duration="proyectos.length * 8000"
@@ -23,7 +23,7 @@
           </vue-marquee>
         </div>
       </div>
-      <div class="capa_1 close">
+      <div class="capa_1">
         <vue-marquee :show-progress="false" :duration="52011">
           <vue-marquee-slide v-for="i in 12" :key="i">
             <span class="logop">
@@ -116,25 +116,14 @@ export default {
   data() {
     return {
       proyectos: null,
-      transY: [-8, 8],
-      scale: [0.6, 1.1],
       tl_preload_salida: gsap.timeline({
         paused: true,
-        delay: 5,
+        delay: 3,
         ease: Power4.easeInOut,
-        onStart: () => {
-          gsap.fromTo(
-            '.marquee-close',
-            {
-              clipPath: 'inset(0% 0% 0% 0%)',
-            },
-            { clipPath: 'inset(0% 0% 0% 100%)', duration: 1 / 2 }
-          )
-        },
         onUpdate: () => {},
         onComplete: () => {
           if (cl) console.log('⏱️ PRELOAD -> tl_preload_salida onComplete')
-          // this.$store.commit('app/setPreload', true)
+          this.$store.commit('app/setPreload', true)
         },
       }),
       tl_preload_arrow: gsap.timeline({
@@ -143,6 +132,8 @@ export default {
         onUpdate: () => {},
         onComplete: () => {},
       }),
+      transY: [-8, 8],
+      scale: [0.6, 1.1],
     }
   },
   fetchOnServer: false,
@@ -152,6 +143,7 @@ export default {
         version: 'published',
         resolve_relations: 'page.proyectos,page.destacado',
       })
+      console.log('PRELOAD HOME ', home.data.story.content.proyectos)
       this.proyectos = home.data.story.content.proyectos
     } catch (e) {
       console.error('ERROR Home', e)
@@ -161,6 +153,41 @@ export default {
     this.$nextTick(() => {
       this.tl_preload_salida.play()
     })
+    this.initTimelines()
+
+    // this.$Lazyload.$on(
+    //   'loading',
+    //   (
+    //     {
+    //       bindType,
+    //       el,
+    //       naturalHeight,
+    //       naturalWidth,
+    //       $parent,
+    //       src,
+    //       loading,
+    //       error,
+    //     },
+    //     formCache
+    //   ) => {
+    //     gsap.set(el, {
+    //       y: () => {
+    //         const sc = (
+    //           Math.random() * (this.transY[1] - this.transY[0]) +
+    //           this.transY[0]
+    //         ).toFixed(4)
+    //         return sc
+    //       },
+    //       scale: () => {
+    //         const sc = (
+    //           Math.random() * (this.scale[1] - this.scale[0]) +
+    //           this.scale[0]
+    //         ).toFixed(4)
+    //         return sc
+    //       },
+    //     })
+    //   }
+    // )
     this.$Lazyload.$on(
       'loaded',
       (
@@ -202,7 +229,6 @@ export default {
         }
       }
     )
-    this.initTimelines()
   },
   methods: {
     initTimelines() {
@@ -225,7 +251,13 @@ export default {
         'salida+=0'
       )
       this.tl_preload_salida.fromTo(
-        '.close',
+        '.preloadp .marquee',
+        abierto,
+        { ...cerradoToLeft, duration: tiempoEntrada / 2 },
+        `salida-=${tiempoEntrada * 0.1}`
+      )
+      this.tl_preload_salida.fromTo(
+        '.capa_1',
         abierto,
         { ...cerradoToLeft, duration: tiempoEntrada / 2 },
         `salida-=${tiempoEntrada * 0.1}`
@@ -266,6 +298,7 @@ export default {
       grid-area: content;
       z-index: 1;
     }
+
     .capa_1 {
       grid-area: content;
       display: grid;
@@ -281,10 +314,10 @@ export default {
         'marquee'
         '.';
       overflow: hidden;
-      background: rgba(0, 0, 0, 0.5);
       color: #fff;
       z-index: 3;
       clip-path: inset(0% 0% 0% 0%);
+      background: rgba(0, 0, 0, 0.5);
       @media (max-width: 768px) {
         grid-template-rows: [t1] auto 250px auto [b1];
       }
@@ -364,8 +397,7 @@ export default {
         '.'
         'marquee'
         '.';
-      clip-path: inset(0% 0% 0% 0%);
-      .marquee-preload {
+      .marquee_int {
         grid-area: marquee;
         width: 100%;
         height: 100%;

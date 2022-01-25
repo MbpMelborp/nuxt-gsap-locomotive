@@ -179,33 +179,40 @@
         :media="media"
       >
       </Media>
-      <div data-scroll-section class="next-project">
-        <Tipo :proyecto="next_project"></Tipo>
-        <!-- <div class="next-project-wrap">
-          <hr />
-          <h4 class="next-project-title">Next project</h4>
+      <div
+        data-scroll-section
+        class="next-project"
+        :style="`background: ${next_project.content.colores[0].fondo.color}; color: ${next_project.content.colores[0].texto.color}`"
+      >
+        <div class="next-project-wrap">
+          <h4 class="next-project-title">Siguiente proyecto</h4>
           <nuxt-link
             v-cursor-right
-            class="next-project-wrap-fl"
+            class="
+              next-project-wrap-fl
+              hover:translate-y-8
+              transition-all
+              duration-1000
+              ease-in-out
+            "
             :to="next_project.slug"
           >
             <div class="next-project-wrap-fl-title">
-              <h5>
-                {{ next_project.content.nombre }} _
-                {{ next_project.content.cliente }}
-              </h5>
+              <h4>
+                {{ next_project.content.cliente }},
+                {{ next_project.content.nombre }}
+              </h4>
+              <h3>
+                {{ next_project.content.titular }}
+              </h3>
               <div class="next-project-wrap-fl-title-intro">
+                <div class="tipo">
+                  {{ story.content.tipo }}
+                </div>
                 <div
                   v-html="
                     $storyapi.richTextResolver.render(
                       next_project.content.intro
-                    )
-                  "
-                ></div>
-                <div
-                  v-html="
-                    $storyapi.richTextResolver.render(
-                      next_project.content.cuerpo
                     )
                   "
                 ></div>
@@ -231,7 +238,7 @@
               />
             </div>
           </nuxt-link>
-        </div> -->
+        </div>
       </div>
     </div>
   </LocomotiveScroll>
@@ -244,7 +251,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { mapMutations, mapGetters } from 'vuex'
 // COMPONENTES
 import Media from '~/components/proyectos/Media.vue'
-import Tipo from '~/components/proyectos/Tipo.vue'
 
 import { custom } from '~/utils/transitions.js'
 import loaderm from '~/mixins/loader.js'
@@ -254,7 +260,6 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
   components: {
     Media,
-    Tipo,
   },
   mixins: [loaderm, head],
   transition: {
@@ -708,7 +713,7 @@ export default {
 <style lang="postcss">
 .next-project {
   min-height: 50vh;
-  @apply pt-8 md:pt-44 w-full max-w-9xl mx-auto;
+  @apply pt-8 pb-8 md:pt-44 md:pb-32 w-full max-w-9xl mx-auto overflow-hidden;
   hr {
     @apply mx-4 md:mx-14 mb-8;
   }
@@ -726,11 +731,22 @@ export default {
       @apply flex justify-between flex-col md:flex-row items-center;
       &-title {
         @apply w-full md:w-4/12;
-        h5 {
-          @apply text-4xl mb-6;
+
+        h4 {
+          font-variation-settings: 'wght' var(--font-weight, 600),
+            'wdth' var(--font-width, 120), 'ital' 0;
+          @apply text-3xl mb-2 uppercase;
+        }
+        h3 {
+          @apply text-2xl mb-6;
         }
         &-intro {
           @apply text-sm;
+          .tipo {
+            font-variation-settings: 'wght' var(--font-weight, 500),
+              'wdth' var(--font-width, 130), 'ital' 0;
+            @apply opacity-50 mb-4;
+          }
         }
       }
       &-content {
