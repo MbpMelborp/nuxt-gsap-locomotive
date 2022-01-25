@@ -1,5 +1,5 @@
 <template>
-  <div class="contacto" data-scroll-section data-scroll-call="contacto">
+  <div class="contacto">
     <div class="contacto_int">
       <address>
         <p>
@@ -61,22 +61,22 @@ export default {}
           &.a1 {
             font-variation-settings: 'wght' var(--font-weight, 400),
               'wdth' var(--font-width, 120), 'ital' 0;
-            @apply text-6xl md:text-7xl md:col-start-3 md:col-span-8 row-start-1 row-span-1 col-span-1 uppercase;
+            @apply text-4xl md:text-7xl md:col-start-3 md:col-span-8 row-start-1 row-span-1 col-span-1 uppercase;
           }
           &.a2 {
             font-variation-settings: 'wght' var(--font-weight, 400),
               'wdth' var(--font-width, 120), 'ital' 0;
-            @apply text-right text-6xl md:text-7xl md:col-span-8 md:col-start-1 row-start-2 row-span-1 uppercase;
+            @apply text-right text-4xl md:text-7xl md:col-span-8 md:col-start-1 row-start-2 row-span-1 uppercase;
           }
           &.a3 {
             font-variation-settings: 'wght' var(--font-weight, 400),
               'wdth' var(--font-width, 130), 'ital' 0;
-            @apply text-xl self-center md:text-xl md:col-span-2 md:col-start-9 row-start-2 row-span-1 uppercase;
+            @apply text-base self-center md:text-xl md:col-span-2 md:col-start-9 row-start-2 row-span-1 uppercase;
           }
           &.a4 {
             font-variation-settings: 'wght' var(--font-weight, 200),
               'wdth' var(--font-width, 130), 'ital' 0;
-            @apply text-center text-6xl md:text-7xl md:col-span-10 md:col-start-2 row-start-3 row-span-1;
+            @apply text-center text-4xl md:text-7xl md:col-span-10 md:col-start-2 row-start-3 row-span-1;
           }
         }
       }
@@ -85,28 +85,31 @@ export default {}
   .contacto_info {
     @apply mt-auto w-full max-w-9xl mx-auto;
     .contacto_info_int {
-      @apply md:mx-16 md:grid md:grid-cols-12 md:grid-rows-2 md:gap-x-4 md:gap-y-0;
+      @apply mx-4 md:mx-16 md:grid md:grid-cols-12 md:grid-rows-2 md:gap-x-4 md:gap-y-0;
       a {
-        @apply text-sm md:text-xl transition-all duration-300 ease-in-out;
+        @apply text-2xl md:text-xl transition-all duration-300 ease-in-out;
         &:hover {
           @apply text-black-800;
         }
       }
       .mails {
         @apply md:col-start-4 md:col-span-2 md:row-start-1 md:row-span-1;
+        a {
+          @apply md:inline block mb-2 md:mb-0;
+        }
       }
       .tels {
         @apply md:col-start-7 md:col-span-2 md:row-start-1 md:row-span-1;
       }
       .hvs {
-        @apply md:col-start-10 md:col-span-2 md:row-start-1 md:row-span-1;
+        @apply mt-12 md:mt-0 md:col-start-10 md:col-span-2 md:row-start-1 md:row-span-1;
       }
       .social {
-        @apply mt-16 text-sm md:col-start-1 md:col-span-4 md:row-start-2 md:row-span-1 font-light flex space-x-4;
+        @apply mt-16   md:col-start-1 md:col-span-4 md:row-start-2 md:row-span-1 font-light flex space-x-4;
         a {
           font-variation-settings: 'wght' var(--font-weight, 200),
             'wdth' var(--font-width, 130), 'ital' 0;
-          @apply inline-block;
+          @apply inline-block text-xl md:text-sm;
         }
       }
     }

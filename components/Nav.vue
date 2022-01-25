@@ -51,7 +51,7 @@
         </nuxt-link>
       </div>
       <div class="nav">
-        <nuxt-link v-cursor-right to="/archive">
+        <!-- <nuxt-link v-cursor-right to="/archive">
           <div v-split-characters>Archive</div>
         </nuxt-link>
         <nuxt-link v-cursor-right to="/archive">
@@ -59,6 +59,9 @@
         </nuxt-link>
         <nuxt-link v-cursor-right to="/team">
           <div v-split-characters>Team</div>
+        </nuxt-link> -->
+        <nuxt-link v-cursor-right to="/contacto">
+          <div v-split-characters>Contacto</div>
         </nuxt-link>
       </div>
     </div>

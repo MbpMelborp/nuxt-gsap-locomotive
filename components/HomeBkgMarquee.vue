@@ -19,10 +19,10 @@
         <vue-marquee-slide
           v-for="(proyecto, index) in proyectos"
           :key="index"
-          v-lazy-container="{ selector: 'img' }"
+          v-lazy-container="{ selector: 'img', observer: false }"
         >
           <img
-            :data-src="proyecto.content.home[0].media1.filename"
+            :data-src="proyecto.content.home[0].media1.filename + '/m/0x400'"
             :data-loading="
               proyecto.content.home[0].media1.filename +
               '/m/filters:quality(10)'
@@ -31,7 +31,7 @@
               proyecto.content.home[0].media1.filename +
               '/m/filters:quality(10)'
             "
-            class="gallery vlazy"
+            class="gallery"
           />
         </vue-marquee-slide>
       </vue-marquee>
@@ -45,10 +45,10 @@
         <vue-marquee-slide
           v-for="(proyecto, index2) in proyectos2"
           :key="index2"
-          v-lazy-container="{ selector: 'img' }"
+          v-lazy-container="{ selector: 'img', observer: false }"
         >
           <img
-            :data-src="proyecto.content.home[0].media1.filename"
+            :data-src="proyecto.content.home[0].media1.filename + '/m/0x400'"
             :data-loading="
               proyecto.content.home[0].media1.filename +
               '/m/filters:quality(10)'
@@ -57,7 +57,7 @@
               proyecto.content.home[0].media1.filename +
               '/m/filters:quality(10)'
             "
-            class="gallery vlazy"
+            class="gallery"
           />
         </vue-marquee-slide>
       </vue-marquee>
@@ -125,11 +125,12 @@ export default {
         },
         formCache
       ) => {
-        gsap.set(el, {
-          clipPath: 'inset(0% 0% 100% 0%)',
-          // scaleY: 1.1,
-          autoAlpha: 0,
-        })
+        if (el.classList.contains('gallery')) {
+          gsap.set(el, {
+            clipPath: 'inset(0% 0% 100% 0%)',
+            autoAlpha: 0,
+          })
+        }
       }
     )
     this.$Lazyload.$on(
@@ -148,16 +149,17 @@ export default {
         formCache
       ) => {
         if (window) {
-          gsap.to(el, {
-            clipPath: 'inset(0% 0% 0% 0%)',
-            // scaleY: 1,
-            autoAlpha: 1,
-            duration: 0.5,
-            ease: Power2.easeInOut,
-            onStart: () => {
-              window.dispatchEvent(new Event('resize'))
-            },
-          })
+          if (el.classList.contains('gallery')) {
+            gsap.to(el, {
+              clipPath: 'inset(0% 0% 0% 0%)',
+              autoAlpha: 1,
+              duration: 0.5,
+              ease: Power2.easeInOut,
+              onStart: () => {
+                window.dispatchEvent(new Event('resize'))
+              },
+            })
+          }
         }
       }
     )

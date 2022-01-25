@@ -20,6 +20,7 @@ import head from './configuration/head/'
 import image from './configuration/image.js'
 import loading from './configuration/loading.js'
 import loadingIndicator from './configuration/loadingIndicator.js'
+import mode from './configuration/mode.js'
 import modules from './configuration/modules.js'
 import modulesDir from './configuration/modulesDir.js'
 import pageTransition from './configuration/pageTransition.js'
@@ -67,6 +68,7 @@ export default {
   ...image,
   ...loading,
   ...loadingIndicator,
+  ...mode,
   ...modules,
   ...modulesDir,
   ...pageTransition,

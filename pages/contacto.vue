@@ -1,6 +1,6 @@
 <template>
   <LocomotiveScroll
-    id="melborp-index"
+    id="melborp-contacto"
     ref="scroller"
     :getted-options="{
       direction: 'vertical',
@@ -15,17 +15,30 @@
     <div
       :class="'content_interior vertical' + (story != null ? ' loaded' : '')"
     >
-      <HomeTop
-        :story="story"
-        :init="story.content.proyectos[0]"
-        :animacion="story.content.animacion"
-      ></HomeTop>
+      <div data-scroll-section data-scroll-call="contacto" class="min-h-screen">
+        <Contacto></Contacto>
+      </div>
 
-      <ProyectosCont
-        v-for="(proyecto, index) in story.content.proyectos"
-        :key="Math.random() * 1000 + index"
-        :proyecto="proyecto"
-      ></ProyectosCont>
+      <!-- <header data-scroll-section>
+        <h1>
+          Vertical<br />
+          Scroll
+        </h1>
+      </header>
+      <div class="example-section" data-scroll-section>
+        <div class="example-content">
+          <div
+            class="example-big-square"
+            data-scroll
+            data-scroll-speed="-0.5"
+          />
+          <div
+            class="example-small-square"
+            data-scroll
+            data-scroll-speed="2.5"
+          />
+        </div>
+      </div> -->
     </div>
   </LocomotiveScroll>
 </template>
@@ -37,11 +50,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { mapMutations, mapGetters } from 'vuex'
 
 // COMPONENTES
-import HomeTop from '~/components/HomeTop.vue'
-import ProyectosCont from '~/components/Proyecto.vue'
-
 import { custom } from '~/utils/transitions.js'
-
+import loaderm from '~/mixins/loader.js'
 import head from '~/mixins/head.js'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -49,15 +59,10 @@ gsap.registerPlugin(ScrollTrigger)
 const cl = process.env.CONSOLE
 
 export default {
-  components: {
-    HomeTop,
-    ProyectosCont,
-  },
-  mixins: [head],
+  mixins: [loaderm, head],
   transition: {
     ...custom,
   },
-
   asyncData({ route, payload, app, error, store }) {
     try {
       if (payload) {
@@ -65,25 +70,25 @@ export default {
         return { story: payload }
       } else {
         const fullSlug =
-          route.path === '/' || route.path === '' ? 'home' : route.path
+          route.path === '/' || route.path === '' ? 'contacto' : route.path
         return app.$storyapi
           .get(`cdn/stories/${fullSlug}`, {
             version: 'published',
-            resolve_relations: 'page.proyectos,page.destacado',
           })
           .then((res) => {
-            if (cl) console.log('👌 HOME -> Storyblok', res.data.story)
+            if (cl) console.log('👌 CONTACTO -> Storyblok', res.data.story)
             return { story: res.data.story }
           })
           .catch((res) => {
             if (!res.response) {
-              if (cl) console.error('❌ HOME -> Storyblok', res)
+              if (cl) console.error('❌ CONTACTO -> Storyblok', res)
               error({
                 statusCode: 404,
                 message: 'Failed to receive content form api',
               })
             } else {
-              if (cl) console.error('❌ HOME -> Storyblok', res.response.data)
+              if (cl)
+                console.error('❌ CONTACTO -> Storyblok', res.response.data)
               error({
                 statusCode: res.response.status,
                 message: res.response.data,
@@ -92,7 +97,7 @@ export default {
           })
       }
     } catch (e) {
-      console.error('ERROR Home', e)
+      console.error('ERROR CONTACTO', e)
     }
   },
   data() {
@@ -113,39 +118,71 @@ export default {
     }
   },
   mounted() {
-    this.initScrolltrigger()
-    this.$nextTick(() => {
-      const elements = document.querySelectorAll('[data-scroll-trigger]')
-      elements.forEach((element) => this.elementAnimation(element))
-    })
-    this.setHome({
-      fondo: this.story.content.fondo.color,
-      texto: this.story.content.texto.color,
-      texto_home: this.story.content.texto_home.color,
-      texto_home_hover: this.story.content.texto_home_hover.color,
-      nav: this.story.content.navegacion.color,
-    })
-    gsap.set('body', {
-      background: this.story.content.fondo.color,
-      color: this.story.content.texto.color,
-    })
+    // this.observer = new MutationObserver((mutations) => {
+    //   for (const m of mutations) {
+    //     const newValue = m.target.getAttribute(m.attributeName)
+    //     this.$nextTick(() => {
+    //       this.onClassChange(newValue, m.oldValue)
+    //     })
+    //   }
+    // })
+    // this.observer.observe(this.$refs.proyecto_header, {
+    //   attributes: true,
+    //   attributeOldValue: true,
+    //   attributeFilter: ['class'],
+    // })
+
     this.setLoad(true)
+    this.setStyles()
   },
   methods: {
     ...mapMutations({
       setSection: 'app/setSection',
-      setHome: 'app/setHome',
+      setPage: 'app/setPage',
       setLoad: 'app/setLoad',
     }),
-
-    animateHome() {
-      gsap.from('.home_top', {
-        autoAlpha: 0,
-        duration: 2,
-        delay: 1,
-        ease: 'expo.out',
-        opacity: 0.1,
+    setStyles() {
+      setTimeout(() => {
+        if (cl)
+          console.log(
+            '👌 CONTACTO -> setTimeout',
+            document.getElementById('nav_site'),
+            this.story.content
+          )
+        document.getElementById('nav_site').classList.remove('dif')
+        gsap.set('#nav_site #logo_melborp', {
+          fill: this.story.content.navegacion.color,
+        })
+        gsap.set('#nav_site a', {
+          color: this.story.content.navegacion.color,
+        })
+      }, 1000)
+      gsap.set('body, .content_interior', {
+        background: this.story.content.fondo.color,
+        color: this.story.content.texto.color,
       })
+
+      this.setPage({
+        fondo: this.story.content.fondo.color,
+        texto: this.story.content.texto.color,
+        nav: this.story.content.navegacion.color,
+      })
+    },
+    onClassChange(classAttrValue) {
+      const classList = classAttrValue.split(' ')
+      if (classList.includes('is-inview')) {
+        document.getElementById('nav_site').classList.remove('dif')
+        gsap.set('#nav_site #logo_melborp', {
+          fill: this.story.content.nav.color,
+        })
+        gsap.set('#nav_site a', {
+          color: this.story.content.nav.color,
+        })
+        gsap.set('.body', {
+          backgroundColor: this.story.content.fondo.color,
+          color: this.story.content.texto.color,
+        })
+      }
     },
     initScrolltrigger() {
       const locomotive = this.$refs.scroller.locomotive
@@ -165,26 +202,11 @@ export default {
           }
         },
       })
-      if (this.$route.query.w) {
-        if (window) window.scrollTo(0, 0)
-        locomotive.scrollTo(`#${this.$route.query.w}`, {
-          duration: 50,
-        })
-      }
       locomotive.on('call', (value, way, obj) => {
         this.setSection(value)
-        switch (value) {
-          case 'fadeText': {
-            break
-          }
-          case 'index_home': {
-            break
-          }
-          default:
-            break
-        }
       })
     },
+
     elementAnimation(element) {
       gsap.from(element, {
         scrollTrigger: {
@@ -202,12 +224,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss">
-header {
-  align-items: center;
-  padding: 0 12.5vw;
-  display: flex;
-  @apply h-screen;
-}
-</style>

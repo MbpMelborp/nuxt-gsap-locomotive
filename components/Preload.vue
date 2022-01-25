@@ -177,28 +177,39 @@ export default {
         formCache
       ) => {
         if (el.classList.contains('marquee_proy')) {
-          gsap.to(el, {
-            y: () => {
-              const sc = (
-                Math.random() * (this.transY[1] - this.transY[0]) +
-                this.transY[0]
-              ).toFixed(4)
-              return sc
+          gsap.fromTo(
+            el,
+            {
+              y: 0,
+              scale: 0.5,
+              autoAlpha: 0,
             },
-            scale: () => {
-              const sc = (
-                Math.random() * (this.scale[1] - this.scale[0]) +
-                this.scale[0]
-              ).toFixed(4)
-              return sc
-            },
-            autoAlpha: 1,
-            duration: 0.5,
-            ease: Power4.easeInOut,
-            // onStart: () => {
-            //   window.dispatchEvent(new Event('resize'))
-            // },
-          })
+            {
+              autoAlpha: 1,
+              y: () => {
+                const sc = (
+                  Math.random() * (this.transY[1] - this.transY[0]) +
+                  this.transY[0]
+                ).toFixed(4)
+                return sc
+              },
+              scale: () => {
+                const sc = (
+                  Math.random() * (this.scale[1] - this.scale[0]) +
+                  this.scale[0]
+                ).toFixed(4)
+                return sc
+              },
+              duration: () => {
+                const dur = (Math.random() * (1 - 0.5) + 0.5).toFixed(4)
+                return dur
+              },
+              ease: Power4.easeInOut,
+              // onStart: () => {
+              //   window.dispatchEvent(new Event('resize'))
+              // },
+            }
+          )
         }
       }
     )

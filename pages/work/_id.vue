@@ -713,7 +713,7 @@ export default {
 <style lang="postcss">
 .next-project {
   min-height: 50vh;
-  @apply pt-8 pb-8 md:pt-44 md:pb-32 w-full max-w-9xl mx-auto overflow-hidden;
+  @apply pt-8 pb-8 md:pt-44 md:pb-32 w-full max-w-9xl mx-auto overflow-hidden 2xl:mb-12;
   hr {
     @apply mx-4 md:mx-14 mb-8;
   }
