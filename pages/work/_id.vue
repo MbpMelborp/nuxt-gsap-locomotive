@@ -185,13 +185,13 @@
         :style="`background: ${next_project.content.colores[0].fondo.color}; color: ${next_project.content.colores[0].texto.color}`"
       >
         <div class="next-project-wrap">
-          <h4 class="next-project-title">Siguiente proyecto</h4>
           <nuxt-link
             v-cursor-right
             class="next-project-wrap-fl"
             :to="next_project.slug"
           >
             <div class="next-project-wrap-fl-title">
+              <h4 class="next-project-title">Siguiente proyecto</h4>
               <h4>
                 {{ next_project.content.cliente }},
                 {{ next_project.content.nombre }}
@@ -210,6 +210,26 @@
                     )
                   "
                 ></div>
+                <div class="pmel nproblem">
+                  <h5>Problem</h5>
+                  <div
+                    v-html="
+                      $storyapi.richTextResolver.render(
+                        next_project.content.problem
+                      )
+                    "
+                  ></div>
+                </div>
+                <div class="pmel nmelborp">
+                  <h5>Melborp</h5>
+                  <div
+                    v-html="
+                      $storyapi.richTextResolver.render(
+                        next_project.content.melborp
+                      )
+                    "
+                  ></div>
+                </div>
               </div>
             </div>
 
@@ -218,17 +238,43 @@
               class="next-project-wrap-fl-content"
             >
               <img
-                :data-src="next_project.content.header[0].filename"
+                :data-src="next_project.content.home[0].media1.filename"
                 :data-loading="
-                  next_project.content.header[0].filename +
+                  next_project.content.home[0].media1.filename +
                   '/m/filters:quality(10)'
                 "
                 :data-error="
-                  next_project.content.header[0].filename +
+                  next_project.content.home[0].media1.filename +
                   '/m/filters:quality(10)'
                 "
                 :alt="next_project.content.nombre"
-                class="vlazy"
+                class="img_1 vlazy"
+              />
+              <img
+                :data-src="next_project.content.home[0].media2.filename"
+                :data-loading="
+                  next_project.content.home[0].media2.filename +
+                  '/m/filters:quality(10)'
+                "
+                :data-error="
+                  next_project.content.home[0].media2.filename +
+                  '/m/filters:quality(10)'
+                "
+                :alt="next_project.content.nombre"
+                class="img_2 vlazy"
+              />
+              <img
+                :data-src="next_project.content.home[0].media3.filename"
+                :data-loading="
+                  next_project.content.home[0].media3.filename +
+                  '/m/filters:quality(10)'
+                "
+                :data-error="
+                  next_project.content.home[0].media3.filename +
+                  '/m/filters:quality(10)'
+                "
+                :alt="next_project.content.nombre"
+                class="img_3 vlazy"
               />
             </div>
           </nuxt-link>
@@ -712,11 +758,11 @@ export default {
     @apply mx-4 md:mx-14 mb-8;
   }
   &-wrap {
-    @apply mx-4 md:mx-24;
+    @apply mx-4 md:mx-20;
     .next-project-title {
       font-variation-settings: 'wght' var(--font-weight, 400),
         'wdth' var(--font-width, 80), 'ital' 0;
-      @apply mb-8;
+      @apply mb-8 text-sm;
     }
     p {
       @apply mb-4;
@@ -724,8 +770,10 @@ export default {
     &-fl {
       @apply flex justify-between flex-col md:flex-row items-center md:hover:translate-y-8 transition-all duration-1000 ease-in-out;
       &-title {
-        @apply w-full md:w-4/12;
-
+        @apply w-full md:w-4/12 text-sm;
+        p {
+          @apply text-base;
+        }
         h4 {
           font-variation-settings: 'wght' var(--font-weight, 600),
             'wdth' var(--font-width, 120), 'ital' 0;
@@ -735,16 +783,40 @@ export default {
           @apply text-2xl mb-6;
         }
         &-intro {
-          @apply text-sm;
           .tipo {
             font-variation-settings: 'wght' var(--font-weight, 500),
               'wdth' var(--font-width, 130), 'ital' 0;
             @apply opacity-50 mb-4;
           }
         }
+        .pmel {
+          @apply mb-4;
+          h5 {
+            font-variation-settings: 'wght' var(--font-weight, 600),
+              'wdth' var(--font-width, 120), 'ital' 0;
+            @apply text-xl mb-2 uppercase;
+          }
+          &.nproblem {
+            p {
+              @apply line-through;
+            }
+          }
+        }
       }
       &-content {
-        @apply w-full md:w-4/12 text-sm;
+        @apply w-full md:w-7/12 text-sm md:grid md:grid-cols-12 md:grid-rows-6;
+        .img_1 {
+          @apply block md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-5;
+        }
+        .img_2 {
+          @apply hidden md:block md:col-start-7 md:col-span-6 md:row-start-3 md:row-span-4;
+        }
+        .img_3 {
+          @apply hidden md:block md:col-start-2 md:col-span-4 md:row-start-4 md:row-span-3;
+        }
+        img {
+          @apply w-full object-cover;
+        }
       }
     }
   }

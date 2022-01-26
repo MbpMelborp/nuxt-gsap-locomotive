@@ -1,12 +1,12 @@
 <template>
   <div class="media_video">
     <div :class="`media_video_wrapper ${media.posicion}`">
-      <intersect v-lazy-container="{ selector: 'video' }" @leave="stopVideo()">
+      <intersect @leave="stopVideo()">
         <video
           :ref="`video_${media._uid}`"
           loading="lazy"
           controls=""
-          :data-src="media.video.filename"
+          :src="media.video.filename"
           class="media_video_player"
           preload="auto"
           :poster="media.poster.filename"

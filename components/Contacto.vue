@@ -151,22 +151,22 @@ export default {
           &.a1 {
             font-variation-settings: 'wght' var(--font-weight, 400),
               'wdth' var(--font-width, 120), 'ital' 0;
-            @apply text-4xl md:text-6xl md:col-start-3 md:col-span-8 row-start-1 row-span-1 col-span-1 uppercase;
+            @apply text-4xl md:text-6xl xl:text-7xl md:col-start-3 md:col-span-8 row-start-1 row-span-1 col-span-1 uppercase;
           }
           &.a2 {
             font-variation-settings: 'wght' var(--font-weight, 400),
               'wdth' var(--font-width, 120), 'ital' 0;
-            @apply text-right text-4xl md:text-6xl md:col-span-8 md:col-start-1 row-start-2 row-span-1 uppercase;
+            @apply text-right text-4xl md:text-6xl xl:text-7xl md:col-span-8 md:col-start-1 row-start-2 row-span-1 uppercase;
           }
           &.a3 {
             font-variation-settings: 'wght' var(--font-weight, 400),
               'wdth' var(--font-width, 130), 'ital' 0;
-            @apply text-base self-center md:text-lg md:col-span-2 md:col-start-9 row-start-2 row-span-1 uppercase;
+            @apply text-base self-center md:text-lg xl:text-xl md:col-span-2 md:col-start-9 row-start-2 row-span-1 uppercase;
           }
           &.a4 {
             font-variation-settings: 'wght' var(--font-weight, 200),
               'wdth' var(--font-width, 130), 'ital' 0;
-            @apply text-center text-4xl md:text-5xl md:col-span-10 md:col-start-2 row-start-3 row-span-1;
+            @apply text-center text-4xl md:text-5xl xl:text-7xl md:col-span-10 md:col-start-2 row-start-3 row-span-1;
           }
         }
       }
