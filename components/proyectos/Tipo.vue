@@ -98,7 +98,7 @@
           :data-error="
             proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
           "
-          class="vlazy"
+          class="vlazy proyecto-img"
         />
       </div>
       <div
@@ -114,7 +114,7 @@
           :data-error="
             proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
           "
-          class="vlazy"
+          class="vlazy proyecto-img"
         />
       </div>
       <div
@@ -130,7 +130,7 @@
           :data-error="
             proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
           "
-          class="vlazy"
+          class="vlazy proyecto-img"
         />
       </div>
 

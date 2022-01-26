@@ -5,7 +5,7 @@
       :data-loading="media.imagen.filename + '/m/filters:quality(10)'"
       :data-error="media.imagen.filename + '/m/filters:quality(10)'"
       alt="Melborp"
-      class="vlazy"
+      class="vlazy media-full"
     />
   </div>
 </template>
@@ -43,17 +43,19 @@ export default {
         formCache
       ) => {
         if (window) {
-          gsap.to(el, {
-            // clipPath: 'inset(0% 0% 0% 0%)',
-            // webkitClipPath: 'inset(0% 0% 0% 0%)',
-            scaleY: 1,
-            autoAlpha: 1,
-            duration: 0.5,
-            ease: Power2.easeInOut,
-            onStart: () => {
-              window.dispatchEvent(new Event('resize'))
-            },
-          })
+          if (el.classList.contains('media-full')) {
+            gsap.to(el, {
+              // clipPath: 'inset(0% 0% 0% 0%)',
+              // webkitClipPath: 'inset(0% 0% 0% 0%)',
+              scaleY: 1,
+              autoAlpha: 1,
+              duration: 0.5,
+              ease: Power2.easeInOut,
+              onStart: () => {
+                window.dispatchEvent(new Event('resize'))
+              },
+            })
+          }
         }
       }
     )

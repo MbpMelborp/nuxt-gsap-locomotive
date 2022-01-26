@@ -39,6 +39,28 @@ export default {
       `background:${this.proyecto.content.colores[0].fondo.color}; color: ${this.proyecto.content.colores[0].texto.color}`
     )
     this.$Lazyload.$on(
+      'loading',
+      (
+        {
+          bindType,
+          el,
+          naturalHeight,
+          naturalWidth,
+          $parent,
+          src,
+          loading,
+          error,
+        },
+        formCache
+      ) => {
+        if (window) {
+          if (el.classList.contains('proyecto-img')) {
+            window.dispatchEvent(new Event('resize'))
+          }
+        }
+      }
+    )
+    this.$Lazyload.$on(
       'loaded',
       (
         {
@@ -54,7 +76,9 @@ export default {
         formCache
       ) => {
         if (window) {
-          window.dispatchEvent(new Event('resize'))
+          if (el.classList.contains('proyecto-img')) {
+            window.dispatchEvent(new Event('resize'))
+          }
         }
       }
     )

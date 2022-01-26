@@ -1,7 +1,7 @@
 <template>
   <div class="preloadp">
     <div class="preload">
-      <div v-if="proyectos" class="marquee marquee-close close">
+      <div v-if="proyectos && !$isMobile()" class="marquee marquee-close close">
         <div class="marquee-preload">
           <vue-marquee
             :show-progress="false"
@@ -123,13 +123,15 @@ export default {
         delay: 5,
         ease: Power4.easeInOut,
         onStart: () => {
-          gsap.fromTo(
-            '.marquee-close',
-            {
-              clipPath: 'inset(0% 0% 0% 0%)',
-            },
-            { clipPath: 'inset(0% 0% 0% 100%)', duration: 1 / 2 }
-          )
+          if (!this.$isMobile()) {
+            gsap.fromTo(
+              '.marquee-close',
+              {
+                clipPath: 'inset(0% 0% 0% 0%)',
+              },
+              { clipPath: 'inset(0% 0% 0% 100%)', duration: 1 / 2 }
+            )
+          }
         },
         onUpdate: () => {},
         onComplete: () => {
@@ -176,7 +178,7 @@ export default {
         },
         formCache
       ) => {
-        if (el.classList.contains('marquee_proy')) {
+        if (el.classList.contains('marquee_proy') && !this.$isMobile()) {
           gsap.fromTo(
             el,
             {

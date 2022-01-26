@@ -4,27 +4,27 @@
       <Video
         v-if="media.component == 'video'"
         :media="media"
-        data-scroll-trigger
+        :data-scroll-trigger="!$isMobile()"
       ></Video>
       <ImagenDerecha
         v-if="media.component == 'Imagen derecha'"
         :media="media"
-        data-scroll-trigger
+        :data-scroll-trigger="!$isMobile()"
       ></ImagenDerecha>
       <Carrusel
         v-if="media.component == 'carrusel'"
         :media="media"
-        data-scroll-trigger
+        :data-scroll-trigger="!$isMobile()"
       ></Carrusel>
       <Sobrepuestas
         v-if="media.component == 'Imagenes sobrepuestas'"
         :media="media"
-        data-scroll-trigger
+        :data-scroll-trigger="!$isMobile()"
       ></Sobrepuestas>
       <Full
         v-if="media.component == 'Imagen centro full w'"
         :media="media"
-        data-scroll-trigger
+        :data-scroll-trigger="!$isMobile()"
       ></Full>
       <div
         v-if="editor && media.component == 'broken'"
@@ -47,7 +47,7 @@
       <Broken
         v-if="media.component == 'broken'"
         :media="media"
-        data-scroll-trigger
+        :data-scroll-trigger="!$isMobile()"
       ></Broken>
     </div>
   </div>
@@ -112,6 +112,7 @@ export default {
     grid-template-areas: '. media .';
     min-height: 20vh;
     height: auto;
+    margin-bottom: 2rem;
   }
   .media_int {
     grid-area: media;

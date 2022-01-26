@@ -5,9 +5,9 @@
         :key="media._uid + '_' + i"
         v-lazy-container="{ selector: 'img' }"
         class="item"
-        :data-scroll="!$isMobile() ? item.parallax != 0 : 0"
+        :data-scroll="!$isMobile() ? item.parallax != 0 : null"
         :data-scroll-speed="
-          !$isMobile() ? (item.parallax === 0 ? 0 : item.parallax) : 0
+          !$isMobile() ? (item.parallax === 0 ? 0 : item.parallax) : null
         "
         :class="item.classText"
       >
@@ -63,10 +63,10 @@ export default {
         item.classes.push(`${item.size}`)
       }
       if (item.abajo !== '') {
-        item.classes.push(`pm-${item.abajo}`)
+        if (!this.$isMobile()) item.classes.push(`pm-${item.abajo}`)
       }
       if (item.arriba !== '') {
-        item.classes.push(`pt-${item.arriba}`)
+        if (!this.$isMobile()) item.classes.push(`pt-${item.arriba}`)
       }
       item.classText = item.classes.join(' ')
     })
@@ -119,7 +119,7 @@ export default {
     @apply md:gap-12 gap-0;
   }
   .item {
-    @apply row-auto md:row-span-full mb-4;
+    @apply row-auto md:row-span-full mb-8;
     &.pz-0 {
       @apply z-0;
     }
