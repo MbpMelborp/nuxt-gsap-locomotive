@@ -16,7 +16,7 @@
       :class="'content_interior vertical' + (story != null ? ' loaded' : '')"
     >
       <div data-scroll-section data-scroll-call="contacto" class="min-h-screen">
-        <Contacto></Contacto>
+        <Contacto :story="story"></Contacto>
       </div>
     </div>
   </LocomotiveScroll>
@@ -128,7 +128,7 @@ export default {
             document.getElementById('nav_site'),
             this.story.content
           )
-        document.getElementById('nav_site').classList.remove('dif')
+        // document.getElementById('nav_site').classList.remove('dif')
         gsap.set('#nav_site #logo_melborp', {
           fill: this.story.content.navegacion.color,
         })

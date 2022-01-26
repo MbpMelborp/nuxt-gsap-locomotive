@@ -188,13 +188,7 @@
           <h4 class="next-project-title">Siguiente proyecto</h4>
           <nuxt-link
             v-cursor-right
-            class="
-              next-project-wrap-fl
-              hover:translate-y-8
-              transition-all
-              duration-1000
-              ease-in-out
-            "
+            class="next-project-wrap-fl"
             :to="next_project.slug"
           >
             <div class="next-project-wrap-fl-title">
@@ -728,7 +722,7 @@ export default {
       @apply mb-4;
     }
     &-fl {
-      @apply flex justify-between flex-col md:flex-row items-center;
+      @apply flex justify-between flex-col md:flex-row items-center md:hover:translate-y-8 transition-all duration-1000 ease-in-out;
       &-title {
         @apply w-full md:w-4/12;
 
@@ -765,7 +759,7 @@ export default {
     'info';
   user-select: none;
   overflow: hidden;
-  @apply pt-44 w-full max-w-9xl mx-auto leading-none;
+  @apply pt-24 md:pt-44 w-full max-w-9xl mx-auto leading-none;
   @media (max-width: 768px) {
     grid-template-rows: [t1] 100px [b1] auto;
   }

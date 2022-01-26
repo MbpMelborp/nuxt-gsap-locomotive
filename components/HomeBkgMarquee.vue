@@ -17,7 +17,9 @@
         :duration="story.content.proyectos.length * 8000"
       >
         <vue-marquee-slide
-          v-for="(proyecto, index) in proyectos"
+          v-for="(proyecto, index) in !$isMobile()
+            ? proyectos
+            : story.content.proyectos"
           :key="index"
           v-lazy-container="{ selector: 'img', observer: false }"
         >
@@ -36,7 +38,7 @@
         </vue-marquee-slide>
       </vue-marquee>
     </div>
-    <div class="marquee_int2">
+    <div v-if="!$isMobile()" class="marquee_int2">
       <vue-marquee
         :show-progress="false"
         direction="right"
@@ -268,6 +270,13 @@ export default {
     'marquee2'
     'scroll';
   @apply h-screen w-screen select-none overflow-hidden;
+  @media (max-width: 768px) {
+    grid-template-rows: [t1] auto 45vh 25vh [b1];
+    grid-template-areas:
+      '.'
+      'marquee'
+      'scroll';
+  }
   .text_home {
     grid-column-start: l1;
     grid-column-end: r1;

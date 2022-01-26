@@ -120,7 +120,7 @@ export default {
       scale: [0.6, 1.1],
       tl_preload_salida: gsap.timeline({
         paused: true,
-        delay: 5,
+        delay: process.env.NODE_ENV === 'development' ? 1 : 5,
         ease: Power4.easeInOut,
         onStart: () => {
           if (!this.$isMobile()) {
