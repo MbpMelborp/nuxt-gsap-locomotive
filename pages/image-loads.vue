@@ -24,7 +24,11 @@
       </header>
       <div class="example-section" data-scroll-section>
         <div class="example-content">
-          <div class="example-big-image" data-scroll data-scroll-speed="-0.5">
+          <div
+            class="example-big-image"
+            data-scroll
+            :data-scroll-speed="!$isMobile() ? -0.5 : 0"
+          >
             <img
               data-src="https://via.placeholder.com/1000x1000"
               alt="No width hegiht image"
@@ -33,7 +37,7 @@
           <div
             class="example-small-square"
             data-scroll
-            data-scroll-speed="2.5"
+            :data-scroll-speed="!$isMobile() ? 2.5 : 0"
           />
         </div>
       </div>
@@ -42,9 +46,13 @@
           <div
             class="example-small-square"
             data-scroll
-            data-scroll-speed="2.5"
+            :data-scroll-speed="!$isMobile() ? 2.5 : 0"
           />
-          <div class="example-big-image" data-scroll data-scroll-speed="-0.5">
+          <div
+            class="example-big-image"
+            data-scroll
+            :data-scroll-speed="!$isMobile() ? 0.5 : 0"
+          >
             <img
               data-src="https://via.placeholder.com/1000x1000"
               alt="No width hegiht image"
@@ -54,7 +62,11 @@
       </div>
       <div class="example-section" data-scroll-section>
         <div class="example-content">
-          <div class="example-big-image" data-scroll data-scroll-speed="-0.5">
+          <div
+            class="example-big-image"
+            data-scroll
+            :data-scroll-speed="!$isMobile() ? 0.5 : 0"
+          >
             <img
               data-src="https://via.placeholder.com/1000x1000"
               alt="No width hegiht image"
@@ -63,7 +75,7 @@
           <div
             class="example-small-square"
             data-scroll
-            data-scroll-speed="2.5"
+            :data-scroll-speed="!$isMobile() ? 2.5 : 0"
           />
         </div>
       </div>

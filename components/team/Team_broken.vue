@@ -5,8 +5,10 @@
         :id="'team-' + item._uid"
         :key="media._uid + '_' + i"
         class="item"
-        :data-scroll="item.parallax != 0"
-        :data-scroll-speed="item.parallax === 0 ? 0 : item.parallax * 0.6"
+        :data-scroll="!$isMobile() ? item.parallax != 0 : 0"
+        :data-scroll-speed="
+          !$isMobile() ? (item.parallax === 0 ? 0 : item.parallax * 0.6) : 0
+        "
         :class="item.classText"
         @mouseover="hoverTeam('team-' + item._uid, i, true)"
         @mouseleave="hoverTeam('team-' + item._uid, i, false)"

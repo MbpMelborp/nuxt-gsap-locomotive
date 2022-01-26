@@ -5,8 +5,8 @@
       data-scroll
       data-scroll-call="index_home"
       data-scroll-repeat="true"
-      data-scroll-speed="-1"
-      data-scroll-position="top"
+      :data-scroll-speed="!$isMobile() ? -1 : 0"
+      :data-scroll-position="!$isMobile() ? 'top' : ''"
       class="image_back"
     >
       <!-- <HomeBkg v-if="animacion" :story="story"></HomeBkg> -->

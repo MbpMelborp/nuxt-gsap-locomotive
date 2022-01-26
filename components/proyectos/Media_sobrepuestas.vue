@@ -5,7 +5,7 @@
       :key="index"
       v-lazy-container="{ selector: 'img' }"
       data-scroll
-      :data-scroll-speed="`${index === 0 ? -1 : 0.3}`"
+      :data-scroll-speed="!$isMobile() ? `${index === 0 ? -1 : 0.3}` : 0"
       :class="`img-wrapper ${
         index === 0 ? `md:${media.ancho}` : 'md:flex-shrink'
       }`"

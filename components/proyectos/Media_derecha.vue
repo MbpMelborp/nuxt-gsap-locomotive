@@ -8,7 +8,7 @@
       >
         <img
           data-scroll
-          data-scroll-speed="1"
+          :data-scroll-speed="!$isMobile() ? 1 : 0"
           :data-src="media.imagen.filename"
           :data-loading="media.imagen.filename + '/m/filters:quality(10)'"
           :data-error="media.imagen.filename + '/m/filters:quality(10)'"
@@ -39,7 +39,7 @@
       >
         <img
           data-scroll
-          data-scroll-speed="1"
+          :data-scroll-speed="!$isMobile() ? 1 : 0"
           :data-src="media.imagen.filename"
           :data-loading="media.imagen.filename + '/m/filters:quality(10)'"
           :data-error="media.imagen.filename + '/m/filters:quality(10)'"

@@ -5,8 +5,10 @@
         :key="media._uid + '_' + i"
         v-lazy-container="{ selector: 'img' }"
         class="item"
-        :data-scroll="item.parallax != 0"
-        :data-scroll-speed="item.parallax === 0 ? 0 : item.parallax"
+        :data-scroll="!$isMobile() ? item.parallax != 0 : 0"
+        :data-scroll-speed="
+          !$isMobile() ? (item.parallax === 0 ? 0 : item.parallax) : 0
+        "
         :class="item.classText"
       >
         <img
