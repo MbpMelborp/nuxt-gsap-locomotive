@@ -112,7 +112,7 @@ export default {
     grid-template-areas: '. media .';
     min-height: 20vh;
     height: auto;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
   }
   .media_int {
     grid-area: media;

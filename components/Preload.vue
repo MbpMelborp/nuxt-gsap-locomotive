@@ -300,6 +300,7 @@ export default {
       clip-path: inset(0% 0% 0% 0%);
       @media (max-width: 768px) {
         grid-template-rows: [t1] auto 250px auto [b1];
+        background: rgba(0, 0, 0, 1);
       }
       .arrow {
         grid-area: marquee;
