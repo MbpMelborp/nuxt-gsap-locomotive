@@ -1,5 +1,5 @@
 import alias from './configuration/alias.js'
-import apollo from './configuration/apollo/'
+// import apollo from './configuration/apollo/'
 import axios from './configuration/axios.js'
 import build from './configuration/build.js'
 import buildModules from './configuration/buildModules.js'
@@ -20,6 +20,7 @@ import head from './configuration/head/'
 import image from './configuration/image.js'
 import loading from './configuration/loading.js'
 import loadingIndicator from './configuration/loadingIndicator.js'
+import mode from './configuration/mode.js'
 import modules from './configuration/modules.js'
 import modulesDir from './configuration/modulesDir.js'
 import pageTransition from './configuration/pageTransition.js'
@@ -34,6 +35,7 @@ import sitemap from './configuration/sitemap.js'
 import srcDir from './configuration/srcDir.js'
 import ssr from './configuration/ssr.js'
 import styleResources from './configuration/styleResources.js'
+import storyblok from './configuration/storyblok.js'
 import svgSprite from './configuration/svgSprite.js'
 import target from './configuration/target.js'
 import telemetry from './configuration/telemetry.js'
@@ -45,7 +47,7 @@ require('dotenv').config()
 
 export default {
   ...alias,
-  ...apollo,
+  // ...apollo,
   ...axios,
   ...build,
   ...buildModules,
@@ -66,6 +68,7 @@ export default {
   ...image,
   ...loading,
   ...loadingIndicator,
+  ...mode,
   ...modules,
   ...modulesDir,
   ...pageTransition,
@@ -80,6 +83,7 @@ export default {
   ...srcDir,
   ...ssr,
   ...styleResources,
+  ...storyblok,
   ...svgSprite,
   ...target,
   ...telemetry,

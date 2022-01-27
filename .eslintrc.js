@@ -27,5 +27,7 @@ module.exports = {
         message: 'Unexpected property on console object was called',
       },
     ],
+    'vue/no-v-html': 0,
+    'nuxt/no-globals-in-created': 0,
   },
 }

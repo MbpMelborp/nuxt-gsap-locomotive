@@ -122,5 +122,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import './demo.scss';
+@import '~assets/scss/global.scss';
 </style>

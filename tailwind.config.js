@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   purge: {
     content: [
       `components/**/*.{vue,js}`,
@@ -11,6 +12,15 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      gridTemplateColumns: {
+        13: 'repeat(13, minmax(0, 1fr))',
+      },
+      fontSize: {
+        'body-2xl': '1.4rem',
+        'body-xl': '1.3rem',
+        'body-lg': '1.2rem',
+        body: '1.1rem',
+      },
       colors: {
         'h-white': '#fff',
         'h-blue': '#192D4D',
@@ -30,13 +40,104 @@ module.exports = {
           800: '#625f5b',
           900: '#31302e',
         },
+        'm-yellow': {
+          100: '#fcf8e8',
+          200: '#f9f1d1',
+          300: '#f6ebbb',
+          400: '#f3e4a4',
+          500: '#f0dd8d',
+          600: '#c0b171',
+          700: '#908555',
+          800: '#605838',
+          900: '#302c1c',
+        },
+        yellow: {
+          100: '#fcf8e8',
+          200: '#f9f1d1',
+          300: '#f6ebbb',
+          400: '#f3e4a4',
+          500: '#f0dd8d',
+          600: '#c0b171',
+          700: '#908555',
+          800: '#605838',
+          900: '#302c1c',
+        },
+        teal: {
+          100: '#cceff9',
+          200: '#99dff3',
+          300: '#66ceec',
+          400: '#33bee6',
+          500: '#00aee0',
+          600: '#008bb3',
+          700: '#006886',
+          800: '#00465a',
+          900: '#00232d',
+        },
+        black: {
+          100: '#d1d5db',
+          200: '#a3abb8',
+          300: '#758194',
+          400: '#475771',
+          500: '#192d4d',
+          600: '#14243e',
+          700: '#0f1b2e',
+          800: '#0a121f',
+          900: '#05090f',
+        },
+        cream: {
+          100: '#fdfcfa',
+          200: '#fcf9f4',
+          300: '#faf5ef',
+          400: '#f9f2e9',
+          500: '#f7efe4',
+          600: '#c6bfb6',
+          700: '#948f89',
+          800: '#63605b',
+          900: '#31302e',
+        },
+        brown: {
+          100: '#e6dfd9',
+          200: '#cdc0b3',
+          300: '#b4a08c',
+          400: '#9b8166',
+          500: '#826140',
+          600: '#684e33',
+          700: '#4e3a26',
+          800: '#34271a',
+          900: '#1a130d',
+        },
+        purple: {
+          100: '#ccccff',
+          200: '#9999ff',
+          300: '#6666ff',
+          400: '#3333ff',
+          500: '#0000ff',
+          600: '#0000cc',
+          700: '#000099',
+          800: '#000066',
+          900: '#000033',
+        },
       },
+      lineHeight: {
+        small: '0.7em',
+        md: '0.9em',
+      },
+      maxWidth: {
+        '9xl': '1536px',
+        '10xl': '1920px',
+      },
+      objectPosition: {
+        half: '20% 50%',
+      },
+    },
+    debugScreens: {
+      position: ['bottom', 'left'],
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('tailwindcss-debug-screens')],
   experimental: {
     applyComplexClasses: true,
   },

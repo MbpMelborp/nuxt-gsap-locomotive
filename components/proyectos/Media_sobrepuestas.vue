@@ -1,0 +1,58 @@
+<template>
+  <div :class="`media_sobrepuestas p-${media.alinear}`">
+    <div
+      v-for="(imagen, index) in media.imagen"
+      :key="index"
+      v-lazy-container="{ selector: 'img' }"
+      data-scroll
+      :data-scroll-speed="!$isMobile() ? `${index === 0 ? -1 : 0.3}` : 0"
+      :class="`img-wrapper ${
+        index === 0 ? `md:${media.ancho}` : 'md:flex-shrink'
+      }`"
+    >
+      <img
+        :data-src="imagen.filename + '/m/'"
+        :data-loading="imagen.filename + '/m/filters:quality(10)'"
+        :data-error="imagen.filename + '/m/filters:quality(10)'"
+        alt="Melborp"
+        class="vlazy"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import loaderm from '~/mixins/loader.js'
+export default {
+  mixins: [loaderm],
+  props: {
+    media: {
+      type: Object,
+      default: null,
+    },
+  },
+  data() {
+    return {}
+  },
+}
+</script>
+<style lang="postcss" scoped>
+.media_sobrepuestas {
+  @apply w-full flex md:flex-row flex-col;
+  &.p-items-center {
+    @apply items-center;
+  }
+  &.p-items-baseline {
+    @apply items-baseline;
+  }
+  &.p-items-start {
+    @apply items-start;
+  }
+  .img-wrapper {
+    @apply md:px-8 px-0 mb-8;
+    img {
+      @apply my-8 block w-full;
+    }
+  }
+}
+</style>

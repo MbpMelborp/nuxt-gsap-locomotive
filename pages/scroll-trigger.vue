@@ -48,6 +48,7 @@ export default {
       import(/* webpackPrefetch: true */ '@/components/box-component.vue'),
   },
   mounted() {
+    console.log('HASH :', this.$route.hash)
     this.initScrolltrigger()
 
     this.$nextTick(() => {
@@ -91,7 +92,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-@import './demo.scss';
-</style>
