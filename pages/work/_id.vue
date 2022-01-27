@@ -181,103 +181,109 @@
       </Media>
       <div
         data-scroll-section
-        class="next-project"
+        class="w-full"
         :style="`background: ${next_project.content.colores[0].fondo.color}; color: ${next_project.content.colores[0].texto.color}`"
       >
-        <div class="next-project-wrap">
-          <nuxt-link
-            v-cursor-right
-            class="next-project-wrap-fl"
-            :to="next_project.slug"
-          >
-            <div class="next-project-wrap-fl-title">
-              <h4 class="next-project-title">Siguiente proyecto</h4>
-              <h4>
-                {{ next_project.content.cliente }},
-                {{ next_project.content.nombre }}
-              </h4>
-              <h3>
-                {{ next_project.content.titular }}
-              </h3>
-              <div class="next-project-wrap-fl-title-intro">
-                <div class="tipo">
-                  {{ story.content.tipo }}
-                </div>
-                <div
-                  v-html="
-                    $storyapi.richTextResolver.render(
-                      next_project.content.intro
-                    )
-                  "
-                ></div>
-                <div class="pmel nproblem">
-                  <h5>Problem</h5>
+        <div class="next-project">
+          <div class="next-project-wrap">
+            <nuxt-link
+              v-cursor-right
+              class="next-project-wrap-fl"
+              :to="next_project.slug"
+            >
+              <div class="next-project-wrap-fl-title">
+                <h4 class="next-project-title">Siguiente proyecto</h4>
+                <h4>
+                  {{ next_project.content.cliente }},
+                  {{ next_project.content.nombre }}
+                </h4>
+                <h3>
+                  {{ next_project.content.titular }}
+                </h3>
+                <div class="next-project-wrap-fl-title-intro">
+                  <div class="tipo">
+                    {{ story.content.tipo }}
+                  </div>
                   <div
                     v-html="
                       $storyapi.richTextResolver.render(
-                        next_project.content.problem
+                        next_project.content.intro
                       )
                     "
                   ></div>
-                </div>
-                <div class="pmel nmelborp">
-                  <h5>Melborp</h5>
-                  <div
-                    v-html="
-                      $storyapi.richTextResolver.render(
-                        next_project.content.melborp
-                      )
-                    "
-                  ></div>
+                  <div class="pmel nproblem">
+                    <h5>Problem</h5>
+                    <div
+                      v-html="
+                        $storyapi.richTextResolver.render(
+                          next_project.content.problem
+                        )
+                      "
+                    ></div>
+                  </div>
+                  <div class="pmel nmelborp">
+                    <h5>Melborp</h5>
+                    <div
+                      v-html="
+                        $storyapi.richTextResolver.render(
+                          next_project.content.melborp
+                        )
+                      "
+                    ></div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div
-              v-lazy-container="{ selector: 'img' }"
-              class="next-project-wrap-fl-content"
-            >
-              <img
-                :data-src="next_project.content.home[0].media1.filename"
-                :data-loading="
-                  next_project.content.home[0].media1.filename +
-                  '/m/filters:quality(10)'
-                "
-                :data-error="
-                  next_project.content.home[0].media1.filename +
-                  '/m/filters:quality(10)'
-                "
-                :alt="next_project.content.nombre"
-                class="img_1 vlazy"
-              />
-              <img
-                :data-src="next_project.content.home[0].media2.filename"
-                :data-loading="
-                  next_project.content.home[0].media2.filename +
-                  '/m/filters:quality(10)'
-                "
-                :data-error="
-                  next_project.content.home[0].media2.filename +
-                  '/m/filters:quality(10)'
-                "
-                :alt="next_project.content.nombre"
-                class="img_2 vlazy"
-              />
-              <img
-                :data-src="next_project.content.home[0].media3.filename"
-                :data-loading="
-                  next_project.content.home[0].media3.filename +
-                  '/m/filters:quality(10)'
-                "
-                :data-error="
-                  next_project.content.home[0].media3.filename +
-                  '/m/filters:quality(10)'
-                "
-                :alt="next_project.content.nombre"
-                class="img_3 vlazy"
-              />
-            </div>
-          </nuxt-link>
+              <div
+                v-lazy-container="{ selector: 'img' }"
+                class="next-project-wrap-fl-content"
+              >
+                <img
+                  :data-src="next_project.content.home[0].media1.filename"
+                  :data-loading="
+                    next_project.content.home[0].media1.filename +
+                    '/m/filters:quality(10)'
+                  "
+                  :data-error="
+                    next_project.content.home[0].media1.filename +
+                    '/m/filters:quality(10)'
+                  "
+                  :alt="next_project.content.nombre"
+                  class="img_1 vlazy"
+                />
+                <img
+                  :data-scroll="!$isMobile() ? true : false"
+                  :data-scroll-speed="!$isMobile() ? 0.5 : 0"
+                  :data-src="next_project.content.home[0].media2.filename"
+                  :data-loading="
+                    next_project.content.home[0].media2.filename +
+                    '/m/filters:quality(10)'
+                  "
+                  :data-error="
+                    next_project.content.home[0].media2.filename +
+                    '/m/filters:quality(10)'
+                  "
+                  :alt="next_project.content.nombre"
+                  class="img_2 vlazy"
+                />
+                <img
+                  :data-scroll="!$isMobile() ? true : false"
+                  :data-scroll-speed="!$isMobile() ? -0.5 : 0"
+                  :data-src="next_project.content.home[0].media3.filename"
+                  :data-loading="
+                    next_project.content.home[0].media3.filename +
+                    '/m/filters:quality(10)'
+                  "
+                  :data-error="
+                    next_project.content.home[0].media3.filename +
+                    '/m/filters:quality(10)'
+                  "
+                  :alt="next_project.content.nombre"
+                  class="img_3 vlazy"
+                />
+              </div>
+            </nuxt-link>
+          </div>
         </div>
       </div>
     </div>
@@ -768,7 +774,7 @@ export default {
       @apply mb-4;
     }
     &-fl {
-      @apply flex justify-between flex-col md:flex-row items-center md:hover:translate-y-8 transition-all duration-1000 ease-in-out;
+      @apply flex justify-between flex-col md:flex-row items-center transition-all duration-1000 ease-in-out;
       &-title {
         @apply w-full md:w-4/12 text-sm;
         p {
@@ -806,17 +812,31 @@ export default {
       &-content {
         @apply w-full md:w-7/12 text-sm md:grid md:grid-cols-12 md:grid-rows-6;
         .img_1 {
+          transition: all 0.5s ease-in-out;
           @apply block md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-5;
         }
         .img_2 {
-          @apply hidden md:block md:col-start-7 md:col-span-6 md:row-start-3 md:row-span-4;
+          transition: all 0.5s ease-in-out;
+          @apply delay-75 hidden md:block md:col-start-7 md:col-span-6 md:row-start-3 md:row-span-4;
         }
         .img_3 {
-          @apply hidden md:block md:col-start-2 md:col-span-4 md:row-start-4 md:row-span-3;
+          transition: all 0.5s ease-in-out;
+          @apply delay-100 hidden md:block md:col-start-2 md:col-span-4 md:row-start-4 md:row-span-3;
         }
         img {
           @apply w-full object-cover;
         }
+      }
+    }
+    &-fl:hover {
+      .img_1 {
+        transform: scale(0.8) !important;
+      }
+      .img_2 {
+        transform: scale(1.1) !important;
+      }
+      .img_3 {
+        transform: scale(1.3) !important;
       }
     }
   }
