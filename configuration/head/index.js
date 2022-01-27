@@ -7,7 +7,6 @@ export default {
     title: 'MELBORP - Business Updaters',
     htmlAttrs: { lang: 'es' },
     link: [
-      // ...fonts,
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'preconnect', href: '//a.storyblok.com' },
     ],
