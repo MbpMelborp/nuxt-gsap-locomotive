@@ -2,7 +2,8 @@
   <div class="preload_inner">
     <div class="capa_1"></div>
     <div class="capa_2">
-      <svg
+      <img src="~/assets/images/melborp.svg" alt="Melborp" />
+      <!-- <svg
         viewBox="0 0 181 54"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -40,9 +41,10 @@
             ></path>
           </g>
         </g>
-      </svg>
+      </svg> -->
       <h3>Business Updaters</h3>
-      <svg class="arrow" viewBox="0 0 45 45">
+      <img class="arrow" src="~/assets/images/arrow.png" alt="Melborp" />
+      <!-- <svg class="arrow" viewBox="0 0 45 45">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
           <g
             transform="translate(1.000000, 1.000000)"
@@ -64,7 +66,7 @@
             </g>
           </g>
         </g>
-      </svg>
+      </svg> -->
     </div>
   </div>
 </template>
@@ -94,7 +96,8 @@ export default {}
     z-index: 2;
     background: #000;
     @apply flex fixed flex-col justify-center items-center w-screen h-screen;
-    svg {
+    svg,
+    img {
       width: 150px;
     }
     h3 {
