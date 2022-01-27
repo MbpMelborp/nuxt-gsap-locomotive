@@ -86,6 +86,9 @@ nav {
       @apply block w-full;
       svg {
         @apply w-full;
+        #logo_melborp {
+          transition: all 0.5s ease-in-out;
+        }
       }
     }
   }
@@ -93,6 +96,7 @@ nav {
 .nav {
   @apply justify-end items-center flex;
   a {
+    transition: all 0.5s ease-in-out;
     @apply uppercase text-xs text-white block mx-2;
   }
 }

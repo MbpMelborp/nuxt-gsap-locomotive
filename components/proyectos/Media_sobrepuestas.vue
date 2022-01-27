@@ -11,7 +11,7 @@
       }`"
     >
       <img
-        :data-src="imagen.filename"
+        :data-src="imagen.filename + '/m/'"
         :data-loading="imagen.filename + '/m/filters:quality(10)'"
         :data-error="imagen.filename + '/m/filters:quality(10)'"
         alt="Melborp"

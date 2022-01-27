@@ -84,7 +84,7 @@
     </div>
     <div v-lazy-container="{ selector: 'img' }" class="contacto-img-1">
       <img
-        :data-src="story.content.imagenes[0].filename"
+        :data-src="story.content.imagenes[0].filename + '/m/'"
         :data-loading="
           story.content.imagenes[0].filename + '/m/filters:quality(10)'
         "
@@ -96,7 +96,7 @@
     </div>
     <div v-lazy-container="{ selector: 'img' }" class="contacto-img-2">
       <img
-        :data-src="story.content.imagenes[1].filename"
+        :data-src="story.content.imagenes[1].filename + '/m/'"
         :data-loading="
           story.content.imagenes[1].filename + '/m/filters:quality(10)'
         "

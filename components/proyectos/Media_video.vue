@@ -9,7 +9,7 @@
           :src="media.video.filename"
           class="media_video_player"
           preload="auto"
-          :poster="media.poster.filename"
+          :poster="media.poster.filename + '/m/'"
         ></video>
       </intersect>
 
@@ -17,7 +17,7 @@
         :id="`video_btn_${media._uid}`"
         v-cursor-right
         class="media_video_poster"
-        :lazy-background="media.poster.filename"
+        :lazy-background="media.poster.filename + '/m/'"
         @click="playVideo"
       >
         <b class="t proy_link btn-mbp hvr-sweep-to-top">

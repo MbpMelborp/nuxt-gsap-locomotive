@@ -13,7 +13,7 @@
       >
         <img
           v-if="item.imagen.filename"
-          :data-src="item.imagen.filename"
+          :data-src="item.imagen.filename + '/m/'"
           :data-loading="item.imagen.filename + '/m/filters:quality(10)'"
           :data-error="item.imagen.filename + '/m/filters:quality(10)'"
           class="vlazy"

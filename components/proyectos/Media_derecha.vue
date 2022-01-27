@@ -9,7 +9,7 @@
         <img
           data-scroll
           :data-scroll-speed="!$isMobile() ? 1 : 0"
-          :data-src="media.imagen.filename"
+          :data-src="media.imagen.filename + '/m/'"
           :data-loading="media.imagen.filename + '/m/filters:quality(10)'"
           :data-error="media.imagen.filename + '/m/filters:quality(10)'"
           class="w-full vlazy"
@@ -40,7 +40,7 @@
         <img
           data-scroll
           :data-scroll-speed="!$isMobile() ? 1 : 0"
-          :data-src="media.imagen.filename"
+          :data-src="media.imagen.filename + '/m/'"
           :data-loading="media.imagen.filename + '/m/filters:quality(10)'"
           :data-error="media.imagen.filename + '/m/filters:quality(10)'"
           class="w-full vlazy"

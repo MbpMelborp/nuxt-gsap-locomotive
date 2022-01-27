@@ -1,7 +1,7 @@
 <template>
   <div v-lazy-container="{ selector: 'img' }" class="media_full">
     <img
-      :data-src="media.imagen.filename"
+      :data-src="media.imagen.filename + '/m/'"
       :data-loading="media.imagen.filename + '/m/filters:quality(10)'"
       :data-error="media.imagen.filename + '/m/filters:quality(10)'"
       alt="Melborp"

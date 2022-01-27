@@ -82,18 +82,6 @@
             <img class="demo-1__gallery__image" src="/proy/12.jpg" />
           </figure>
         </div>
-        <!-- <div class="demo-1__gallery">
-          <figure
-            v-for="(proyecto, index) in story.content.proyectos"
-            :key="Math.random() * 1000 + index"
-            class="demo-1__gallery__figure"
-          >
-            <img
-              class="demo-1__gallery__image"
-              :src="proyecto.content.home[0].media1.filename"
-            />
-          </figure>
-        </div> -->
       </div>
     </main>
   </div>

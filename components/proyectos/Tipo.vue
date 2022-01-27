@@ -91,7 +91,7 @@
         class="proyecto_media proyecto_media_1"
       >
         <img
-          :data-src="proyecto.content.home[0].media1.filename"
+          :data-src="proyecto.content.home[0].media1.filename + '/m/'"
           :data-loading="
             proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
           "
@@ -107,7 +107,7 @@
         class="proyecto_media proyecto_media_2"
       >
         <img
-          :data-src="proyecto.content.home[0].media2.filename"
+          :data-src="proyecto.content.home[0].media2.filename + '/m/'"
           :data-loading="
             proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
           "
@@ -123,7 +123,7 @@
         class="proyecto_media proyecto_media_3"
       >
         <img
-          :data-src="proyecto.content.home[0].media3.filename"
+          :data-src="proyecto.content.home[0].media3.filename + '/m/'"
           :data-loading="
             proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
           "

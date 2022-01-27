@@ -2,7 +2,7 @@
   <img
     v-lazy-load
     :src="story.content.imagen.filename + '/m/filters:quality(10)'"
-    :data-src="story.content.imagen.filename"
+    :data-src="story.content.imagen.filename + '/m/'"
     alt="Melborp"
     @load="loaded"
   />

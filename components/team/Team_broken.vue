@@ -49,7 +49,7 @@
           <intersect @enter="clipToRight">
             <div v-lazy-container="{ selector: 'img' }" class="foto">
               <img
-                :data-src="item.foto.filename"
+                :data-src="item.foto.filename + '/m/'"
                 :data-loading="item.foto.filename + '/m/filters:quality(10)'"
                 :data-error="item.foto.filename + '/m/filters:quality(10)'"
                 :alt="item.nombre"

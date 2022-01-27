@@ -160,7 +160,7 @@
             class="imagen"
           >
             <img
-              :data-src="story.content.header[0].filename"
+              :data-src="story.content.header[0].filename + '/m/'"
               :data-loading="
                 story.content.header[0].filename + '/m/filters:quality(10)'
               "
@@ -239,7 +239,9 @@
                 class="next-project-wrap-fl-content"
               >
                 <img
-                  :data-src="next_project.content.home[0].media1.filename"
+                  :data-src="
+                    next_project.content.home[0].media1.filename + '/m/'
+                  "
                   :data-loading="
                     next_project.content.home[0].media1.filename +
                     '/m/filters:quality(10)'
@@ -254,7 +256,9 @@
                 <img
                   :data-scroll="!$isMobile() ? true : false"
                   :data-scroll-speed="!$isMobile() ? 0.5 : 0"
-                  :data-src="next_project.content.home[0].media2.filename"
+                  :data-src="
+                    next_project.content.home[0].media2.filename + '/m/'
+                  "
                   :data-loading="
                     next_project.content.home[0].media2.filename +
                     '/m/filters:quality(10)'
@@ -269,7 +273,9 @@
                 <img
                   :data-scroll="!$isMobile() ? true : false"
                   :data-scroll-speed="!$isMobile() ? -0.5 : 0"
-                  :data-src="next_project.content.home[0].media3.filename"
+                  :data-src="
+                    next_project.content.home[0].media3.filename + '/m/'
+                  "
                   :data-loading="
                     next_project.content.home[0].media3.filename +
                     '/m/filters:quality(10)'
