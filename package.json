@@ -81,6 +81,7 @@
     "jest": "^26.6.3",
     "node-sass": "^6.0.0",
     "normalize-wheel": "^1.0.1",
+    "nuxt-compress": "^5.0.0",
     "ogl": "^0.0.60",
     "prettier": "^2.3.0",
     "raw-loader": "^3.0.0",

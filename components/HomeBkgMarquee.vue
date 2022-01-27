@@ -214,6 +214,12 @@ export default {
       y: 0,
       ease: Power2.easeInOut,
     })
+    gsap.to('.bu', {
+      '--font-weight': 500,
+      duration: 0.8,
+      delay: 3.2,
+      ease: Power2.easeInOut,
+    })
     gsap.to('.marquee_int2, .marquee_int', {
       duration: 0.4,
       stagger: 0.2,
@@ -287,7 +293,7 @@ export default {
     .text_home_int {
       @apply text-white text-center w-full md:max-w-9xl mx-auto;
       h2 {
-        font-variation-settings: 'wght' var(--font-weight, 500),
+        font-variation-settings: 'wght' var(--font-weight, 200),
           'wdth' var(--font-width, 180), 'ital' 0;
         @apply text-5xl md:text-9xl leading-none my-1;
       }

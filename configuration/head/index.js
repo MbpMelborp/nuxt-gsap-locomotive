@@ -9,7 +9,7 @@ export default {
     link: [
       // ...fonts,
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'preconnect', href: '//img2.storyblok.com' },
+      { rel: 'preconnect', href: '//a.storyblok.com' },
     ],
     script: [
       {
