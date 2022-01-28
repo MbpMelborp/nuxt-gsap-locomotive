@@ -67,8 +67,6 @@ import { mapGetters } from 'vuex'
 import HomeBkg from '~/components/HomeBkg.vue'
 import HomeBkgImage from '~/components/HomeBkgImage.vue'
 
-const cl = process.env.CONSOLE
-
 export default {
   components: {
     HomeBkg,
@@ -89,8 +87,7 @@ export default {
     },
   },
   data() {
-    if (cl)
-      console.log('👌 HOMETOP -> data', this.$store.getters['app/getLoad'])
+    console.log('👌 HOMETOP -> data', this.$store.getters['app/getLoad'])
     return {
       tl_home: gsap.timeline({ paused: true, ease: Expo.easeOut }),
       tl_work: gsap.timeline({ paused: true, ease: Expo.easeOut }),

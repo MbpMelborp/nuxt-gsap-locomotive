@@ -7,25 +7,10 @@
 // Vue.use(CursorFx)
 
 import Vue from 'vue'
-// const animateOnScrollObserver = new IntersectionObserver(
-//   (entries, animateOnScrollObserver) => {
-//     entries.forEach((entry) => {
-//       if (entry.isIntersecting) {
-//         entry.target.classList.add('enter')
-//         animateOnScrollObserver.unobserve(entry.target)
-//       }
-//     })
-//   }
-// )
-const cons = false
+
 function addClass(cl) {
   const cur = document.getElementsByClassName('cursor')
   if (cur.length > 0) {
-    if (cons)
-      console.log(
-        'DIRECTIVE CURSOR -> cursor-left',
-        document.getElementsByClassName('cursor')
-      )
     cur[0].classList.add(cl)
   }
 }

@@ -155,10 +155,7 @@ export default {
 
     this.onClassChange(elemt.getAttribute('class'))
   },
-  // beforeMount() {
-  //   console.log('PROYECTOS -> beforeMount', this.tl_hover)
-  //   this.tl_hover.play(0).pause()
-  // },
+
   destroyed() {},
   beforeDestroy() {
     console.log('PROYECTOS -> destroyed', this.proyecto.slug)
@@ -171,9 +168,7 @@ export default {
     ...mapMutations({
       setMobileProyecto: 'app/setMobileProyecto',
     }),
-    testload() {
-      console.log('LOADED IMAGE')
-    },
+    testload() {},
     onClassChange(classAttrValue) {
       // const classList = classAttrValue.split(' ')
       // console.log(
@@ -459,7 +454,7 @@ export default {
       )
       this.tl_hover.fromTo(
         '#proyecto_' + this.proyecto.slug + ' .proyecto_arrow ',
-        { stroke: 'transparent', opacity: 0, x: '20vw', y: '20vh' },
+        { stroke: 'transparent', opacity: 0, x: '-20vw', y: '20vh' },
         {
           stroke: this.proyecto.content.colores[0].texto.color,
           x: 0,

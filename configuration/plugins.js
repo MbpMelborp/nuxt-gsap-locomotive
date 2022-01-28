@@ -12,6 +12,7 @@ export default {
     { src: '~/plugins/size.js', mode: 'client' },
     { src: '~/plugins/lazyload.js', mode: 'client' },
     { src: '~/plugins/ismobile.js', mode: 'client' },
+    { src: '~/plugins/console.js', mode: 'client' },
 
     // { src: '~/plugins/textresponsive.js', mode: 'client' },
   ],

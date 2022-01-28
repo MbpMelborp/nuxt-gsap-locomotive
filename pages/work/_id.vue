@@ -309,6 +309,7 @@ import loaderm from '~/mixins/loader.js'
 import head from '~/mixins/head.js'
 
 gsap.registerPlugin(ScrollTrigger)
+
 export default {
   components: {
     Media,
@@ -335,7 +336,7 @@ export default {
             const tituloArray = res.data.story.content.nombre.split(' ')
             const tituloSize = tituloArray.length
             const tituloHalf = Math.ceil(tituloSize / 2)
-            console.log('RESULTADOS', res.data.story.content.resultados)
+
             const tituloParts = []
             for (let i = tituloHalf; i > 0; i--) {
               tituloParts.push(
@@ -347,6 +348,7 @@ export default {
               version: 'published',
               excluding_ids: res.data.story.id,
             })
+
             console.log(
               'PROYECTO -> Storyblok',
               res.data.story.content,

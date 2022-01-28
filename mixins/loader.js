@@ -95,7 +95,6 @@ export default {
     },
     clipToRight(e) {
       e.forEach(function (entry, i) {
-        // console.log('CLIP TO RIGHT ->', e[0].target, entry.target.loaded)
         if (
           entry.target.loaded === false ||
           entry.target.loaded === undefined

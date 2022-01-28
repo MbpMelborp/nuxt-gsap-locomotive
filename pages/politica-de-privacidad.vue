@@ -15,8 +15,42 @@
     <div
       :class="'content_interior vertical' + (story != null ? ' loaded' : '')"
     >
-      <div data-scroll-section data-scroll-call="contacto" class="min-h-screen">
-        <Contacto :story="story"></Contacto>
+      <div
+        data-scroll-section
+        data-scroll-call="pagina-basica"
+        class="min-h-screen"
+      >
+        <div class="pagina-interior">
+          <div class="pagina-interior-wrap">
+            <h2>
+              <div
+                v-for="(parte, index) in tituloParts"
+                :key="'p_' + index"
+                :class="'titulo_' + index"
+              >
+                <span
+                  v-for="(palabra, index2) in parte"
+                  :key="'s_' + index + '-' + index2"
+                  :class="
+                    tituloChars < 10
+                      ? 'psmall'
+                      : tituloChars >= 10 && tituloChars < 20
+                      ? 'pmid'
+                      : tituloChars >= 20
+                      ? 'plarge'
+                      : ''
+                  "
+                >
+                  {{ palabra }}&nbsp;
+                </span>
+              </div>
+            </h2>
+            <div
+              class="cuerpo"
+              v-html="$storyapi.richTextResolver.render(story.content.cuerpo)"
+            ></div>
+          </div>
+        </div>
       </div>
     </div>
   </LocomotiveScroll>
@@ -53,18 +87,35 @@ export default {
             version: 'published',
           })
           .then((res) => {
-            console.log('👌 CONTACTO -> Storyblok', res.data.story)
-            return { story: res.data.story }
+            console.log('👌 PAGINA BASICA -> Storyblok', res.data.story)
+
+            const tituloChars = res.data.story.name.split('').length
+            const tituloArray = res.data.story.name.split(' ')
+            const tituloSize = tituloArray.length
+            const tituloHalf = Math.ceil(tituloSize / 2)
+            const tituloParts = []
+            for (let i = tituloHalf; i > 0; i--) {
+              tituloParts.push(
+                tituloArray.splice(0, Math.ceil(tituloArray.length / i))
+              )
+            }
+            return {
+              story: res.data.story,
+              tituloParts,
+              tituloHalf,
+              tituloSize,
+              tituloChars,
+            }
           })
           .catch((res) => {
             if (!res.response) {
-              console.error('❌ CONTACTO -> Storyblok', res)
+              console.error('❌ PAGINA BASICA -> Storyblok', res)
               error({
                 statusCode: 404,
                 message: 'Failed to receive content form api',
               })
             } else {
-              console.error('❌ CONTACTO -> Storyblok', res.response.data)
+              console.error('❌ PAGINA BASICA -> Storyblok', res.response.data)
               error({
                 statusCode: res.response.status,
                 message: res.response.data,
@@ -94,20 +145,6 @@ export default {
     }
   },
   mounted() {
-    // this.observer = new MutationObserver((mutations) => {
-    //   for (const m of mutations) {
-    //     const newValue = m.target.getAttribute(m.attributeName)
-    //     this.$nextTick(() => {
-    //       this.onClassChange(newValue, m.oldValue)
-    //     })
-    //   }
-    // })
-    // this.observer.observe(this.$refs.proyecto_header, {
-    //   attributes: true,
-    //   attributeOldValue: true,
-    //   attributeFilter: ['class'],
-    // })
-
     this.setLoad(true)
     this.setStyles()
   },
@@ -124,11 +161,7 @@ export default {
           document.getElementById('nav_site'),
           this.story.content
         )
-        if (this.story.content.navdif === false) {
-          document.getElementById('nav_site').classList.remove('dif')
-        } else {
-          document.getElementById('nav_site').classList.add('dif')
-        }
+        document.getElementById('nav_site').classList.remove('dif')
         gsap.set('#nav_site #logo_melborp', {
           fill: this.story.content.navegacion.color,
         })
@@ -150,6 +183,13 @@ export default {
     onClassChange(classAttrValue) {
       const classList = classAttrValue.split(' ')
       if (classList.includes('is-inview')) {
+        document.getElementById('nav_site').classList.remove('dif')
+        gsap.set('#nav_site #logo_melborp', {
+          fill: this.story.content.nav.color,
+        })
+        gsap.set('#nav_site a', {
+          color: this.story.content.nav.color,
+        })
         gsap.set('.body', {
           backgroundColor: this.story.content.fondo.color,
           color: this.story.content.texto.color,
@@ -196,3 +236,21 @@ export default {
   },
 }
 </script>
+<style lang="postcss">
+.pagina-interior {
+  @apply pt-32 md:pt-32 max-w-9xl md:min-h-screen mx-auto flex items-center justify-center;
+  &-wrap {
+    @apply mx-4 md:mx-10 xl:mx-20 2xl:mx-4;
+    h2 {
+      font-variation-settings: 'wght' var(--font-weight, 400),
+        'wdth' var(--font-width, 120), 'ital' 0;
+      @apply text-4xl md:text-6xl xl:text-7xl text-center mb-16;
+    }
+    .cuerpo {
+      p {
+        @apply mb-8;
+      }
+    }
+  }
+}
+</style>

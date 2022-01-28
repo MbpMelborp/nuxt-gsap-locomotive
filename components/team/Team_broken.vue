@@ -86,6 +86,7 @@
 <script>
 import { gsap, Power2, Sine } from 'gsap'
 import loaderm from '~/mixins/loader.js'
+
 export default {
   mixins: [loaderm],
   props: {
@@ -131,17 +132,14 @@ export default {
       }
       item.classText = item.classes.join(' ')
     })
-    console.log(this.media.team)
   },
   mounted() {
-    console.log('BROKEN', this.media)
     this.initTimelines()
   },
   methods: {
     initTimelines() {
       console.log('🗂️ TEAM -> initTimelines', this.media)
       this.media.team.forEach((item, i) => {
-        console.log('MEDIA ITEM', item._uid, i)
         this.tl_hover[i] = gsap.timeline({
           paused: true,
           ease: Power2.easeInOut,
@@ -191,7 +189,6 @@ export default {
       })
     },
     hoverTeam(id, i, bool) {
-      console.log('🗂️ TEAM -> hoverTeam', id, i, bool)
       if (bool) {
         this.tl_hover[i].play()
       } else {

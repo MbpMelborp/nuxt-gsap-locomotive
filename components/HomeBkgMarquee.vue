@@ -300,7 +300,7 @@ export default {
       span {
         font-variation-settings: 'wght' var(--font-weight, 150),
           'wdth' var(--font-width, 80), 'ital' 0;
-        @apply block text-xl md:text-4xl w-full max-w-sm md:max-w-4xl mx-auto;
+        @apply block text-xl md:text-2xl w-full max-w-sm md:max-w-4xl mx-auto;
       }
     }
   }

@@ -94,6 +94,7 @@ import NormalizeWheel from 'normalize-wheel'
 
 import { lerp } from '~/utils/math'
 import Media from '~/utils/Media'
+
 export default {
   props: {
     story: {

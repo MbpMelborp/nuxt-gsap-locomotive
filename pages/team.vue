@@ -58,8 +58,6 @@ import head from '~/mixins/head.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const cl = process.env.CONSOLE
-
 export default {
   components: {
     Team,
@@ -81,18 +79,18 @@ export default {
             version: 'published',
           })
           .then((res) => {
-            if (cl) console.log('👌 TEAM -> Storyblok', res.data.story)
+            console.log('👌 TEAM -> Storyblok', res.data.story)
             return { story: res.data.story }
           })
           .catch((res) => {
             if (!res.response) {
-              if (cl) console.error('❌ TEAM -> Storyblok', res)
+              console.error('❌ TEAM -> Storyblok', res)
               error({
                 statusCode: 404,
                 message: 'Failed to receive content form api',
               })
             } else {
-              if (cl) console.error('❌ TEAM -> Storyblok', res.response.data)
+              console.error('❌ TEAM -> Storyblok', res.response.data)
               error({
                 statusCode: res.response.status,
                 message: res.response.data,
@@ -161,12 +159,11 @@ export default {
 
     setStyles() {
       setTimeout(() => {
-        if (cl)
-          console.log(
-            '👌 TEAM -> setTimeout',
-            document.getElementById('nav_site'),
-            this.story.content.colores[0]
-          )
+        console.log(
+          '👌 TEAM -> setTimeout',
+          document.getElementById('nav_site'),
+          this.story.content.colores[0]
+        )
         document.getElementById('nav_site').classList.remove('dif')
         gsap.set('#nav_site #logo_melborp', {
           fill: this.story.content.colores[0].nombre.color,

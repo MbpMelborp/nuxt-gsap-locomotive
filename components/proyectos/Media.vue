@@ -83,7 +83,6 @@ export default {
   },
   mounted() {
     if (window) {
-      console.log('resize')
       window.dispatchEvent(new Event('resize'))
     }
   },

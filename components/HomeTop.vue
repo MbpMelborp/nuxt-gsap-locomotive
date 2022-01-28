@@ -27,8 +27,6 @@ import HomeBkgImage from '~/components/HomeBkgImage.vue'
 // import HomeBkgAnim from '~/components/HomeBkgAnim.vue'
 import HomeBkgMarquee from '~/components/HomeBkgMarquee.vue'
 
-const cl = process.env.CONSOLE
-
 export default {
   components: {
     // HomeBkg,
@@ -51,8 +49,7 @@ export default {
     },
   },
   data() {
-    if (cl)
-      console.log('👌 HOMETOP -> data', this.$store.getters['app/getLoad'])
+    console.log('👌 HOMETOP -> data', this.$store.getters['app/getLoad'])
     return {
       tl_home: gsap.timeline({ paused: true, ease: Expo.easeOut }),
       tl_work: gsap.timeline({ paused: true, ease: Expo.easeOut }),

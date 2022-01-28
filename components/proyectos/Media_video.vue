@@ -16,7 +16,7 @@
       <button
         :id="`video_btn_${media._uid}`"
         v-cursor-right
-        class="media_video_poster"
+        class="media_video_poster dif"
         :lazy-background="media.poster.filename + '/m/'"
         @click="playVideo"
       >
@@ -38,6 +38,7 @@
 import { gsap, Expo } from 'gsap'
 import Intersect from 'vue-intersect'
 import loaderm from '~/mixins/loader.js'
+
 export default {
   components: {
     Intersect,
@@ -119,7 +120,6 @@ export default {
       transition: opacity 800ms, height 0s;
       -webkit-transition-delay: 0s, 0s;
       transition-delay: 0s, 0s;
-
       @apply absolute top-0 right-0 left-0 bottom-0 w-full h-full cursor-pointer border-none outline-none overflow-hidden opacity-100 text-sm bg-cover;
       b {
         font-variation-settings: 'wght' var(--font-weight, 100),
@@ -127,6 +127,18 @@ export default {
         @apply text-4xl md:text-9xl text-white shadow-sm transition-all tracking-tighter;
         i {
           @apply text-2xl md:text-6xl;
+        }
+      }
+      &.dif {
+        b {
+          span {
+            position: relative;
+            -webkit-mix-blend-mode: overlay;
+            -moz-mix-blend-mode: overlay;
+            -o-mix-blend-mode: overlay;
+            -ms-mix-blend-mode: overlay;
+            mix-blend-mode: overlay;
+          }
         }
       }
       &:hover {

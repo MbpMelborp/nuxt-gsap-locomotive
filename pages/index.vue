@@ -25,6 +25,7 @@
         v-for="(proyecto, index) in story.content.proyectos"
         :key="Math.random() * 1000 + index"
         :proyecto="proyecto"
+        :par="index % 2 == 0"
       ></ProyectosCont>
     </div>
   </LocomotiveScroll>
@@ -46,7 +47,7 @@ import head from '~/mixins/head.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const cl = process.env.CONSOLE
+
 
 export default {
   components: {
@@ -72,18 +73,18 @@ export default {
             resolve_relations: 'page.proyectos,page.destacado',
           })
           .then((res) => {
-            if (cl) console.log('👌 HOME -> Storyblok', res.data.story)
+            console.log('👌 HOME -> Storyblok', res.data.story)
             return { story: res.data.story }
           })
           .catch((res) => {
             if (!res.response) {
-              if (cl) console.error('❌ HOME -> Storyblok', res)
+              console.error('❌ HOME -> Storyblok', res)
               error({
                 statusCode: 404,
                 message: 'Failed to receive content form api',
               })
             } else {
-              if (cl) console.error('❌ HOME -> Storyblok', res.response.data)
+              console.error('❌ HOME -> Storyblok', res.response.data)
               error({
                 statusCode: res.response.status,
                 message: res.response.data,

@@ -13,14 +13,6 @@
     <div class="contacto">
       <div class="contacto_info">
         <div class="contacto_info_int">
-          <div class="mails">
-            <a v-cursor-right href="mailto:info@melborp.co "
-              >info@melborp.co
-            </a>
-            <a v-cursor-right href="mailto:brief@melborp.co"
-              >brief@melborp.co</a
-            >
-          </div>
           <div class="chat">
             <a
               v-cursor-right
@@ -38,6 +30,14 @@
             >
               <i class="fab fa-facebook-messenger"></i> Facebook
             </a>
+          </div>
+          <div class="mails">
+            <a v-cursor-right href="mailto:info@melborp.co "
+              >info@melborp.co
+            </a>
+            <a v-cursor-right href="mailto:brief@melborp.co"
+              >brief@melborp.co</a
+            >
           </div>
           <div
             class="tels"
@@ -79,6 +79,7 @@
               <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
+          <div class="nit">MBP GROUP SAS | NIT: 900490170</div>
         </div>
       </div>
     </div>
@@ -184,15 +185,15 @@ export default {
             @apply text-black-800;
           }
         }
-
         .mails {
-          @apply mb-8 md:mb-0 md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-1;
+          @apply mb-8 md:mb-0 md:col-start-4 md:col-span-2 md:row-start-1 md:row-span-1 self-start;
           a {
             @apply block mb-0;
           }
         }
         .chat {
-          @apply mb-8 md:mb-0 md:col-start-4 md:col-span-2 md:row-start-1 md:row-span-1;
+          @apply mb-8 md:mb-0 md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-1 self-start;
+
           a {
             @apply block mb-2 rounded-full px-2 py-1.5 text-center transition-all border text-sm;
             &.wap {
@@ -207,21 +208,24 @@ export default {
           }
         }
         .tels {
-          @apply mb-8 md:mb-0 md:col-start-7 md:col-span-2 md:row-start-1 md:row-span-1;
+          @apply mb-8 md:mb-0 md:col-start-7 md:col-span-2 md:row-start-1 md:row-span-1 self-start;
           p {
             @apply mb-3;
           }
         }
         .hvs {
-          @apply mb-8 md:mb-0 mt-12 md:mt-0 md:col-start-10 md:col-span-2 md:row-start-1 md:row-span-1;
+          @apply mb-8 md:mb-0 mt-12 md:mt-0 md:col-start-10 md:col-span-2 md:row-start-1 md:row-span-1 self-start;
         }
         .social {
-          @apply mt-16 md:mt-2 md:col-start-1 md:col-span-4 md:row-start-2 md:row-span-1 font-light flex space-x-4;
+          @apply mt-16 md:mt-2 md:col-start-1 md:col-span-4 md:row-start-2 md:row-span-1 font-light flex space-x-4 md:self-end md:pb-8;
           a {
             font-variation-settings: 'wght' var(--font-weight, 200),
               'wdth' var(--font-width, 130), 'ital' 0;
             @apply inline-block text-xl md:text-lg;
           }
+        }
+        .nit {
+          @apply mt-16 md:mt-2 md:col-start-9 md:col-span-4 md:row-start-2 md:row-span-1 font-light flex space-x-4 md:text-right text-sm md:justify-self-end md:self-end md:pb-8;
         }
       }
     }
