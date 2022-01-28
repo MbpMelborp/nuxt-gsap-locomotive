@@ -47,8 +47,6 @@ import head from '~/mixins/head.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
-
-
 export default {
   components: {
     HomeTop,
@@ -138,7 +136,11 @@ export default {
       setHome: 'app/setHome',
       setLoad: 'app/setLoad',
     }),
-
+    toTop() {
+      locomotive.scrollTo(`#${this.$route.query.w}`, {
+        duration: 50,
+      })
+    },
     animateHome() {
       gsap.from('.home_top', {
         autoAlpha: 0,
