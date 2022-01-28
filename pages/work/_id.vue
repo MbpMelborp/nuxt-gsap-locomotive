@@ -351,7 +351,7 @@ export default {
 
             console.log(
               'PROYECTO -> Storyblok',
-              res.data.story.content,
+              res.data.story,
               proyectos.data.stories
             )
             return {

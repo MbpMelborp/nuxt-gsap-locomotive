@@ -3,12 +3,14 @@
     <div
       :id="`proyecto_${proyecto.slug}`"
       :key="Math.random() * 1000 + proyecto.slug"
+      v-cursor-right
       data-scroll
       :data-scroll-speed="!$isMobile() ? 0.1 : 0"
       data-scroll-repeat="true"
       data-scroll-position="top"
       :data-scroll-call="`proyecto_${proyecto.slug}`"
       :class="`proyecto_tipo ${par ? 'tipo_2' : 'tipo_1'}`"
+      @click="toProject"
     >
       <h2 class="proyecto_title">
         <intersect
@@ -183,6 +185,13 @@ export default {
     par: {
       type: Boolean,
       default: null,
+    },
+  },
+  methods: {
+    toProject() {
+      this.$router.push({
+        path: '/' + this.proyecto.full_slug,
+      })
     },
   },
 }

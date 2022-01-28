@@ -37,20 +37,20 @@
   }
   .tipo_1 {
     grid-template-columns: repeat(22, [col] 1fr);
-    grid-template-rows: repeat(12, 12%);
+    grid-template-rows: repeat(12, 8.3%);
     grid-template-areas:
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	.	.	.	.	.	.	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
       '	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	data	data	data	data	data	data	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
-      '	.	data	data	data	data	data	data	.	media_2	media_2	media_2	media_2	media_2	media_2	.	.	.	.	.	.	.	.	'
-      '	.	data	data	data	data	data	data	.	media_2	media_2	media_2	media_2	media_2	media_2	.	.	.	.	.	.	.	.	'
-      '	.	data	data	data	data	data	data	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	';
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	.	.	.	.	.	.	.	'
+      '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	data	data	data	data	data	data	.	'
+      '	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	.	data	data	data	data	data	data	.	'
+      '	.	.	.	.	.	.	.	.	media_2	media_2	media_2	media_2	media_2	media_2	.	data	data	data	data	data	data	.	'
+      '	.	.	.	.	.	.	.	.	.	.	.	.	.	.	.	data	data	data	data	data	data	.	';
     align-items: stretch;
     .proyecto_title {
       grid-column-start: 2;
@@ -74,7 +74,7 @@
     .proyecto_media_3 {
       grid-area: media_3;
       img {
-        height: 80%;
+        height: 100%;
       }
     }
     .proyecto_data {
@@ -84,7 +84,7 @@
   }
   .tipo_2 {
     grid-template-columns: repeat(22, [col] 1fr);
-    grid-template-rows: repeat(12, 12%);
+    grid-template-rows: repeat(12, 8.3%);
     grid-template-areas:
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	.	.	.	.	.	.	.	'
       '	.	media_1	media_1	media_1	media_1	media_1	media_1	.	media_2	media_2	media_2	media_2	media_2	media_2	.	media_3	media_3	media_3	media_3	media_3	media_3	.	'
@@ -121,7 +121,7 @@
     .proyecto_media_3 {
       grid-area: media_3;
       img {
-        height: 80%;
+        height: 100%;
       }
     }
     .proyecto_data {
@@ -357,12 +357,13 @@
       }
     }
     .proyecto_arrow {
+      display: none;
       grid-column-start: 13;
       grid-column-end: 18;
       grid-row-start: 2;
       grid-row-end: 4;
       svg {
-        max-width: 350px;
+        max-width: 250px;
         object-fit: contain;
       }
     }
