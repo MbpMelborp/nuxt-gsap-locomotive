@@ -999,7 +999,7 @@ export default {
       .intro2 {
         font-variation-settings: 'wght' var(--font-weight, 150),
           'wdth' var(--font-width, 80), 'ital' 0;
-        @apply md:w-10/12 place-self-end mt-8;
+        @apply md:w-10/12 place-self-end md:mt-8;
         p {
           @apply mb-4;
         }
@@ -1015,7 +1015,7 @@ export default {
       .tipo {
         font-variation-settings: 'wght' var(--font-weight, 500),
           'wdth' var(--font-width, 130), 'ital' 0;
-        @apply md:w-8/12 place-self-start text-lg opacity-50 md:mt-20 mt-8 mb-8;
+        @apply md:w-8/12 place-self-start text-lg opacity-50 md:mt-20 mt-8 md:mb-8;
       }
       .body {
         font-variation-settings: 'wght' var(--font-weight, 150),
@@ -1027,7 +1027,7 @@ export default {
       }
       &.left {
         .intro2 {
-          @apply place-self-start mt-8;
+          @apply place-self-start md:mt-8;
         }
         .intro3 {
           @apply place-self-end;
@@ -1037,7 +1037,7 @@ export default {
 
     .problem {
       grid-area: problem;
-      @apply z-20  py-0 px-0 self-start leading-tight pt-8 line-through mb-8;
+      @apply z-20  py-0 px-0 self-start leading-tight mt-0 md:pt-8 line-through mb-8;
 
       h4 {
         font-variation-settings: 'wght' var(--font-weight, 400),
