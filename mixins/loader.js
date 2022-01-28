@@ -24,6 +24,9 @@ export default {
         },
         formCache
       ) => {
+        if (window) {
+          window.dispatchEvent(new Event('resize'))
+        }
         if (el.classList.contains('vlazy')) {
           if (this.$isMobile()) {
             gsap.set(el, {
