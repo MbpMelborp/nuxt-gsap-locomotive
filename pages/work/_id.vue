@@ -772,7 +772,7 @@ export default {
     @apply mx-4 md:mx-14 mb-8;
   }
   &-wrap {
-    @apply mx-4 md:mx-20;
+    @apply mx-8 md:mx-20;
     .next-project-title {
       font-variation-settings: 'wght' var(--font-weight, 400),
         'wdth' var(--font-width, 80), 'ital' 0;
@@ -837,14 +837,16 @@ export default {
       }
     }
     &-fl:hover {
-      .img_1 {
-        transform: scale(0.8) !important;
-      }
-      .img_2 {
-        transform: scale(1.1) !important;
-      }
-      .img_3 {
-        transform: scale(1.3) !important;
+      @media (min-width: 768px) {
+        .img_1 {
+          transform: scale(0.8) !important;
+        }
+        .img_2 {
+          transform: scale(1.1) !important;
+        }
+        .img_3 {
+          transform: scale(1.3) !important;
+        }
       }
     }
   }

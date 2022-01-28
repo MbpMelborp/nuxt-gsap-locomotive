@@ -4,27 +4,27 @@
       <Video
         v-if="media.component == 'video'"
         :media="media"
-        :data-scroll-trigger="!$isMobile()"
+        :data-scroll-trigger="!$isMobile() ? true : null"
       ></Video>
       <ImagenDerecha
         v-if="media.component == 'Imagen derecha'"
         :media="media"
-        :data-scroll-trigger="!$isMobile()"
+        :data-scroll-trigger="!$isMobile() ? true : null"
       ></ImagenDerecha>
       <Carrusel
         v-if="media.component == 'carrusel'"
         :media="media"
-        :data-scroll-trigger="!$isMobile()"
+        :data-scroll-trigger="!$isMobile() ? true : null"
       ></Carrusel>
       <Sobrepuestas
         v-if="media.component == 'Imagenes sobrepuestas'"
         :media="media"
-        :data-scroll-trigger="!$isMobile()"
+        :data-scroll-trigger="!$isMobile() ? true : null"
       ></Sobrepuestas>
       <Full
         v-if="media.component == 'Imagen centro full w'"
         :media="media"
-        :data-scroll-trigger="!$isMobile()"
+        :data-scroll-trigger="!$isMobile() ? true : null"
       ></Full>
       <div
         v-if="editor && media.component == 'broken'"
@@ -47,7 +47,7 @@
       <Broken
         v-if="media.component == 'broken'"
         :media="media"
-        :data-scroll-trigger="!$isMobile()"
+        :data-scroll-trigger="!$isMobile() ? true : null"
       ></Broken>
     </div>
   </div>

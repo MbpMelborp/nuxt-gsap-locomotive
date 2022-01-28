@@ -40,6 +40,7 @@
     </div>
     <div v-if="!$isMobile()" class="marquee_int2">
       <vue-marquee
+        v-if="!$isMobile()"
         :show-progress="false"
         direction="right"
         :duration="story.content.proyectos.length * 8000"
@@ -277,6 +278,7 @@ export default {
     'scroll';
   @apply h-screen w-screen select-none overflow-hidden;
   @media (max-width: 768px) {
+    grid-template-columns: [l1] auto [r1];
     grid-template-rows: [t1] auto 45vh 25vh [b1];
     grid-template-areas:
       '.'
@@ -321,7 +323,7 @@ export default {
   }
   .marquee_int2 {
     grid-area: marquee2;
-    @apply z-10;
+    @apply z-10 hidden md:block;
     .marquee-slide {
       @apply px-6;
     }
@@ -334,7 +336,7 @@ export default {
   }
   .scroll {
     grid-area: scroll;
-    @apply z-30 self-baseline text-white items-center flex justify-center;
+    @apply z-30 self-end text-white items-center flex justify-center;
     svg {
       @apply animate-bounce w-6;
     }
