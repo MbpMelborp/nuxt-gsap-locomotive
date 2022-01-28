@@ -8,7 +8,12 @@ export default () => ({
     x: 0,
     y: 0,
   },
-  load: window.location.search.includes('_storyblok') === true ? true : null,
+  load:
+    window != null
+      ? window.location.search.includes('_storyblok') === true
+        ? true
+        : null
+      : null,
   section: null,
   home: {
     texto: null,

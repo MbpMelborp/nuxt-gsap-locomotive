@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      editor: window.location.search.includes('_storyblok'),
+      editor: window ? window.location.search.includes('_storyblok') : false,
     }
   },
   computed: {

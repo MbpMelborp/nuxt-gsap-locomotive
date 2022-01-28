@@ -1,9 +1,9 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "description": "Nuxt app starter kit",
+  "description": "Melborp - Business Updaters",
   "private": true,
-  "author": "Davide Marchet",
+  "author": "Melborp",
   "license": "MIT",
   "scripts": {
     "dev": "nuxt",
