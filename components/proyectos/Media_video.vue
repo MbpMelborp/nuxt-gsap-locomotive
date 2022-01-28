@@ -124,7 +124,7 @@ export default {
       b {
         font-variation-settings: 'wght' var(--font-weight, 100),
           'wdth' var(--font-width, 80), 'ital' 0;
-        @apply text-4xl md:text-9xl text-white shadow-sm transition-all tracking-tighter;
+        @apply text-8xl md:text-9xl text-white shadow-sm transition-all tracking-tighter;
         i {
           @apply text-2xl md:text-6xl;
         }
