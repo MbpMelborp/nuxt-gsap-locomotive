@@ -202,7 +202,7 @@
                 </h3>
                 <div class="next-project-wrap-fl-title-intro">
                   <div class="tipo">
-                    {{ story.content.tipo }}
+                    {{ next_project.content.tipo }}
                   </div>
                   <div
                     v-html="
@@ -782,7 +782,7 @@ export default {
       @apply mb-4;
     }
     &-fl {
-      @apply flex justify-between flex-col md:flex-row items-center transition-all duration-1000 ease-in-out;
+      @apply flex justify-between flex-col-reverse md:flex-row items-center transition-all duration-1000 ease-in-out;
       &-title {
         @apply w-full md:w-4/12 text-sm;
         p {
@@ -818,7 +818,7 @@ export default {
         }
       }
       &-content {
-        @apply w-full md:w-7/12 text-sm md:grid md:grid-cols-12 md:grid-rows-6;
+        @apply w-full mb-8 mt-16 md:mb-0 md:mt-0 md:w-7/12 text-sm md:grid md:grid-cols-12 md:grid-rows-6;
         .img_1 {
           transition: all 0.5s ease-in-out;
           @apply block md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-5;

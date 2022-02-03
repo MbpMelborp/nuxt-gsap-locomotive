@@ -1,7 +1,7 @@
 // https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-head
 
 // import fonts from './fonts.js'
-
+// url dev https://development.d1lqtgc1tjoxsq.amplifyapp.com/
 export default {
   head: {
     title: 'MELBORP - Business Updaters',

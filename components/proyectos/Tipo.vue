@@ -202,15 +202,15 @@ export default {
   @apply w-full max-w-10xl mx-auto;
 }
 .proyecto_data {
-  @apply z-30 md:pt-8;
+  @apply z-30 md:pt-20;
   .proyecto_data_int {
     @apply opacity-0;
     .proyecto_data_content {
-      @apply md:mt-8;
+      @apply md:mt-2;
       h4 {
         font-variation-settings: 'wght' var(--font-weight, 850),
           'wdth' var(--font-width, 140), 'ital' 0;
-        @apply uppercase text-3xl  mb-4 leading-none;
+        @apply uppercase text-xl  mb-4 leading-none;
         @media (max-width: 768px) {
           font-variation-settings: 'wght' var(--font-weight, 600),
             'wdth' var(--font-width, 120), 'ital' 0;
@@ -218,7 +218,7 @@ export default {
         }
       }
       .proyecto_body {
-        @apply text-sm lg:ml-16 lg:mr-3 font-thin mb-8 leading-5;
+        @apply text-sm lg:ml-8 lg:mr-3 font-thin mb-4 leading-5;
         @media (max-width: 768px) {
           @apply text-lg;
         }
@@ -227,7 +227,7 @@ export default {
         }
       }
       .proyecto_ver {
-        @apply lg:ml-2 text-lg font-light uppercase tracking-widest;
+        @apply lg:ml-2 text-base font-light uppercase tracking-widest;
         @media (max-width: 768px) {
           @apply ml-0;
         }
