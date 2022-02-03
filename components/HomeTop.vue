@@ -10,7 +10,11 @@
       class="image_back"
     >
       <!-- <HomeBkg v-if="animacion" :story="story"></HomeBkg> -->
-      <HomeBkgMarquee v-if="animacion" :story="story"></HomeBkgMarquee>
+      <HomeBkgMarquee
+        v-if="animacion"
+        :story="story"
+        @to-scroll-nav="toScrollNav"
+      ></HomeBkgMarquee>
       <HomeBkgImage v-else :story="story"></HomeBkgImage>
     </div>
   </div>
@@ -108,6 +112,9 @@ export default {
         gsap.set('#nav_site #logo_melborp', { fill: 'white' })
         gsap.set('#nav_site a', { color: 'white' })
       }
+    },
+    toScrollNav(event) {
+      this.$emit('to-scroll-nav', event)
     },
   },
 }

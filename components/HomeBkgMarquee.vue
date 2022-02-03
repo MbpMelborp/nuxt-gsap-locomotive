@@ -66,20 +66,22 @@
       </vue-marquee>
     </div>
     <div class="scroll">
-      <svg
-        viewBox="0 0 23 60"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-      >
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g transform="translate(-10.000000, -5.000000)" fill="#FFFFFF">
-            <path
-              d="M22,5 L21.9995924,62.792 L32.3033009,52.4895924 L33.0104076,53.1966991 L21.6966991,64.5104076 L21.4995924,64.313 L21.3033009,64.5104076 L9.98959236,53.1966991 L10.6966991,52.4895924 L20.9995924,62.793 L21,5 L22,5 Z"
-            ></path>
+      <a v-cursor-down href="#" @click="toScrollNav">
+        <svg
+          viewBox="0 0 23 60"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g transform="translate(-10.000000, -5.000000)" fill="#FFFFFF">
+              <path
+                d="M22,5 L21.9995924,62.792 L32.3033009,52.4895924 L33.0104076,53.1966991 L21.6966991,64.5104076 L21.4995924,64.313 L21.3033009,64.5104076 L9.98959236,53.1966991 L10.6966991,52.4895924 L20.9995924,62.793 L21,5 L22,5 Z"
+              ></path>
+            </g>
           </g>
-        </g>
-      </svg>
+        </svg>
+      </a>
     </div>
   </div>
 </template>
@@ -239,6 +241,9 @@ export default {
     // })
   },
   methods: {
+    toScrollNav(event) {
+      this.$emit('to-scroll-nav', event)
+    },
     loaded(e) {
       if (window) {
         if (

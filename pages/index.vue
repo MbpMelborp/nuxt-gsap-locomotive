@@ -19,6 +19,7 @@
         :story="story"
         :init="story.content.proyectos[0]"
         :animacion="story.content.animacion"
+        @to-scroll-nav="toScrollNav"
       ></HomeTop>
 
       <ProyectosCont
@@ -187,6 +188,14 @@ export default {
             break
         }
       })
+    },
+    toScrollNav(event) {
+      event.preventDefault()
+      console.log(event)
+      const targ = '#' + this.story.content.proyectos[0].slug
+      const to = document.querySelector(targ)
+      // this.locomotive.scrollTo(to)
+      this.$refs.scroller.locomotive.scrollTo(to)
     },
     elementAnimation(element) {
       gsap.from(element, {
