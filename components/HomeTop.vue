@@ -10,7 +10,11 @@
       class="image_back"
     >
       <!-- <HomeBkg v-if="animacion" :story="story"></HomeBkg> -->
-      <HomeBkgMarquee v-if="animacion" :story="story"></HomeBkgMarquee>
+      <HomeBkgMarquee
+        v-if="animacion"
+        :story="story"
+        @to-scroll-nav="toScrollNav"
+      ></HomeBkgMarquee>
       <HomeBkgImage v-else :story="story"></HomeBkgImage>
     </div>
   </div>
@@ -26,8 +30,6 @@ import { mapGetters } from 'vuex'
 import HomeBkgImage from '~/components/HomeBkgImage.vue'
 // import HomeBkgAnim from '~/components/HomeBkgAnim.vue'
 import HomeBkgMarquee from '~/components/HomeBkgMarquee.vue'
-
-const cl = process.env.CONSOLE
 
 export default {
   components: {
@@ -51,8 +53,7 @@ export default {
     },
   },
   data() {
-    if (cl)
-      console.log('👌 HOMETOP -> data', this.$store.getters['app/getLoad'])
+    console.log('👌 HOMETOP -> data', this.$store.getters['app/getLoad'])
     return {
       tl_home: gsap.timeline({ paused: true, ease: Expo.easeOut }),
       tl_work: gsap.timeline({ paused: true, ease: Expo.easeOut }),
@@ -111,6 +112,9 @@ export default {
         gsap.set('#nav_site #logo_melborp', { fill: 'white' })
         gsap.set('#nav_site a', { color: 'white' })
       }
+    },
+    toScrollNav(event) {
+      this.$emit('to-scroll-nav', event)
     },
   },
 }

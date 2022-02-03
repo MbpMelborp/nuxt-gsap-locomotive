@@ -15,8 +15,8 @@
     <div
       :class="'content_interior vertical' + (story != null ? ' loaded' : '')"
     >
-      <div class="team_top" data-scroll-section data-scroll-call="section_team">
-        <div class="team_header">
+      <div class="work-top" data-scroll-section data-scroll-call="section_team">
+        <div class="work-header">
           <h2>
             <span v-if="story.content.titulo[0].titulo1" class="title_1"
               >{{ story.content.titulo[0].titulo1 }}
@@ -30,13 +30,13 @@
           </h2>
         </div>
       </div>
-      <div class="team_people" data-scroll-section>
-        <div class="team_people_grid">
-          <Team
-            v-for="(team, i) in story.content.teams"
+      <div class="work-list" data-scroll-section>
+        <div class="work-list-wrap">
+          <Proyecto
+            v-for="(proyecto, i) in story.content.proyectos"
             :key="i"
-            :media="team"
-          ></Team>
+            :proyecto="proyecto"
+          ></Proyecto>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { mapMutations, mapGetters } from 'vuex'
 
 // COMPONENTES
-import Team from '~/components/team/Team_broken.vue'
+import Proyecto from '~/components/proyectos/ProyectoItem.vue'
 
 import { custom } from '~/utils/transitions.js'
 import loaderm from '~/mixins/loader.js'
@@ -60,7 +60,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default {
   components: {
-    Team,
+    Proyecto,
   },
   mixins: [loaderm, head],
   transition: {
@@ -73,24 +73,25 @@ export default {
         return { story: payload }
       } else {
         const fullSlug =
-          route.path === '/' || route.path === '' ? 'team' : route.path
+          route.path === '/' || route.path === '' ? 'work' : route.path
         return app.$storyapi
           .get(`cdn/stories/${fullSlug}`, {
             version: 'published',
+            resolve_relations: 'work.proyectos',
           })
           .then((res) => {
-            console.log('👌 TEAM -> Storyblok', res.data.story)
+            console.log('👌 WORK -> Storyblok', res.data.story)
             return { story: res.data.story }
           })
           .catch((res) => {
             if (!res.response) {
-              console.error('❌ TEAM -> Storyblok', res)
+              console.error('❌ WORK -> Storyblok', res)
               error({
                 statusCode: 404,
                 message: 'Failed to receive content form api',
               })
             } else {
-              console.error('❌ TEAM -> Storyblok', res.response.data)
+              console.error('❌ WORK -> Storyblok', res.response.data)
               error({
                 statusCode: res.response.status,
                 message: res.response.data,
@@ -126,17 +127,6 @@ export default {
       elements.forEach((element) => this.elementAnimation(element))
     })
 
-    // this.setHome({
-    //   fondo: this.story.content.fondo.color,
-    //   texto: this.story.content.texto.color,
-    //   texto_home: this.story.content.texto_home.color,
-    //   texto_home_hover: this.story.content.texto_home_hover.color,
-    //   nav: this.story.content.navegacion.color,
-    // })
-    // gsap.set('body', {
-    //   background: this.story.content.fondo.color,
-    //   color: this.story.content.texto.color,
-    // })
     this.setLoad(true)
     this.setStyles()
   },
@@ -160,7 +150,7 @@ export default {
     setStyles() {
       setTimeout(() => {
         console.log(
-          '👌 TEAM -> setTimeout',
+          '👌 WORK -> setTimeout',
           document.getElementById('nav_site'),
           this.story.content.colores[0]
         )
@@ -205,12 +195,6 @@ export default {
       locomotive.on('call', (value, way, obj) => {
         this.setSection(value)
         switch (value) {
-          case 'fadeText': {
-            break
-          }
-          case 'index_home': {
-            break
-          }
           default:
             break
         }
@@ -227,7 +211,6 @@ export default {
           end: 'bottom center',
         },
         clipPath: 'inset(100% 0% 0% 0%)',
-        // webkitClipPath: 'inset(100% 0% 0% 0%)',
         ease: 'none',
       })
     },
@@ -236,17 +219,17 @@ export default {
 </script>
 
 <style lang="postcss">
-.team_top {
-  @apply pt-44 w-full max-w-9xl mx-auto leading-none select-none;
-  .team_header {
+.work-top {
+  @apply pt-44 w-full max-w-7xl mx-auto leading-none select-none;
+  .work-header {
     h2 {
-      @apply text-6xl mx-4 md:mx-0 md:grid md:grid-cols-12 md:grid-rows-3 md:gap-x-4 md:gap-y-0 md:text-7xl;
+      @apply text-4xl mx-4 md:mx-0 md:grid md:grid-cols-12 md:grid-rows-3 md:gap-x-4 md:gap-y-0 md:text-6xl;
       span {
         @apply md:block leading-none;
         &.title_1 {
           font-variation-settings: 'wght' var(--font-weight, 200),
             'wdth' var(--font-width, 130), 'ital' 0;
-          @apply col-span-1 md:col-span-6 md:col-start-4 row-start-1 row-span-1;
+          @apply col-span-1 row-start-1 row-span-1  md:col-start-2 md:col-span-8;
         }
         &.title_2 {
           font-variation-settings: 'wght' var(--font-weight, 400),
@@ -262,7 +245,7 @@ export default {
     }
   }
 }
-.team_people {
-  @apply pt-44 w-full max-w-9xl mx-auto;
+.work-list {
+  @apply pt-20 w-full max-w-9xl mx-auto min-h-screen;
 }
 </style>

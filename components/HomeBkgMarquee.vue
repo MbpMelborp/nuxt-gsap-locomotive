@@ -40,6 +40,7 @@
     </div>
     <div v-if="!$isMobile()" class="marquee_int2">
       <vue-marquee
+        v-if="!$isMobile()"
         :show-progress="false"
         direction="right"
         :duration="story.content.proyectos.length * 8000"
@@ -65,20 +66,22 @@
       </vue-marquee>
     </div>
     <div class="scroll">
-      <svg
-        viewBox="0 0 23 60"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-      >
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g transform="translate(-10.000000, -5.000000)" fill="#FFFFFF">
-            <path
-              d="M22,5 L21.9995924,62.792 L32.3033009,52.4895924 L33.0104076,53.1966991 L21.6966991,64.5104076 L21.4995924,64.313 L21.3033009,64.5104076 L9.98959236,53.1966991 L10.6966991,52.4895924 L20.9995924,62.793 L21,5 L22,5 Z"
-            ></path>
+      <a v-cursor-down href="#" @click="toScrollNav">
+        <svg
+          viewBox="0 0 23 60"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g transform="translate(-10.000000, -5.000000)" fill="#FFFFFF">
+              <path
+                d="M22,5 L21.9995924,62.792 L32.3033009,52.4895924 L33.0104076,53.1966991 L21.6966991,64.5104076 L21.4995924,64.313 L21.3033009,64.5104076 L9.98959236,53.1966991 L10.6966991,52.4895924 L20.9995924,62.793 L21,5 L22,5 Z"
+              ></path>
+            </g>
           </g>
-        </g>
-      </svg>
+        </svg>
+      </a>
     </div>
   </div>
 </template>
@@ -238,6 +241,9 @@ export default {
     // })
   },
   methods: {
+    toScrollNav(event) {
+      this.$emit('to-scroll-nav', event)
+    },
     loaded(e) {
       if (window) {
         if (
@@ -277,6 +283,7 @@ export default {
     'scroll';
   @apply h-screen w-screen select-none overflow-hidden;
   @media (max-width: 768px) {
+    grid-template-columns: [l1] auto [r1];
     grid-template-rows: [t1] auto 45vh 25vh [b1];
     grid-template-areas:
       '.'
@@ -300,7 +307,7 @@ export default {
       span {
         font-variation-settings: 'wght' var(--font-weight, 150),
           'wdth' var(--font-width, 80), 'ital' 0;
-        @apply block text-xl md:text-4xl w-full max-w-sm md:max-w-4xl mx-auto;
+        @apply block text-xl md:text-2xl w-full max-w-sm md:max-w-4xl mx-auto;
       }
     }
   }
@@ -321,7 +328,7 @@ export default {
   }
   .marquee_int2 {
     grid-area: marquee2;
-    @apply z-10;
+    @apply z-10 hidden md:block;
     .marquee-slide {
       @apply px-6;
     }
@@ -334,7 +341,7 @@ export default {
   }
   .scroll {
     grid-area: scroll;
-    @apply z-30 self-baseline text-white items-center flex justify-center;
+    @apply z-30 self-end text-white items-center flex justify-center;
     svg {
       @apply animate-bounce w-6;
     }

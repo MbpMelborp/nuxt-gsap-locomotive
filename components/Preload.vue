@@ -111,7 +111,7 @@
 <script>
 import { gsap, Power4 } from 'gsap'
 
-const cl = process.env.CONSOLE
+
 export default {
   data() {
     return {
@@ -135,7 +135,7 @@ export default {
         },
         onUpdate: () => {},
         onComplete: () => {
-          if (cl) console.log('⏱️ PRELOAD -> tl_preload_salida onComplete')
+          console.log('⏱️ PRELOAD -> tl_preload_salida onComplete')
           // this.$store.commit('app/setPreload', true)
         },
       }),

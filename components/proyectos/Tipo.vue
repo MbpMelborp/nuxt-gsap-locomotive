@@ -3,12 +3,14 @@
     <div
       :id="`proyecto_${proyecto.slug}`"
       :key="Math.random() * 1000 + proyecto.slug"
+      v-cursor-right
       data-scroll
       :data-scroll-speed="!$isMobile() ? 0.1 : 0"
       data-scroll-repeat="true"
       data-scroll-position="top"
       :data-scroll-call="`proyecto_${proyecto.slug}`"
-      :class="`proyecto_tipo ${proyecto.content.tipo_home}`"
+      :class="`proyecto_tipo ${par ? 'tipo_2' : 'tipo_1'}`"
+      @click="toProject"
     >
       <h2 class="proyecto_title">
         <intersect
@@ -19,7 +21,14 @@
             <div class="proyecto_title_int_cliente">
               {{ proyecto.content.cliente }},
             </div>
-            <div class="proyecto_title_int_nom">
+            <div
+              class="proyecto_title_int_nom"
+              :class="
+                proyecto.content.nombre.length > 20
+                  ? 'text-small'
+                  : 'text-normal'
+              "
+            >
               <span
                 v-for="(palabra, index) in proyecto.content.nombre.split(' ')"
                 :key="index"
@@ -31,7 +40,31 @@
         </intersect>
       </h2>
       <div class="proyecto_arrow">
-        <svg viewBox="0 0 45 45">
+        <svg
+          viewBox="0 0 45 45"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g
+              transform="translate(-12.000000, -9.000000)"
+              :stroke="proyecto.content.colores[0].texto.color"
+              stroke-width="1"
+            >
+              <g
+                id="arrowp"
+                transform="translate(34.374000, 31.374000) scale(-1, 1) translate(-34.374000, -31.374000) translate(13.000000, 10.000000)"
+              >
+                <line x1="42.748" y1="42.748" x2="0" y2="0"></line>
+                <polyline
+                  points="42.3738 0.3742 0.3738 0.3742 0.3738 42.3742"
+                ></polyline>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <!-- <svg viewBox="0 0 45 45">
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g
               class="chang"
@@ -45,15 +78,16 @@
               ></polyline>
             </g>
           </g>
-        </svg>
+        </svg> -->
       </div>
-      <div
+      <!-- <div
         data-scroll
-        :data-scroll-speed="!$isMobile() ? 0.2 : 0"
+        :data-scroll-speed="!$isMobile() ? -1 : 0"
         data-scroll-repeat="true"
         data-scroll-position="center"
         class="proyecto_data"
-      >
+      > -->
+      <div class="proyecto_data">
         <!-- <div class="proyecto_data_content" @click="hoverFinish()"> -->
         <div class="proyecto_data_int">
           <div class="proyecto_data_content">
@@ -148,6 +182,17 @@ export default {
       type: Object,
       default: null,
     },
+    par: {
+      type: Boolean,
+      default: null,
+    },
+  },
+  methods: {
+    toProject() {
+      this.$router.push({
+        path: '/' + this.proyecto.full_slug,
+      })
+    },
   },
 }
 </script>
@@ -157,15 +202,15 @@ export default {
   @apply w-full max-w-10xl mx-auto;
 }
 .proyecto_data {
-  @apply z-30;
+  @apply z-30 md:pt-20;
   .proyecto_data_int {
     @apply opacity-0;
     .proyecto_data_content {
-      @apply -mt-12;
+      @apply md:mt-2;
       h4 {
         font-variation-settings: 'wght' var(--font-weight, 850),
           'wdth' var(--font-width, 140), 'ital' 0;
-        @apply uppercase text-3xl  mb-4 leading-none;
+        @apply uppercase text-xl  mb-4 leading-none;
         @media (max-width: 768px) {
           font-variation-settings: 'wght' var(--font-weight, 600),
             'wdth' var(--font-width, 120), 'ital' 0;
@@ -173,7 +218,7 @@ export default {
         }
       }
       .proyecto_body {
-        @apply text-sm lg:ml-16 lg:mr-3 font-thin mb-8 leading-5;
+        @apply text-sm lg:ml-8 lg:mr-3 font-thin mb-4 leading-5;
         @media (max-width: 768px) {
           @apply text-lg;
         }
@@ -182,7 +227,7 @@ export default {
         }
       }
       .proyecto_ver {
-        @apply lg:ml-2 text-lg font-light uppercase tracking-widest;
+        @apply lg:ml-2 text-base font-light uppercase tracking-widest;
         @media (max-width: 768px) {
           @apply ml-0;
         }
@@ -210,11 +255,17 @@ export default {
       @apply leading-none;
     }
     .proyecto_title_int_nom {
-      font-size: calc(4vw + 4vh + 0.5vmin);
       line-height: 0.8em;
+      &.text-small {
+        font-size: calc(3vw + 3vh + 0.5vmin);
+      }
+      &.text-normal {
+        font-size: calc(4vw + 4vh + 0.5vmin);
+      }
       @media (max-width: 768px) {
         font-size: 2em;
       }
+
       span {
         /* font-variation-settings: 'wght' var(--font-weight, 400),
         'wdth' var(--font-width, 180), 'ital' 0; */

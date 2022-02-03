@@ -1,6 +1,6 @@
 <template>
   <div :id="proyecto.slug" class="proyecto" data-scroll-section>
-    <Tipo :key="componentKey" :proyecto="proyecto"></Tipo>
+    <Tipo :key="componentKey" :par="par" :proyecto="proyecto"></Tipo>
   </div>
 </template>
 
@@ -15,41 +15,17 @@ export default {
       type: Object,
       default: null,
     },
+    par: {
+      type: Boolean,
+      default: null,
+    },
   },
   data() {
     return { componentKey: 0 }
   },
   created() {},
-  destroyed() {
-    // window.removeEventListener('resize', this.resizeWindow)
-  },
-  mounted() {
-    // console.log(
-    //   'PROYECTO -> mounted',
-    //   this.proyecto.content.nombre,
-    //   window.innerWidth
-    // )
-    // window.addEventListener('resize', this.resizeWindow)
-    // console.log(this.proyecto)
-    // const images = document.querySelectorAll('img')
-    // setTimeout(() => {
-    //   images.forEach((image) => {
-    //     image.onload = () => {
-    //       this.$nuxt.$emit('update-locomotive')
-    //     }
-    //     image.src = image.dataset.src
-    //   })
-    // }, 2500)
-  },
-  methods: {
-    // resizeWindow(e) {
-    //   console.log(
-    //     'PROYECTO -> resizeWindow',
-    //     this.proyecto.content.nombre,
-    //     window.innerWidth
-    //   )
-    //   this.componentKey++
-    // },
-  },
+  destroyed() {},
+  mounted() {},
+  methods: {},
 }
 </script>

@@ -202,7 +202,7 @@
                 </h3>
                 <div class="next-project-wrap-fl-title-intro">
                   <div class="tipo">
-                    {{ story.content.tipo }}
+                    {{ next_project.content.tipo }}
                   </div>
                   <div
                     v-html="
@@ -309,6 +309,7 @@ import loaderm from '~/mixins/loader.js'
 import head from '~/mixins/head.js'
 
 gsap.registerPlugin(ScrollTrigger)
+
 export default {
   components: {
     Media,
@@ -335,7 +336,7 @@ export default {
             const tituloArray = res.data.story.content.nombre.split(' ')
             const tituloSize = tituloArray.length
             const tituloHalf = Math.ceil(tituloSize / 2)
-            console.log('RESULTADOS', res.data.story.content.resultados)
+
             const tituloParts = []
             for (let i = tituloHalf; i > 0; i--) {
               tituloParts.push(
@@ -347,9 +348,10 @@ export default {
               version: 'published',
               excluding_ids: res.data.story.id,
             })
+
             console.log(
               'PROYECTO -> Storyblok',
-              res.data.story.content,
+              res.data.story,
               proyectos.data.stories
             )
             return {
@@ -770,7 +772,7 @@ export default {
     @apply mx-4 md:mx-14 mb-8;
   }
   &-wrap {
-    @apply mx-4 md:mx-20;
+    @apply mx-8 md:mx-20;
     .next-project-title {
       font-variation-settings: 'wght' var(--font-weight, 400),
         'wdth' var(--font-width, 80), 'ital' 0;
@@ -780,7 +782,7 @@ export default {
       @apply mb-4;
     }
     &-fl {
-      @apply flex justify-between flex-col md:flex-row items-center transition-all duration-1000 ease-in-out;
+      @apply flex justify-between flex-col-reverse md:flex-row items-center transition-all duration-1000 ease-in-out;
       &-title {
         @apply w-full md:w-4/12 text-sm;
         p {
@@ -816,7 +818,7 @@ export default {
         }
       }
       &-content {
-        @apply w-full md:w-7/12 text-sm md:grid md:grid-cols-12 md:grid-rows-6;
+        @apply w-full mb-8 mt-16 md:mb-0 md:mt-0 md:w-7/12 text-sm md:grid md:grid-cols-12 md:grid-rows-6;
         .img_1 {
           transition: all 0.5s ease-in-out;
           @apply block md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-5;
@@ -835,14 +837,16 @@ export default {
       }
     }
     &-fl:hover {
-      .img_1 {
-        transform: scale(0.8) !important;
-      }
-      .img_2 {
-        transform: scale(1.1) !important;
-      }
-      .img_3 {
-        transform: scale(1.3) !important;
+      @media (min-width: 768px) {
+        .img_1 {
+          transform: scale(0.8) !important;
+        }
+        .img_2 {
+          transform: scale(1.1) !important;
+        }
+        .img_3 {
+          transform: scale(1.3) !important;
+        }
       }
     }
   }
@@ -995,7 +999,7 @@ export default {
       .intro2 {
         font-variation-settings: 'wght' var(--font-weight, 150),
           'wdth' var(--font-width, 80), 'ital' 0;
-        @apply md:w-10/12 place-self-end mt-8;
+        @apply md:w-10/12 place-self-end md:mt-8;
         p {
           @apply mb-4;
         }
@@ -1011,7 +1015,7 @@ export default {
       .tipo {
         font-variation-settings: 'wght' var(--font-weight, 500),
           'wdth' var(--font-width, 130), 'ital' 0;
-        @apply md:w-8/12 place-self-start text-lg opacity-50 md:mt-20 mt-8 mb-8;
+        @apply md:w-8/12 place-self-start text-lg opacity-50 md:mt-20 mt-8 md:mb-8;
       }
       .body {
         font-variation-settings: 'wght' var(--font-weight, 150),
@@ -1023,7 +1027,7 @@ export default {
       }
       &.left {
         .intro2 {
-          @apply place-self-start mt-8;
+          @apply place-self-start md:mt-8;
         }
         .intro3 {
           @apply place-self-end;
@@ -1033,7 +1037,7 @@ export default {
 
     .problem {
       grid-area: problem;
-      @apply z-20  py-0 px-0 self-start leading-tight pt-8 line-through mb-8;
+      @apply z-20  py-0 px-0 self-start leading-tight mt-0 md:pt-8 line-through mb-8;
 
       h4 {
         font-variation-settings: 'wght' var(--font-weight, 400),

@@ -19,12 +19,14 @@
         :story="story"
         :init="story.content.proyectos[0]"
         :animacion="story.content.animacion"
+        @to-scroll-nav="toScrollNav"
       ></HomeTop>
 
       <ProyectosCont
         v-for="(proyecto, index) in story.content.proyectos"
         :key="Math.random() * 1000 + index"
         :proyecto="proyecto"
+        :par="index % 2 == 0"
       ></ProyectosCont>
     </div>
   </LocomotiveScroll>
@@ -45,8 +47,6 @@ import { custom } from '~/utils/transitions.js'
 import head from '~/mixins/head.js'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const cl = process.env.CONSOLE
 
 export default {
   components: {
@@ -72,18 +72,18 @@ export default {
             resolve_relations: 'page.proyectos,page.destacado',
           })
           .then((res) => {
-            if (cl) console.log('👌 HOME -> Storyblok', res.data.story)
+            console.log('👌 HOME -> Storyblok', res.data.story)
             return { story: res.data.story }
           })
           .catch((res) => {
             if (!res.response) {
-              if (cl) console.error('❌ HOME -> Storyblok', res)
+              console.error('❌ HOME -> Storyblok', res)
               error({
                 statusCode: 404,
                 message: 'Failed to receive content form api',
               })
             } else {
-              if (cl) console.error('❌ HOME -> Storyblok', res.response.data)
+              console.error('❌ HOME -> Storyblok', res.response.data)
               error({
                 statusCode: res.response.status,
                 message: res.response.data,
@@ -137,7 +137,11 @@ export default {
       setHome: 'app/setHome',
       setLoad: 'app/setLoad',
     }),
-
+    toTop() {
+      this.locomotive.scrollTo(`#${this.$route.query.w}`, {
+        duration: 50,
+      })
+    },
     animateHome() {
       gsap.from('.home_top', {
         autoAlpha: 0,
@@ -184,6 +188,14 @@ export default {
             break
         }
       })
+    },
+    toScrollNav(event) {
+      event.preventDefault()
+      console.log(event)
+      const targ = '#' + this.story.content.proyectos[0].slug
+      const to = document.querySelector(targ)
+      // this.locomotive.scrollTo(to)
+      this.$refs.scroller.locomotive.scrollTo(to)
     },
     elementAnimation(element) {
       gsap.from(element, {

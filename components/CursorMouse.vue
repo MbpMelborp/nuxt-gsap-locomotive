@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     initCursor() {
-      window.addEventListener('mousemove', this.customCursor)
+      if (window) window.addEventListener('mousemove', this.customCursor)
     },
     customCursor(e) {
       // cursor pos

@@ -33,6 +33,7 @@
 
 <script>
 import loaderm from '~/mixins/loader.js'
+
 export default {
   mixins: [loaderm],
   props: {

@@ -24,12 +24,23 @@ export default {
         },
         formCache
       ) => {
+        if (window) {
+          window.dispatchEvent(new Event('resize'))
+        }
         if (el.classList.contains('vlazy')) {
-          gsap.set(el, {
-            clipPath: 'inset(0% 0% 100% 0%)',
-            scaleY: 1.1,
-            autoAlpha: 0,
-          })
+          if (this.$isMobile()) {
+            gsap.set(el, {
+              clipPath: 'inset(0% 0% 100% 0%)',
+              scaleY: 1.1,
+              autoAlpha: 0,
+            })
+          } else {
+            gsap.set(el, {
+              clipPath: 'inset(0% 0% 0% 0%)',
+              scaleY: 1,
+              autoAlpha: 0,
+            })
+          }
         }
       }
     )
@@ -50,16 +61,29 @@ export default {
       ) => {
         if (window) {
           if (el.classList.contains('vlazy')) {
-            gsap.to(el, {
-              clipPath: 'inset(0% 0% 0% 0%)',
-              scaleY: 1,
-              autoAlpha: 1,
-              duration: 0.5,
-              ease: Power2.easeInOut,
-              onStart: () => {
-                window.dispatchEvent(new Event('resize'))
-              },
-            })
+            if (el.classList.contains('vlazy')) {
+              gsap.to(el, {
+                clipPath: 'inset(0% 0% 0% 0%)',
+                scaleY: 1,
+                autoAlpha: 1,
+                duration: 0.5,
+                ease: Power2.easeInOut,
+                onStart: () => {
+                  window.dispatchEvent(new Event('resize'))
+                },
+              })
+            } else {
+              gsap.to(el, {
+                clipPath: 'inset(0% 0% 0% 0%)',
+                scaleY: 1,
+                autoAlpha: 1,
+                duration: 0.8,
+                ease: Power2.easeInOut,
+                onStart: () => {
+                  window.dispatchEvent(new Event('resize'))
+                },
+              })
+            }
           }
         }
       }
@@ -95,7 +119,6 @@ export default {
     },
     clipToRight(e) {
       e.forEach(function (entry, i) {
-        // console.log('CLIP TO RIGHT ->', e[0].target, entry.target.loaded)
         if (
           entry.target.loaded === false ||
           entry.target.loaded === undefined
