@@ -120,6 +120,9 @@
         <nuxt-link v-cursor-right to="/work">
           <div v-split-characters>Work</div>
         </nuxt-link>
+        <nuxt-link v-cursor-right to="/team">
+          <div v-split-characters>Team</div>
+        </nuxt-link>
         <nuxt-link v-cursor-right to="/contacto">
           <div v-split-characters>Contacto</div>
         </nuxt-link>

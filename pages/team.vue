@@ -240,29 +240,29 @@ export default {
   @apply pt-44 w-full max-w-9xl mx-auto leading-none select-none;
   .team_header {
     h2 {
-      @apply text-6xl mx-4 md:mx-0 md:grid md:grid-cols-12 md:grid-rows-3 md:gap-x-4 md:gap-y-0 md:text-7xl;
+      @apply text-4xl mx-4 lg:mx-0 lg:grid lg:grid-cols-12 lg:grid-rows-3 lg:gap-x-4 lg:gap-y-0 lg:text-7xl;
       span {
-        @apply md:block leading-none;
+        @apply lg:block leading-none;
         &.title_1 {
           font-variation-settings: 'wght' var(--font-weight, 200),
             'wdth' var(--font-width, 130), 'ital' 0;
-          @apply col-span-1 md:col-span-6 md:col-start-4 row-start-1 row-span-1;
+          @apply col-span-1 lg:col-span-6 lg:col-start-4 row-start-1 row-span-1 lg:text-center;
         }
         &.title_2 {
           font-variation-settings: 'wght' var(--font-weight, 400),
             'wdth' var(--font-width, 130), 'ital' 0;
-          @apply md:col-span-6 md:col-start-6 row-start-2 row-span-1 uppercase;
+          @apply lg:col-span-6 lg:col-start-6 row-start-2 row-span-1 uppercase;
         }
         &.title_3 {
           font-variation-settings: 'wght' var(--font-weight, 400),
             'wdth' var(--font-width, 130), 'ital' 0;
-          @apply md:col-span-6 md:col-start-5 row-start-3 row-span-1 uppercase;
+          @apply lg:col-span-6 lg:col-start-5 row-start-3 row-span-1 uppercase;
         }
       }
     }
   }
 }
 .team_people {
-  @apply pt-44 w-full max-w-9xl mx-auto;
+  @apply pt-20 py-20 w-full max-w-9xl mx-auto;
 }
 </style>

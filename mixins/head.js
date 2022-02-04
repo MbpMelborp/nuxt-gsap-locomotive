@@ -43,25 +43,35 @@ export default {
             : 'https://melborp.art/',
         },
         { property: 'og:type', content: 'website' },
-        { property: 'og:title', content: this.story.content.seo.title },
+        {
+          property: 'og:title',
+          content:
+            this.story.content.seo.title || 'Melborp - Business Updaters',
+        },
         {
           property: 'og:description',
           content:
             this.story.content.seo.og_description ||
             this.story.content.seo.title ||
-            'Agencia de Publicidad, Agencia Creativa, Publicidad, Agencia de Publicidad, Diseño de Marcas, Campañas, Logotipos, Diseño de empaques, Imagen Corporativa, redes sociales, digital, sitios web, branding, planeación de marcas, investigación de mercados, sura, argos, dislicores, ruta n, medellin, colombia, bogota, experiencias de marca',
+            'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+        },
+        {
+          property: 'og:image',
+          content: this.story.content.seo.og_image
+            ? this.story.content.seo.og_image
+            : 'https://melborp.art/fb.png?v=1',
         },
         {
           property: 'og:image:url',
           content: this.story.content.seo.og_image
             ? this.story.content.seo.og_image
-            : 'https://melborp.art/fb.png',
+            : 'https://melborp.art/fb.png?v=1',
         },
         {
           property: 'og:image:secure_url',
           content: this.story.content.seo.og_image
             ? this.story.content.seo.og_image
-            : 'https://melborp.art/fb.png',
+            : 'https://melborp.art/fb.png?v=1',
         },
         { property: 'og:latitude', content: '6.2095861' },
         { name: 'twitter:card', content: 'summary' },
@@ -89,7 +99,9 @@ export default {
         { name: 'dcterms.title', content: 'MELBORP' },
         {
           name: 'dcterms.description',
-          content: this.story.content.seo.description,
+          content:
+            this.story.content.seo.description ||
+            'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
         },
         { name: 'dcterms.identifier', content: 'https://melborp.art/' },
       ],

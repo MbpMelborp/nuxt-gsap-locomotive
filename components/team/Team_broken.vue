@@ -5,7 +5,7 @@
         :id="'team-' + item._uid"
         :key="media._uid + '_' + i"
         class="item"
-        :data-scroll="!$isMobile() ? item.parallax != 0 : 0"
+        :data-scroll="!$isMobile() ? item.parallax != 0 : null"
         :data-scroll-speed="
           !$isMobile() ? (item.parallax === 0 ? 0 : item.parallax * 0.6) : 0
         "
@@ -14,13 +14,13 @@
         @mouseleave="hoverTeam('team-' + item._uid, i, false)"
       >
         <div class="item_int">
-          <div
+          <!-- <div
             v-if="item.hv != ''"
             class="hv anim"
             v-html="$storyapi.richTextResolver.render(item.hv)"
-          ></div>
+          ></div> -->
           <div class="info anim">
-            <svg class="arrow" viewBox="0 0 45 45">
+            <svg class="arrow-team" viewBox="0 0 45 45">
               <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g
                   transform="translate(1.000000, 1.000000)"
@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { gsap, Power2, Sine } from 'gsap'
+// import { gsap, Power2, Sine } from 'gsap'
 import loaderm from '~/mixins/loader.js'
 
 export default {
@@ -125,10 +125,19 @@ export default {
         item.classes.push(`pm-${item.abajo}`)
       }
       if (item.arriba !== '') {
-        item.classes.push(`pt-${item.arriba}`)
+        item.classes.push(`pti-${item.arriba}`)
       }
       if (item.alto !== '') {
         item.classes.push(`${item.alto}`)
+      }
+      if (item.fuente !== '') {
+        item.classes.push(`${item.fuente}`)
+      }
+      if (item.ubicacion_texto !== '') {
+        item.classes.push(`x-${item.ubicacion_texto}`)
+      }
+      if (item.ubicacion_texto2 !== '') {
+        item.classes.push(`y-${item.ubicacion_texto2}`)
       }
       item.classText = item.classes.join(' ')
     })
@@ -139,61 +148,62 @@ export default {
   methods: {
     initTimelines() {
       console.log('🗂️ TEAM -> initTimelines', this.media)
-      this.media.team.forEach((item, i) => {
-        this.tl_hover[i] = gsap.timeline({
-          paused: true,
-          ease: Power2.easeInOut,
-          onStart: () => {},
-          onComplete: () => {},
-        })
-        const id = '#team-' + item._uid
-        // gsap.set(id + ' .anim, ' + id + ' .info ', {
-        //   opacity: 0,
-        // })
-        this.tl_hover[i].fromTo(
-          id + ' .anim',
-          {
-            opacity: 0,
-            y: 0,
-            x: 10,
-            scale: 1,
-          },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            scale: 1,
-            duration: 0.7,
-            ease: Sine.easeInOut,
-            stagger: {
-              each: 0.1,
-              from: 'center',
-            },
-          },
-          '+=0'
-        )
-        this.tl_hover[i].fromTo(
-          id + ' .foto img',
-          {
-            scale: 1,
-            opacity: 1,
-          },
-          {
-            opacity: 1,
-            scale: 1.1,
-            duration: 0.3,
-            ease: Sine.easeInOut,
-          },
-          '-=0.6'
-        )
-      })
+
+      // this.media.team.forEach((item, i) => {
+      //   this.tl_hover[i] = gsap.timeline({
+      //     paused: true,
+      //     ease: Power2.easeInOut,
+      //     onStart: () => {},
+      //     onComplete: () => {},
+      //   })
+      //   const id = '#team-' + item._uid
+      //   // gsap.set(id + ' .anim, ' + id + ' .info ', {
+      //   //   opacity: 0,
+      //   // })
+      //   this.tl_hover[i].fromTo(
+      //     id + ' .anim',
+      //     {
+      //       opacity: 0,
+      //       y: 0,
+      //       x: 10,
+      //       scale: 1,
+      //     },
+      //     {
+      //       opacity: 1,
+      //       x: 0,
+      //       y: 0,
+      //       scale: 1,
+      //       duration: 0.7,
+      //       ease: Sine.easeInOut,
+      //       stagger: {
+      //         each: 0.1,
+      //         from: 'center',
+      //       },
+      //     },
+      //     '+=0'
+      //   )
+      //   this.tl_hover[i].fromTo(
+      //     id + ' .foto img',
+      //     {
+      //       scale: 1,
+      //       opacity: 1,
+      //     },
+      //     {
+      //       opacity: 1,
+      //       scale: 1.1,
+      //       duration: 0.3,
+      //       ease: Sine.easeInOut,
+      //     },
+      //     '-=0.6'
+      //   )
+      // })
     },
     hoverTeam(id, i, bool) {
-      if (bool) {
-        this.tl_hover[i].play()
-      } else {
-        this.tl_hover[i].reverse()
-      }
+      // if (bool) {
+      //   this.tl_hover[i].play()
+      // } else {
+      //   this.tl_hover[i].reverse()
+      // }
     },
   },
 }
@@ -201,7 +211,7 @@ export default {
 
 <style lang="postcss" scoped>
 .media_broken {
-  @apply w-full grid md:gap-4 grid-cols-1 md:grid-cols-12 md:grid-rows-1 md:mb-12;
+  @apply w-full grid lg:gap-4 grid-cols-1 lg:grid-cols-12 lg:grid-rows-1 my-0 lg:my-16 px-4;
 
   &.pgap-1 {
     @apply gap-1;
@@ -240,7 +250,7 @@ export default {
     @apply gap-12;
   }
   .item {
-    @apply md:row-span-full md:mb-4;
+    @apply lg:row-span-full lg:mb-4;
     &.pz-0 {
       @apply z-0;
     }
@@ -261,214 +271,307 @@ export default {
     }
 
     &.s-1 {
-      @apply md:col-start-1;
+      @apply lg:col-start-1;
     }
     &.s-2 {
-      @apply md:col-start-2;
+      @apply lg:col-start-2;
     }
     &.s-3 {
-      @apply md:col-start-3;
+      @apply lg:col-start-3;
     }
     &.s-4 {
-      @apply md:col-start-4;
+      @apply lg:col-start-4;
     }
     &.s-5 {
-      @apply md:col-start-5;
+      @apply lg:col-start-5;
     }
     &.s-6 {
-      @apply md:col-start-6;
+      @apply lg:col-start-6;
     }
     &.s-7 {
-      @apply md:col-start-7;
+      @apply lg:col-start-7;
     }
     &.s-8 {
-      @apply md:col-start-8;
+      @apply lg:col-start-8;
     }
     &.s-9 {
-      @apply md:col-start-9;
+      @apply lg:col-start-9;
     }
     &.s-10 {
-      @apply md:col-start-10;
+      @apply lg:col-start-10;
     }
     &.s-11 {
-      @apply md:col-start-11;
+      @apply lg:col-start-11;
     }
     &.s-12 {
-      @apply md:col-start-12;
+      @apply lg:col-start-12;
     }
 
     &.e-1 {
-      @apply md:col-end-1;
+      @apply lg:col-end-1;
     }
     &.e-2 {
-      @apply md:col-end-2;
+      @apply lg:col-end-2;
     }
     &.e-3 {
-      @apply md:col-end-3;
+      @apply lg:col-end-3;
     }
     &.e-4 {
-      @apply md:col-end-4;
+      @apply lg:col-end-4;
     }
     &.e-5 {
-      @apply md:col-end-5;
+      @apply lg:col-end-5;
     }
     &.e-6 {
-      @apply md:col-end-6;
+      @apply lg:col-end-6;
     }
     &.e-7 {
-      @apply md:col-end-7;
+      @apply lg:col-end-7;
     }
     &.e-8 {
-      @apply md:col-end-8;
+      @apply lg:col-end-8;
     }
     &.e-9 {
-      @apply md:col-end-9;
+      @apply lg:col-end-9;
     }
     &.e-10 {
-      @apply md:col-end-10;
+      @apply lg:col-end-10;
     }
     &.e-11 {
-      @apply md:col-end-11;
+      @apply lg:col-end-11;
     }
     &.e-12 {
-      @apply md:col-end-12;
+      @apply lg:col-end-12;
     }
     &.e-13 {
-      @apply md:col-end-13;
+      @apply lg:col-end-13;
     }
 
     &.sp-1 {
-      @apply md:col-span-1;
+      @apply lg:col-span-1;
     }
     &.sp-2 {
-      @apply md:col-span-2;
+      @apply lg:col-span-2;
     }
     &.sp-3 {
-      @apply md:col-span-3;
+      @apply lg:col-span-3;
     }
     &.sp-4 {
-      @apply md:col-span-4;
+      @apply lg:col-span-4;
     }
     &.sp-5 {
-      @apply md:col-span-5;
+      @apply lg:col-span-5;
     }
     &.sp-6 {
-      @apply md:col-span-6;
+      @apply lg:col-span-6;
     }
     &.sp-7 {
-      @apply md:col-span-7;
+      @apply lg:col-span-7;
     }
     &.sp-8 {
-      @apply md:col-span-8;
+      @apply lg:col-span-8;
     }
     &.sp-9 {
-      @apply md:col-span-9;
+      @apply lg:col-span-9;
     }
     &.sp-10 {
-      @apply md:col-span-10;
+      @apply lg:col-span-10;
     }
     &.sp-11 {
-      @apply md:col-span-11;
+      @apply lg:col-span-11;
     }
     &.sp-12 {
-      @apply md:col-span-12;
+      @apply lg:col-span-12;
     }
     &.pm-0 {
-      @apply md:mb-0;
+      @apply lg:mb-0;
     }
     &.pm-2 {
-      @apply md:mb-6;
+      @apply lg:mb-6;
     }
     &.pm-4 {
-      @apply md:mb-8;
+      @apply lg:mb-8;
     }
     &.pm-6 {
-      @apply md:mb-10;
+      @apply lg:mb-10;
     }
     &.pm-8 {
-      @apply md:mb-12;
+      @apply lg:mb-12;
     }
     &.pm-10 {
-      @apply md:mb-14;
+      @apply lg:mb-14;
     }
     &.pm-12 {
-      @apply md:mb-16;
+      @apply lg:mb-16;
     }
     &.pm-14 {
-      @apply md:mb-20;
+      @apply lg:mb-20;
     }
     &.pm-16 {
-      @apply md:mb-24;
+      @apply lg:mb-24;
     }
     &.pm-18 {
-      @apply md:mb-28;
+      @apply lg:mb-28;
     }
     &.pm-20 {
-      @apply md:mb-32;
+      @apply lg:mb-32;
     }
 
-    &.pt-0 {
-      @apply md:mt-0;
+    &.pti-0 {
+      @apply lg:mt-0;
     }
-    &.pt-2 {
-      @apply md:mt-6;
+    &.pti-2 {
+      @apply lg:mt-6;
     }
-    &.pt-4 {
-      @apply md:mt-8;
+    &.pti-4 {
+      @apply lg:mt-8;
     }
-    &.pt-6 {
-      @apply md:mt-10;
+    &.pti-6 {
+      @apply lg:mt-10;
     }
-    &.pt-8 {
-      @apply md:mt-12;
+    &.pti-8 {
+      @apply lg:mt-12;
     }
-    &.pt-10 {
-      @apply md:mt-14;
+    &.pti-10 {
+      @apply lg:mt-14;
     }
-    &.pt-12 {
-      @apply md:mt-16;
+    &.pti-12 {
+      @apply lg:mt-16;
     }
-    &.pt-14 {
-      @apply md:mt-20;
+    &.pti-14 {
+      @apply lg:mt-20;
     }
-    &.pt-16 {
-      @apply md:mt-24;
+    &.pti-16 {
+      @apply lg:mt-24;
     }
-    &.pt-18 {
-      @apply md:mt-28;
+    &.pti-18 {
+      @apply lg:mt-28;
     }
-    &.pt-20 {
-      @apply md:mt-32;
+    &.pti-20 {
+      @apply lg:mt-32;
     }
     .item_int {
-      @apply grid grid-cols-6 grid-rows-6 gap-2 overflow-hidden;
+      @apply grid grid-cols-6 grid-rows-6 gap-2 mb-12 lg:mb-0;
       .hv {
         font-variation-settings: 'wght' var(--font-weight, 100),
           'wdth' var(--font-width, 130), 'ital' 0;
-        @apply text-sm col-start-1 col-end-5 row-start-1 row-end-6 z-30 p-8 leading-tight;
+        @apply hidden text-sm col-start-1 col-end-5 row-start-1 row-end-6 z-30 p-8 leading-tight;
       }
       .foto {
         @apply col-start-1 col-end-7 row-start-1 row-end-7 z-10 overflow-hidden;
       }
       .info {
-        @apply col-start-5 col-end-7 row-start-4 row-end-7 z-20 p-8;
-        .arrow {
-          @apply w-6 h-6 mb-8;
+        @apply z-20;
+        .arrow-team {
+          @apply w-6 h-6 mb-2 mx-auto;
         }
         h3 {
+          line-height: 1em !important;
           font-variation-settings: 'wght' var(--font-weight, 400),
             'wdth' var(--font-width, 130), 'ital' 0;
-          @apply ml-4 text-xl uppercase leading-none mb-2;
+          @apply uppercase mb-2;
         }
         h4 {
+          line-height: 1em !important;
           font-variation-settings: 'wght' var(--font-weight, 200),
             'wdth' var(--font-width, 130), 'ital' 0;
-          @apply text-lg leading-none;
         }
       }
     }
+    &.x-left {
+      .info {
+        @apply col-start-1 col-end-4 ml-4 lg:ml-0;
+      }
+    }
+    &.x-right {
+      .info {
+        @apply col-start-4 col-end-7 text-right mr-4 lg:mr-0;
+        .arrow-team {
+          @apply ml-auto;
+        }
+      }
+    }
+    &.y-up {
+      .info {
+        @apply row-start-1 row-end-3 self-start pt-4;
+      }
+    }
+    &.y-down {
+      .info {
+        @apply row-start-4 row-end-7 self-end pb-4;
+      }
+    }
+
+    &.grande {
+      .info {
+        h3 {
+          @apply lg:text-xl mb-2;
+        }
+        h4 {
+          @apply lg:text-lg;
+        }
+      }
+    }
+    &.pequeno {
+      .info {
+        h3 {
+          @apply lg:text-lg;
+        }
+        h4 {
+          @apply lg:text-sm;
+        }
+      }
+    }
+
+    &.x-left.grande {
+      .info {
+        @apply lg:-translate-x-10;
+        h4 {
+          @apply lg:ml-4;
+        }
+      }
+    }
+    &.x-right.grande {
+      .info {
+        @apply lg:translate-x-10;
+        h4 {
+          @apply lg:mr-4;
+        }
+      }
+    }
+    &.x-left.pequeno {
+      .info {
+        @apply pl-4;
+      }
+    }
+    &.x-right.pequeno {
+      .info {
+        @apply pr-4;
+      }
+    }
+    &.y-up.grande {
+      .info {
+        @apply lg:pt-10;
+      }
+    }
+    &.y-down.grande {
+      .info {
+        @apply lg:pb-10;
+      }
+    }
+    &.y-up.pequeno {
+      .info {
+        @apply lg:pt-4;
+      }
+    }
+    &.y-down.pequeno {
+      .info {
+        @apply lg:pb-4;
+      }
+    }
+
     &.full {
-      .item_int {
+      /* .item_int {
         .foto {
           img {
             @apply block object-cover h-full w-full;
@@ -477,10 +580,10 @@ export default {
         .info {
           @apply col-start-3 col-end-7 row-start-5 row-end-7 z-20;
         }
-      }
+      } */
     }
     &.half {
-      .item_int {
+      /* .item_int {
         @apply h-3/5;
         .foto {
           img {
@@ -490,7 +593,7 @@ export default {
         .info {
           @apply col-start-5 col-end-7 row-start-5 row-end-7 z-20;
         }
-      }
+      } */
     }
   }
 }
