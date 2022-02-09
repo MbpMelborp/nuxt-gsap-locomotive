@@ -408,7 +408,11 @@ export default {
           ? 'production'
           : 'development debug-screens') +
         ' ' +
-        (window.location.search.includes('_storyblok') ? 'editor' : ''),
+        (process.client
+          ? window.location.search.includes('_storyblok')
+            ? 'editor'
+            : ''
+          : ''),
     },
   },
   computed: {

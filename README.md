@@ -212,3 +212,13 @@ mounted () {
 If you find this repo useful and you saved time, well... let's take a coffee together!
 
 :coffee: [https://www.buymeacoffee.com/davide_marchet](https://www.buymeacoffee.com/davide_marchet)
+
+
+
+if you have M1 chip mac then follow below steps its help you
+
+i resolve my problem with the below command
+
+brew install vips
+
+npm rebuild --verbose sharp

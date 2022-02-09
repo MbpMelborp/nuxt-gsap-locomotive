@@ -16,22 +16,22 @@
           alt="Melborp"
         />
       </div>
-      <intersect @enter="clipToRight">
-        <div
-          v-if="media.descripcion"
-          class="descripcion"
-          v-html="descripcion"
-        ></div>
-      </intersect>
+
+      <div
+        v-if="media.descripcion"
+        v-intersection="clipToRight"
+        class="descripcion"
+        v-html="descripcion"
+      ></div>
     </template>
     <template v-else>
-      <intersect @enter="clipToRight">
-        <div
-          v-if="media.descripcion"
-          class="descripcion"
-          v-html="descripcion"
-        ></div>
-      </intersect>
+      <div
+        v-if="media.descripcion"
+        v-intersection="clipToRight"
+        class="descripcion"
+        v-html="descripcion"
+      ></div>
+
       <div
         v-lazy-container="{ selector: 'img' }"
         :class="`p${media.ancho}`"

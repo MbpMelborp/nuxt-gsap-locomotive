@@ -13,7 +13,7 @@ export default {
     { src: '~/plugins/lazyload.js', mode: 'client' },
     { src: '~/plugins/ismobile.js', mode: 'client' },
     { src: '~/plugins/console.js', mode: 'client' },
-
+    { src: '~/plugins/intersect.js', mode: 'client' },
     // { src: '~/plugins/textresponsive.js', mode: 'client' },
   ],
   // plugins: ['~/plugins/url-helpers.js']

@@ -1,6 +1,6 @@
 import { gsap, Power2, Power4, Sine } from 'gsap'
 import { mapGetters, mapMutations } from 'vuex'
-import Intersect from 'vue-intersect'
+// import Intersect from 'vue-intersect'
 
 export default {
   data() {
@@ -30,9 +30,9 @@ export default {
       proyectoMobile: 'app/getMobileProyecto',
     }),
   },
-  components: {
-    Intersect,
-  },
+  // components: {
+  //   Intersect,
+  // },
   mounted() {
     console.log(
       `%c 🗂️ PROYECTOS -> mounted \n ${this.proyecto.name}`,
@@ -168,6 +168,21 @@ export default {
     ...mapMutations({
       setMobileProyecto: 'app/setMobileProyecto',
     }),
+    handlerHoverMobileProyecto(entries, observer, isIntersecting, ratio) {
+      console.log('👓', this.proyecto.name, ' handlerHANDLER', isIntersecting)
+      this.hoverMobileProyecto(isIntersecting)
+    },
+    handlerShowProy(entries, observer, isIntersecting, ratio) {
+      console.log(
+        '👓',
+        this.proyecto.name,
+        'handlerShowProy HANDLER',
+        isIntersecting
+      )
+      if (isIntersecting) {
+        this.showProy()
+      }
+    },
     testload() {},
     onClassChange(classAttrValue) {
       // const classList = classAttrValue.split(' ')

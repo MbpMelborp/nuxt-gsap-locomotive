@@ -1,70 +1,63 @@
 <template>
-  <intersect @enter="showProy">
-    <div
-      :id="`proyecto_${proyecto.slug}`"
-      :key="Math.random() * 1000 + proyecto.slug"
-      v-cursor-right
-      data-scroll
-      :data-scroll-speed="!$isMobile() ? 0.1 : 0"
-      data-scroll-repeat="true"
-      data-scroll-position="top"
-      :data-scroll-call="`proyecto_${proyecto.slug}`"
-      :class="`proyecto_tipo ${par ? 'tipo_2' : 'tipo_1'}`"
-      @click="toProject"
-    >
-      <h2 class="proyecto_title">
-        <intersect
-          @enter="hoverMobileProyecto(true)"
-          @leave="hoverMobileProyecto(false)"
+  <div
+    :id="`proyecto_${proyecto.slug}`"
+    :key="Math.random() * 1000 + proyecto.slug"
+    v-intersection="handlerShowProy"
+    v-cursor-right
+    data-scroll
+    :data-scroll-speed="!$isMobile() ? 0.1 : 0"
+    data-scroll-repeat="true"
+    data-scroll-position="top"
+    :data-scroll-call="`proyecto_${proyecto.slug}`"
+    :class="`proyecto_tipo ${par ? 'tipo_2' : 'tipo_1'}`"
+    @click="toProject"
+  >
+    <h2 v-intersection="handlerHoverMobileProyecto" class="proyecto_title">
+      <div class="proyecto_title_int">
+        <div class="proyecto_title_int_cliente">
+          {{ proyecto.content.cliente }},
+        </div>
+        <div
+          class="proyecto_title_int_nom"
+          :class="
+            proyecto.content.nombre.length > 20 ? 'text-small' : 'text-normal'
+          "
         >
-          <div class="proyecto_title_int">
-            <div class="proyecto_title_int_cliente">
-              {{ proyecto.content.cliente }},
-            </div>
-            <div
-              class="proyecto_title_int_nom"
-              :class="
-                proyecto.content.nombre.length > 20
-                  ? 'text-small'
-                  : 'text-normal'
-              "
-            >
-              <span
-                v-for="(palabra, index) in proyecto.content.nombre.split(' ')"
-                :key="index"
-              >
-                {{ palabra }}
-              </span>
-            </div>
-          </div>
-        </intersect>
-      </h2>
-      <div class="proyecto_arrow">
-        <svg
-          viewBox="0 0 45 45"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <span
+            v-for="(palabra, index) in proyecto.content.nombre.split(' ')"
+            :key="index"
+          >
+            {{ palabra }}
+          </span>
+        </div>
+      </div>
+    </h2>
+    <div class="proyecto_arrow">
+      <svg
+        viewBox="0 0 45 45"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g
+            transform="translate(-12.000000, -9.000000)"
+            :stroke="proyecto.content.colores[0].texto.color"
+            stroke-width="1"
+          >
             <g
-              transform="translate(-12.000000, -9.000000)"
-              :stroke="proyecto.content.colores[0].texto.color"
-              stroke-width="1"
+              id="arrowp"
+              transform="translate(34.374000, 31.374000) scale(-1, 1) translate(-34.374000, -31.374000) translate(13.000000, 10.000000)"
             >
-              <g
-                id="arrowp"
-                transform="translate(34.374000, 31.374000) scale(-1, 1) translate(-34.374000, -31.374000) translate(13.000000, 10.000000)"
-              >
-                <line x1="42.748" y1="42.748" x2="0" y2="0"></line>
-                <polyline
-                  points="42.3738 0.3742 0.3738 0.3742 0.3738 42.3742"
-                ></polyline>
-              </g>
+              <line x1="42.748" y1="42.748" x2="0" y2="0"></line>
+              <polyline
+                points="42.3738 0.3742 0.3738 0.3742 0.3738 42.3742"
+              ></polyline>
             </g>
           </g>
-        </svg>
-        <!-- <svg viewBox="0 0 45 45">
+        </g>
+      </svg>
+      <!-- <svg viewBox="0 0 45 45">
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g
               class="chang"
@@ -79,103 +72,103 @@
             </g>
           </g>
         </svg> -->
-      </div>
-      <!-- <div
+    </div>
+    <!-- <div
         data-scroll
         :data-scroll-speed="!$isMobile() ? -1 : 0"
         data-scroll-repeat="true"
         data-scroll-position="center"
         class="proyecto_data"
       > -->
-      <div class="proyecto_data">
-        <!-- <div class="proyecto_data_content" @click="hoverFinish()"> -->
-        <div class="proyecto_data_int">
-          <div class="proyecto_data_content">
-            <nuxt-link v-cursor-right :to="proyecto.full_slug">
-              <h4
-                class="anim_proy"
-                @mouseover="hoverProyecto($event, true)"
-                @mouseleave="hoverProyecto($event, false)"
-              >
-                {{ proyecto.content.titular }}
-              </h4>
-              <div
-                class="proyecto_body anim_proy"
-                @mouseover="hoverProyecto($event, true)"
-                @mouseleave="hoverProyecto($event, false)"
-                v-html="intro"
-              ></div>
+    <div class="proyecto_data">
+      <!-- <div class="proyecto_data_content" @click="hoverFinish()"> -->
+      <div class="proyecto_data_int">
+        <div class="proyecto_data_content">
+          <nuxt-link v-cursor-right :to="proyecto.full_slug">
+            <h4
+              class="anim_proy"
+              @mouseover="hoverProyecto($event, true)"
+              @mouseleave="hoverProyecto($event, false)"
+            >
+              {{ proyecto.content.titular }}
+            </h4>
+            <div
+              class="proyecto_body anim_proy"
+              @mouseover="hoverProyecto($event, true)"
+              @mouseleave="hoverProyecto($event, false)"
+              v-html="intro"
+            ></div>
 
-              <div
-                class="proyecto_ver anim_proy"
-                @mouseover="hoverProyecto($event, true)"
-                @mouseleave="hoverProyecto($event, false)"
-              >
-                Ver proyecto <i class="fal fa-long-arrow-right"></i>
-              </div>
-            </nuxt-link>
-          </div>
+            <div
+              class="proyecto_ver anim_proy"
+              @mouseover="hoverProyecto($event, true)"
+              @mouseleave="hoverProyecto($event, false)"
+            >
+              Ver proyecto <i class="fal fa-long-arrow-right"></i>
+            </div>
+          </nuxt-link>
         </div>
       </div>
-
-      <div
-        :id="`proyecto_${proyecto.slug}_media_1`"
-        v-lazy-container="{ selector: 'img' }"
-        data-played="0"
-        class="proyecto_media proyecto_media_1"
-      >
-        <img
-          :data-src="proyecto.content.home[0].media1.filename + '/m/'"
-          :data-loading="
-            proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
-          "
-          :data-error="
-            proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
-          "
-          class="vlazy proyecto-img"
-        />
-      </div>
-      <div
-        :id="`proyecto_${proyecto.slug}_media_2`"
-        v-lazy-container="{ selector: 'img' }"
-        class="proyecto_media proyecto_media_2"
-      >
-        <img
-          :data-src="proyecto.content.home[0].media2.filename + '/m/'"
-          :data-loading="
-            proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
-          "
-          :data-error="
-            proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
-          "
-          class="vlazy proyecto-img"
-        />
-      </div>
-      <div
-        :id="`proyecto_${proyecto.slug}_media_3`"
-        v-lazy-container="{ selector: 'img' }"
-        class="proyecto_media proyecto_media_3"
-      >
-        <img
-          :data-src="proyecto.content.home[0].media3.filename + '/m/'"
-          :data-loading="
-            proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
-          "
-          :data-error="
-            proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
-          "
-          class="vlazy proyecto-img"
-        />
-      </div>
-
-      <div class="bg"></div>
     </div>
-  </intersect>
+
+    <div
+      :id="`proyecto_${proyecto.slug}_media_1`"
+      v-lazy-container="{ selector: 'img' }"
+      data-played="0"
+      class="proyecto_media proyecto_media_1"
+    >
+      <img
+        :data-src="proyecto.content.home[0].media1.filename + '/m/'"
+        :data-loading="
+          proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
+        "
+        :data-error="
+          proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
+        "
+        class="vlazy proyecto-img"
+      />
+    </div>
+    <div
+      :id="`proyecto_${proyecto.slug}_media_2`"
+      v-lazy-container="{ selector: 'img' }"
+      class="proyecto_media proyecto_media_2"
+    >
+      <img
+        :data-src="proyecto.content.home[0].media2.filename + '/m/'"
+        :data-loading="
+          proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
+        "
+        :data-error="
+          proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
+        "
+        class="vlazy proyecto-img"
+      />
+    </div>
+    <div
+      :id="`proyecto_${proyecto.slug}_media_3`"
+      v-lazy-container="{ selector: 'img' }"
+      class="proyecto_media proyecto_media_3"
+    >
+      <img
+        :data-src="proyecto.content.home[0].media3.filename + '/m/'"
+        :data-loading="
+          proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
+        "
+        :data-error="
+          proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
+        "
+        class="vlazy proyecto-img"
+      />
+    </div>
+
+    <div class="bg"></div>
+  </div>
 </template>
 
 <script>
 import proyectos from '~/mixins/proyectos.js'
 export default {
+  components: {},
   mixins: [proyectos],
   props: {
     proyecto: {

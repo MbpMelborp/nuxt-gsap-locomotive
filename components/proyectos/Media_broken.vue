@@ -19,13 +19,13 @@
           class="vlazy"
           alt="Melborp"
         />
-        <intersect @enter="clipToRight">
-          <div
-            v-if="item.descripcion != ''"
-            :style="`font-variation-settings: 'wght' var(--font-weight, ${item.wght}), 'wdth' var(--font-width, ${item.wdth}), 'ital' 0;`"
-            v-html="$storyapi.richTextResolver.render(item.descripcion)"
-          ></div>
-        </intersect>
+
+        <div
+          v-if="item.descripcion != ''"
+          v-intersection="clipToRight"
+          :style="`font-variation-settings: 'wght' var(--font-weight, ${item.wght}), 'wdth' var(--font-width, ${item.wdth}), 'ital' 0;`"
+          v-html="$storyapi.richTextResolver.render(item.descripcion)"
+        ></div>
       </div>
     </template>
   </div>

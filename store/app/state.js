@@ -1,3 +1,8 @@
+let load = null
+if (process.client) {
+  load = window.location.search.includes('_storyblok') === true
+}
+
 export default () => ({
   scroll: {
     isScrolling: false,
@@ -8,12 +13,7 @@ export default () => ({
     x: 0,
     y: 0,
   },
-  load:
-    window != null
-      ? window.location.search.includes('_storyblok') === true
-        ? true
-        : null
-      : null,
+  load,
   section: null,
   home: {
     texto: null,

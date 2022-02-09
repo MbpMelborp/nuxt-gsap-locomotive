@@ -46,30 +46,21 @@
             <h3>{{ item.nombre }}</h3>
             <h4>{{ item.cargo }}</h4>
           </div>
-          <intersect @enter="clipToRight">
-            <div v-lazy-container="{ selector: 'img' }" class="foto">
-              <img
-                :data-src="item.foto.filename + '/m/'"
-                :data-loading="item.foto.filename + '/m/filters:quality(10)'"
-                :data-error="item.foto.filename + '/m/filters:quality(10)'"
-                :alt="item.nombre"
-                class="vlazy"
-              />
 
-              <!-- <img
-                v-if="item.foto.filename != ''"
-                v-lazy-load
-                :data-src="
-                  item.foto.filename +
-                  (item.alto == 'half'
-                    ? '/m/996x600/filters:focal(0x150:150x600)'
-                    : '')
-                "
-                alt="Melborp"
-                @load="loaded"
-              /> -->
-            </div>
-          </intersect>
+          <div
+            v-lazy-container="{ selector: 'img' }"
+            v-intersection="clipToTop"
+            class="foto"
+          >
+            <img
+              :data-src="item.foto.filename + '/m/'"
+              :data-loading="item.foto.filename + '/m/filters:quality(10)'"
+              :data-error="item.foto.filename + '/m/filters:quality(10)'"
+              :alt="item.nombre"
+              class="vlazy"
+            />
+          </div>
+
           <!-- <intersect @enter="clipToRight">
           <div
             v-if="item.descripcion != ''"

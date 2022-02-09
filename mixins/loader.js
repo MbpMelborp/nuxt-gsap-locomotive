@@ -1,10 +1,6 @@
 import { gsap, Power2 } from 'gsap'
-import Intersect from 'vue-intersect'
-export default {
-  components: {
-    Intersect,
-  },
 
+export default {
   mounted() {
     if (window) {
       window.dispatchEvent(new Event('resize'))
@@ -117,35 +113,71 @@ export default {
         }
       }
     },
-    clipToRight(e) {
-      e.forEach(function (entry, i) {
-        if (
-          entry.target.loaded === false ||
-          entry.target.loaded === undefined
-        ) {
-          entry.target.loaded = true
-          gsap.fromTo(
-            entry.target,
-            {
-              clipPath: 'inset(0% 100% 0% 0%)',
-              y: 10,
-            },
-            {
-              clipPath: 'inset(0% 0% 0% 0%)',
-              y: 0,
-              duration: 0.5,
-              delay: 1,
-              stagger: i * 0.2,
-              overwrite: false,
-              ease: Power2.easeInOut,
-              onStart: () => {},
-              onComplete: () => {
-                gsap.killTweensOf(entry.target)
+    clipToRight(e, observer, isIntersecting, ratio) {
+      if (isIntersecting) {
+        console.log('👓', ' clipToRight', isIntersecting, e, observer)
+        e.forEach(function (entry, i) {
+          if (
+            entry.target.loaded === false ||
+            entry.target.loaded === undefined
+          ) {
+            entry.target.loaded = true
+            gsap.fromTo(
+              entry.target,
+              {
+                clipPath: 'inset(0% 100% 0% 0%)',
+                y: 10,
               },
-            }
-          )
-        }
-      })
+              {
+                clipPath: 'inset(0% 0% 0% 0%)',
+                y: 0,
+                duration: 1,
+                delay: 0.2,
+                stagger: i * 0.2,
+                overwrite: false,
+                ease: Power2.easeInOut,
+                onStart: () => {},
+                onComplete: () => {
+                  gsap.killTweensOf(entry.target)
+                },
+              }
+            )
+          }
+        })
+      }
+    },
+    clipToTop(e, observer, isIntersecting, ratio) {
+      if (isIntersecting) {
+        console.log('👓', ' clipToRight', isIntersecting, e, observer)
+        e.forEach(function (entry, i) {
+          if (
+            entry.target.loaded === false ||
+            entry.target.loaded === undefined
+          ) {
+            entry.target.loaded = true
+            gsap.fromTo(
+              entry.target,
+              {
+                clipPath: 'inset(100% 0% 0% 0%)',
+                y: 10,
+              },
+              {
+                clipPath: 'inset(0% 0% 0% 0%)',
+                y: 0,
+                duration: 1,
+                delay: 0.2,
+                stagger: i * 0.2,
+                overwrite: false,
+                ease: Power2.easeInOut,
+                onStart: () => {},
+                onComplete: () => {
+                  gsap.killTweensOf(entry.target)
+                },
+              }
+            )
+          }
+        })
+      }
     },
   },
 }

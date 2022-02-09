@@ -1,11 +1,13 @@
 <template>
-  <main :class="{ cursor: !editor && !$isMobile() }">
-    <Cursorfx v-if="!editor && !$isMobile()"></Cursorfx>
-    <Preload v-if="!preload && !editor"></Preload>
-    <PreloadInterior></PreloadInterior>
-    <Nav></Nav>
-    <delay-hydration><nuxt /></delay-hydration>
-  </main>
+  <client-only>
+    <main :class="{ cursor: !editor && !mobile }">
+      <Cursorfx v-if="!editor && !mobile"></Cursorfx>
+      <Preload v-if="!preload && !editor"></Preload>
+      <PreloadInterior></PreloadInterior>
+      <Nav></Nav>
+      <delay-hydration><nuxt /></delay-hydration>
+    </main>
+  </client-only>
 </template>
 
 <script>
@@ -25,7 +27,12 @@ export default {
   },
   data() {
     return {
-      editor: window ? window.location.search.includes('_storyblok') : false,
+      editor: process.client
+        ? window
+          ? window.location.search.includes('_storyblok')
+          : false
+        : null,
+      mobile: process.client ? this.$isMobile() : false,
     }
   },
   computed: {
@@ -53,7 +60,7 @@ export default {
 
 <style lang="postcss">
 body {
-  @apply m-0 font-normal font-extralight;
+  @apply m-0 font-extralight;
 }
 .tmp {
   @apply mix-blend-difference;

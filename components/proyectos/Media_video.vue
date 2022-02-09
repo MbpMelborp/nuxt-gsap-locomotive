@@ -1,17 +1,16 @@
 <template>
   <div class="media_video">
     <div :class="`media_video_wrapper ${media.posicion}`">
-      <intersect @leave="stopVideo()">
-        <video
-          :ref="`video_${media._uid}`"
-          loading="lazy"
-          controls=""
-          :src="media.video.filename"
-          class="media_video_player"
-          preload="auto"
-          :poster="media.poster.filename + '/m/'"
-        ></video>
-      </intersect>
+      <video
+        :ref="`video_${media._uid}`"
+        v-intersection="handlerStopVideo"
+        loading="lazy"
+        controls=""
+        :src="media.video.filename"
+        class="media_video_player"
+        preload="auto"
+        :poster="media.poster.filename + '/m/'"
+      ></video>
 
       <button
         :id="`video_btn_${media._uid}`"
@@ -25,24 +24,21 @@
         </b>
       </button>
     </div>
-    <intersect v-if="showdesc" @enter="clipToRight">
+    <template v-if="showdesc" v-intersection="clipToRight">
       <div
         v-if="media.descripcion"
         :class="`descripcion media_video_content ${media.posicion}`"
         v-html="$storyapi.richTextResolver.render(media.descripcion)"
       ></div>
-    </intersect>
+    </template>
   </div>
 </template>
 <script>
 import { gsap, Expo } from 'gsap'
-import Intersect from 'vue-intersect'
+
 import loaderm from '~/mixins/loader.js'
 
 export default {
-  components: {
-    Intersect,
-  },
   mixins: [loaderm],
   props: {
     media: {
@@ -89,6 +85,9 @@ export default {
         onComplete: () => {},
         ease: Expo.easeInOut,
       })
+    },
+    handlerStopVideo(e, observer, isIntersecting, ratio) {
+      if (!isIntersecting) this.stopVideo()
     },
   },
 }

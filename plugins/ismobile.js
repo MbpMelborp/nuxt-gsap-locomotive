@@ -1,6 +1,6 @@
 import Vue from 'vue'
 function isMobileDevice() {
-  if (window) {
+  if (process.client) {
     /* eslint-disable */
     var check = false
     ;(function (a) {
@@ -47,13 +47,10 @@ const device = {
 }
 
 Vue.directive('if-device', device)
-Vue.prototype.$isMobile = () => isMobile
-// export default {
-//   install(Vue) {
-
-//   },
-// }
-
-// import Vue from 'vue'
-// import VueMobileDetection from 'vue-mobile-detection'
-// Vue.use(VueMobileDetection)
+// const newLocal = Vue.prototype
+// newLocal.$isMobile = () => isMobile
+export default ({ context, app }, inject) => {
+  inject('isMobile', () => {
+    return isMobileDevice()
+  })
+}
