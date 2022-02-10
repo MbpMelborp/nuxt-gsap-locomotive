@@ -222,3 +222,28 @@ i resolve my problem with the below command
 brew install vips
 
 npm rebuild --verbose sharp
+
+
+
+YML
+
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm install
+    build:
+      commands:
+        - npm run generate
+        - npm run build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+
+
+      ssh -i nuxt
