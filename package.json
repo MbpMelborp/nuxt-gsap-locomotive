@@ -30,7 +30,6 @@
     "nuxt-delay-hydration": "^0.2.4",
     "nuxt-i18n": "^6.27.0",
     "nuxt-lazy-load": "^1.2.6",
-    "nuxt-ssr-screen-size": "github:hugojerez/nuxt-ssr-screen-size",
     "postcss": "^8.3.6",
     "postcss-js": "^3.0.3",
     "postcss-nested": "^5.0.5",
