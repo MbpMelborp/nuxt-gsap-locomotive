@@ -4,7 +4,6 @@
 // url dev https://development.d1lqtgc1tjoxsq.amplifyapp.com/
 export default {
   head: {
-    title: 'MELBORP - Business Updaters',
     htmlAttrs: { lang: 'es' },
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -23,7 +22,8 @@ export default {
           ? 'production'
           : 'development debug-screens',
     },
-    meta: [
+    // title: 'MELBORP - Business Updaters',
+    /* meta: [
       {
         hid: 'description',
         name: 'description',
@@ -106,6 +106,6 @@ export default {
           'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
       },
       { name: 'dcterms.identifier', content: 'https://melborp.art/' },
-    ],
+    ], */
   },
 }
