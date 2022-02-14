@@ -71,10 +71,10 @@ export default {
       }
       item.classText = item.classes.join(' ')
     })
-    console.log(this.media.broken_item)
+    // console.log(this.media.broken_item)
   },
   mounted() {
-    console.log('BROKEN', this.media)
+    // console.log('BROKEN', this.media)
   },
 }
 </script>

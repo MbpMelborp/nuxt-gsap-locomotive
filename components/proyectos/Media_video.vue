@@ -50,10 +50,10 @@ export default {
     return { showdesc: true }
   },
   mounted() {
-    console.log(
-      'VIEDO',
-      this.$storyapi.richTextResolver.render(this.media.descripcion)
-    )
+    // console.log(
+    //   'VIDEO',
+    //   this.$storyapi.richTextResolver.render(this.media.descripcion)
+    // )
     if (
       this.$storyapi.richTextResolver.render(this.media.descripcion) ===
       '<p></p>'

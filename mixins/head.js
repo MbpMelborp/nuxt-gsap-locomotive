@@ -1,21 +1,44 @@
+import Seo from '~/static/seo.json'
+
 export default {
   head() {
+    const arrSlug = this.$route.path.split('/')
+    let slugPath =
+      arrSlug.length === 2 ? arrSlug.join('') : arrSlug[2].split('/').join('')
+    console.log('🧢  HEAD INIT ->', arrSlug.length, this.$route.path, slugPath)
+    if (this.$route.path === '/') {
+      slugPath = 'home'
+    }
+    const seoInfo = Seo[slugPath]
+
     const headInfo = {
-      title: 'MELBORP - Business Updaters | ' + this.story.content.seo.title,
+      title: 'MELBORP - Business Updaters | ' + seoInfo.title,
+      bodyAttrs: {
+        class:
+          (process.env.NODE_ENV === 'production'
+            ? 'production'
+            : 'development debug-screens') +
+          ' ' +
+          (process.client
+            ? window.location.search.includes('_storyblok')
+              ? 'editor'
+              : ''
+            : ''),
+      },
       meta: [
         {
           hid: 'description',
           name: 'description',
           content:
-            this.story.content.seo.description ||
-            'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+            seoInfo.description ||
+            'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
         },
         {
           hid: 'abstract',
           name: 'abstract',
           content:
-            this.story.content.seo.description ||
-            'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+            seoInfo.description ||
+            'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
         },
         {
           hid: 'keywords',
@@ -39,44 +62,41 @@ export default {
         {
           hid: 'og:url',
           property: 'og:url',
-          content: this.story.content.seo.og_image
-            ? this.story.content.seo.og_image
-            : 'https://melborp.art/',
+          content: seoInfo.og_image ? seoInfo.og_image : 'https://melborp.art/',
         },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         {
           hid: 'og:title',
           property: 'og:title',
-          content:
-            this.story.content.seo.title || 'Melborp - Business Updaters',
+          content: seoInfo.title || 'Melborp - Business Updaters',
         },
         {
           hid: 'og:description',
           property: 'og:description',
           content:
-            this.story.content.seo.og_description ||
-            this.story.content.seo.title ||
-            'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+            seoInfo.og_description ||
+            seoInfo.title ||
+            'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
         },
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.story.content.seo.og_image
-            ? this.story.content.seo.og_image
+          content: seoInfo.og_image
+            ? seoInfo.og_image
             : 'https://melborp.art/fb.png?v=1',
         },
         {
           hid: 'og:image:url',
           property: 'og:image:url',
-          content: this.story.content.seo.og_image
-            ? this.story.content.seo.og_image
+          content: seoInfo.og_image
+            ? seoInfo.og_image
             : 'https://melborp.art/fb.png?v=1',
         },
         {
           hid: 'og:image:secure_url',
           property: 'og:image:secure_url',
-          content: this.story.content.seo.og_image
-            ? this.story.content.seo.og_image
+          content: seoInfo.og_image
+            ? seoInfo.og_image
             : 'https://melborp.art/fb.png?v=1',
         },
         {
@@ -113,9 +133,9 @@ export default {
           hid: 'twitter:description',
           name: 'twitter:description',
           content:
-            this.story.content.seo.twitter_description ||
-            this.story.content.seo.description ||
-            'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+            seoInfo.twitter_description ||
+            seoInfo.description ||
+            'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
         },
         {
           hid: 'og:country_name',
@@ -137,8 +157,8 @@ export default {
           hid: 'dcterms.description',
           name: 'dcterms.description',
           content:
-            this.story.content.seo.description ||
-            'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+            seoInfo.description ||
+            'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
         },
         {
           hid: 'dcterms.identifier',
@@ -147,7 +167,7 @@ export default {
         },
       ],
     }
-    console.log('🧢  HEAD ->', this.story.content.seo.title, headInfo)
+    console.log('🧢  HEAD END ->', seoInfo.title, headInfo)
     return headInfo
   },
 }

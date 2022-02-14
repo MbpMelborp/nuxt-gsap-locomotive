@@ -31,6 +31,7 @@ import rootDir from './configuration/rootDir.js'
 import router from './configuration/router.js'
 import runtimeConfig from './configuration/runtimeConfig.js'
 import server from './configuration/server.js'
+import serverMiddelware from './configuration/serverMiddelware.js'
 import sitemap from './configuration/sitemap.js'
 import srcDir from './configuration/srcDir.js'
 import ssr from './configuration/ssr.js'
@@ -79,6 +80,7 @@ export default {
   ...router,
   ...runtimeConfig,
   ...server,
+  ...serverMiddelware,
   ...sitemap,
   ...srcDir,
   ...ssr,

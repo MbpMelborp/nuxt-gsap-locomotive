@@ -66,6 +66,7 @@ export default {
       } else {
         const fullSlug =
           route.path === '/' || route.path === '' ? 'home' : route.path
+        console.log('asyncData', route.path, fullSlug)
         return app.$storyapi
           .get(`cdn/stories/${fullSlug}`, {
             version: 'published',
@@ -95,6 +96,7 @@ export default {
       console.error('ERROR Home', e)
     }
   },
+
   data() {
     return {
       cargado: false,

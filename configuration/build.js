@@ -30,6 +30,9 @@ export default {
       },
     },
     extend(config, ctx) {
+      config.node = {
+        fs: 'empty',
+      }
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
       }

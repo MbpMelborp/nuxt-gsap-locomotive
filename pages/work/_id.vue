@@ -401,20 +401,6 @@ export default {
       }),
     }
   },
-  head: {
-    bodyAttrs: {
-      class:
-        (process.env.NODE_ENV === 'production'
-          ? 'production'
-          : 'development debug-screens') +
-        ' ' +
-        (process.client
-          ? window.location.search.includes('_storyblok')
-            ? 'editor'
-            : ''
-          : ''),
-    },
-  },
   computed: {
     ...mapGetters({
       section: 'app/getSection',

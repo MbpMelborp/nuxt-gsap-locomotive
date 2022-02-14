@@ -22,19 +22,19 @@ export default {
           ? 'production'
           : 'development debug-screens',
     },
-    // title: 'MELBORP - Business Updaters',
-    /* meta: [
+    title: 'MELBORP - Business Updaters | cargando ...',
+    meta: [
       {
         hid: 'description',
         name: 'description',
         content:
-          'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+          'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
       },
       {
         hid: 'abstract',
         name: 'abstract',
         content:
-          'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+          'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
       },
       {
         hid: 'keywords',
@@ -54,58 +54,90 @@ export default {
         content: 'Melborp',
       },
 
-      { property: 'og:site_name', content: 'MELBORP' },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'MELBORP' },
       {
+        hid: 'og:url',
         property: 'og:url',
         content: 'https://melborp.art/',
       },
-      { property: 'og:type', content: 'website' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
       { property: 'og:title', content: 'MELBORP - Business Updaters' },
       {
+        hid: 'og:description',
         property: 'og:description',
         content:
-          'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+          'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
       },
       {
+        hid: 'og:image',
         property: 'og:image',
         content: 'https://melborp.art/fb.png?v=1',
       },
       {
+        hid: 'og:image:url',
         property: 'og:image:url',
         content: 'https://melborp.art/fb.png?v=1',
       },
       {
+        hid: 'og:image:secure_url',
         property: 'og:image:secure_url',
         content: 'https://melborp.art/fb.png?v=1',
       },
-      { property: 'og:latitude', content: '6.2095861' },
-      { name: 'twitter:card', content: 'summary' },
+      {
+        hid: 'og:latitude',
+        property: 'og:latitude',
+        content: '6.2095861',
+      },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
       { property: 'og:longitude', content: '6.2095861' },
       { name: 'twitter:site', content: '@melborpco' },
       {
+        hid: 'og:street_address',
         property: 'og:street_address',
         content:
           ' Envigado, Colombia Km 17 Vía Las Palmas Parque La Reserva Piso 4 ',
       },
-      { name: 'twitter:url', content: 'https://melborp.art/' },
-      { property: 'og:locality', content: 'Medellín' },
-      { name: 'twitter:title', content: 'MELBORP' },
-      { property: 'og:region', content: 'Medellín' },
       {
+        hid: 'twitter:url',
+        name: 'twitter:url',
+        content: 'https://melborp.art/',
+      },
+      { hid: 'og:locality', property: 'og:locality', content: 'Medellín' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'MELBORP' },
+      { hid: 'og:region', property: 'og:region', content: 'Medellín' },
+      {
+        hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+          'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
       },
-      { property: 'og:country_name', content: 'Colombia' },
-      { property: 'og:email', content: 'info@melborp.co' },
-      { property: 'og:phone_number', content: '(4) 3119826' },
-      { name: 'dcterms.title', content: 'MELBORP' },
       {
+        hid: 'og:country_name',
+        property: 'og:country_name',
+        content: 'Colombia',
+      },
+      {
+        hid: 'og:email',
+        property: 'og:email',
+        content: 'info@melborp.co',
+      },
+      {
+        hid: 'og:phone_number',
+        property: 'og:phone_number',
+        content: '(4) 3119826',
+      },
+      { hid: 'dcterms.title', name: 'dcterms.title', content: 'MELBORP' },
+      {
+        hid: 'dcterms.description',
         name: 'dcterms.description',
         content:
-          'Somos un Bussines Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+          'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
       },
-      { name: 'dcterms.identifier', content: 'https://melborp.art/' },
-    ], */
+      {
+        hid: 'dcterms.identifier',
+        name: 'dcterms.identifier',
+        content: 'https://melborp.art/',
+      },
+    ],
   },
 }
