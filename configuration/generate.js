@@ -68,20 +68,23 @@ export default {
                 const file = 'dist/seo.json'
                 setTimeout(() => {
                   if (fs) {
-                    fs.writeFile(
-                      file,
-                      JSON.stringify(seosInfo),
-                      function (err) {
-                        if (err) {
-                          return console.error(err)
+                    if (fs.existsSync('dist')) {
+                      fs.writeFile(
+                        file,
+                        JSON.stringify(seosInfo),
+                        function (err) {
+                          if (err) {
+                            return console.error(err)
+                          }
+                          console.log('🏷️ SEO ->', 'FILE SAVED', file)
                         }
-                        console.log('🏷️ SEO ->', 'FILE SAVED', file)
-                      }
-                    )
-                  } else {
-                    console.error('🏷️ SEO ->', 'FILE NOT SAVED', file)
+                      )
+                    } else {
+                      console.error('🏷️ SEO ->', 'FILE NOT SAVED', file)
+                    }
                   }
-                }, 2000)
+                }, 4000)
+
                 // console.log('ROUTES', routes)
                 callback(null, routes)
               })
