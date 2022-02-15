@@ -53,7 +53,7 @@ export default {
             version: 'published',
           })
           .then((res) => {
-            console.log('👌 CONTACTO -> Storyblok', res.data.story)
+            // console.log('👌 CONTACTO -> Storyblok', res.data.story)
             return { story: res.data.story }
           })
           .catch((res) => {

@@ -1,7 +1,7 @@
 import Seo from '~/static/seo.json'
 
 export default {
-  head() {
+  head({ $seo }) {
     const arrSlug = this.$route.path.split('/')
     let slugPath =
       arrSlug.length === 2 ? arrSlug.join('') : arrSlug[2].split('/').join('')
@@ -12,7 +12,7 @@ export default {
     const seoInfo = Seo[slugPath]
 
     const headInfo = {
-      title: 'MELBORP - Business Updaters | ' + seoInfo.title,
+      title: seoInfo.title,
       bodyAttrs: {
         class:
           (process.env.NODE_ENV === 'production'

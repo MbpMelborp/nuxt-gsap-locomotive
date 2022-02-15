@@ -5,13 +5,14 @@ const axios = require('axios')
 export default {
   generate: {
     fallback: true,
-    routes: () => {
+    routes: (callback) => {
       const token =
         process.env.NODE_ENV === 'production'
           ? process.env.STORYBLOK_PROD
           : process.env.STORYBLOK_DEV
       const version = 'published'
       let cacheVersion = 0
+
       axios
         .get(`https://api.storyblok.com/v2/cdn/spaces/me?token=${token}`)
         .then((spaceRes) => {
@@ -25,14 +26,41 @@ export default {
               // console.log('LINKS DATA', res.data)
               const seos = []
               const seosInfo = {}
+              const routes = []
               Object.keys(res.data.links).forEach((key) => {
                 const slug = res.data.links[key].slug
                 const url = `https://api.storyblok.com/v2/cdn/stories/${slug}?cv=${cacheVersion}&token=${token}&version=published`
                 seos.push(axios.get(url))
               })
               Promise.all(seos).then(function (stories) {
-                console.log('🏷️ SEO ->', 'GENERATED URLS', stories.length)
+                // console.log('🏷️ SEO ->', 'GENERATED URLS', stories.length)
                 stories.forEach((story) => {
+                  const routeInfo = {
+                    route:
+                      story.data.story.full_slug !== 'home'
+                        ? '/' + story.data.story.full_slug
+                        : '/',
+                    // payload: story,
+                    title: story.data.story.name,
+                    meta: [
+                      {
+                        hid: 'description',
+                        name: 'description',
+                        content: story.data.story.content.seo.description,
+                      },
+                      {
+                        hid: 'hello',
+                        name: 'hello',
+                        content: story.data.story.name,
+                      },
+                      // {
+                      //   hid: `productPageKeywords-${product.id}`,
+                      //   name: 'keywords',
+                      //   content: product.keywords,
+                      // },
+                    ],
+                  }
+                  routes.push(routeInfo)
                   seosInfo[story.data.story.slug.split('/').join('')] =
                     story.data.story.content.seo
                 })
@@ -54,6 +82,8 @@ export default {
                     console.error('🏷️ SEO ->', 'FILE NOT SAVED', file)
                   }
                 }, 2000)
+                // console.log('ROUTES', routes)
+                callback(null, routes)
               })
             })
         })

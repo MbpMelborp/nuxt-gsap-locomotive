@@ -4,7 +4,7 @@
 // url dev https://development.d1lqtgc1tjoxsq.amplifyapp.com/
 export default {
   head: {
-    htmlAttrs: { lang: 'es' },
+    htmlAttrs: { lang: 'es', prefix: 'og: http://ogp.me/ns#' },
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'preconnect', href: '//a.storyblok.com' },
@@ -22,19 +22,17 @@ export default {
           ? 'production'
           : 'development debug-screens',
     },
-    title: 'MELBORP - Business Updaters | cargando ...',
+    title: 'MELBORP - Business Updaters | %s ',
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content:
-          'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+        content: '{%d}',
       },
       {
         hid: 'abstract',
         name: 'abstract',
-        content:
-          'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+        content: '{%d}',
       },
       {
         hid: 'keywords',
@@ -58,30 +56,29 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://melborp.art/',
+        content: 'https://melborp.art{%og_url}',
       },
       { hid: 'og:type', property: 'og:type', content: 'website' },
-      { property: 'og:title', content: 'MELBORP - Business Updaters' },
+      { hid: 'og:title', property: 'og:title', content: '{%og_title}' },
       {
         hid: 'og:description',
         property: 'og:description',
-        content:
-          'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+        content: '{%d}',
       },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://melborp.art/fb.png?v=1',
+        content: '{%og_image}',
       },
       {
         hid: 'og:image:url',
         property: 'og:image:url',
-        content: 'https://melborp.art/fb.png?v=1',
+        content: '{%og_image}',
       },
       {
         hid: 'og:image:secure_url',
         property: 'og:image:secure_url',
-        content: 'https://melborp.art/fb.png?v=1',
+        content: '{%og_image}',
       },
       {
         hid: 'og:latitude',
@@ -100,16 +97,15 @@ export default {
       {
         hid: 'twitter:url',
         name: 'twitter:url',
-        content: 'https://melborp.art/',
+        content: 'https://melborp.art{%og_url}',
       },
       { hid: 'og:locality', property: 'og:locality', content: 'Medellín' },
-      { hid: 'twitter:title', name: 'twitter:title', content: 'MELBORP' },
+      { hid: 'twitter:title', name: 'twitter:title', content: '{%og_title}' },
       { hid: 'og:region', property: 'og:region', content: 'Medellín' },
       {
         hid: 'twitter:description',
         name: 'twitter:description',
-        content:
-          'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+        content: '{%d}',
       },
       {
         hid: 'og:country_name',
@@ -130,8 +126,7 @@ export default {
       {
         hid: 'dcterms.description',
         name: 'dcterms.description',
-        content:
-          'Somos un business Updaters y nuestro objetivo es usar la creatividad para transformar negocios que puedan cambiar el mundo.',
+        content: '{%d}',
       },
       {
         hid: 'dcterms.identifier',

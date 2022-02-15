@@ -87,7 +87,7 @@ export default {
             version: 'published',
           })
           .then((res) => {
-            console.log('👌 PAGINA BASICA -> Storyblok', res.data.story)
+            // console.log('👌 PAGINA BASICA -> Storyblok', res.data.story)
 
             const tituloChars = res.data.story.name.split('').length
             const tituloArray = res.data.story.name.split(' ')

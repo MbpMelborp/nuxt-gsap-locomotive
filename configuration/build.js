@@ -33,9 +33,9 @@ export default {
       config.node = {
         fs: 'empty',
       }
-      if (ctx.isDev) {
-        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
-      }
+      // if (ctx.isDev) {
+      //   config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      // }
       config.module.rules.push({
         test: /\.(glsl|frag|vert)$/,
         loader: 'raw-loader',

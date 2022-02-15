@@ -95,7 +95,7 @@ export default {
     },
   },
   data() {
-    console.log('👌 HOMETOP -> data', this.$store.getters['app/getLoad'])
+    // console.log('👌 HOMETOP -> data', this.$store.getters['app/getLoad'])
     return {
       tl_home: gsap.timeline({ paused: true, ease: Expo.easeOut }),
       tl_work: gsap.timeline({ paused: true, ease: Expo.easeOut }),

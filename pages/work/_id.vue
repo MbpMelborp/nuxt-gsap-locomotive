@@ -349,11 +349,12 @@ export default {
               excluding_ids: res.data.story.id,
             })
 
-            console.log(
-              'PROYECTO -> Storyblok',
-              res.data.story,
-              proyectos.data.stories
-            )
+            // console.log(
+            //   'PROYECTO -> Storyblok',
+            //   res.data.story,
+            //   proyectos.data.stories
+            // )
+
             return {
               story: res.data.story,
               tituloParts,

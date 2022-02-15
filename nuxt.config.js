@@ -30,6 +30,7 @@ import render from './configuration/render.js'
 import rootDir from './configuration/rootDir.js'
 import router from './configuration/router.js'
 import runtimeConfig from './configuration/runtimeConfig.js'
+// import seo from './configuration/seo.js'
 import server from './configuration/server.js'
 import serverMiddelware from './configuration/serverMiddelware.js'
 import sitemap from './configuration/sitemap.js'
@@ -79,6 +80,7 @@ export default {
   ...rootDir,
   ...router,
   ...runtimeConfig,
+  // ...seo,
   ...server,
   ...serverMiddelware,
   ...sitemap,

@@ -79,7 +79,7 @@ export default {
             version: 'published',
           })
           .then((res) => {
-            console.log('👌 TEAM -> Storyblok', res.data.story)
+            // console.log('👌 TEAM -> Storyblok', res.data.story)
             return { story: res.data.story }
           })
           .catch((res) => {

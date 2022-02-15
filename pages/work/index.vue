@@ -80,7 +80,7 @@ export default {
             resolve_relations: 'work.proyectos',
           })
           .then((res) => {
-            console.log('👌 WORK -> Storyblok', res.data.story)
+            // console.log('👌 WORK -> Storyblok', res.data.story)
             return { story: res.data.story }
           })
           .catch((res) => {

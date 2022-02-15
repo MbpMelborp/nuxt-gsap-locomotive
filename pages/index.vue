@@ -73,7 +73,7 @@ export default {
             resolve_relations: 'page.proyectos,page.destacado',
           })
           .then((res) => {
-            console.log('👌 HOME -> Storyblok', res.data.story)
+            // console.log('👌 HOME -> Storyblok', res.data.story)
             return { story: res.data.story }
           })
           .catch((res) => {

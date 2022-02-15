@@ -11,6 +11,8 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // 'storyblok-nuxt',
+    // 'nuxt-seo',
+    // 'nuxt-canonical',
     '@nuxtjs/svg-sprite',
     [
       'storyblok-nuxt',

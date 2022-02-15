@@ -10,15 +10,15 @@ export default {
     '@nuxt/image',
     'nuxt-delay-hydration',
     '@nuxtjs/tailwindcss',
-    [
-      'storyblok-nuxt-routes',
-      {
-        accessToken: process.env.STORYBLOK_PROD,
-        resolveLinks: 'url', // optional
-        resolveRelations: 'page.proyectos,page.destacado', // optional
-        exclude: ['/home'], // optional
-      },
-    ],
+    // [
+    //   'storyblok-nuxt-routes',
+    //   {
+    //     accessToken: process.env.STORYBLOK_PROD,
+    //     resolveLinks: 'url', // optional
+    //     resolveRelations: 'page.proyectos,page.destacado', // optional
+    //     exclude: ['/home'], // optional
+    //   },
+    // ],
     [
       '@nuxtjs/moment',
       {

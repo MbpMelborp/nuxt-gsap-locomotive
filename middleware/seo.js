@@ -29,7 +29,7 @@ export default function (req, res, next) {
             seos.push(axios.get(url))
           })
           Promise.all(seos).then(function (stories) {
-            console.log('🏷️ SEO ->', 'GENERATED URLS', stories.length)
+            // console.log('🏷️ SEO ->', 'GENERATED URLS', stories.length)
             stories.forEach((story) => {
               seosInfo[story.data.story.slug.split('/').join('')] =
                 story.data.story.content.seo
@@ -45,7 +45,7 @@ export default function (req, res, next) {
                 next()
               })
             } else {
-              console.error('🏷️ SEO ->', 'FILE NOT SAVED', file)
+              // console.error('🏷️ SEO ->', 'FILE NOT SAVED', file)
               next()
             }
           })
