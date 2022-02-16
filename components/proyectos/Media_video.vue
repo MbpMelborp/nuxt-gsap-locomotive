@@ -5,14 +5,18 @@
         :ref="`video_${media._uid}`"
         v-intersection="handlerStopVideo"
         loading="lazy"
-        controls=""
+        :controls="!media.loop"
         :src="media.video.filename"
         class="media_video_player"
         preload="auto"
+        :loop="media.loop"
+        :autoplay="media.autoplay"
+        :muted="media.autoplay"
         :poster="media.poster.filename + '/m/'"
       ></video>
 
       <button
+        v-if="!media.loop"
         :id="`video_btn_${media._uid}`"
         v-cursor-right
         class="media_video_poster dif"
@@ -20,7 +24,9 @@
         @click="playVideo"
       >
         <b class="t proy_link btn-mbp hvr-sweep-to-top">
-          <span> Play <i class="fal fa-play"></i> </span>
+          <span :class="!media.multiply ? '' : 'no-multy'">
+            Play <i class="fal fa-play"></i>
+          </span>
         </b>
       </button>
     </div>
@@ -60,6 +66,7 @@ export default {
     ) {
       this.showdesc = false
     }
+    if (this.media.autoplay) this.playVideo()
   },
   methods: {
     playVideo(e) {
@@ -74,20 +81,31 @@ export default {
       })
     },
     stopVideo() {
-      const videop = this.$refs[`video_${this.media._uid}`]
-      videop.pause()
-      videop.currentTime = 0
-      gsap.to(`#video_btn_${this.media._uid}`, {
-        //   clipPath: 'inset(0% 0% 0% 0%)',
-        autoAlpha: 1,
-        duration: 0.5,
+      if (!this.media.autoplay) {
+        const videop = this.$refs[`video_${this.media._uid}`]
+        videop.pause()
+        videop.currentTime = 0
+        gsap.to(`#video_btn_${this.media._uid}`, {
+          //   clipPath: 'inset(0% 0% 0% 0%)',
+          autoAlpha: 1,
+          duration: 0.5,
 
-        onComplete: () => {},
-        ease: Expo.easeInOut,
-      })
+          onComplete: () => {},
+          ease: Expo.easeInOut,
+        })
+      } else {
+        this.playVideo()
+      }
     },
     handlerStopVideo(e, observer, isIntersecting, ratio) {
-      if (!isIntersecting) this.stopVideo()
+      if (!isIntersecting) {
+        if (!this.media.autoplay) {
+          console.log('VIDEO', 'stoped')
+          this.stopVideo()
+        } else {
+          this.playVideo()
+        }
+      }
     },
   },
 }
@@ -137,6 +155,14 @@ export default {
             -o-mix-blend-mode: overlay;
             -ms-mix-blend-mode: overlay;
             mix-blend-mode: overlay;
+            &.no-multy {
+              -webkit-mix-blend-mode: normal;
+              -moz-mix-blend-mode: normal;
+              -o-mix-blend-mode: normal;
+              -ms-mix-blend-mode: normal;
+              mix-blend-mode: normal;
+              @apply text-white;
+            }
           }
         }
       }

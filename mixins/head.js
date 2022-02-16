@@ -13,18 +13,6 @@ export default {
 
     const headInfo = {
       title: seoInfo.title,
-      bodyAttrs: {
-        class:
-          (process.env.NODE_ENV === 'production'
-            ? 'production'
-            : 'development debug-screens') +
-          ' ' +
-          (process.client
-            ? window.location.search.includes('_storyblok')
-              ? 'editor'
-              : ''
-            : ''),
-      },
       meta: [
         {
           hid: 'description',

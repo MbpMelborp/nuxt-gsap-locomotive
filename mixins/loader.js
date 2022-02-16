@@ -26,15 +26,15 @@ export default {
         if (el.classList.contains('vlazy')) {
           if (this.$isMobile()) {
             gsap.set(el, {
-              clipPath: 'inset(0% 0% 100% 0%)',
+              // clipPath: 'inset(0% 0% 100% 0%)',
               scaleY: 1.1,
               autoAlpha: 0,
             })
           } else {
             gsap.set(el, {
-              clipPath: 'inset(0% 0% 0% 0%)',
-              scaleY: 1,
-              autoAlpha: 0,
+              // clipPath: 'inset(0% 0% 0% 0%)',
+              scaleY: 1.1,
+              autoAlpha: 0.8,
             })
           }
         }
@@ -57,29 +57,27 @@ export default {
       ) => {
         if (window) {
           if (el.classList.contains('vlazy')) {
-            if (el.classList.contains('vlazy')) {
-              gsap.to(el, {
-                clipPath: 'inset(0% 0% 0% 0%)',
-                scaleY: 1,
-                autoAlpha: 1,
-                duration: 0.5,
-                ease: Power2.easeInOut,
-                onStart: () => {
-                  window.dispatchEvent(new Event('resize'))
-                },
-              })
-            } else {
-              gsap.to(el, {
-                clipPath: 'inset(0% 0% 0% 0%)',
-                scaleY: 1,
-                autoAlpha: 1,
-                duration: 0.8,
-                ease: Power2.easeInOut,
-                onStart: () => {
-                  window.dispatchEvent(new Event('resize'))
-                },
-              })
-            }
+            gsap.to(el, {
+              // clipPath: 'inset(0% 0% 0% 0%)',
+              scaleY: 1,
+              autoAlpha: 1,
+              duration: 0.7,
+              ease: Power2.easeInOut,
+              onStart: () => {
+                window.dispatchEvent(new Event('resize'))
+              },
+            })
+          } else {
+            gsap.to(el, {
+              clipPath: 'inset(0% 0% 0% 0%)',
+              scaleY: 1,
+              autoAlpha: 1,
+              duration: 0.8,
+              ease: Power2.easeInOut,
+              onStart: () => {
+                window.dispatchEvent(new Event('resize'))
+              },
+            })
           }
         }
       }

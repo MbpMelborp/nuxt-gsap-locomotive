@@ -78,7 +78,7 @@
             <span class="updaters"> Updaters </span>
           </vue-marquee-slide>
         </vue-marquee>
-
+        <div class="loading">cargando</div>
         <svg
           width="45px"
           height="45px"
@@ -111,7 +111,6 @@
 <script>
 import { gsap, Power4 } from 'gsap'
 
-
 export default {
   data() {
     return {
@@ -120,7 +119,7 @@ export default {
       scale: [0.6, 1.1],
       tl_preload_salida: gsap.timeline({
         paused: true,
-        delay: process.env.NODE_ENV === 'development' ? 1 : 5,
+        delay: process.env.NODE_ENV === 'development' ? 2 : 5,
         ease: Power4.easeInOut,
         onStart: () => {
           if (!this.$isMobile()) {
@@ -252,6 +251,17 @@ export default {
         },
         { x: '100vw', y: '-100vw', delay: 0, duration: 2 }
       )
+      gsap.fromTo(
+        '.loading',
+        { '--font-weight': 200, '--font-width': 120 },
+        {
+          '--font-weight': 600,
+          '--font-width': 140,
+          duration: 1,
+          yoyo: true,
+          repeat: -1,
+        }
+      )
     },
   },
 }
@@ -292,7 +302,7 @@ export default {
       grid-template-areas:
         '.'
         'marquee'
-        '.';
+        'loading';
       overflow: hidden;
       background: rgba(0, 0, 0, 0.5);
       color: #fff;
@@ -301,6 +311,12 @@ export default {
       @media (max-width: 768px) {
         grid-template-rows: [t1] auto 250px auto [b1];
         background: rgba(0, 0, 0, 1);
+      }
+      .loading {
+        grid-area: loading;
+        font-variation-settings: 'wght' var(--font-weight, 200),
+          'wdth' var(--font-width, 120), 'ital' 0;
+        @apply text-lg self-end pb-8;
       }
       .arrow {
         grid-area: marquee;

@@ -18,9 +18,15 @@ export default {
     ],
     bodyAttrs: {
       class:
-        process.env.NODE_ENV === 'production'
+        (process.env.NODE_ENV === 'production'
           ? 'production'
-          : 'development debug-screens',
+          : 'development debug-screens') +
+        ' ' +
+        (process.client
+          ? window.location.search.includes('_storyblok')
+            ? 'editor'
+            : ''
+          : ''),
     },
     title: 'MELBORP - Business Updaters | %s ',
     meta: [

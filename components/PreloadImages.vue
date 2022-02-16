@@ -78,7 +78,7 @@
             <span class="updaters"> Updaters </span>
           </vue-marquee-slide>
         </vue-marquee>
-
+        Cargando
         <svg
           width="45px"
           height="45px"
