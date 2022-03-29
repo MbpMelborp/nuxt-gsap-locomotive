@@ -177,7 +177,7 @@ nav {
   }
 }
 .nav {
-  @apply justify-end items-center flex;
+  @apply justify-end items-center flex pr-8;
   a {
     transition: all 0.5s ease-in-out;
     @apply uppercase text-xs text-white block mx-2;

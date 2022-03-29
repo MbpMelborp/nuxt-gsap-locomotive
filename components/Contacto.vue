@@ -66,7 +66,7 @@
             </a>
             <a
               v-cursor-right
-              href="https://www.instagram.com/melborp/"
+              href="https://es-la.facebook.com/melborpco/"
               target="_blank"
             >
               <i class="fab fa-facebook-f"></i>

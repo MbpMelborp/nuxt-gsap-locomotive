@@ -1,6 +1,7 @@
 <template>
   <client-only>
     <main :class="{ cursor: !editor && !mobile }">
+      <Human></Human>
       <Cursorfx v-if="!editor && !mobile"></Cursorfx>
       <Preload v-if="!preload && !editor"></Preload>
       <PreloadInterior></PreloadInterior>
