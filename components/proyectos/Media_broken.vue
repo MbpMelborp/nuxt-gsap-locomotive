@@ -11,14 +11,19 @@
         "
         :class="item.classText"
       >
-        <img
-          v-if="item.imagen.filename"
-          :data-src="item.imagen.filename + '/m/'"
-          :data-loading="item.imagen.filename + '/m/filters:quality(10)'"
-          :data-error="item.imagen.filename + '/m/filters:quality(10)'"
-          class="vlazy"
-          alt="Melborp"
-        />
+        <template v-if="item.imagen.filename">
+          <img
+            v-if="item.imagen.filename.split('.').pop() != 'mp4'"
+            :data-src="item.imagen.filename + '/m/'"
+            :data-loading="item.imagen.filename + '/m/filters:quality(10)'"
+            :data-error="item.imagen.filename + '/m/filters:quality(10)'"
+            class="vlazy"
+            alt="Melborp"
+          />
+          <video v-else muted playsinline loop preload autoplay>
+            <source :src="item.imagen.filename" type="video/mp4" />
+          </video>
+        </template>
 
         <div
           v-if="item.descripcion != ''"

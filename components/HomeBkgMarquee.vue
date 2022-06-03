@@ -2,7 +2,7 @@
   <div class="marquee">
     <div class="text_home">
       <div class="text_home_int">
-        <span class="anim">Somos</span>
+        <span class="anim">No somos una agencia, somos un</span>
         <h2 class="anim bu">Business Updaters</h2>
         <span class="anim">
           y nuestro objetivo es usar la creatividad para transformar negocios

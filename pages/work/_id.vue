@@ -239,6 +239,11 @@
                 class="next-project-wrap-fl-content"
               >
                 <img
+                  v-if="
+                    next_project.content.home[0].media1.filename
+                      .split('.')
+                      .pop() != 'mp4'
+                  "
                   :data-src="
                     next_project.content.home[0].media1.filename + '/m/'
                   "
@@ -253,7 +258,26 @@
                   :alt="next_project.content.nombre"
                   class="img_1 vlazy"
                 />
+                <video
+                  v-else
+                  muted
+                  playsinline
+                  loop
+                  preload
+                  autoplay
+                  class="img_1"
+                >
+                  <source
+                    :src="next_project.content.home[0].media1.filename"
+                    type="video/mp4"
+                  />
+                </video>
                 <img
+                  v-if="
+                    next_project.content.home[0].media2.filename
+                      .split('.')
+                      .pop() != 'mp4'
+                  "
                   :data-scroll="!$isMobile() ? true : false"
                   :data-scroll-speed="!$isMobile() ? 0.5 : 0"
                   :data-src="
@@ -270,7 +294,26 @@
                   :alt="next_project.content.nombre"
                   class="img_2 vlazy"
                 />
+                <video
+                  v-else
+                  muted
+                  playsinline
+                  loop
+                  preload
+                  autoplay
+                  class="img_2"
+                >
+                  <source
+                    :src="next_project.content.home[0].media2.filename"
+                    type="video/mp4"
+                  />
+                </video>
                 <img
+                  v-if="
+                    next_project.content.home[0].media3.filename
+                      .split('.')
+                      .pop() != 'mp4'
+                  "
                   :data-scroll="!$isMobile() ? true : false"
                   :data-scroll-speed="!$isMobile() ? -0.5 : 0"
                   :data-src="
@@ -287,6 +330,20 @@
                   :alt="next_project.content.nombre"
                   class="img_3 vlazy"
                 />
+                <video
+                  v-else
+                  muted
+                  playsinline
+                  loop
+                  preload
+                  autoplay
+                  class="img_3"
+                >
+                  <source
+                    :src="next_project.content.home[0].media3.filename"
+                    type="video/mp4"
+                  />
+                </video>
               </div>
             </nuxt-link>
           </div>

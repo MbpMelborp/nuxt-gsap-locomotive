@@ -117,48 +117,90 @@
       data-played="0"
       class="proyecto_media proyecto_media_1"
     >
-      <img
-        :data-src="proyecto.content.home[0].media1.filename + '/m/'"
-        :data-loading="
-          proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
+      <template
+        v-if="
+          proyecto.content.home[0].media1.filename.split('.').pop() != 'mp4'
         "
-        :data-error="
-          proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
-        "
-        class="vlazy proyecto-img"
-      />
+      >
+        <img
+          :data-src="proyecto.content.home[0].media1.filename + '/m/'"
+          :data-loading="
+            proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
+          "
+          :data-error="
+            proyecto.content.home[0].media1.filename + '/m/filters:quality(10)'
+          "
+          class="vlazy proyecto-img"
+        />
+      </template>
+      <template v-else>
+        <video muted playsinline loop preload autoplay>
+          <source
+            :src="proyecto.content.home[0].media1.filename"
+            type="video/mp4"
+          />
+        </video>
+      </template>
     </div>
     <div
       :id="`proyecto_${proyecto.slug}_media_2`"
       v-lazy-container="{ selector: 'img' }"
       class="proyecto_media proyecto_media_2"
     >
-      <img
-        :data-src="proyecto.content.home[0].media2.filename + '/m/'"
-        :data-loading="
-          proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
+      <template
+        v-if="
+          proyecto.content.home[0].media2.filename.split('.').pop() != 'mp4'
         "
-        :data-error="
-          proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
-        "
-        class="vlazy proyecto-img"
-      />
+      >
+        <img
+          :data-src="proyecto.content.home[0].media2.filename + '/m/'"
+          :data-loading="
+            proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
+          "
+          :data-error="
+            proyecto.content.home[0].media2.filename + '/m/filters:quality(10)'
+          "
+          class="vlazy proyecto-img"
+        />
+      </template>
+      <template v-else>
+        <video muted playsinline loop preload autoplay>
+          <source
+            :src="proyecto.content.home[0].media2.filename"
+            type="video/mp4"
+          />
+        </video>
+      </template>
     </div>
     <div
       :id="`proyecto_${proyecto.slug}_media_3`"
       v-lazy-container="{ selector: 'img' }"
       class="proyecto_media proyecto_media_3"
     >
-      <img
-        :data-src="proyecto.content.home[0].media3.filename + '/m/'"
-        :data-loading="
-          proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
+      <template
+        v-if="
+          proyecto.content.home[0].media3.filename.split('.').pop() != 'mp4'
         "
-        :data-error="
-          proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
-        "
-        class="vlazy proyecto-img"
-      />
+      >
+        <img
+          :data-src="proyecto.content.home[0].media3.filename + '/m/'"
+          :data-loading="
+            proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
+          "
+          :data-error="
+            proyecto.content.home[0].media3.filename + '/m/filters:quality(10)'
+          "
+          class="vlazy proyecto-img"
+        />
+      </template>
+      <template v-else>
+        <video muted playsinline loop preload autoplay>
+          <source
+            :src="proyecto.content.home[0].media3.filename"
+            type="video/mp4"
+          />
+        </video>
+      </template>
     </div>
 
     <div class="bg"></div>

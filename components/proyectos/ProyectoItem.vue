@@ -48,6 +48,10 @@
             class="item-project-wrap-fl-content"
           >
             <img
+              v-if="
+                proyecto.content.home[0].media1.filename.split('.').pop() !=
+                'mp4'
+              "
               :data-src="proyecto.content.home[0].media1.filename + '/m/'"
               :data-loading="
                 proyecto.content.home[0].media1.filename +
@@ -60,7 +64,17 @@
               :alt="proyecto.content.nombre"
               class="img_1 vlazy"
             />
+            <video v-else muted playsinline loop preload autoplay class="img_1">
+              <source
+                :src="proyecto.content.home[0].media1.filename"
+                type="video/mp4"
+              />
+            </video>
             <img
+              v-if="
+                proyecto.content.home[0].media2.filename.split('.').pop() !=
+                'mp4'
+              "
               :data-scroll="!$isMobile() ? true : false"
               :data-scroll-speed="!$isMobile() ? 0.5 : 0"
               :data-src="proyecto.content.home[0].media2.filename + '/m/'"
@@ -75,7 +89,17 @@
               :alt="proyecto.content.nombre"
               class="img_2 vlazy"
             />
+            <video v-else muted playsinline loop preload autoplay class="img_2">
+              <source
+                :src="proyecto.content.home[0].media2.filename"
+                type="video/mp4"
+              />
+            </video>
             <img
+              v-if="
+                proyecto.content.home[0].media3.filename.split('.').pop() !=
+                'mp4'
+              "
               :data-scroll="!$isMobile() ? true : false"
               :data-scroll-speed="!$isMobile() ? -0.5 : 0"
               :data-src="proyecto.content.home[0].media3.filename + '/m/'"
@@ -90,6 +114,12 @@
               :alt="proyecto.content.nombre"
               class="img_3 vlazy"
             />
+            <video v-else muted playsinline loop preload autoplay class="img_3">
+              <source
+                :src="proyecto.content.home[0].media3.filename"
+                type="video/mp4"
+              />
+            </video>
           </div>
         </nuxt-link>
       </div>
