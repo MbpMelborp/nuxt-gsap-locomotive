@@ -159,17 +159,29 @@
             data-scroll-position="top"
             class="imagen"
           >
-            <img
-              :data-src="story.content.header[0].filename + '/m/'"
-              :data-loading="
-                story.content.header[0].filename + '/m/filters:quality(10)'
-              "
-              :data-error="
-                story.content.header[0].filename + '/m/filters:quality(10)'
-              "
-              :alt="story.name"
-              class="vlazy"
-            />
+            <template
+              v-if="story.content.header[0].filename.split('.').pop() != 'mp4'"
+            >
+              <img
+                :data-src="story.content.header[0].filename + '/m/'"
+                :data-loading="
+                  story.content.header[0].filename + '/m/filters:quality(10)'
+                "
+                :data-error="
+                  story.content.header[0].filename + '/m/filters:quality(10)'
+                "
+                :alt="story.name"
+                class="vlazy"
+              />
+            </template>
+            <template v-else>
+              <video muted playsinline loop preload autoplay>
+                <source
+                  :src="story.content.header[0].filename"
+                  type="video/mp4"
+                />
+              </video>
+            </template>
           </div>
         </div>
       </div>
